@@ -1,0 +1,291 @@
+﻿<Page x:Class="RoomM.DeskApp.Views.StaffManagement"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RoomM.DeskApp.ViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="639" d:DesignWidth="1100"
+	Title="StaffManagement">
+    <Page.DataContext>
+        <local:StaffManagementViewModel />
+    </Page.DataContext>
+    <Grid Margin="20,0,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.8*"/>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="65"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="DANH SÁCH NHÂN VIÊN" Padding="5" VerticalAlignment="Center" FontSize="15" Background="LightGray" FontWeight="Bold"/>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition Width="0.25*"/>
+                    <ColumnDefinition Width="0.3*"/>
+                    <ColumnDefinition Width="0.25*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.RowSpan="2" Grid.Column="0" Content="Lọc nội dung:"/>
+                <Button Grid.Row="0" Grid.Column="3" Content="Lọc" Width="80" Height="20" Command="{Binding FilterCommand}"/>
+                <Button Grid.Row="1" Grid.Column="3" Content="Hiện tất cả" Width="80" Height="20" ToolTip="Không lọc" Command="{Binding FilterAllCommand}"/>
+                <Label Grid.Row="0" Grid.Column="1" Content="theo tên:"/>
+                <Label Grid.Row="1" Grid.Column="1" Content="theo giới tính:"/>
+                <TextBox Grid.Row="0" Grid.Column="2" Margin="3" Text="{Binding NameFilter}"/>
+                <ComboBox Grid.Row="1" Grid.Column="2" Margin="3" Padding="10,2,0,0" SelectedIndex="{Binding SexFilter}">
+                    <ComboBoxItem>Tất cả</ComboBoxItem>
+                    <ComboBoxItem>Nữ</ComboBoxItem>
+                    <ComboBoxItem>Nam</ComboBoxItem>          
+                </ComboBox>
+                <WrapPanel Grid.Row="2" Grid.ColumnSpan="4">
+                    <CheckBox Margin="10,5,5,5" Command="{Binding FilterAllPlusCommand}" IsChecked="{Binding AllPlusIsCheck}"/>
+                    <TextBlock Margin="0,5,5,5" Text="Hiện thị các nhân viên đã xóa" FontStyle="Italic"/>
+                </WrapPanel>
+            </Grid>
+            <DataGrid Grid.Row="2" VerticalAlignment="Stretch" Margin="0,7,0,0" 
+                      AutoGenerateColumns="False" CanUserAddRows="False" CanUserSortColumns="True"
+                      CanUserResizeColumns="False"
+                      IsSynchronizedWithCurrentItem="True"
+                      SelectedItem="{Binding Path=CurrentEntity}"
+                      ItemsSource="{Binding Path=EntitiesView}"
+                      SelectedIndex="0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Tên" Width="*" Binding="{Binding Name}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Giới tính" Width="Auto" Binding="{Binding SexName}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Lần đăng nhập cuối" Width="Auto" Binding="{Binding LastLogin, StringFormat=\{0:dd/MM/yyyy hh:mm\}}" IsReadOnly="True"/>
+                    <DataGridTemplateColumn Header="Hành động" Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Xoá" Width="50" Height="20"  IsEnabled="{Binding IsWorking}"
+                                        Command="{Binding Path=DataContext.DelCommand,
+                                                          RelativeSource={RelativeSource FindAncestor, 
+                                                                                         AncestorType={x:Type DataGrid}}}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+                <DataGrid.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Path=Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </GroupStyle.HeaderTemplate>
+                        <GroupStyle.ContainerStyle>
+                            <Style TargetType="{x:Type GroupItem}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type GroupItem}">
+                                            <Expander IsExpanded="True" Background="Silver">
+                                                <Expander.Header>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="80"/>
+                                                            <ColumnDefinition Width="130"/>
+                                                            <ColumnDefinition Width="55"/>
+                                                            <ColumnDefinition/>
+                                                            <ColumnDefinition/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Grid.Column="0" Text="Chức quyền:" />
+                                                        <TextBlock Grid.Column="1" Text="{Binding Path=Name.Name}" Margin="0,0,10,0" FontWeight="Bold"/>
+                                                        <TextBlock Grid.Column="2" Text="Số lượng:" />
+                                                        <TextBlock Grid.Column="3" Text="{Binding Path=ItemCount}" Margin="0,0,3,0"/>
+                                                        <TextBlock Grid.Column="4" Text="người" />
+                                                    </Grid>
+                                                </Expander.Header>
+                                                <Expander.Content>
+                                                    <ItemsPresenter />
+                                                </Expander.Content>
+                                            </Expander>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </GroupStyle.ContainerStyle>
+                    </GroupStyle>
+                </DataGrid.GroupStyle>
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsWorking}" Value="false">
+                                <Setter Property="Background" Value="LightGray"/>
+                                <Setter Property="Foreground" Value="White" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsWorking}" Value="true"/>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.Resources>
+            </DataGrid>
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <WrapPanel>
+                    <Label Content="Tổng số: " Padding="2" Margin="10,0,5,0"/>
+                    <TextBlock Padding="2.5" Text="{Binding EntitiesView.Count}"/>
+                    <Label Content="người" Padding="2" Margin="0,0,5,0"/>
+                </WrapPanel>
+                <Button Grid.Row="1" Grid.Column="0" Content="Thêm nhân viên" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,15,0" Height="25" Width="120"  Command="{Binding NewDialogCommand}" />
+                <Button Grid.Row="1" Grid.Column="1" Height="25" Width="120" VerticalAlignment="Top" Margin="15,0,0,0" HorizontalAlignment="Left" Command="{Binding ExportToExcelCommand}">
+                    <WrapPanel>
+                        <Image Source="/Icon/page_excel.png"/>
+                        <TextBlock Text="Xuất ra Excel" Margin="3"/>
+                    </WrapPanel>
+                </Button>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <WrapPanel Grid.Row="0"  VerticalAlignment="Top" Background="LightGray">
+                <TextBlock Text="NHÂN VIÊN" Padding="5"  TextWrapping="Wrap" VerticalAlignment="Center" FontSize="15" FontWeight="Bold"/>
+                <TextBlock Text="{Binding CurrentEntity.Name}" Padding="5" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="15" FontWeight="Bold"/>
+            </WrapPanel>
+            <TabControl Grid.Row="1" Margin="0,10,0,5">
+                <TabItem Header="Thông tin nhân viên" Width="120">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="155"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" BorderBrush="LightGray" BorderThickness="2" Margin="5,5,5,10">
+                            <Grid Margin="5,5,0,5" RenderTransformOrigin="0.725,0.434">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="30"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.275*"/>
+                                    <ColumnDefinition Width="0.7*"/>
+                                    <ColumnDefinition Width="0.025*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="Thông tin tài khoản:" HorizontalAlignment="Left" FontSize="15" FontWeight="Bold" Margin="5,3,5,7"/>
+                                <Label Grid.Row="1" Grid.Column="0" Content="Tên đăng nhập:" HorizontalAlignment="Left"/>
+                                <Label Grid.Row="2" Grid.Column="0" Content="Mật khẩu:" HorizontalAlignment="Left"/>
+                                <Label Grid.Row="3" Grid.Column="0" Content="Lần đăng nhập cuối:" HorizontalAlignment="Left"/>
+                                <TextBlock Grid.Row="1" Grid.Column="1" Margin="0,0,0,5" Text="{Binding CurrentEntity.UserName}" Padding="0,4,0,0" HorizontalAlignment="Stretch" FontWeight="Bold"/>
+                                <Button Grid.Row="2" Grid.Column="1" Margin="0,0,0,5" Content="Đổi mật khẩu" HorizontalAlignment="Left" Width="150"/>
+                                <TextBlock Grid.Row="3" Grid.Column="1" Margin="0,0,0,5" Text="{Binding CurrentEntity.LastLogin, StringFormat=\{0:dd/MM/yyyy hh:mm\}}" Padding="0,4,0,0" HorizontalAlignment="Stretch"/>
+                            </Grid>
+                        </Border>
+                        <Border Grid.Row="1" BorderBrush="LightGray" BorderThickness="2" Margin="5,5,5,10">
+                            <Grid Margin="5,5,0,5" RenderTransformOrigin="0.725,0.434">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="35"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.275*"/>
+                                    <ColumnDefinition Width="0.55*"/>
+                                    <ColumnDefinition Width="0.1*"/>
+                                    <ColumnDefinition Width="0.075*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="Thông tin cá nhân:" HorizontalAlignment="Left" FontSize="15" FontWeight="Bold" Margin="5,3,5,7"/>
+                                <Label Grid.Row="1" Grid.Column="0" Content="Tên nhân viên:" HorizontalAlignment="Left"/>
+                                <Label Grid.Row="2" Grid.Column="0" Content="Giới tính:" HorizontalAlignment="Left"/>
+                                <Label Grid.Row="3" Grid.Column="0" Content="Chức quyền:" HorizontalAlignment="Left"/>
+                                <Label Grid.Row="4" Grid.Column="0" Content="Số điện thoại:" HorizontalAlignment="Left"/>
+                                <Label Grid.Row="5" Grid.Column="0" Content="Mô tả:" HorizontalAlignment="Left"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" Margin="0,0,0,5" Padding="3" HorizontalAlignment="Stretch" Text="{Binding CurrentEntity.Name}"/>
+                                <WrapPanel Grid.Row="2" Grid.Column="1" Margin="0,0,0,5" HorizontalAlignment="Stretch">
+                                    <Label Content="Là nữ: "/>
+                                    <CheckBox IsChecked="{Binding CurrentEntity.Sex}" Margin="0,5,5,5"/>
+                                </WrapPanel>
+                                <ComboBox Grid.Row="3" Grid.Column="1" Margin="0,0,0,5" Padding="3" HorizontalAlignment="Stretch" ItemsSource="{Binding Path=StaffTypesView}" SelectedValue="{Binding Path=CurrentEntity.StaffTypeId}" DisplayMemberPath="Name" SelectedValuePath="ID"/>
+                                <TextBox Grid.Row="4" Grid.Column="1" Margin="0,0,0,5" Padding="3" HorizontalAlignment="Stretch" Text="{Binding CurrentEntity.Phone}"/>
+                                <TextBox Grid.Row="5" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Text="{Binding CurrentEntity.Description}"/>
+                                <Button Grid.Row="7" Grid.ColumnSpan="4" Content="Lưu thay đổi" Height="25" Width="120" Margin="0,6,0,0" Command="{Binding SaveCommand}" IsEnabled="{Binding CurrentEntity.IsWorking}" />
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Lịch đăng ký" Width="110" IsEnabled="{Binding CanModify}">
+                    <Grid Background="#FFE5E5E5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="110"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="28"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.15*"/>
+                                <ColumnDefinition Width="0.225*"/>
+                                <ColumnDefinition Width="0.025*"/>
+                                <ColumnDefinition Width="0.175*"/>
+                                <ColumnDefinition Width="0.225*"/>
+                                <ColumnDefinition Width="0.2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0"  Grid.ColumnSpan="5" Content="Lọc nội dung:"/>
+                            <Button Grid.Row="1" Grid.Column="5" Content="Lọc" Width="80" Height="20" Command="{Binding RoomCalendarViewFilterCommand}" />
+                            <Button Grid.Row="2" Grid.Column="5" Content="Hiện tất cả" Width="80" Height="20" Command="{Binding RoomCalendarViewFilterAllCommand}"/>
+                            <Label Grid.Row="1" Grid.Column="0" Content="ngày (từ):"/>
+                            <Label Grid.Row="1" Grid.Column="3" Content="ngày (đến):"/>
+                            <Label Grid.Row="2" Grid.Column="0" Content="số tiết:"/>
+                            <Label Grid.Row="3" Grid.Column="0" Content="tiết bắt đầu:"/>
+                            <Label Grid.Row="2" Grid.Column="3" Content="tên phòng:"/>
+                            <Label Grid.Row="3" Grid.Column="3" Content="trạng thái:"/>
+                            <DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding RcvDateFromFilter,StringFormat='dd/MM/yyy'}"/>
+                            <DatePicker Grid.Row="1" Grid.Column="4" SelectedDate="{Binding RcvDateToFilter,StringFormat='dd/MM/yyy'}"/>
+                            <TextBox Grid.Row="2" Grid.Column="1" Margin="3" Height="20" Text="{Binding RcvPeriodsFilter}"/>
+                            <TextBox Grid.Row="2" Grid.Column="4" Margin="3" Height="20" Text="{Binding RcvRoomFilter}"/>
+                            <TextBox Grid.Row="3" Grid.Column="1" Margin="3" Height="20" Text="{Binding RcvBeginTimeFilter}"/>
+                            <ComboBox Grid.Row="3" Grid.Column="4" Margin="3" Height="20" ItemsSource="{Binding RcvStatusFilters}" SelectedItem="{Binding RcvStatusFilter}" DisplayMemberPath="Name"/>
+                        </Grid>
+                        <DataGrid Grid.Row="1" VerticalAlignment="Stretch" Margin="0,7,0,0" 
+                                  AutoGenerateColumns="False" CanUserAddRows="False"
+                                  ItemsSource="{Binding Path=CurrentRoomCalendarView}"
+                                  SelectedItem="{Binding Path=CurrentRoomCalendar}"
+                                  SelectedIndex="0">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Ngày" Width="0.2*" Binding="{Binding Date, StringFormat=\{0:dd/MM/yyyy \}}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Tiết đầu" Width="0.125*" IsReadOnly="True" Binding="{Binding Start}"/>
+                                <DataGridTextColumn Header="Số tiết" Width="0.125*" IsReadOnly="True" Binding="{Binding Length}"/>
+                                <DataGridTextColumn Header="Phòng" Width="0.3*" IsReadOnly="True" Binding="{Binding Room.Name}"/>
+                                <DataGridTextColumn Header="Trạng thái" Width="0.25*" IsReadOnly="True" Binding="{Binding RoomCalendarStatus.Name}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <WrapPanel Grid.Row="2">
+                            <Label Content="Tổng số: " Padding="2" Margin="10,0,5,0"/>
+                            <TextBlock Padding="2.5" Text="{Binding CurrentRoomCalendarView.Count}"/>
+                            <Label Content="Lịch đăng ký" Padding="2" Margin="0,0,5,0"/>
+                        </WrapPanel>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Center" Width="2" Background="LightGray"/>
+    </Grid>
+</Page>

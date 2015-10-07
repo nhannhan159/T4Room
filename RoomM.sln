@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.Repositories", "RoomM.Repositories\RoomM.Repositories.csproj", "{61FAA63A-110F-42FB-A273-6362F5730E68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.WebApp", "RoomM.WebApp\RoomM.WebApp.csproj", "{9B5CF9B6-E3A5-4100-ADEC-0B2AA821A495}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.Models", "RoomM.Models\RoomM.Models.csproj", "{A2CD9EA0-9E0C-4B0A-87F5-9BADDC4F9422}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.ConsoleApp", "RoomM.ConsoleApp\RoomM.ConsoleApp.csproj", "{8E362F02-1FDC-4C8D-9122-2C5B49B5AD35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.DeskApp", "RoomM.DeskApp\RoomM.DeskApp.csproj", "{43B13507-686D-4D50-B207-3135877386C8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{606C1545-BFE0-4F8D-8CEE-EBE67D58511E}"
+	ProjectSection(SolutionItems) = preProject
+		Libs\Ionic.Zip.dll = Libs\Ionic.Zip.dll
+		Libs\NPOI.dll = Libs\NPOI.dll
+		Libs\System.Windows.Controls.DataVisualization.Toolkit.dll = Libs\System.Windows.Controls.DataVisualization.Toolkit.dll
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{61FAA63A-110F-42FB-A273-6362F5730E68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61FAA63A-110F-42FB-A273-6362F5730E68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61FAA63A-110F-42FB-A273-6362F5730E68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61FAA63A-110F-42FB-A273-6362F5730E68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B5CF9B6-E3A5-4100-ADEC-0B2AA821A495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B5CF9B6-E3A5-4100-ADEC-0B2AA821A495}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B5CF9B6-E3A5-4100-ADEC-0B2AA821A495}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B5CF9B6-E3A5-4100-ADEC-0B2AA821A495}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2CD9EA0-9E0C-4B0A-87F5-9BADDC4F9422}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2CD9EA0-9E0C-4B0A-87F5-9BADDC4F9422}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2CD9EA0-9E0C-4B0A-87F5-9BADDC4F9422}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2CD9EA0-9E0C-4B0A-87F5-9BADDC4F9422}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E362F02-1FDC-4C8D-9122-2C5B49B5AD35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E362F02-1FDC-4C8D-9122-2C5B49B5AD35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E362F02-1FDC-4C8D-9122-2C5B49B5AD35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E362F02-1FDC-4C8D-9122-2C5B49B5AD35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43B13507-686D-4D50-B207-3135877386C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43B13507-686D-4D50-B207-3135877386C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43B13507-686D-4D50-B207-3135877386C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43B13507-686D-4D50-B207-3135877386C8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

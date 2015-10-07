@@ -1,0 +1,53 @@
+﻿@model IEnumerable<RoomM.Models.Rooms.RoomCalendar>
+
+@{
+    ViewBag.Title = "RegisterByStaff";
+}
+
+<h2>RegisterByStaff</h2>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>@item.Room.Name # @item.Start # @item.Length </li>    
+    }
+</ul>
+
+@{
+    var index = 0;    
+
+}
+
+
+<table width="80%" align="center" >
+    <div id="head_nav">
+        <tr>
+            <th>STT</th>
+            <th>Ma phong  </th>
+            <th>Ten phong</th>
+            <th>Tiet bat dau</th>
+            <th>So tiet</th>
+            <th>Ngay dang ki</th>
+            <th>Trang thai</th>
+            <th></th>
+        </tr>
+    </div>  
+
+
+    @foreach (var item in Model)
+    { 
+        index++;
+        <tr>
+            <th>@index</th>
+            <td>@item.Room.ID</td>
+            <td>@item.Room.Name</td>
+            <td>@item.Start</td>
+            <td>@item.Length</td>
+            <td>@item.Date.ToShortDateString()</td>
+            <td>@item.RoomCalendarStatus.Name</td>
+            <td>Delete</td>
+        </tr>
+    }
+
+</table>
+

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<RoomM.Models.Rooms.RoomCalendar>
+
+@{
+    ViewBag.Title = "HistoryRegistered";
+    int counter = 0;
+}
+
+<h2>Lịch sử đăng kí phòng</h2>
+
+<br/>
+<table width="90%" align="center">
+    <tr>
+        <th>STT</th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Start)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Length)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomCalendarStatus)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    counter++;
+    <tr>
+        <th>@counter</th>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Start)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Length)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Room.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoomCalendarStatus.Name)
+        </td>
+    </tr>
+}
+
+</table>

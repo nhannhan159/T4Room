@@ -1,0 +1,34 @@
+﻿<Window x:Class="RoomM.DeskApp.Views.NewRoom"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:RoomM.DeskApp.ViewModels"
+        Title="Thêm phòng mới" Height="350" Width="400"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    <Grid Margin="5,10,5,5" RenderTransformOrigin="0.725,0.434">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="90*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Content="Tên phòng:" HorizontalAlignment="Right"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Ngày tạo:" HorizontalAlignment="Right"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="Loại phòng:" HorizontalAlignment="Right"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Mô tả:" HorizontalAlignment="Right"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Margin="0,0,0,5" HorizontalAlignment="Left" Width="250" Padding="3" Text="{Binding NewEntity.Name}"/>
+        <DatePicker Grid.Row="1" Grid.Column="1" Margin="0,0,0,5" HorizontalAlignment="Left" Width="250" SelectedDate="{Binding NewEntity.DateCreate,StringFormat='dd/MM/yyy'}" />
+        <ComboBox Grid.Row="2" Grid.Column="1" Name="roomTypeCB" Margin="0,0,0,5" HorizontalAlignment="Left" Width="250" Text="--chọn loại phòng--" IsEditable="True" IsReadOnly="True" ItemsSource="{Binding}" SelectedValue="{Binding Path=NewEntity.RoomTypeId}" DisplayMemberPath="Name" SelectedValuePath="ID"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Grid.RowSpan="4" HorizontalAlignment="Left" Width="250" Text="{Binding NewEntity.Description}" TextWrapping="Wrap"/>
+        <Button Grid.Row="7" Grid.ColumnSpan="3" Content="Thêm" Height="27" Width="130" Command="{Binding NewCommand}"/>
+    </Grid>
+</Window>
