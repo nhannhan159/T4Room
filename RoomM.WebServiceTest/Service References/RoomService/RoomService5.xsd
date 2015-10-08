@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RoomM.Models.Staffs" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RoomM.Models.Staffs" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:62978/Rooms/Implement/RoomService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/RoomM.Models.Rooms" />
+  <xs:import schemaLocation="http://localhost:62978/Rooms/Implement/RoomService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/RoomM.Models" />
+  <xs:complexType name="Staff">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/RoomM.Models" base="q1:EntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IsWorking" type="xs:boolean" />
+          <xs:element minOccurs="0" name="LastLogin" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PasswordStored" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/RoomM.Models.Rooms" minOccurs="0" name="RoomCalendars" nillable="true" type="q2:ArrayOfRoomCalendar" />
+          <xs:element minOccurs="0" name="Sex" type="xs:boolean" />
+          <xs:element minOccurs="0" name="StaffType" nillable="true" type="tns:StaffType" />
+          <xs:element minOccurs="0" name="StaffTypeId" type="xs:long" />
+          <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Staff" nillable="true" type="tns:Staff" />
+  <xs:complexType name="StaffType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/RoomM.Models" base="q3:EntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Staffs" nillable="true" type="tns:ArrayOfStaff" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="StaffType" nillable="true" type="tns:StaffType" />
+  <xs:complexType name="ArrayOfStaff">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Staff" nillable="true" type="tns:Staff" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfStaff" nillable="true" type="tns:ArrayOfStaff" />
+</xs:schema>

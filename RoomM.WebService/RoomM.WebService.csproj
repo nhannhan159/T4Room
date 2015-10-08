@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5BF3ED16-67B2-432E-AFB9-AFCB8ED78555}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RoomM.WebService</RootNamespace>
+    <AssemblyName>RoomM.WebService</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Implement\AssetService.svc" />
+    <Content Include="Assets\Implement\RoomAssetHistoryService.svc" />
+    <Content Include="Assets\Implement\RoomAssetHistoryTypeService.svc" />
+    <Content Include="Rooms\Implement\RoomCalenderService.svc" />
+    <Content Include="Rooms\Implement\RoomService.svc" />
+    <Content Include="Rooms\Implement\RoomAssetService.svc" />
+    <Content Include="Rooms\Implement\RoomCalendarStatusService.svc" />
+    <Content Include="Rooms\Implement\RoomTypeService.svc" />
+    <Content Include="Staffs\Implement\StaffService.svc" />
+    <Content Include="Staffs\Implement\StaffTypeService.svc" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\IRoomAssetHistoryService.cs" />
+    <Compile Include="Assets\IAssetService.cs" />
+    <Compile Include="Assets\Implement\RoomAssetHistoryService.svc.cs">
+      <DependentUpon>RoomAssetHistoryService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\IRoomAssetHistoryTypeService.cs" />
+    <Compile Include="Assets\Implement\AssetService.svc.cs">
+      <DependentUpon>AssetService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\Implement\RoomAssetHistoryTypeService.svc.cs">
+      <DependentUpon>RoomAssetHistoryTypeService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Rooms\IRoomCalendarStatusService.cs" />
+    <Compile Include="Rooms\IRoomCalenderService.cs" />
+    <Compile Include="Rooms\Implement\RoomCalenderService.svc.cs">
+      <DependentUpon>RoomCalenderService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Rooms\IRoomAssetService.cs" />
+    <Compile Include="Rooms\IRoomService.cs" />
+    <Compile Include="Rooms\Implement\RoomAssetService.svc.cs">
+      <DependentUpon>RoomAssetService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Rooms\Implement\RoomService.svc.cs">
+      <DependentUpon>RoomService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Rooms\Implement\RoomCalendarStatusService.svc.cs">
+      <DependentUpon>RoomCalendarStatusService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Rooms\IRoomTypeService.cs" />
+    <Compile Include="Rooms\Implement\RoomTypeService.svc.cs">
+      <DependentUpon>RoomTypeService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Staffs\IStaffService.cs" />
+    <Compile Include="Staffs\Implement\StaffService.svc.cs">
+      <DependentUpon>StaffService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Staffs\IStaffTypeService.cs" />
+    <Compile Include="Staffs\Implement\StaffTypeService.svc.cs">
+      <DependentUpon>StaffTypeService.svc</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RoomM.Models\RoomM.Models.csproj">
+      <Project>{a2cd9ea0-9e0c-4b0a-87f5-9baddc4f9422}</Project>
+      <Name>RoomM.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RoomM.Repositories\RoomM.Repositories.csproj">
+      <Project>{61faa63a-110f-42fb-a273-6362f5730e68}</Project>
+      <Name>RoomM.Repositories</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>62978</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:62978/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

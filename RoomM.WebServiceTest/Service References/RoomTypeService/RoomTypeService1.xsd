@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RoomM.Models.Rooms" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RoomM.Models.Rooms" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:62978/Rooms/Implement/RoomTypeService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/RoomM.Models" />
+  <xs:import schemaLocation="http://localhost:62978/Rooms/Implement/RoomTypeService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/RoomM.Models.Assets" />
+  <xs:import schemaLocation="http://localhost:62978/Rooms/Implement/RoomTypeService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/RoomM.Models.Staffs" />
+  <xs:complexType name="RoomType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/RoomM.Models" base="q1:EntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Rooms" nillable="true" type="tns:ArrayOfRoom" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RoomType" nillable="true" type="tns:RoomType" />
+  <xs:complexType name="ArrayOfRoom">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Room" nillable="true" type="tns:Room" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRoom" nillable="true" type="tns:ArrayOfRoom" />
+  <xs:complexType name="Room">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/RoomM.Models" base="q2:EntityBase">
+        <xs:sequence>
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/RoomM.Models.Assets" minOccurs="0" name="AssetHistories" nillable="true" type="q3:ArrayOfRoomAssetHistory" />
+          <xs:element minOccurs="0" name="DateCreate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IsUsing" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RoomAssets" nillable="true" type="tns:ArrayOfRoomAsset" />
+          <xs:element minOccurs="0" name="RoomCalendars" nillable="true" type="tns:ArrayOfRoomCalendar" />
+          <xs:element minOccurs="0" name="RoomType" nillable="true" type="tns:RoomType" />
+          <xs:element minOccurs="0" name="RoomTypeId" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Room" nillable="true" type="tns:Room" />
+  <xs:complexType name="ArrayOfRoomAsset">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RoomAsset" nillable="true" type="tns:RoomAsset" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRoomAsset" nillable="true" type="tns:ArrayOfRoomAsset" />
+  <xs:complexType name="RoomAsset">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/RoomM.Models" base="q4:EntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Amount" type="xs:int" />
+          <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/RoomM.Models.Assets" minOccurs="0" name="Asset" nillable="true" type="q5:Asset" />
+          <xs:element minOccurs="0" name="AssetId" type="xs:long" />
+          <xs:element minOccurs="0" name="Room" nillable="true" type="tns:Room" />
+          <xs:element minOccurs="0" name="RoomId" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RoomAsset" nillable="true" type="tns:RoomAsset" />
+  <xs:complexType name="ArrayOfRoomCalendar">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RoomCalendar" nillable="true" type="tns:RoomCalendar" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRoomCalendar" nillable="true" type="tns:ArrayOfRoomCalendar" />
+  <xs:complexType name="RoomCalendar">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q6="http://schemas.datacontract.org/2004/07/RoomM.Models" base="q6:EntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="IsWatched" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Length" type="xs:int" />
+          <xs:element minOccurs="0" name="Room" nillable="true" type="tns:Room" />
+          <xs:element minOccurs="0" name="RoomCalendarStatus" nillable="true" type="tns:RoomCalendarStatus" />
+          <xs:element minOccurs="0" name="RoomCalendarStatusId" type="xs:long" />
+          <xs:element minOccurs="0" name="RoomId" type="xs:long" />
+          <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/RoomM.Models.Staffs" minOccurs="0" name="Staff" nillable="true" type="q7:Staff" />
+          <xs:element minOccurs="0" name="StaffId" type="xs:long" />
+          <xs:element minOccurs="0" name="Start" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RoomCalendar" nillable="true" type="tns:RoomCalendar" />
+  <xs:complexType name="RoomCalendarStatus">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q8="http://schemas.datacontract.org/2004/07/RoomM.Models" base="q8:EntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RoomCalendars" nillable="true" type="tns:ArrayOfRoomCalendar" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RoomCalendarStatus" nillable="true" type="tns:RoomCalendarStatus" />
+</xs:schema>
