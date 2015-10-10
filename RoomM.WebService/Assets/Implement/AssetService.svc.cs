@@ -22,7 +22,7 @@ namespace RoomM.WebService.Assets
 
         public Asset GetSingle(int assetId)
         {
-            return this.assetRepository.GetSingle(assetId);
+            return this.assetRepository.GetSingle(assetId).GetDetached();
         }
 
         public IList<string> GetNameList()

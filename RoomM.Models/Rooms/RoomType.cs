@@ -23,5 +23,13 @@ namespace RoomM.Models.Rooms
             this.Name = name;
             this.Rooms = new List<Room>();
         }
+
+        public RoomType GetDetached()
+        {
+            RoomType detached = new RoomType();
+            detached.ID = this.ID;
+            detached.Name = this.Name;
+            return detached;
+        }
     }
 }

@@ -23,5 +23,13 @@ namespace RoomM.Models.Rooms
             this.Name = name;
             this.RoomCalendars = new List<RoomCalendar>();
         }
+
+        public RoomCalendarStatus GetDetached()
+        {
+            RoomCalendarStatus detached = new RoomCalendarStatus();
+            detached.ID = this.ID;
+            detached.Name = this.Name;
+            return detached;
+        }
     }
 }

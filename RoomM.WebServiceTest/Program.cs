@@ -13,7 +13,7 @@ namespace RoomM.WebServiceTest
         {
             RoomService.RoomServiceClient roomServiceClient = new RoomService.RoomServiceClient();
             Room room = roomServiceClient.GetSingle(1);
-            System.Console.WriteLine(room);
+            System.Console.WriteLine("TEST: " + room.Name + " END");
             System.Console.ReadLine();
         }
     }

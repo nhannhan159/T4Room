@@ -39,5 +39,22 @@ namespace RoomM.Models.Rooms
         {
             return ID + " #room " + RoomId + " #user " + StaffId + " #start " + Start + " #len " + Length;
         }
+
+        public RoomCalendar GetDetached()
+        {
+            RoomCalendar detached = new RoomCalendar();
+            detached.ID = this.ID;
+            detached.Date = this.Date;
+            detached.Start = this.Start;
+            detached.Length = this.Length;
+            detached.RoomId = this.RoomId;
+            detached.Room = this.Room.GetDetached();
+            detached.StaffId = this.StaffId;
+            detached.Staff = this.Staff.GetDetached();
+            detached.RoomCalendarStatusId = this.RoomCalendarStatusId;
+            detached.RoomCalendarStatus = this.RoomCalendarStatus.GetDetached();
+            detached.IsWatched = this.IsWatched;
+            return detached;
+        }
     }
 }

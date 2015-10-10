@@ -22,48 +22,90 @@ namespace RoomM.WebService.Rooms
 
         public RoomCalendar GetSingle(int roomCalId)
         {
-            return this.roomCalendarRepository.GetSingle(roomCalId);
+            return this.roomCalendarRepository.GetSingle(roomCalId).GetDetached();
         }
 
         public IList<RoomCalendar> GetByRoomId(Int64 roomId)
         {
-            return this.roomCalendarRepository.GetByRoomId(roomId);
+            IList<RoomCalendar> roomCals = this.roomCalendarRepository.GetByRoomId(roomId);
+            IList<RoomCalendar> detachedRoomCals = new List<RoomCalendar>();
+            foreach (RoomCalendar roomCal in roomCals)
+            {
+                detachedRoomCals.Add(roomCal.GetDetached());
+            }
+            return detachedRoomCals;
         }
 
 
         public IList<RoomCalendar> GetByStaffId(Int64 staffId)
         {
-            return this.roomCalendarRepository.GetByStaffId(staffId);
+            IList<RoomCalendar> roomCals = this.roomCalendarRepository.GetByStaffId(staffId);
+            IList<RoomCalendar> detachedRoomCals = new List<RoomCalendar>();
+            foreach (RoomCalendar roomCal in roomCals)
+            {
+                detachedRoomCals.Add(roomCal.GetDetached());
+            }
+            return detachedRoomCals;
         }
 
 
         public IList<RoomCalendar> GetByDate(DateTime date)
         {
-            return this.roomCalendarRepository.GetByDate(date);
+            IList<RoomCalendar> roomCals = this.roomCalendarRepository.GetByDate(date);
+            IList<RoomCalendar> detachedRoomCals = new List<RoomCalendar>();
+            foreach (RoomCalendar roomCal in roomCals)
+            {
+                detachedRoomCals.Add(roomCal.GetDetached());
+            }
+            return detachedRoomCals;
         }
 
 
         public IList<RoomCalendar> GetByDateAndRoomId(DateTime date, long roomId)
         {
-            return this.roomCalendarRepository.GetByDateAndRoomId(date, roomId);
+            IList<RoomCalendar> roomCals = this.roomCalendarRepository.GetByDateAndRoomId(date, roomId);
+            IList<RoomCalendar> detachedRoomCals = new List<RoomCalendar>();
+            foreach (RoomCalendar roomCal in roomCals)
+            {
+                detachedRoomCals.Add(roomCal.GetDetached());
+            }
+            return detachedRoomCals;
         }
 
 
         public IList<RoomCalendar> GetByWeekAndRoomId(DateTime date, long roomId)
         {
-            return this.roomCalendarRepository.GetByWeekAndRoomId(date, roomId);
+            IList<RoomCalendar> roomCals = this.roomCalendarRepository.GetByWeekAndRoomId(date, roomId);
+            IList<RoomCalendar> detachedRoomCals = new List<RoomCalendar>();
+            foreach (RoomCalendar roomCal in roomCals)
+            {
+                detachedRoomCals.Add(roomCal.GetDetached());
+            }
+            return detachedRoomCals;
         }
 
 
         public IList<RoomCalendar> GetByWatchedState(bool isWatched, int staffId)
         {
-            return this.roomCalendarRepository.GetByWatchedState(isWatched, staffId);
+            IList<RoomCalendar> roomCals = this.roomCalendarRepository.GetByWatchedState(isWatched, staffId);
+            IList<RoomCalendar> detachedRoomCals = new List<RoomCalendar>();
+            foreach (RoomCalendar roomCal in roomCals)
+            {
+                detachedRoomCals.Add(roomCal.GetDetached());
+            }
+            return detachedRoomCals;
         }
 
 
         public IList<RoomCalendar> GetByRegisteredState(int registeredState, int staffId)
         {
-            return this.roomCalendarRepository.GetByRegisteredState(registeredState, staffId);
+            IList<RoomCalendar> roomCals = this.roomCalendarRepository.GetByRegisteredState(registeredState, staffId);
+            IList<RoomCalendar> detachedRoomCals = new List<RoomCalendar>();
+            foreach (RoomCalendar roomCal in roomCals)
+            {
+                detachedRoomCals.Add(roomCal.GetDetached());
+            }
+            return detachedRoomCals;
         }
     }
 }

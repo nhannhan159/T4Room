@@ -46,5 +46,15 @@ namespace RoomM.Models.Assets
             this.AssetHistories = new List<RoomAssetHistory>();
         }
 
+        public Asset GetDetached()
+        {
+            Asset detached = new Asset();
+            detached.ID = this.ID;
+            detached.Name = this.Name;
+            detached.Description = this.Description;
+            detached.IsUsing = this.IsUsing;
+            return detached;
+        }
+
     }
 }

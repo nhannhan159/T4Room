@@ -62,5 +62,22 @@ namespace RoomM.Models.Staffs
             this.IsWorking = true;
             this.RoomCalendars = new List<RoomCalendar>();
         }
+
+        public Staff GetDetached()
+        {
+            Staff detached = new Staff();
+            detached.ID = this.ID;
+            detached.Name = this.Name;
+            detached.Sex = this.Sex;
+            detached.Phone = this.Phone;
+            detached.StaffTypeId = this.StaffTypeId;
+            detached.StaffType = this.StaffType.GetDetached();
+            detached.UserName = this.UserName;
+            detached.PasswordStored = this.PasswordStored;
+            detached.IsWorking = this.IsWorking;
+            detached.Description = this.Description;
+            detached.LastLogin = this.LastLogin;
+            return detached;
+        }
     }
 }

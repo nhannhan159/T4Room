@@ -22,7 +22,7 @@ namespace RoomM.WebService.Rooms
 
         public RoomType GetSingle(int roomTypeId)
         {
-            return this.roomTypeRepository.GetSingle(roomTypeId);
+            return this.roomTypeRepository.GetSingle(roomTypeId).GetDetached();
         }
     }
 }

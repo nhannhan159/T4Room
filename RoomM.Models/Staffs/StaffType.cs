@@ -12,5 +12,13 @@ namespace RoomM.Models.Staffs
     {
         public string Name { get; set; }
         public virtual ICollection<Staff> Staffs { get; set; }
+
+        public StaffType GetDetached()
+        {
+            StaffType detached = new StaffType();
+            detached.ID = this.ID;
+            detached.Name = this.Name;
+            return detached;
+        }
     }
 }

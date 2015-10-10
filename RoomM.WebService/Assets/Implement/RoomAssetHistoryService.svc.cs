@@ -23,17 +23,29 @@ namespace RoomM.WebService.Assets
 
         public RoomAssetHistory GetSingle(int assetId)
         {
-            return this.roomAssetHistoryRepository.GetSingle(assetId);
+            return this.roomAssetHistoryRepository.GetSingle(assetId).GetDetached();
         }
 
         public IList<RoomAssetHistory> GetByRoomId(Int64 id)
         {
-            return this.roomAssetHistoryRepository.GetByRoomId(id);
+            IList<RoomAssetHistory> roomAssetHistories = this.roomAssetHistoryRepository.GetByRoomId(id);
+            IList<RoomAssetHistory> detachedRoomAssetHistories = new List<RoomAssetHistory>();
+            foreach (RoomAssetHistory roomAssetHistory in roomAssetHistories)
+            {
+                detachedRoomAssetHistories.Add(roomAssetHistory.GetDetached());
+            }
+            return detachedRoomAssetHistories;
         }
 
         public IList<RoomAssetHistory> GetByRoom2RoomId(Room room, DateTime timeForBacktrace)
         {
-            return this.roomAssetHistoryRepository.GetByRoom2RoomId(room, timeForBacktrace);
+            IList<RoomAssetHistory> roomAssetHistories = this.roomAssetHistoryRepository.GetByRoom2RoomId(room, timeForBacktrace);
+            IList<RoomAssetHistory> detachedRoomAssetHistories = new List<RoomAssetHistory>();
+            foreach (RoomAssetHistory roomAssetHistory in roomAssetHistories)
+            {
+                detachedRoomAssetHistories.Add(roomAssetHistory.GetDetached());
+            }
+            return detachedRoomAssetHistories;
         }
     }
 }

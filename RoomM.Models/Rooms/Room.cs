@@ -71,5 +71,19 @@ namespace RoomM.Models.Rooms
             return ID + "#" + Name + "#RoomType:" + RoomTypeId + "#Status: " + IsUsing;
         }
 
+        public Room GetDetached()
+        {
+            Room detached = new Room();
+            detached.ID = this.ID;
+            detached.Name = this.Name;
+            detached.DateCreate = this.DateCreate;
+            detached.RoomTypeId = this.RoomTypeId;
+            detached.Description = this.Description;
+            detached.IsUsing = this.IsUsing;
+            //detached.IsHaveRegistered = this.IsHaveRegistered;
+            detached.RoomType = this.RoomType.GetDetached();
+            return detached;
+        }
+
     }
 }

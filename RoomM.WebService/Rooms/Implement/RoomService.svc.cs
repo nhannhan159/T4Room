@@ -23,17 +23,29 @@ namespace RoomM.WebService.Rooms
 
         public Room GetSingle(Int64 roomId)
         {
-            return this.roomRepository.GetSingle(roomId);
+            return this.roomRepository.GetSingle(roomId).GetDetached();
         }
 
         public IList<Room> GetByRoomTypeId(long roomTypeId)
         {
-            return this.roomRepository.GetByRoomTypeId(roomTypeId);
+            IList<Room> rooms = this.roomRepository.GetByRoomTypeId(roomTypeId);
+            IList<Room> detachedRooms = new List<Room>();
+            foreach (Room room in rooms)
+            {
+                detachedRooms.Add(room.GetDetached());
+            }
+            return detachedRooms;
         }
 
         public IList<Room> GetRoomListLimitByRegister(int limit)
         {
-            return this.roomRepository.GetRoomListLimitByRegister(limit);
+            IList<Room> rooms = this.roomRepository.GetRoomListLimitByRegister(limit);
+            IList<Room> detachedRooms = new List<Room>();
+            foreach (Room room in rooms)
+            {
+                detachedRooms.Add(room.GetDetached());
+            }
+            return detachedRooms;
         }
 
         public List<DictionaryEntry> GetRoomLimitByRegister(int limit, DateTime from, DateTime to)

@@ -23,7 +23,7 @@ namespace RoomM.WebService.Staffs
 
         public Staff GetSingle(int staffId)
         {
-            return this.staffRepository.GetSingle(staffId);
+            return this.staffRepository.GetSingle(staffId).GetDetached();
         }
 
 
@@ -39,7 +39,13 @@ namespace RoomM.WebService.Staffs
 
         public IList<Staff> GetStaffLimitByRegister(int limit)
         {
-            return this.staffRepository.GetStaffLimitByRegister(limit);
+            IList<Staff> staffs = this.staffRepository.GetStaffLimitByRegister(limit);
+            IList<Staff> detachedStaffs = new List<Staff>();
+            foreach (Staff staff in staffs)
+            {
+                detachedStaffs.Add(staff.GetDetached());
+            }
+            return detachedStaffs;
         }
 
 

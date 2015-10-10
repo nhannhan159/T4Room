@@ -22,7 +22,7 @@ namespace RoomM.WebService.Rooms
 
         public RoomCalendarStatus GetSingle(int statusId)
         {
-            return this.roomCalendarStatusRepository.GetSingle(statusId);
+            return this.roomCalendarStatusRepository.GetSingle(statusId).GetDetached();
         }
 
         public IList<string> GetNameList()

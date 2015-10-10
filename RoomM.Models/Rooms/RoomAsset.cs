@@ -42,5 +42,17 @@ namespace RoomM.Models.Rooms
         {
         }
 
+        public RoomAsset GetDetached()
+        {
+            RoomAsset detached = new RoomAsset();
+            detached.ID = this.ID;
+            detached.RoomId = this.RoomId;
+            detached.Room = this.Room.GetDetached();
+            detached.AssetId = this.AssetId;
+            detached.Asset = this.Asset.GetDetached();
+            detached.Amount = this.Amount;
+            return detached;
+        }
+
     }
 }
