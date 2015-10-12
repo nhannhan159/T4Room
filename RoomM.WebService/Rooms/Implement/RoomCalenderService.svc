@@ -1,1 +1,1 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="RoomM.WebService.Rooms.Implement.RoomCalenderService" CodeBehind="RoomCalenderService.svc.cs" %>
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="RoomM.WebService.RoomCalenderService" CodeBehind="RoomCalenderService.svc.cs" %>

@@ -23,12 +23,9 @@
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="RoomService.xsd" MetadataType="Schema" ID="38588f9b-6095-4553-b67b-a16b39018ce2" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomService.svc?xsd=xsd3" />
-    <MetadataFile FileName="RoomService1.xsd" MetadataType="Schema" ID="618de470-19de-40fe-b79c-51ef8b6be33d" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomService.svc?xsd=xsd6" />
     <MetadataFile FileName="RoomService2.xsd" MetadataType="Schema" ID="70c39038-5377-4a84-a4ad-8723fa8ae591" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomService.svc?xsd=xsd2" />
-    <MetadataFile FileName="RoomService3.xsd" MetadataType="Schema" ID="461cb979-bd59-4c15-aa99-e829a2053f74" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomService.svc?xsd=xsd4" />
     <MetadataFile FileName="RoomService4.xsd" MetadataType="Schema" ID="b7edb547-c4dc-4329-8391-6ecf682047cd" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomService.svc?xsd=xsd1" />
     <MetadataFile FileName="RoomService.wsdl" MetadataType="Wsdl" ID="72057e4d-e571-44d9-b301-c70bfae65fc4" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomService.svc?wsdl" />
-    <MetadataFile FileName="RoomService5.xsd" MetadataType="Schema" ID="e4964435-609d-46da-a709-338edad1c438" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomService.svc?xsd=xsd5" />
     <MetadataFile FileName="RoomService6.xsd" MetadataType="Schema" ID="a5ea7c3c-4129-45ec-8ef9-9c3bee5f047a" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomService.svc?xsd=xsd0" />
     <MetadataFile FileName="RoomService.disco" MetadataType="Disco" ID="66552a85-4054-4b74-85f7-2d5299842680" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomService.svc?disco" />
   </Metadata>

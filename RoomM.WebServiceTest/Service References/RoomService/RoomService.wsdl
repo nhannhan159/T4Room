@@ -4,11 +4,8 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:62978/Rooms/Implement/RoomService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:62978/Rooms/Implement/RoomService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:62978/Rooms/Implement/RoomService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/RoomM.Models.Rooms" />
-      <xsd:import schemaLocation="http://localhost:62978/Rooms/Implement/RoomService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/RoomM.Models" />
-      <xsd:import schemaLocation="http://localhost:62978/Rooms/Implement/RoomService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/RoomM.Models.Assets" />
-      <xsd:import schemaLocation="http://localhost:62978/Rooms/Implement/RoomService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/RoomM.Models.Staffs" />
-      <xsd:import schemaLocation="http://localhost:62978/Rooms/Implement/RoomService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/System.Collections" />
+      <xsd:import schemaLocation="http://localhost:62978/Rooms/Implement/RoomService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/RoomM.Models" />
+      <xsd:import schemaLocation="http://localhost:62978/Rooms/Implement/RoomService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Collections" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IRoomService_GetSingle_InputMessage">

@@ -50,82 +50,29 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\RoomTypeService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\StaffTypeService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\DataSources\RoomM.Models.Asset.datasource" />
+    <None Include="Properties\DataSources\RoomM.Models.Room.datasource" />
     <None Include="Properties\DataSources\RoomM.Models.Rooms.Room.datasource" />
     <None Include="Properties\DataSources\RoomM.Models.Rooms.RoomType.datasource" />
+    <None Include="Properties\DataSources\RoomM.Models.RoomType.datasource" />
     <None Include="Properties\DataSources\RoomM.Models.Staffs.StaffType.datasource" />
+    <None Include="Properties\DataSources\RoomM.Models.StaffType.datasource" />
     <None Include="Service References\RoomService\RoomService.wsdl" />
     <None Include="Service References\RoomService\RoomService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomService\RoomService1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\RoomService\RoomService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomService\RoomService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\RoomService\RoomService4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomService\RoomService5.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\RoomService\RoomService6.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomTypeService\RoomTypeService.wsdl" />
-    <None Include="Service References\RoomTypeService\RoomTypeService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomTypeService\RoomTypeService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomTypeService\RoomTypeService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomTypeService\RoomTypeService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomTypeService\RoomTypeService4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomTypeService\RoomTypeService5.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\StaffTypeService\StaffTypeService.wsdl" />
-    <None Include="Service References\StaffTypeService\StaffTypeService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\StaffTypeService\StaffTypeService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\StaffTypeService\StaffTypeService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\StaffTypeService\StaffTypeService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\StaffTypeService\StaffTypeService4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\StaffTypeService\StaffTypeService5.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -140,8 +87,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\RoomService\" />
-    <WCFMetadataStorage Include="Service References\RoomTypeService\" />
-    <WCFMetadataStorage Include="Service References\StaffTypeService\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\RoomService\RoomService.disco" />
@@ -154,36 +99,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\RoomService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomTypeService\RoomTypeService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomTypeService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomTypeService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomTypeService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\StaffTypeService\StaffTypeService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\StaffTypeService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\StaffTypeService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\StaffTypeService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RoomM.Models.Rooms;
+
+using RoomM.Models;
 
 namespace RoomM.WebServiceTest
 {
@@ -12,7 +13,7 @@ namespace RoomM.WebServiceTest
         static void Main(string[] args)
         {
             RoomService.RoomServiceClient roomServiceClient = new RoomService.RoomServiceClient();
-            Room room = roomServiceClient.GetSingle(1);
+            var room = roomServiceClient.GetSingle(1);
             System.Console.WriteLine("TEST: " + room.Name + " END");
             System.Console.ReadLine();
         }
