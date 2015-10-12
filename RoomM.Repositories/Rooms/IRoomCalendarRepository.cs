@@ -1,12 +1,13 @@
-﻿using RoomM.Repositories.RepositoryFramework;
-using RoomM.Models.Rooms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RoomM.Repositories.Rooms
+using RoomM.Repositories.RepositoryFramework;
+using RoomM.Models;
+
+namespace RoomM.Repositories
 {
     public interface IRoomCalendarRepository : IRepository<RoomCalendar>
     {
@@ -16,9 +17,7 @@ namespace RoomM.Repositories.Rooms
         IList<RoomCalendar> GetByDate(DateTime date);
         IList<RoomCalendar> GetByDateAndRoomId(DateTime date, long roomId);
         IList<RoomCalendar> GetByWeekAndRoomId(DateTime date, long roomId);
-
         IList<RoomCalendar> GetByWatchedState(bool isWatched, int staffId);
         IList<RoomCalendar> GetByRegisteredState(int registeredState, int staffId);
-
     }
 }

@@ -1,9 +1,4 @@
-﻿using RoomM.Models.Rooms;
-using RoomM.Models.Staffs;
-using RoomM.Repositories.RepositoryFramework;
-using RoomM.Repositories.Rooms;
-using RoomM.Repositories.Staffs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
+using RoomM.Repositories.RepositoryFramework;
+using RoomM.Repositories;
+using RoomM.Models;
 
 namespace RoomM.DeskApp.Views
 {

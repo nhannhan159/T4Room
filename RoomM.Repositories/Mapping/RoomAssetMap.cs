@@ -1,12 +1,11 @@
-﻿using RoomM.Models.Rooms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RoomM.Repositories.Mapping
+namespace RoomM.Models.Mapping
 {
     public class RoomAssetMap : EntityTypeConfiguration<RoomAsset>
     {

@@ -1,14 +1,14 @@
-﻿using NPOI.SS.UserModel;
-using RoomM.Models.Assets;
-using RoomM.Models.Rooms;
-using RoomM.Repositories.Assets;
-using RoomM.Repositories.RepositoryFramework;
-using RoomM.Repositories.Rooms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using NPOI.SS.UserModel;
+
+using RoomM.Repositories.RepositoryFramework;
+using RoomM.Repositories;
+using RoomM.Models;
 
 namespace RoomM.ConsoleApp
 {
@@ -19,9 +19,7 @@ namespace RoomM.ConsoleApp
 
         public AssetsReportToExcel(String companyName, String subject, String template)
             : base(companyName, subject, template)
-        {
-            
-        }
+        { }
 
 
         public override void setupExport()

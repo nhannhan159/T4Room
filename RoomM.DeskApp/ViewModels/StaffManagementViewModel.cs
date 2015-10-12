@@ -1,11 +1,4 @@
-﻿using RoomM.DeskApp.UIHelper;
-using RoomM.DeskApp.Views;
-using RoomM.Models.Staffs;
-using RoomM.Models.Rooms;
-using RoomM.Repositories.RepositoryFramework;
-using RoomM.Repositories.Staffs;
-using RoomM.Repositories.Rooms;
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Data;
 using System.Collections.Generic;
@@ -15,6 +8,12 @@ using System.Windows.Input;
 using System.Windows.Forms;
 using System.Threading.Tasks;
 using System.ComponentModel;
+
+using RoomM.DeskApp.UIHelper;
+using RoomM.DeskApp.Views;
+using RoomM.Repositories.RepositoryFramework;
+using RoomM.Repositories;
+using RoomM.Models;
 
 namespace RoomM.DeskApp.ViewModels
 {

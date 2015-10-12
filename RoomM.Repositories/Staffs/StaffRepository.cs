@@ -1,22 +1,19 @@
-﻿using RoomM.Models;
-using RoomM.Repositories.RepositoryFramework;
-using RoomM.Models.Staffs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RoomM.Models.Rooms;
 using System.Collections;
 
-namespace RoomM.Repositories.Staffs
+using RoomM.Repositories.RepositoryFramework;
+using RoomM.Models;
+
+namespace RoomM.Repositories
 {
     public class StaffRepository : RepositoryBase<EFDataContext, Staff>, IStaffRepository
     {
         public StaffRepository()
-        {
-
-        }
+        { }
 
         public Staff GetSingle(int staffId)
         {

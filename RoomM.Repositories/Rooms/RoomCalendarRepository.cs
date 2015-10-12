@@ -1,13 +1,13 @@
-﻿using RoomM.Models;
-using RoomM.Repositories.RepositoryFramework;
-using RoomM.Models.Rooms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RoomM.Repositories.Rooms
+using RoomM.Repositories.RepositoryFramework;
+using RoomM.Models;
+
+namespace RoomM.Repositories
 {
     public class RoomCalendarRepository : RepositoryBase<EFDataContext, RoomCalendar>, IRoomCalendarRepository
     {
@@ -28,14 +28,12 @@ namespace RoomM.Repositories.Rooms
                     select p).ToList();
         }
 
-
         public IList<RoomCalendar> GetByStaffId(Int64 staffId)
         {
             return (from p in GetAllWithQuery()
                     where p.Staff.ID == staffId
                     select p).ToList();
         }
-
 
         public IList<RoomCalendar> GetByDate(DateTime date)
         {
@@ -44,14 +42,12 @@ namespace RoomM.Repositories.Rooms
                     select p).ToList();
         }
 
-
         public IList<RoomCalendar> GetByDateAndRoomId(DateTime date, long roomId)
         {
             return (from p in GetAllWithQuery()
                     where p.Room.ID == roomId && (p.Date.Day == date.Day && p.Date.Month == date.Month && p.Date.Year == date.Year)
                     select p).ToList();
         }
-
 
         public IList<RoomCalendar> GetByWeekAndRoomId(DateTime date, long roomId)
         {
@@ -81,7 +77,6 @@ namespace RoomM.Repositories.Rooms
             return calLst;
         }
 
-
         public IList<RoomCalendar> GetByWatchedState(bool isWatched, int staffId)
         {
             IList<RoomCalendar> dataR = new List<RoomCalendar>();
@@ -98,7 +93,6 @@ namespace RoomM.Repositories.Rooms
             return dataR;
             
         }
-
 
         public IList<RoomCalendar> GetByRegisteredState(int registeredState, int staffId)
         {

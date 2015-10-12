@@ -1,16 +1,15 @@
-﻿using RoomM.DeskApp.UIHelper;
-using RoomM.Models.Rooms;
-using RoomM.Models.Staffs;
-using RoomM.Repositories.RepositoryFramework;
-using RoomM.Repositories.Rooms;
-using RoomM.Repositories.Staffs;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using RoomM.DeskApp.UIHelper;
+using RoomM.Repositories.RepositoryFramework;
+using RoomM.Repositories;
+using RoomM.Models;
 
 namespace RoomM.DeskApp.ViewModels
 {

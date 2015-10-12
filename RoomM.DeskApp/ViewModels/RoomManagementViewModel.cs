@@ -1,11 +1,4 @@
-﻿using RoomM.DeskApp.UIHelper;
-using RoomM.DeskApp.Views;
-using RoomM.Models.Rooms;
-using RoomM.Models.Assets;
-using RoomM.Repositories.RepositoryFramework;
-using RoomM.Repositories.Rooms;
-using RoomM.Repositories.Assets;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -16,8 +9,13 @@ using System.Windows.Input;
 using System.Windows.Data;
 using System.ComponentModel;
 using System.Windows.Forms;
-using RoomM.Repositories;
 using System.Collections;
+
+using RoomM.DeskApp.UIHelper;
+using RoomM.DeskApp.Views;
+using RoomM.Repositories.RepositoryFramework;
+using RoomM.Repositories;
+using RoomM.Models;
 
 namespace RoomM.DeskApp.ViewModels
 {
@@ -503,8 +501,6 @@ namespace RoomM.DeskApp.ViewModels
 
         private void ExportHistoriesToExcelCommandHandler()
         {
-            
-
             List<RoomAssetHistory> dataList = new List<RoomAssetHistory>();
             dataList = CurrentEntity.AssetHistories.ToList();
 

@@ -8,11 +8,12 @@ using System.Web.Security;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
+
 using RoomM.WebApp.Filters;
 using RoomM.WebApp.Models;
-using RoomM.Repositories.Staffs;
 using RoomM.Repositories.RepositoryFramework;
-using RoomM.Models.Staffs;
+using RoomM.Repositories;
+using RoomM.Models;
 
 namespace RoomM.WebApp.Controllers
 {

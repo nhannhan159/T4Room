@@ -1,9 +1,4 @@
-﻿using NPOI.HPSF;
-using NPOI.HSSF.UserModel;
-using NPOI.SS.UserModel;
-using RoomM.DeskApp.ViewModels;
-using RoomM.Models.Rooms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -11,6 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+using NPOI.HPSF;
+using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
+
+using RoomM.DeskApp.ViewModels;
+using RoomM.Models;
 
 namespace RoomM.DeskApp
 {

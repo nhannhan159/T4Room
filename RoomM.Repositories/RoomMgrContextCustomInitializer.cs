@@ -1,13 +1,11 @@
-﻿using RoomM.Models.Rooms;
-using RoomM.Repositories;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RoomM.Models.Assets;
-using RoomM.Models.Staffs;
+
+using RoomM.Models;
 
 namespace RoomM.Repositories
 {

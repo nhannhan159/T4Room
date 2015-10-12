@@ -1,6 +1,4 @@
-﻿using RoomM.Models;
-using RoomM.Models.Rooms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;

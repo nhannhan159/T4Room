@@ -4,10 +4,12 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
-using RoomM.Repositories.Staffs;
-using RoomM.Models.Staffs;
 
-namespace RoomM.WebService.Staffs
+using RoomM.Repositories.RepositoryFramework;
+using RoomM.Repositories;
+using RoomM.Models;
+
+namespace RoomM.WebService
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "StaffTypeService" in code, svc and config file together.
     // NOTE: In order to launch WCF Test Client for testing this service, please select StaffTypeService.svc or StaffTypeService.svc.cs at the Solution Explorer and start debugging.
@@ -17,7 +19,7 @@ namespace RoomM.WebService.Staffs
 
         public StaffTypeService()
         {
-            this.staffTypeRepository = new StaffTypeRepository();
+            this.staffTypeRepository = RepositoryFactory.GetRepository<IStaffTypeRepository, StaffType>();
         }
 
         public StaffType GetSingle(int staffTypeId)

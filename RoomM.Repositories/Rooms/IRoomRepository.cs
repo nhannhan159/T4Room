@@ -1,13 +1,14 @@
-﻿using RoomM.Models.Rooms;
-using RoomM.Repositories.RepositoryFramework;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RoomM.Repositories.Rooms
+using RoomM.Repositories.RepositoryFramework;
+using RoomM.Models;
+
+namespace RoomM.Repositories
 {
     public interface IRoomRepository : IRepository<Room>
     {

@@ -1,13 +1,13 @@
-﻿using RoomM.Repositories.RepositoryFramework;
-using RoomM.Models.Assets;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RoomM.Models.Rooms;
 
-namespace RoomM.Repositories.Assets
+using RoomM.Repositories.RepositoryFramework;
+using RoomM.Models;
+
+namespace RoomM.Repositories
 {
     public interface IRoomAssetHistoryRepository : IRepository<RoomAssetHistory>
     {

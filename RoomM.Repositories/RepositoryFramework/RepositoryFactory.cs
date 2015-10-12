@@ -12,16 +12,16 @@ namespace RoomM.Repositories.RepositoryFramework
         private static Dictionary<string, string> RepositoryMappings
             = new Dictionary<string, string>
             {
-                {"IRoomRepository" , "RoomM.Repositories.Rooms.RoomRepository, RoomM.Repositories, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"},
-                {"IRoomTypeRepository" , "RoomM.Repositories.Rooms.RoomTypeRepository, RoomM.Repositories, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"},
-                {"IRoomAssetRepository" , "RoomM.Repositories.Rooms.RoomAssetRepository, RoomM.Repositories, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"},
-                {"IAssetRepository" , "RoomM.Repositories.Assets.AssetRepository, RoomM.Repositories, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"},
-                {"IRoomAssetHistoryRepository" , "RoomM.Repositories.Assets.RoomAssetHistoryRepository, RoomM.Repositories, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"},
-                {"IRoomAssetHistoryTypeRepository" , "RoomM.Repositories.Assets.RoomAssetHistoryTypeRepository, RoomM.Repositories, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"},
-                {"IRoomCalendarRepository" , "RoomM.Repositories.Rooms.RoomCalendarRepository, RoomM.Repositories, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"},
-                {"IRoomCalendarStatusRepository" , "RoomM.Repositories.Rooms.RoomCalendarStatusRepository, RoomM.Repositories, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"},
-                {"IStaffRepository" , "RoomM.Repositories.Staffs.StaffRepository, RoomM.Repositories, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"},
-                {"IStaffTypeRepository" , "RoomM.Repositories.Staffs.StaffTypeRepository, RoomM.Repositories, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"},
+                {"IRoomRepository" , "RoomM.Repositories.RoomRepository, RoomM.Repositories, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"},
+                {"IRoomTypeRepository" , "RoomM.Repositories.RoomTypeRepository, RoomM.Repositories, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"},
+                {"IRoomAssetRepository" , "RoomM.Repositories.RoomAssetRepository, RoomM.Repositories, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"},
+                {"IAssetRepository" , "RoomM.Repositories.AssetRepository, RoomM.Repositories, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"},
+                {"IRoomAssetHistoryRepository" , "RoomM.Repositories.RoomAssetHistoryRepository, RoomM.Repositories, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"},
+                {"IRoomAssetHistoryTypeRepository" , "RoomM.Repositories.RoomAssetHistoryTypeRepository, RoomM.Repositories, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"},
+                {"IRoomCalendarRepository" , "RoomM.Repositories.RoomCalendarRepository, RoomM.Repositories, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"},
+                {"IRoomCalendarStatusRepository" , "RoomM.Repositories.RoomCalendarStatusRepository, RoomM.Repositories, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"},
+                {"IStaffRepository" , "RoomM.Repositories.StaffRepository, RoomM.Repositories, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"},
+                {"IStaffTypeRepository" , "RoomM.Repositories.StaffTypeRepository, RoomM.Repositories, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"},
             };
 
         public static T GetRepository<T, TEntity>()

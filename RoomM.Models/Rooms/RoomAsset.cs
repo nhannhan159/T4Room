@@ -1,15 +1,12 @@
-﻿using RoomM.Models;
-using RoomM.Models.Rooms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using RoomM.Models.Assets;
 
-namespace RoomM.Models.Rooms
+namespace RoomM.Models
 {
     public class RoomAsset : EntityBase
     {

@@ -1,13 +1,14 @@
-﻿using RoomM.Repositories.RepositoryFramework;
-using RoomM.Models.Staffs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
 
-namespace RoomM.Repositories.Staffs
+using RoomM.Repositories.RepositoryFramework;
+using RoomM.Models;
+
+namespace RoomM.Repositories
 {
     public interface IStaffRepository : IRepository<Staff>
     {
@@ -18,7 +19,6 @@ namespace RoomM.Repositories.Staffs
         List<DictionaryEntry> GetStaffLimitByRegister(int limit, DateTime from, DateTime to);
         bool IsExists(string username);
         int GetUserId(string username);
-
-       bool UserNameIsWorking(string username);
+        bool UserNameIsWorking(string username);
     }
 }

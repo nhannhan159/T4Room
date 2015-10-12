@@ -1,5 +1,4 @@
-﻿using RoomM.DeskApp.UIHelper;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +9,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Diagnostics;
 using System.IO;
-using RoomM.DeskApp.Views;
 using System.Windows;
+
+using RoomM.DeskApp.UIHelper;
+using RoomM.DeskApp.Views;
 
 namespace RoomM.DeskApp.ViewModels
 {

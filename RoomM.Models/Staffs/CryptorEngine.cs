@@ -4,7 +4,7 @@ using System.Text;
 using System.Security.Cryptography;
 using System.Configuration;
 
-namespace RoomM.Models.Staffs
+namespace RoomM.Models
 {
     public class CryptorEngine
     {

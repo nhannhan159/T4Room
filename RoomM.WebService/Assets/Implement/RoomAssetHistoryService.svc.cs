@@ -4,11 +4,12 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
-using RoomM.Repositories.Assets;
-using RoomM.Models.Assets;
-using RoomM.Models.Rooms;
 
-namespace RoomM.WebService.Assets
+using RoomM.Repositories.RepositoryFramework;
+using RoomM.Repositories;
+using RoomM.Models;
+
+namespace RoomM.WebService
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "RoomAssetHistory" in code, svc and config file together.
     // NOTE: In order to launch WCF Test Client for testing this service, please select RoomAssetHistory.svc or RoomAssetHistory.svc.cs at the Solution Explorer and start debugging.
@@ -17,8 +18,8 @@ namespace RoomM.WebService.Assets
         private IRoomAssetHistoryRepository roomAssetHistoryRepository;
 
         public RoomAssetHistoryService()
-        { 
-            this.roomAssetHistoryRepository = new RoomAssetHistoryRepository();
+        {
+            this.roomAssetHistoryRepository = RepositoryFactory.GetRepository<IRoomAssetHistoryRepository, RoomAssetHistory>();
         }
 
         public RoomAssetHistory GetSingle(int assetId)

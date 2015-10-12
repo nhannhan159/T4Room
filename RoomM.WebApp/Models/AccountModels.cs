@@ -14,7 +14,7 @@ namespace RoomM.WebApp.Models
 
 
         public UsersContext()
-            : base("DefaultConnection")
+            : base("RoomDB")
         {
             instance = this;
         }

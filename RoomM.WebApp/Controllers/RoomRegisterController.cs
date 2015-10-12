@@ -1,15 +1,14 @@
-﻿using RoomM.Models.Rooms;
-using RoomM.Models.Staffs;
-using RoomM.Repositories.RepositoryFramework;
-using RoomM.Repositories.Rooms;
-using RoomM.Repositories.Staffs;
-using RoomM.WebApp.Models.RoomM;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebMatrix.WebData;
+
+using RoomM.WebApp.Models.RoomM;
+using RoomM.Repositories.RepositoryFramework;
+using RoomM.Repositories;
+using RoomM.Models;
 
 namespace RoomM.WebApp.Controllers
 {
@@ -86,7 +85,7 @@ namespace RoomM.WebApp.Controllers
         {
             RoomCalendar rc = roomCalRepo.GetSingle(id);
 
-            RoomCalendar rcInfo = new RoomM.Models.Rooms.RoomCalendar
+            RoomCalendar rcInfo = new RoomCalendar
             {
                 Room = rc.Room,
                 Start = rc.Start,

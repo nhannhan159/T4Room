@@ -5,9 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity.ModelConfiguration;
 using System.ComponentModel.DataAnnotations.Schema;
-using RoomM.Models.Assets;
 
-namespace RoomM.Model.Mapping
+namespace RoomM.Models.Mapping
 {
     public class AssetMap : EntityTypeConfiguration<Asset>
     {

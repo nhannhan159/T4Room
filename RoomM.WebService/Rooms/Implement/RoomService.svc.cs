@@ -5,10 +5,12 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
-using RoomM.Repositories.Rooms;
-using RoomM.Models.Rooms;
 
-namespace RoomM.WebService.Rooms
+using RoomM.Repositories.RepositoryFramework;
+using RoomM.Repositories;
+using RoomM.Models;
+
+namespace RoomM.WebService
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "RoomService" in code, svc and config file together.
     // NOTE: In order to launch WCF Test Client for testing this service, please select RoomService.svc or RoomService.svc.cs at the Solution Explorer and start debugging.
@@ -18,7 +20,7 @@ namespace RoomM.WebService.Rooms
 
         public RoomService()
         {
-            this.roomRepository = new RoomRepository();
+            this.roomRepository = RepositoryFactory.GetRepository<IRoomRepository, Room>();
         }
 
         public Room GetSingle(Int64 roomId)

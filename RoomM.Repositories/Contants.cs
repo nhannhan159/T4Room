@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RoomM.Model
+namespace RoomM.Contants
 {
     public class Contants
     {
@@ -12,6 +12,5 @@ namespace RoomM.Model
         public static int ASSETS_REMOVE = 2;
         public static int ASSETS_IMPORT = 3;
         public static int ASSETS_RECEVIE = 4;
-
     }
 }

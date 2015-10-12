@@ -1,5 +1,4 @@
-﻿using RoomM.Models.Rooms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
@@ -33,8 +32,6 @@ namespace RoomM.Repositories
                 dynamic configurationInstance = Activator.CreateInstance(type);
                 modelBuilder.Configurations.Add(configurationInstance);
             }
-            
-            // modelBuilder.Entity<Room>().Property(m => m.RoomTypeId).IsOptional();  
 
             base.OnModelCreating(modelBuilder);
         }

@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity.ModelConfiguration;
-using RoomM.Models.Rooms;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace RoomM.Model.Mapping
+namespace RoomM.Models.Mapping
 {
     public class RoomTypeMap : EntityTypeConfiguration<RoomType>
     {

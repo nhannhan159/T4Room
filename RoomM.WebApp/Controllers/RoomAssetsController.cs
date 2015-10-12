@@ -1,14 +1,13 @@
-﻿using RoomM.Models.Rooms;
-using RoomM.Models.Assets;
-using RoomM.Repositories.Assets;
-using RoomM.Repositories.Rooms;
-using RoomM.WebApp.Models.RoomM;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
+using RoomM.WebApp.Models.RoomM;
 using RoomM.Repositories.RepositoryFramework;
+using RoomM.Repositories;
+using RoomM.Models;
 
 namespace RoomM.WebApp.Controllers
 {
