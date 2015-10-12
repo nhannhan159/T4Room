@@ -14,13 +14,14 @@ namespace RoomM.WebService
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "StaffService" in code, svc and config file together.
     // NOTE: In order to launch WCF Test Client for testing this service, please select StaffService.svc or StaffService.svc.cs at the Solution Explorer and start debugging.
-    public class StaffService : IStaffService
+    public class StaffService : ServiceBase<Staff>, IStaffService
     {
         private IStaffRepository staffRepository;
 
         public StaffService()
         {
             this.staffRepository = RepositoryFactory.GetRepository<IStaffRepository, Staff>();
+            this.repo = (IRepository<Staff>)this.staffRepository;
         }
 
         public Staff GetSingle(int staffId)

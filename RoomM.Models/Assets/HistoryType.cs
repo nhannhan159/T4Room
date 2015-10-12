@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RoomM.Models
 {
-    public class HistoryType : EntityBase
+    public class HistoryType : Detachable<HistoryType>
     {
         public string Name { get; set; }
         public virtual ICollection<RoomAssetHistory> AssetHistories { get; set; }
@@ -24,7 +24,7 @@ namespace RoomM.Models
             this.AssetHistories = new List<RoomAssetHistory>();
         }
 
-        public HistoryType GetDetached()
+        public override HistoryType GetDetached()
         {
             HistoryType detached = new HistoryType();
             detached.ID = this.ID;

@@ -92,6 +92,8 @@
     <Compile Include="Assets\Implement\RoomAssetHistoryTypeService.svc.cs">
       <DependentUpon>RoomAssetHistoryTypeService.svc</DependentUpon>
     </Compile>
+    <Compile Include="IService.cs" />
+    <Compile Include="ServiceBase.cs" />
     <Compile Include="Rooms\IRoomCalendarStatusService.cs" />
     <Compile Include="Rooms\IRoomCalenderService.cs" />
     <Compile Include="Rooms\Implement\RoomCalenderService.svc.cs">
@@ -126,7 +128,6 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

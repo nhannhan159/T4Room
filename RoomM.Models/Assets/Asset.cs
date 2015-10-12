@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RoomM.Models
 {
-    public class Asset : EntityBase
+    public class Asset : Detachable<Asset>
     {
         public string Name { get; set; }
         public Boolean IsUsing { get; set; }
@@ -45,7 +45,7 @@ namespace RoomM.Models
             this.AssetHistories = new List<RoomAssetHistory>();
         }
 
-        public Asset GetDetached()
+        public override Asset GetDetached()
         {
             Asset detached = new Asset();
             detached.ID = this.ID;

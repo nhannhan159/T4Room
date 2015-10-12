@@ -14,13 +14,14 @@ namespace RoomM.WebService
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "RoomService" in code, svc and config file together.
     // NOTE: In order to launch WCF Test Client for testing this service, please select RoomService.svc or RoomService.svc.cs at the Solution Explorer and start debugging.
-    public class RoomService : IRoomService
+    public class RoomService : ServiceBase<Room>, IRoomService
     {
         private IRoomRepository roomRepository; 
 
         public RoomService()
         {
             this.roomRepository = RepositoryFactory.GetRepository<IRoomRepository, Room>();
+            this.repo = (IRepository<Room>)this.roomRepository;
         }
 
         public Room GetSingle(Int64 roomId)

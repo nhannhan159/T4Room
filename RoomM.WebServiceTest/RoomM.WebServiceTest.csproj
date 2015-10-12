@@ -45,6 +45,11 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\AssetService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\RoomService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -57,35 +62,47 @@
     </None>
     <None Include="Properties\DataSources\RoomM.Models.Asset.datasource" />
     <None Include="Properties\DataSources\RoomM.Models.Room.datasource" />
-    <None Include="Properties\DataSources\RoomM.Models.Rooms.Room.datasource" />
-    <None Include="Properties\DataSources\RoomM.Models.Rooms.RoomType.datasource" />
-    <None Include="Properties\DataSources\RoomM.Models.RoomType.datasource" />
-    <None Include="Properties\DataSources\RoomM.Models.Staffs.StaffType.datasource" />
-    <None Include="Properties\DataSources\RoomM.Models.StaffType.datasource" />
+    <None Include="Service References\AssetService\AssetService.wsdl" />
+    <None Include="Service References\AssetService\AssetService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AssetService\AssetService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AssetService\AssetService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AssetService\AssetService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AssetService\RoomM.WebServiceTest.AssetService.Asset.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\RoomService\RoomM.WebServiceTest.RoomService.Room.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\RoomService\RoomService.wsdl" />
     <None Include="Service References\RoomService\RoomService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RoomService\RoomService1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\RoomService\RoomService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomService\RoomService4.xsd">
+    <None Include="Service References\RoomService\RoomService3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomService\RoomService6.xsd">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RoomM.Models\RoomM.Models.csproj">
-      <Project>{a2cd9ea0-9e0c-4b0a-87f5-9baddc4f9422}</Project>
-      <Name>RoomM.Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\AssetService\AssetService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AssetService\" />
     <WCFMetadataStorage Include="Service References\RoomService\" />
   </ItemGroup>
   <ItemGroup>
@@ -99,6 +116,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\RoomService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AssetService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AssetService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AssetService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RoomM.Models
 {
-    public class RoomType : EntityBase
+    public class RoomType : Detachable<RoomType>
     {
         public string Name { get; set; }
         public virtual ICollection<Room> Rooms { get; set; }
@@ -24,7 +24,7 @@ namespace RoomM.Models
             this.Rooms = new List<Room>();
         }
 
-        public RoomType GetDetached()
+        public override RoomType GetDetached()
         {
             RoomType detached = new RoomType();
             detached.ID = this.ID;

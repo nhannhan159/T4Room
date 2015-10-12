@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="eab364fb-e17f-4658-8371-0ddda719cf49" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="RoomM.Models" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:62978/Staffs/Implement/StaffTypeService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="StaffTypeService.xsd" MetadataType="Schema" ID="1e19685f-6d75-4fdb-b513-02e7cee2fae9" SourceId="1" SourceUrl="http://localhost:62978/Staffs/Implement/StaffTypeService.svc?xsd=xsd2" />
+    <MetadataFile FileName="StaffTypeService1.xsd" MetadataType="Schema" ID="03ab2317-d6f2-4bde-bcbe-315795670c4e" SourceId="1" SourceUrl="http://localhost:62978/Staffs/Implement/StaffTypeService.svc?xsd=xsd1" />
+    <MetadataFile FileName="StaffTypeService.disco" MetadataType="Disco" ID="aec1ddfa-ac0d-461c-b71c-a2b29d07733f" SourceId="1" SourceUrl="http://localhost:62978/Staffs/Implement/StaffTypeService.svc?disco" />
+    <MetadataFile FileName="StaffTypeService2.xsd" MetadataType="Schema" ID="ad6c1ee5-cdc2-4ecb-8eec-46f0f1b9b040" SourceId="1" SourceUrl="http://localhost:62978/Staffs/Implement/StaffTypeService.svc?xsd=xsd0" />
+    <MetadataFile FileName="StaffTypeService.wsdl" MetadataType="Wsdl" ID="0bb70935-6d24-4ee7-af13-45cb0c95e45c" SourceId="1" SourceUrl="http://localhost:62978/Staffs/Implement/StaffTypeService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

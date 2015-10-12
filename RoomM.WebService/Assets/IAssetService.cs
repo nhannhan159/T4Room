@@ -11,7 +11,7 @@ namespace RoomM.WebService
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract]
-    public interface IAssetService
+    public interface IAssetService : IService<Asset>
     {
         [OperationContract]
         Asset GetSingle(int deviceId);

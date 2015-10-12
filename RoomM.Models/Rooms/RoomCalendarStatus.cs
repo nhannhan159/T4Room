@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RoomM.Models
 {
-    public class RoomCalendarStatus : EntityBase
+    public class RoomCalendarStatus : Detachable<RoomCalendarStatus>
     {
         public string Name { get; set; }
         public virtual ICollection<RoomCalendar> RoomCalendars { get; set; }
@@ -24,9 +24,9 @@ namespace RoomM.Models
             this.RoomCalendars = new List<RoomCalendar>();
         }
 
-        public RoomCalendarStatus GetDetached()
+        public override RoomCalendarStatus GetDetached()
         {
-            RoomCalendarStatus detached = new RoomCalendarStatus();
+            RoomCalendarStatus detached = new RoomM.Models.RoomCalendarStatus();
             detached.ID = this.ID;
             detached.Name = this.Name;
             return detached;

@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace RoomM.Models
 {
-    public class StaffType : EntityBase
+    public class StaffType : Detachable<StaffType>
     {
         public string Name { get; set; }
         public virtual ICollection<Staff> Staffs { get; set; }
 
-        public StaffType GetDetached()
+        public override StaffType GetDetached()
         {
             StaffType detached = new StaffType();
             detached.ID = this.ID;

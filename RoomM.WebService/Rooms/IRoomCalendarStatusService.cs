@@ -11,7 +11,7 @@ namespace RoomM.WebService
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IRoomCalendarStatusService" in both code and config file together.
     [ServiceContract]
-    public interface IRoomCalendarStatusService
+    public interface IRoomCalendarStatusService : IService<RoomCalendarStatus>
     {
         [OperationContract]
         RoomCalendarStatus GetSingle(int statusId);

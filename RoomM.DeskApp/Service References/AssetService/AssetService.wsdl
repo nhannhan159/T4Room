@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AssetService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:62978/Assets/Implement/AssetService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:62978/Assets/Implement/AssetService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:62978/Assets/Implement/AssetService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/RoomM.Models" />
+      <xsd:import schemaLocation="http://localhost:62978/Assets/Implement/AssetService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IAssetService_GetAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAll" />
+  </wsdl:message>
+  <wsdl:message name="IAssetService_GetAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetService_Add_InputMessage">
+    <wsdl:part name="parameters" element="tns:Add" />
+  </wsdl:message>
+  <wsdl:message name="IAssetService_Add_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetService_DeleteByT_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteByT" />
+  </wsdl:message>
+  <wsdl:message name="IAssetService_DeleteByT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteByTResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetService_DeleteByObject_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteByObject" />
+  </wsdl:message>
+  <wsdl:message name="IAssetService_DeleteByObject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteByObjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetService_Edit_InputMessage">
+    <wsdl:part name="parameters" element="tns:Edit" />
+  </wsdl:message>
+  <wsdl:message name="IAssetService_Edit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetService_Save_InputMessage">
+    <wsdl:part name="parameters" element="tns:Save" />
+  </wsdl:message>
+  <wsdl:message name="IAssetService_Save_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetService_GetSingle_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSingle" />
+  </wsdl:message>
+  <wsdl:message name="IAssetService_GetSingle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSingleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetService_GetNameList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNameList" />
+  </wsdl:message>
+  <wsdl:message name="IAssetService_GetNameList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNameListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetService_isUniqueName_InputMessage">
+    <wsdl:part name="parameters" element="tns:isUniqueName" />
+  </wsdl:message>
+  <wsdl:message name="IAssetService_isUniqueName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:isUniqueNameResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IAssetService">
+    <wsdl:operation name="GetAll">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Asset/GetAll" message="tns:IAssetService_GetAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Asset/GetAllResponse" message="tns:IAssetService_GetAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Add">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Asset/Add" message="tns:IAssetService_Add_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Asset/AddResponse" message="tns:IAssetService_Add_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteByT">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Asset/DeleteByT" message="tns:IAssetService_DeleteByT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Asset/DeleteByTResponse" message="tns:IAssetService_DeleteByT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteByObject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Asset/DeleteByObject" message="tns:IAssetService_DeleteByObject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Asset/DeleteByObjectResponse" message="tns:IAssetService_DeleteByObject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Edit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Asset/Edit" message="tns:IAssetService_Edit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Asset/EditResponse" message="tns:IAssetService_Edit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Asset/Save" message="tns:IAssetService_Save_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Asset/SaveResponse" message="tns:IAssetService_Save_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSingle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetService/GetSingle" message="tns:IAssetService_GetSingle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetService/GetSingleResponse" message="tns:IAssetService_GetSingle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNameList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetService/GetNameList" message="tns:IAssetService_GetNameList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetService/GetNameListResponse" message="tns:IAssetService_GetNameList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="isUniqueName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetService/isUniqueName" message="tns:IAssetService_isUniqueName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetService/isUniqueNameResponse" message="tns:IAssetService_isUniqueName_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IAssetService" type="tns:IAssetService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAll">
+      <soap:operation soapAction="http://tempuri.org/IServiceOf_Asset/GetAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Add">
+      <soap:operation soapAction="http://tempuri.org/IServiceOf_Asset/Add" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteByT">
+      <soap:operation soapAction="http://tempuri.org/IServiceOf_Asset/DeleteByT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteByObject">
+      <soap:operation soapAction="http://tempuri.org/IServiceOf_Asset/DeleteByObject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Edit">
+      <soap:operation soapAction="http://tempuri.org/IServiceOf_Asset/Edit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <soap:operation soapAction="http://tempuri.org/IServiceOf_Asset/Save" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSingle">
+      <soap:operation soapAction="http://tempuri.org/IAssetService/GetSingle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNameList">
+      <soap:operation soapAction="http://tempuri.org/IAssetService/GetNameList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isUniqueName">
+      <soap:operation soapAction="http://tempuri.org/IAssetService/isUniqueName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AssetService">
+    <wsdl:port name="BasicHttpBinding_IAssetService" binding="tns:BasicHttpBinding_IAssetService">
+      <soap:address location="http://localhost:62978/Assets/Implement/AssetService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

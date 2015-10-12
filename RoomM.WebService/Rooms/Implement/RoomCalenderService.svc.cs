@@ -13,13 +13,14 @@ namespace RoomM.WebService
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "RoomCalenderService" in code, svc and config file together.
     // NOTE: In order to launch WCF Test Client for testing this service, please select RoomCalenderService.svc or RoomCalenderService.svc.cs at the Solution Explorer and start debugging.
-    public class RoomCalenderService : IRoomCalenderService
+    public class RoomCalenderService : ServiceBase<RoomCalendar>, IRoomCalenderService
     {
         private IRoomCalendarRepository roomCalendarRepository;
 
         public RoomCalenderService()
         {
             this.roomCalendarRepository = RepositoryFactory.GetRepository<IRoomCalendarRepository, RoomCalendar>();
+            this.repo = (IRepository<RoomCalendar>)this.roomCalendarRepository;
         }
 
         public RoomCalendar GetSingle(int roomCalId)

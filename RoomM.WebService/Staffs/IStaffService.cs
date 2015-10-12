@@ -12,7 +12,7 @@ namespace RoomM.WebService
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IStaffService" in both code and config file together.
     [ServiceContract]
-    public interface IStaffService
+    public interface IStaffService : IService<Staff>
     {
         [OperationContract]
         Staff GetSingle(int staffId);
@@ -23,10 +23,10 @@ namespace RoomM.WebService
         [OperationContract]
         Boolean CheckUserExists(string username);
 
-        [OperationContract]
+        [OperationContract(Name = "GetStaffLimitByRegister_IList<Staff>")]
         IList<Staff> GetStaffLimitByRegister(int limit);
 
-        [OperationContract]
+        [OperationContract(Name = "GetStaffLimitByRegister_List<DictionaryEntry>")]
         List<DictionaryEntry> GetStaffLimitByRegister(int limit, DateTime from, DateTime to);
 
         [OperationContract]

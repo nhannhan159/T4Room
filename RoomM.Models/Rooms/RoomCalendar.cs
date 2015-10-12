@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RoomM.Models
 {
-    public class RoomCalendar : EntityBase
+    public class RoomCalendar : Detachable<RoomCalendar>
     {
         [DataType(DataType.Date)]
         [Display(Name = "Ngày đăng kí")]
@@ -39,7 +39,7 @@ namespace RoomM.Models
             return ID + " #room " + RoomId + " #user " + StaffId + " #start " + Start + " #len " + Length;
         }
 
-        public RoomCalendar GetDetached()
+        public override RoomCalendar GetDetached()
         {
             RoomCalendar detached = new RoomCalendar();
             detached.ID = this.ID;

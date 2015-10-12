@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RoomM.Models
 {
-    public class Room : EntityBase
+    public class Room : Detachable<Room>
     {
         [Required]
         [Display(Name = "Tên phòng")]
@@ -69,7 +69,7 @@ namespace RoomM.Models
             return ID + "#" + Name + "#RoomType:" + RoomTypeId + "#Status: " + IsUsing;
         }
 
-        public Room GetDetached()
+        public override Room GetDetached()
         {
             Room detached = new Room();
             detached.ID = this.ID;

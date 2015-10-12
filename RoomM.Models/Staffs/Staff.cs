@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RoomM.Models
 {
-    public class Staff : EntityBase
+    public class Staff : Detachable<Staff>
     {
         [StringLength(50)]
         public string Name { get; set; }
@@ -62,7 +62,7 @@ namespace RoomM.Models
             this.RoomCalendars = new List<RoomCalendar>();
         }
 
-        public Staff GetDetached()
+        public override Staff GetDetached()
         {
             Staff detached = new Staff();
             detached.ID = this.ID;

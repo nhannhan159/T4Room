@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RoomM.Models
 {
-    public class RoomAsset : EntityBase
+    public class RoomAsset : Detachable<RoomAsset>
     {
         [Display(Name = "Mã phòng")]
         public Int64 RoomId { get; set; }
@@ -39,7 +39,7 @@ namespace RoomM.Models
         {
         }
 
-        public RoomAsset GetDetached()
+        public override RoomAsset GetDetached()
         {
             RoomAsset detached = new RoomAsset();
             detached.ID = this.ID;

@@ -7,8 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 using RoomM.DeskApp.UIHelper;
-using RoomM.Repositories.RepositoryFramework;
-using RoomM.Repositories;
 using RoomM.Models;
 
 namespace RoomM.DeskApp.ViewModels
@@ -16,8 +14,8 @@ namespace RoomM.DeskApp.ViewModels
     public class StatisticViewModel : EditableViewModel<Room>
     {
 
-        private IStaffRepository staffRep = RepositoryFactory.GetRepository<IStaffRepository, Staff>();
-        private IRoomRepository roomRep = RepositoryFactory.GetRepository<IRoomRepository, Room>();
+        private StaffService.StaffServiceClient staffService = new StaffService.StaffServiceClient();
+        private RoomService.RoomServiceClient roomService = new RoomService.RoomServiceClient();
 
         private ObservableCollection<ChartElement> chartStaffItems;
         private ObservableCollection<ChartElement> chartRegisterItems;
@@ -31,20 +29,20 @@ namespace RoomM.DeskApp.ViewModels
             //: base()
         {
             // DateTime now = new DateTime(DateTime.);
-            fromTimeStaff = new DateTime(DateTime.Now.Year - 1, 1, 1);
-            toTimeStaff = DateTime.Now;
+            this.fromTimeStaff = new DateTime(DateTime.Now.Year - 1, 1, 1);
+            this.toTimeStaff = DateTime.Now;
 
-            fromTimeRegister = new DateTime(DateTime.Now.Year - 1, 1, 1);
-            toTimeRegister = DateTime.Now;
+            this.fromTimeRegister = new DateTime(DateTime.Now.Year - 1, 1, 1);
+            this.toTimeRegister = DateTime.Now;
 
-            rebuildStaffData(fromTimeStaff, toTimeStaff);
-            rebuildRegisterData(fromTimeRegister, toTimeRegister);
+            this.rebuildStaffData(fromTimeStaff, toTimeStaff);
+            this.rebuildRegisterData(fromTimeRegister, toTimeRegister);
         }
 
 
         protected override List<Room> GetEntitiesList()
         {
-            return roomRep.GetAll() as List<Room>;
+            return this.roomService.GetAll();
         }
 
        
@@ -60,21 +58,21 @@ namespace RoomM.DeskApp.ViewModels
 
         public DateTime FromTimeStaff 
         {
-            get { return fromTimeStaff; }
+            get { return this.fromTimeStaff; }
             set 
-            { 
-                fromTimeStaff = value;
-                rebuildStaffData(value, ToTimeStaff);
+            {
+                this.fromTimeStaff = value;
+                this.rebuildStaffData(value, ToTimeStaff);
             }
         }
 
         public DateTime ToTimeStaff
         {
-            get { return toTimeStaff; }
+            get { return this.toTimeStaff; }
             set 
-            { 
-                toTimeStaff = value;
-                rebuildStaffData(FromTimeStaff, value);   
+            {
+                this.toTimeStaff = value;
+                this.rebuildStaffData(FromTimeStaff, value);   
             }
         }
 
@@ -83,8 +81,8 @@ namespace RoomM.DeskApp.ViewModels
             get { return fromTimeRegister; }
             set
             {
-                fromTimeRegister = value;
-                rebuildRegisterData(value, toTimeRegister);
+                this.fromTimeRegister = value;
+                this.rebuildRegisterData(value, toTimeRegister);
             }
         }
 
@@ -93,8 +91,8 @@ namespace RoomM.DeskApp.ViewModels
             get { return toTimeRegister; }
             set
             {
-                toTimeRegister = value;
-                rebuildRegisterData(fromTimeRegister, value);
+                this.toTimeRegister = value;
+                this.rebuildRegisterData(fromTimeRegister, value);
             }
         }
 
@@ -115,7 +113,8 @@ namespace RoomM.DeskApp.ViewModels
 
         private void rebuildStaffData(DateTime from, DateTime to)
         { 
-            List<DictionaryEntry> staffDics = staffRep.GetStaffLimitByRegister(10, from, to);
+            /*
+            List<DictionaryEntry> staffDics = staffService.GetStaffLimitByRegister_ListDictionaryEntry(10, from, to);
 
             if (null == chartStaffItems)
                 chartStaffItems = new ObservableCollection<ChartElement>();
@@ -131,11 +130,13 @@ namespace RoomM.DeskApp.ViewModels
                 });
 
             }
+             */
         }
 
         private void rebuildRegisterData(DateTime from, DateTime to)
         {
-            List<DictionaryEntry> roomDics = roomRep.GetRoomLimitByRegister(10, from, to);
+            /*
+            List<DictionaryEntry> roomDics = roomService.GetRoomLimitByRegister(10, from, to);
 
             if (null == chartRegisterItems)
                 chartRegisterItems = new ObservableCollection<ChartElement>();
@@ -151,6 +152,7 @@ namespace RoomM.DeskApp.ViewModels
                 });
 
             }
+             */
         }
     }
 
