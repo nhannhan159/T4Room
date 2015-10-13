@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using NPOI.SS.UserModel;
 
+using RoomM.Repositories.RepositoryFramework;
 using RoomM.Models;
 
 namespace RoomM.DeskApp

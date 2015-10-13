@@ -52,6 +52,15 @@ namespace RoomM.Models
             detached.Name = this.Name;
             detached.Description = this.Description;
             detached.IsUsing = this.IsUsing;
+            /*
+            List<RoomAsset> detachedRoomAssets = new List<RoomAsset>();
+            List<RoomAsset> roomAssets = new List<RoomAsset>(this.RoomAssets);
+            foreach (RoomAsset roomAsset in roomAssets)
+            {
+                detachedRoomAssets.Add(roomAsset.GetDetached());
+            }
+            detached.RoomAssets = this.RoomAssets;
+             */
             return detached;
         }
 

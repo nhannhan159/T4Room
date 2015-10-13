@@ -11,6 +11,8 @@ using System.ComponentModel;
 
 using RoomM.DeskApp.UIHelper;
 using RoomM.DeskApp.Views;
+using RoomM.Repositories.RepositoryFramework;
+using RoomM.Repositories;
 using RoomM.Models;
 
 namespace RoomM.DeskApp.ViewModels
@@ -23,6 +25,7 @@ namespace RoomM.DeskApp.ViewModels
         public StaffManagementViewModel()
             : base() 
         {
+
             this.sexFilter = 0;
             this.roomCalendarViewFilterIsCheck = false;
             this.rcvRoomFilter = "";
@@ -30,7 +33,7 @@ namespace RoomM.DeskApp.ViewModels
             this.rcvDateToFilter = DateTime.Now;
             this.rcvPeriodsFilter = 0;
             this.rcvBeginTimeFilter = 0;
-            List<RoomCalendarStatus> rcvStatusList = this.roomCalStatusService.GetAll();
+            List<RoomCalendarStatus> rcvStatusList = new List<RoomCalendarStatus>(this.roomCalStatusRepo.GetAll());
             rcvStatusList.Add(new RoomCalendarStatus("Tất cả"));
             this.rcvStatusFilters = new CollectionView(rcvStatusList);
             this.rcvStatusFilter = rcvStatusList[rcvStatusList.Count - 1];
@@ -40,10 +43,10 @@ namespace RoomM.DeskApp.ViewModels
 
         #region PrivateField
 
-        private StaffService.StaffServiceClient staffService = new StaffService.StaffServiceClient();
-        private StaffTypeService.StaffTypeServiceClient staffTypeService = new StaffTypeService.StaffTypeServiceClient();
-        private RoomCalenderService.RoomCalenderServiceClient roomCalService = new RoomCalenderService.RoomCalenderServiceClient();
-        private RoomCalendarStatusService.RoomCalendarStatusServiceClient roomCalStatusService = new RoomCalendarStatusService.RoomCalendarStatusServiceClient();
+        private IStaffRepository staffRepo = RepositoryFactory.GetRepository<IStaffRepository, Staff>();
+        private IStaffTypeRepository staffTypeRepo = RepositoryFactory.GetRepository<IStaffTypeRepository, StaffType>();
+        private IRoomCalendarStatusRepository roomCalStatusRepo = RepositoryFactory.GetRepository<IRoomCalendarStatusRepository, RoomCalendarStatus>();
+        private IRoomCalendarRepository roomCalRepo = RepositoryFactory.GetRepository<IRoomCalendarRepository, RoomCalendar>();
 
         private NewStaff newStaffDialog;
         private int sexFilter;
@@ -63,12 +66,12 @@ namespace RoomM.DeskApp.ViewModels
 
         protected override List<Staff> GetEntitiesList()
         {
-            return new List<Staff>(this.staffService.GetAll());
+            return new List<Staff>(this.staffRepo.GetAll());
         }
 
         public ICollectionView StaffTypesView
         {
-            get { return CollectionViewSource.GetDefaultView(staffTypeService.GetAll()); }
+            get { return CollectionViewSource.GetDefaultView(staffTypeRepo.GetAll()); }
         }
 
         protected override void SaveCurrentEntity()
@@ -76,10 +79,10 @@ namespace RoomM.DeskApp.ViewModels
             try
             {
                 if (this.CurrentEntity.ID > 0)
-                    this.staffService.Edit(this.CurrentEntity);
+                    this.staffRepo.Edit(this.CurrentEntity);
                 else
-                    this.staffService.Add(this.CurrentEntity);
-                this.staffService.Save();
+                    this.staffRepo.Add(this.CurrentEntity);
+                this.staffRepo.Save();
                 System.Windows.Forms.MessageBox.Show("Cập nhật dữ liệu thành công!");
             }
             catch (Exception ex)
@@ -143,7 +146,7 @@ namespace RoomM.DeskApp.ViewModels
             if (this.CurrentEntity == null)
                 this.currentRoomCalendarView = CollectionViewSource.GetDefaultView(new List<RoomCalendar>());
             else
-                this.currentRoomCalendarView = CollectionViewSource.GetDefaultView(this.roomCalService.GetByStaffId(this.CurrentEntity.ID));
+                this.currentRoomCalendarView = CollectionViewSource.GetDefaultView(this.roomCalRepo.GetByStaffId(this.CurrentEntity.ID));
             this.currentRoomCalendarView.Filter += RoomCalendarViewFilter;
             this.OnPropertyChanged("CurrentRoomCalendarView");
         }
@@ -154,7 +157,7 @@ namespace RoomM.DeskApp.ViewModels
             MessageBoxResult result = System.Windows.MessageBox.Show("Bạn muốn sửa thông tin nhân viên?", "Xác nhận sửa thông tin", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
-                // if (roomService.isUniqueName(CurrentEntity.Name.Trim()))
+                // if (roomRepo.isUniqueName(CurrentEntity.Name.Trim()))
                 // {
                 this.SaveCurrentEntity();
                 MainWindowViewModel.instance.ChangeStateToComplete("Cập nhật thành công");
@@ -170,7 +173,7 @@ namespace RoomM.DeskApp.ViewModels
 
         protected override void NewCommandHandler()
         {
-            if (!staffService.CheckUserExists(newEntityViewModel.NewEntity.UserName.Trim()))
+            if (!staffRepo.CheckUserExists(newEntityViewModel.NewEntity.UserName.Trim()))
             {
                 this.CloseNewEntityDialog();
                 base.NewCommandHandler();

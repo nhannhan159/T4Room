@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{43B13507-686D-4D50-B207-3135877386C8}</ProjectGuid>
+    <ProjectGuid>{5EC56C8B-1681-489B-A9EA-F1F69A4560BC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RoomM.DeskApp</RootNamespace>
@@ -38,14 +38,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NPOI">
       <HintPath>..\Libs\NPOI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -76,56 +82,6 @@
     <Compile Include="ReportUtils\RoomCalendarsReportToExcel.cs" />
     <Compile Include="ReportUtils\RoomHistoriesReportToExcel.cs" />
     <Compile Include="ReportUtils\RoomsReportToExcel.cs" />
-    <Compile Include="Service References\AssetService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\RoomAssetHistoryService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\RoomAssetHistoryTypeService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\RoomAssetService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\RoomCalendarStatusService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\RoomCalenderService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\RoomService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\RoomTypeService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\StaffService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\StaffTypeService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="UIHelper\EditableViewModel.cs" />
     <Compile Include="UIHelper\PropertySupport.cs" />
     <Compile Include="UIHelper\RelayCommand.cs" />
@@ -224,140 +180,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\RoomM.Models.Asset.datasource" />
-    <None Include="Properties\DataSources\RoomM.Models.HistoryType.datasource" />
-    <None Include="Properties\DataSources\RoomM.Models.Room.datasource" />
-    <None Include="Properties\DataSources\RoomM.Models.RoomAsset.datasource" />
-    <None Include="Properties\DataSources\RoomM.Models.RoomAssetHistory.datasource" />
-    <None Include="Properties\DataSources\RoomM.Models.RoomCalendar.datasource" />
-    <None Include="Properties\DataSources\RoomM.Models.RoomCalendarStatus.datasource" />
-    <None Include="Properties\DataSources\RoomM.Models.RoomType.datasource" />
-    <None Include="Properties\DataSources\RoomM.Models.Staff.datasource" />
-    <None Include="Properties\DataSources\RoomM.Models.StaffType.datasource" />
-    <None Include="Service References\AssetService\AssetService.wsdl" />
-    <None Include="Service References\AssetService\AssetService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AssetService\AssetService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AssetService\AssetService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\AssetService\AssetService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomAssetHistoryService\RoomAssetHistoryService.wsdl" />
-    <None Include="Service References\RoomAssetHistoryService\RoomAssetHistoryService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomAssetHistoryService\RoomAssetHistoryService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomAssetHistoryService\RoomAssetHistoryService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomAssetHistoryTypeService\RoomAssetHistoryTypeService.wsdl" />
-    <None Include="Service References\RoomAssetHistoryTypeService\RoomAssetHistoryTypeService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomAssetHistoryTypeService\RoomAssetHistoryTypeService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomAssetHistoryTypeService\RoomAssetHistoryTypeService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomAssetService\RoomAssetService.wsdl" />
-    <None Include="Service References\RoomAssetService\RoomAssetService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomAssetService\RoomAssetService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomAssetService\RoomAssetService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomCalendarStatusService\RoomCalendarStatusService.wsdl" />
-    <None Include="Service References\RoomCalendarStatusService\RoomCalendarStatusService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomCalendarStatusService\RoomCalendarStatusService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomCalendarStatusService\RoomCalendarStatusService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomCalendarStatusService\RoomCalendarStatusService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomCalenderService\RoomCalenderService.wsdl" />
-    <None Include="Service References\RoomCalenderService\RoomCalenderService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomCalenderService\RoomCalenderService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomCalenderService\RoomCalenderService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomService\RoomM.DeskApp.RoomService.DictionaryEntry.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\RoomService\RoomService.wsdl" />
-    <None Include="Service References\RoomService\RoomService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomService\RoomService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomService\RoomService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomService\RoomService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomTypeService\RoomTypeService.wsdl" />
-    <None Include="Service References\RoomTypeService\RoomTypeService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomTypeService\RoomTypeService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\RoomTypeService\RoomTypeService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\StaffService\RoomM.DeskApp.StaffService.DictionaryEntry.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\StaffService\RoomM.DeskApp.StaffService.GetStaffLimitByRegister_IListStaffResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\StaffService\RoomM.DeskApp.StaffService.GetStaffLimitByRegister_ListDictionaryEntryResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\StaffService\StaffService.wsdl" />
-    <None Include="Service References\StaffService\StaffService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\StaffService\StaffService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\StaffService\StaffService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\StaffService\StaffService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\StaffTypeService\StaffTypeService.wsdl" />
-    <None Include="Service References\StaffTypeService\StaffTypeService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\StaffTypeService\StaffTypeService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\StaffTypeService\StaffTypeService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Views\packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -369,6 +191,16 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RoomM.Models\RoomM.Models.csproj">
+      <Project>{a2cd9ea0-9e0c-4b0a-87f5-9baddc4f9422}</Project>
+      <Name>RoomM.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RoomM.Repositories\RoomM.Repositories.csproj">
+      <Project>{61faa63a-110f-42fb-a273-6362f5730e68}</Project>
+      <Name>RoomM.Repositories</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icon\icon-room.png" />
@@ -401,177 +233,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icon\icon-launcher.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RoomM.Models\RoomM.Models.csproj">
-      <Project>{a2cd9ea0-9e0c-4b0a-87f5-9baddc4f9422}</Project>
-      <Name>RoomM.Models</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\AssetService\" />
-    <WCFMetadataStorage Include="Service References\RoomAssetHistoryService\" />
-    <WCFMetadataStorage Include="Service References\RoomAssetHistoryTypeService\" />
-    <WCFMetadataStorage Include="Service References\RoomAssetService\" />
-    <WCFMetadataStorage Include="Service References\RoomCalendarStatusService\" />
-    <WCFMetadataStorage Include="Service References\RoomCalenderService\" />
-    <WCFMetadataStorage Include="Service References\RoomService\" />
-    <WCFMetadataStorage Include="Service References\RoomTypeService\" />
-    <WCFMetadataStorage Include="Service References\StaffService\" />
-    <WCFMetadataStorage Include="Service References\StaffTypeService\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomAssetHistoryService\RoomAssetHistoryService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomAssetHistoryService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomAssetHistoryService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomAssetHistoryService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\AssetService\AssetService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\AssetService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\AssetService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\AssetService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomAssetHistoryTypeService\RoomAssetHistoryTypeService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomAssetHistoryTypeService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomAssetHistoryTypeService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomAssetHistoryTypeService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomAssetService\RoomAssetService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomAssetService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomAssetService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomAssetService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomCalendarStatusService\RoomCalendarStatusService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomCalendarStatusService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomCalendarStatusService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomCalendarStatusService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomCalenderService\RoomCalenderService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomCalenderService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomCalenderService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomCalenderService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomService\RoomService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomTypeService\RoomTypeService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomTypeService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomTypeService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomTypeService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\StaffTypeService\StaffTypeService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\StaffTypeService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\StaffTypeService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\StaffTypeService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\StaffService\StaffService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\StaffService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\StaffService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\StaffService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
