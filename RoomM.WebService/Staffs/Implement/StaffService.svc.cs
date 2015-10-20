@@ -42,13 +42,7 @@ namespace RoomM.WebService
 
         public IList<Staff> GetStaffLimitByRegister(int limit)
         {
-            IList<Staff> staffs = this.staffRepository.GetStaffLimitByRegister(limit);
-            IList<Staff> detachedStaffs = new List<Staff>();
-            foreach (Staff staff in staffs)
-            {
-                detachedStaffs.Add(staff.GetDetached());
-            }
-            return detachedStaffs;
+            return this.GetDetachedList(this.staffRepository.GetStaffLimitByRegister(limit));
         }
 
 

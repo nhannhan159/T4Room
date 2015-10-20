@@ -31,24 +31,12 @@ namespace RoomM.WebService
 
         public IList<Room> GetByRoomTypeId(long roomTypeId)
         {
-            IList<Room> rooms = this.roomRepository.GetByRoomTypeId(roomTypeId);
-            IList<Room> detachedRooms = new List<Room>();
-            foreach (Room room in rooms)
-            {
-                detachedRooms.Add(room.GetDetached());
-            }
-            return detachedRooms;
+            return this.GetDetachedList(this.roomRepository.GetByRoomTypeId(roomTypeId));
         }
 
         public IList<Room> GetRoomListLimitByRegister(int limit)
         {
-            IList<Room> rooms = this.roomRepository.GetRoomListLimitByRegister(limit);
-            IList<Room> detachedRooms = new List<Room>();
-            foreach (Room room in rooms)
-            {
-                detachedRooms.Add(room.GetDetached());
-            }
-            return detachedRooms;
+            return this.GetDetachedList(this.roomRepository.GetRoomListLimitByRegister(limit));
         }
 
         public List<DictionaryEntry> GetRoomLimitByRegister(int limit, DateTime from, DateTime to)

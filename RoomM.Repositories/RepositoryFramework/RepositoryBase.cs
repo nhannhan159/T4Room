@@ -23,7 +23,6 @@ namespace RoomM.Repositories.RepositoryFramework
 
         public virtual IEnumerable<T> GetWithRawSql(string query, params object[] parameters)
         {
-
             return _entities.Set<T>().SqlQuery(query, parameters).ToList();
         }
 

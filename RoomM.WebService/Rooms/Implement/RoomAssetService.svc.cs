@@ -35,24 +35,12 @@ namespace RoomM.WebService
 
         public IList<RoomAsset> GetByRoomId(Int64 id)
         {
-            IList<RoomAsset> roomAssets = this.roomAssetRepository.GetByRoomId(id);
-            IList<RoomAsset> detachedRoomAssets = new List<RoomAsset>();
-            foreach (RoomAsset roomAsset in roomAssets)
-            {
-                detachedRoomAssets.Add(roomAsset.GetDetached());
-            }
-            return detachedRoomAssets;
+            return this.GetDetachedList(this.roomAssetRepository.GetByRoomId(id));
         }
 
         public IList<RoomAsset> GetByAssetId(Int64 id)
         {
-            IList<RoomAsset> roomAssets = this.roomAssetRepository.GetByAssetId(id);
-            IList<RoomAsset> detachedRoomAssets = new List<RoomAsset>();
-            foreach (RoomAsset roomAsset in roomAssets)
-            {
-                detachedRoomAssets.Add(roomAsset.GetDetached());
-            }
-            return detachedRoomAssets;
+            return this.GetDetachedList(this.roomAssetRepository.GetByAssetId(id));
         }
     }
 }

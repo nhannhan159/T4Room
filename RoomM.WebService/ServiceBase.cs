@@ -52,5 +52,15 @@ namespace RoomM.WebService
         {
             this.repo.Save();
         }
+
+        protected IList<T> GetDetachedList(IList<T> rawlist)
+        {
+            IList<T> detachedlist = new List<T>();
+            foreach (T rawitem in rawlist)
+            {
+                detachedlist.Add(rawitem.GetDetached());
+            }
+            return detachedlist;
+        }
     }
 }

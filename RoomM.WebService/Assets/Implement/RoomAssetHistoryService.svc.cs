@@ -30,24 +30,12 @@ namespace RoomM.WebService
 
         public IList<RoomAssetHistory> GetByRoomId(Int64 id)
         {
-            IList<RoomAssetHistory> roomAssetHistories = this.roomAssetHistoryRepository.GetByRoomId(id);
-            IList<RoomAssetHistory> detachedRoomAssetHistories = new List<RoomAssetHistory>();
-            foreach (RoomAssetHistory roomAssetHistory in roomAssetHistories)
-            {
-                detachedRoomAssetHistories.Add(roomAssetHistory.GetDetached());
-            }
-            return detachedRoomAssetHistories;
+            return this.GetDetachedList(this.roomAssetHistoryRepository.GetByRoomId(id));
         }
 
         public IList<RoomAssetHistory> GetByRoom2RoomId(Room room, DateTime timeForBacktrace)
         {
-            IList<RoomAssetHistory> roomAssetHistories = this.roomAssetHistoryRepository.GetByRoom2RoomId(room, timeForBacktrace);
-            IList<RoomAssetHistory> detachedRoomAssetHistories = new List<RoomAssetHistory>();
-            foreach (RoomAssetHistory roomAssetHistory in roomAssetHistories)
-            {
-                detachedRoomAssetHistories.Add(roomAssetHistory.GetDetached());
-            }
-            return detachedRoomAssetHistories;
+            return this.GetDetachedList(this.roomAssetHistoryRepository.GetByRoom2RoomId(room, timeForBacktrace));
         }
     }
 }

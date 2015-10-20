@@ -30,85 +30,43 @@ namespace RoomM.WebService
 
         public IList<RoomCalendar> GetByRoomId(Int64 roomId)
         {
-            IList<RoomCalendar> roomCals = this.roomCalendarRepository.GetByRoomId(roomId);
-            IList<RoomCalendar> detachedRoomCals = new List<RoomCalendar>();
-            foreach (RoomCalendar roomCal in roomCals)
-            {
-                detachedRoomCals.Add(roomCal.GetDetached());
-            }
-            return detachedRoomCals;
+            return this.GetDetachedList(this.roomCalendarRepository.GetByRoomId(roomId));
         }
 
 
         public IList<RoomCalendar> GetByStaffId(Int64 staffId)
         {
-            IList<RoomCalendar> roomCals = this.roomCalendarRepository.GetByStaffId(staffId);
-            IList<RoomCalendar> detachedRoomCals = new List<RoomCalendar>();
-            foreach (RoomCalendar roomCal in roomCals)
-            {
-                detachedRoomCals.Add(roomCal.GetDetached());
-            }
-            return detachedRoomCals;
+            return this.GetDetachedList(this.roomCalendarRepository.GetByStaffId(staffId));
         }
 
 
         public IList<RoomCalendar> GetByDate(DateTime date)
         {
-            IList<RoomCalendar> roomCals = this.roomCalendarRepository.GetByDate(date);
-            IList<RoomCalendar> detachedRoomCals = new List<RoomCalendar>();
-            foreach (RoomCalendar roomCal in roomCals)
-            {
-                detachedRoomCals.Add(roomCal.GetDetached());
-            }
-            return detachedRoomCals;
+            return this.GetDetachedList(this.roomCalendarRepository.GetByDate(date));
         }
 
 
         public IList<RoomCalendar> GetByDateAndRoomId(DateTime date, long roomId)
         {
-            IList<RoomCalendar> roomCals = this.roomCalendarRepository.GetByDateAndRoomId(date, roomId);
-            IList<RoomCalendar> detachedRoomCals = new List<RoomCalendar>();
-            foreach (RoomCalendar roomCal in roomCals)
-            {
-                detachedRoomCals.Add(roomCal.GetDetached());
-            }
-            return detachedRoomCals;
+            return this.GetDetachedList(this.roomCalendarRepository.GetByDateAndRoomId(date, roomId));
         }
 
 
         public IList<RoomCalendar> GetByWeekAndRoomId(DateTime date, long roomId)
         {
-            IList<RoomCalendar> roomCals = this.roomCalendarRepository.GetByWeekAndRoomId(date, roomId);
-            IList<RoomCalendar> detachedRoomCals = new List<RoomCalendar>();
-            foreach (RoomCalendar roomCal in roomCals)
-            {
-                detachedRoomCals.Add(roomCal.GetDetached());
-            }
-            return detachedRoomCals;
+            return this.GetDetachedList(this.roomCalendarRepository.GetByWeekAndRoomId(date, roomId));
         }
 
 
         public IList<RoomCalendar> GetByWatchedState(bool isWatched, int staffId)
         {
-            IList<RoomCalendar> roomCals = this.roomCalendarRepository.GetByWatchedState(isWatched, staffId);
-            IList<RoomCalendar> detachedRoomCals = new List<RoomCalendar>();
-            foreach (RoomCalendar roomCal in roomCals)
-            {
-                detachedRoomCals.Add(roomCal.GetDetached());
-            }
-            return detachedRoomCals;
+            return this.GetDetachedList(this.roomCalendarRepository.GetByWatchedState(isWatched, staffId));
         }
 
 
         public IList<RoomCalendar> GetByRegisteredState(int registeredState, int staffId)
         {
-            IList<RoomCalendar> roomCals = this.roomCalendarRepository.GetByRegisteredState(registeredState, staffId);
-            IList<RoomCalendar> detachedRoomCals = new List<RoomCalendar>();
-            foreach (RoomCalendar roomCal in roomCals)
-            {
-                detachedRoomCals.Add(roomCal.GetDetached());
-            }
-            return detachedRoomCals;
+            return this.GetDetachedList(this.roomCalendarRepository.GetByRegisteredState(registeredState, staffId));
         }
     }
 }
