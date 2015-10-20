@@ -9,7 +9,7 @@ using RoomM.Models;
 
 namespace RoomM.Repositories
 {
-    public class AssetRepository : RepositoryBase<EFDataContext, Asset>, IAssetRepository
+    public class AssetRepository : RepositoryBase<Asset>, IAssetRepository
     {
         public AssetRepository()
         { }

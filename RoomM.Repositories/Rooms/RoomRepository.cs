@@ -10,7 +10,7 @@ using RoomM.Models;
 
 namespace RoomM.Repositories
 {
-    public class RoomRepository : RepositoryBase<EFDataContext, Room>, IRoomRepository
+    public class RoomRepository : RepositoryBase<Room>, IRoomRepository
     {
         public RoomRepository()
         { }

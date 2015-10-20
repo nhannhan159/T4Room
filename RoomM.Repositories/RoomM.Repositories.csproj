@@ -63,7 +63,6 @@
     <Compile Include="Assets\RoomAssetHistoryTypeRepository.cs" />
     <Compile Include="Assets\RoomAssetHistoryRepository.cs" />
     <Compile Include="Assets\IRoomAssetHistoryRepository.cs" />
-    <Compile Include="Contants.cs" />
     <Compile Include="EFDataContext.cs" />
     <Compile Include="Mapping\RoomCalendarMap.cs" />
     <Compile Include="Mapping\RoomCalendarStatusMap.cs" />

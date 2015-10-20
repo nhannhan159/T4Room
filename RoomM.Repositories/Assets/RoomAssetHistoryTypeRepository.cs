@@ -9,7 +9,7 @@ using RoomM.Models;
 
 namespace RoomM.Repositories
 {
-    public class RoomAssetHistoryTypeRepository : RepositoryBase<EFDataContext, HistoryType>, IRoomAssetHistoryTypeRepository
+    public class RoomAssetHistoryTypeRepository : RepositoryBase<HistoryType>, IRoomAssetHistoryTypeRepository
     {
         public RoomAssetHistoryTypeRepository()
         { }

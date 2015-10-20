@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace RoomM.Repositories.RepositoryFramework
 {
-    public abstract class  RepositoryBase<C, T> : 
+    public abstract class  RepositoryBase<T> : 
         IRepository<T> where T : EntityBase, new() 
     {
 

@@ -9,7 +9,7 @@ using RoomM.Models;
 
 namespace RoomM.Repositories
 {
-    public class RoomCalendarRepository : RepositoryBase<EFDataContext, RoomCalendar>, IRoomCalendarRepository
+    public class RoomCalendarRepository : RepositoryBase<RoomCalendar>, IRoomCalendarRepository
     {
         public RoomCalendarRepository()
         { 
