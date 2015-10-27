@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="cf07292e-9803-43bc-8c1c-622094e581e7" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="RoomM.Models" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:62978/Rooms/Implement/RoomCalendarStatusService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="RoomCalendarStatusService.wsdl" MetadataType="Wsdl" ID="3b9d7c5b-36fb-434f-8435-8aaf0d32ac4f" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomCalendarStatusService.svc?wsdl" />
+    <MetadataFile FileName="RoomCalendarStatusService.xsd" MetadataType="Schema" ID="f572e5f4-43ce-440b-9aca-f41a0189d18b" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomCalendarStatusService.svc?xsd=xsd0" />
+    <MetadataFile FileName="RoomCalendarStatusService1.xsd" MetadataType="Schema" ID="52649f49-dd2e-48a0-9045-e89c8a8e0c02" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomCalendarStatusService.svc?xsd=xsd1" />
+    <MetadataFile FileName="RoomCalendarStatusService2.xsd" MetadataType="Schema" ID="40a35015-b13c-430f-ab8b-7c23d119c434" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomCalendarStatusService.svc?xsd=xsd2" />
+    <MetadataFile FileName="RoomCalendarStatusService3.xsd" MetadataType="Schema" ID="25851122-51da-4954-b820-fb9f08ec86e9" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomCalendarStatusService.svc?xsd=xsd3" />
+    <MetadataFile FileName="RoomCalendarStatusService.disco" MetadataType="Disco" ID="0f5ee1cf-df20-4d50-808c-336031ed645e" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomCalendarStatusService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

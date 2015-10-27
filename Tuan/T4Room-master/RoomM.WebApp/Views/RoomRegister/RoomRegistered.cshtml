@@ -1,0 +1,82 @@
+﻿@model IEnumerable<RoomM.Models.RoomCalendar>
+
+@{
+    ViewBag.Title = "RoomRegistered";
+    int counter = 0;
+}
+
+<h2>Phòng đã đăng kí</h2>
+
+<div class="notify">@ViewBag.MessageConfirm</div>
+
+
+<br/>
+<table width="90%" align="center">
+    <tr>
+        <th>STT</th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Start)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Length)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomCalendarStatus)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    counter++;
+    <tr>
+        <th>@counter</th>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Start)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Length)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Room.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoomCalendarStatus.Name)
+        </td>
+        <td>
+            @if (item.RoomCalendarStatusId == 3 || item.RoomCalendarStatusId == 2 )
+            {
+                @Html.ActionLink("Đồng ý", "RoomRegisteredAccept", new { id = item.ID });
+            } else {                                                               
+                @Html.ActionLink("Hủy", "RoomRegisteredReject", new { id = item.ID });
+            }
+        </td>
+    </tr>
+}
+
+</table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+
+            if ($('.notify').html() == "")
+                $('.notify').hide();
+            else
+                $('.notify').show(0.8);
+
+        });
+    </script>
+}
+        
+

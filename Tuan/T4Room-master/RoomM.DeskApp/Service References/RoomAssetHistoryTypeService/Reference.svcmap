@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="1c330370-9624-4270-a6de-cf28484eda0e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="RoomM.Models" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:62978/Assets/Implement/RoomAssetHistoryTypeService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="RoomAssetHistoryTypeService.xsd" MetadataType="Schema" ID="4d8a10f3-7d83-43cc-be89-3143457d0ffd" SourceId="1" SourceUrl="http://localhost:62978/Assets/Implement/RoomAssetHistoryTypeService.svc?xsd=xsd0" />
+    <MetadataFile FileName="RoomAssetHistoryTypeService1.xsd" MetadataType="Schema" ID="75b10a50-0d0d-43b1-b0c5-8f3f19d284cb" SourceId="1" SourceUrl="http://localhost:62978/Assets/Implement/RoomAssetHistoryTypeService.svc?xsd=xsd2" />
+    <MetadataFile FileName="RoomAssetHistoryTypeService.disco" MetadataType="Disco" ID="2e64ea07-f88e-44f3-80d3-3e29154f5d06" SourceId="1" SourceUrl="http://localhost:62978/Assets/Implement/RoomAssetHistoryTypeService.svc?disco" />
+    <MetadataFile FileName="RoomAssetHistoryTypeService.wsdl" MetadataType="Wsdl" ID="b73f26cd-4680-4289-8e18-0a37c6d7bf8d" SourceId="1" SourceUrl="http://localhost:62978/Assets/Implement/RoomAssetHistoryTypeService.svc?wsdl" />
+    <MetadataFile FileName="RoomAssetHistoryTypeService2.xsd" MetadataType="Schema" ID="ad1ca498-68d3-48d0-b834-707cf969c0c6" SourceId="1" SourceUrl="http://localhost:62978/Assets/Implement/RoomAssetHistoryTypeService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
