@@ -17,3 +17,5 @@ Development
     - RoomM.Repositories / App.config: 1 place.
 * Step 6: Set "RoomM.Repositories" to "startup project" by right click to this and select "Set as StartUp Project" then run project (clicking Start). It will generate all table in "room_mgr" add seed data.
 * Step 7: Finally, you can run "RoomM.WebApp" or ""RoomM.DeskApp" by "Set as StartUp Project" and "Start".
+* Step 8: relax
+
