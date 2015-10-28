@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 using RoomM.DeskApp.UIHelper;
-using RoomM.Repositories.RepositoryFramework;
 using RoomM.Repositories;
 using RoomM.Models;
 
@@ -15,10 +14,6 @@ namespace RoomM.DeskApp.ViewModels
 {
     public class StatisticViewModel : EditableViewModel<Room>
     {
-
-        private IStaffRepository staffRep = RepositoryFactory.GetRepository<IStaffRepository, Staff>();
-        private IRoomRepository roomRep = RepositoryFactory.GetRepository<IRoomRepository, Room>();
-
         private ObservableCollection<ChartElement> chartStaffItems;
         private ObservableCollection<ChartElement> chartRegisterItems;
         private DateTime fromTimeStaff;
@@ -28,7 +23,7 @@ namespace RoomM.DeskApp.ViewModels
 
 
         public StatisticViewModel()
-            //: base()
+            : base()
         {
             // DateTime now = new DateTime(DateTime.);
             fromTimeStaff = new DateTime(DateTime.Now.Year - 1, 1, 1);
@@ -44,7 +39,7 @@ namespace RoomM.DeskApp.ViewModels
 
         protected override List<Room> GetEntitiesList()
         {
-            return roomRep.GetAll() as List<Room>;
+            return this.uow.RoomRepository.GetAll() as List<Room>;
         }
 
        
@@ -115,7 +110,7 @@ namespace RoomM.DeskApp.ViewModels
 
         private void rebuildStaffData(DateTime from, DateTime to)
         { 
-            List<DictionaryEntry> staffDics = staffRep.GetStaffLimitByRegister(10, from, to);
+            List<DictionaryEntry> staffDics = this.uow.StaffRepository.GetStaffLimitByRegister(10, from, to);
 
             if (null == chartStaffItems)
                 chartStaffItems = new ObservableCollection<ChartElement>();
@@ -135,7 +130,7 @@ namespace RoomM.DeskApp.ViewModels
 
         private void rebuildRegisterData(DateTime from, DateTime to)
         {
-            List<DictionaryEntry> roomDics = roomRep.GetRoomLimitByRegister(10, from, to);
+            List<DictionaryEntry> roomDics = this.uow.RoomRepository.GetRoomLimitByRegister(10, from, to);
 
             if (null == chartRegisterItems)
                 chartRegisterItems = new ObservableCollection<ChartElement>();

@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 
 using RoomM.DeskApp.ViewModels;
+using RoomM.Repositories;
 using RoomM.Models;
 
 namespace RoomM.DeskApp.UIHelper
@@ -24,6 +25,8 @@ namespace RoomM.DeskApp.UIHelper
         private List<T> entitiesList;
         private ICollectionView entitiesView;
         private string namefilter;
+
+        protected UnitOfWork uow;
         protected bool canExecuteSaveCommand;
         protected bool canExecuteNewCommand;
         protected NewEntityViewModel<T> newEntityViewModel;
@@ -31,6 +34,7 @@ namespace RoomM.DeskApp.UIHelper
         protected EditableViewModel()
             : base()
         {
+            this.uow = new UnitOfWork();
             this.currentEntity = default(T);
             this.entitiesList = this.GetEntitiesList();
             this.entitiesView = CollectionViewSource.GetDefaultView(this.entitiesList);

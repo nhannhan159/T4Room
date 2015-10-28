@@ -15,9 +15,7 @@
 /Tuan/T4Room-master/RoomM.WebServiceTest/obj
 /Tuan/T4Room-master/WcfHost/bin
 /Tuan/T4Room-master/WcfHost/obj
-/RoomM.ConsoleApp/bin
-/RoomM.ConsoleApp/obj
-/RoomM.DeskApp/bin
+/RoomM.DeskApp/bin/*
 /RoomM.DeskApp/obj
 /RoomM.DeskAppClient/bin
 /RoomM.DeskAppClient/obj
@@ -33,3 +31,8 @@
 /RoomM.WebService/obj
 /RoomM.WebServiceTest/bin
 /RoomM.WebServiceTest/obj
+/Tuan/T4Room-master/packages/repositories.config
+/packages
+!/RoomM.DeskApp/bin/Debug/
+/RoomM.DeskApp/bin/Debug/*
+!/RoomM.DeskApp/bin/Debug/templates/

@@ -6,7 +6,6 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 
-using RoomM.Repositories.RepositoryFramework;
 using RoomM.Repositories;
 using RoomM.Models;
 
@@ -16,57 +15,55 @@ namespace RoomM.WebService
     // NOTE: In order to launch WCF Test Client for testing this service, please select StaffService.svc or StaffService.svc.cs at the Solution Explorer and start debugging.
     public class StaffService : ServiceBase<Staff>, IStaffService
     {
-        private IStaffRepository staffRepository;
-
         public StaffService()
+            : base()
         {
-            this.staffRepository = RepositoryFactory.GetRepository<IStaffRepository, Staff>();
-            this.repo = (IRepository<Staff>)this.staffRepository;
+            this.repo = (IRepository<Staff>)this.uow.StaffRepository;
         }
 
         public Staff GetSingle(int staffId)
         {
-            return this.staffRepository.GetSingle(staffId).GetDetached();
+            return this.uow.StaffRepository.GetSingle(staffId).GetDetached();
         }
 
 
         public bool CheckPassword(Staff staff, string password)
         {
-            return this.staffRepository.CheckPassword(staff, password);
+            return this.uow.StaffRepository.CheckPassword(staff, password);
         }
 
         public bool CheckUserExists(string username)
         {
-            return this.staffRepository.CheckUserExists(username);
+            return this.uow.StaffRepository.CheckUserExists(username);
         }
 
         public IList<Staff> GetStaffLimitByRegister(int limit)
         {
-            return this.GetDetachedList(this.staffRepository.GetStaffLimitByRegister(limit));
+            return this.GetDetachedList(this.uow.StaffRepository.GetStaffLimitByRegister(limit));
         }
 
 
         public List<DictionaryEntry> GetStaffLimitByRegister(int limit, DateTime from, DateTime to)
         {
-            return this.staffRepository.GetStaffLimitByRegister(limit, from, to);
+            return this.uow.StaffRepository.GetStaffLimitByRegister(limit, from, to);
         }
 
 
         public bool IsExists(string username)
         {
-            return this.staffRepository.IsExists(username);
+            return this.uow.StaffRepository.IsExists(username);
         }
 
 
         public int GetUserId(string username)
         {
-            return this.staffRepository.GetUserId(username);
+            return this.uow.StaffRepository.GetUserId(username);
         }
 
 
         public bool UserNameIsWorking(string username)
         {
-            return this.staffRepository.UserNameIsWorking(username);
+            return this.uow.StaffRepository.UserNameIsWorking(username);
         }
     }
 }

@@ -5,7 +5,6 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 
-using RoomM.Repositories.RepositoryFramework;
 using RoomM.Repositories;
 using RoomM.Models;
 
@@ -15,32 +14,30 @@ namespace RoomM.WebService
     // NOTE: In order to launch WCF Test Client for testing this service, please select RoomAssetService.svc or RoomAssetService.svc.cs at the Solution Explorer and start debugging.
     public class RoomAssetService : ServiceBase<RoomAsset>, IRoomAssetService
     {
-        private IRoomAssetRepository roomAssetRepository;
-
         public RoomAssetService()
+            : base()
         {
-            this.roomAssetRepository = RepositoryFactory.GetRepository<IRoomAssetRepository, RoomAsset>();
-            this.repo = (IRepository<RoomAsset>)this.roomAssetRepository;
+            this.repo = (IRepository<RoomAsset>)this.uow.RoomAssetRepository;
         }
 
         public RoomAsset GetSingle(Int64 roomDeviceId)
         {
-            return this.roomAssetRepository.GetSingle(roomDeviceId).GetDetached();
+            return this.uow.RoomAssetRepository.GetSingle(roomDeviceId).GetDetached();
         }
 
         public void AddOrUpdate(Int64 assetId, Int64 roomId, int amount)
         {
-            this.roomAssetRepository.AddOrUpdate(assetId, roomId, amount);
+            this.uow.RoomAssetRepository.AddOrUpdate(assetId, roomId, amount);
         }
 
         public IList<RoomAsset> GetByRoomId(Int64 id)
         {
-            return this.GetDetachedList(this.roomAssetRepository.GetByRoomId(id));
+            return this.GetDetachedList(this.uow.RoomAssetRepository.GetByRoomId(id));
         }
 
         public IList<RoomAsset> GetByAssetId(Int64 id)
         {
-            return this.GetDetachedList(this.roomAssetRepository.GetByAssetId(id));
+            return this.GetDetachedList(this.uow.RoomAssetRepository.GetByAssetId(id));
         }
     }
 }

@@ -5,14 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
 
-using RoomM.Repositories.RepositoryFramework;
 using RoomM.Models;
 
 namespace RoomM.Repositories
 {
     public class StaffRepository : RepositoryBase<Staff>, IStaffRepository
     {
-        public StaffRepository()
+        public StaffRepository(EFDataContext _entities)
+            : base(_entities)
         { }
 
         public Staff GetSingle(int staffId)

@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using RoomM.Repositories.RepositoryFramework;
 using RoomM.Repositories;
 using RoomM.Models;
 
@@ -25,8 +24,8 @@ namespace RoomM.DeskApp.Views
     public partial class Statictis : Page
     {
 
-        private IStaffRepository staffRep= RepositoryFactory.GetRepository<IStaffRepository, Staff>();
-        private IRoomRepository roomRep = RepositoryFactory.GetRepository<IRoomRepository, Room>();
+        // private IStaffRepository staffRep= RepositoryFactory.GetRepository<IStaffRepository, Staff>();
+        // private IRoomRepository roomRep = RepositoryFactory.GetRepository<IRoomRepository, Room>();
 
 
         public Statictis()

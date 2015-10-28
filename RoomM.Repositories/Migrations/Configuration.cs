@@ -1,16 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using RoomM.Models;
-
-namespace RoomM.Repositories
+﻿namespace RoomM.Repositories.Migrations
 {
-    public class RoomMgrContextCustomInitializer : DropCreateDatabaseAlways<EFDataContext>
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
+
+    using RoomM.Repositories;
+    using RoomM.Models;
+
+    internal sealed class Configuration : DbMigrationsConfiguration<RoomM.Repositories.EFDataContext>
     {
+        public Configuration()
+        {
+            AutomaticMigrationsEnabled = false;
+            ContextKey = "RoomM.Repositories.EFDataContext";
+        }
 
         protected override void Seed(EFDataContext context)
         {
@@ -278,7 +282,7 @@ namespace RoomM.Repositories
             };
 
             #endregion
-            
+
             #region room A100
             RoomAsset roomD1 = new RoomAsset
             {
@@ -331,7 +335,7 @@ namespace RoomM.Repositories
                 Amount = 100,
                 Room = room2
             };
-            #endregion 
+            #endregion
 
             RoomAssetHistory devicehistory1 = new RoomAssetHistory
             {
@@ -354,7 +358,7 @@ namespace RoomM.Repositories
                 Asset = device2,
                 Room = room2,
             };
-            
+
             #region staff
 
             Staff user0 = new Staff
@@ -610,19 +614,16 @@ namespace RoomM.Repositories
             context.Entry(user7).State = EntityState.Added;
             context.Entry(user8).State = EntityState.Added;
             context.Entry(user9).State = EntityState.Added;
-            
+
             #endregion
-            
+
             context.Entry(roomcalendar1).State = EntityState.Added;
             context.Entry(roomcalendar2).State = EntityState.Added;
             context.Entry(roomcalendar3).State = EntityState.Added;
             context.Entry(roomcalendar4).State = EntityState.Added;
             context.Entry(roomcalendar5).State = EntityState.Added;
-            
+
             context.SaveChanges();
         }
-       
-
-        
     }
 }

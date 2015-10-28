@@ -4,16 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using RoomM.Repositories.RepositoryFramework;
 using RoomM.Models;
 
 namespace RoomM.Repositories
 {
     public class RoomCalendarRepository : RepositoryBase<RoomCalendar>, IRoomCalendarRepository
     {
-        public RoomCalendarRepository()
-        { 
-        }
+        public RoomCalendarRepository(EFDataContext _entities)
+            : base(_entities)
+        { }
 
         public RoomCalendar GetSingle(int roomCalId)
         {

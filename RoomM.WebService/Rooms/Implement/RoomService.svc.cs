@@ -6,7 +6,6 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 
-using RoomM.Repositories.RepositoryFramework;
 using RoomM.Repositories;
 using RoomM.Models;
 
@@ -16,37 +15,35 @@ namespace RoomM.WebService
     // NOTE: In order to launch WCF Test Client for testing this service, please select RoomService.svc or RoomService.svc.cs at the Solution Explorer and start debugging.
     public class RoomService : ServiceBase<Room>, IRoomService
     {
-        private IRoomRepository roomRepository; 
-
         public RoomService()
+            : base()
         {
-            this.roomRepository = RepositoryFactory.GetRepository<IRoomRepository, Room>();
-            this.repo = (IRepository<Room>)this.roomRepository;
+            this.repo = (IRepository<Room>)this.uow.RoomRepository;
         }
 
         public Room GetSingle(Int64 roomId)
         {
-            return this.roomRepository.GetSingle(roomId).GetDetached();
+            return this.uow.RoomRepository.GetSingle(roomId).GetDetached();
         }
 
         public IList<Room> GetByRoomTypeId(long roomTypeId)
         {
-            return this.GetDetachedList(this.roomRepository.GetByRoomTypeId(roomTypeId));
+            return this.GetDetachedList(this.uow.RoomRepository.GetByRoomTypeId(roomTypeId));
         }
 
         public IList<Room> GetRoomListLimitByRegister(int limit)
         {
-            return this.GetDetachedList(this.roomRepository.GetRoomListLimitByRegister(limit));
+            return this.GetDetachedList(this.uow.RoomRepository.GetRoomListLimitByRegister(limit));
         }
 
         public List<DictionaryEntry> GetRoomLimitByRegister(int limit, DateTime from, DateTime to)
         {
-            return this.roomRepository.GetRoomLimitByRegister(limit, from, to);
+            return this.uow.RoomRepository.GetRoomLimitByRegister(limit, from, to);
         }
 
         public bool isUniqueName(string name)
         {
-            return this.roomRepository.isUniqueName(name);
+            return this.uow.RoomRepository.isUniqueName(name);
         }
     }
 }

@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using RoomM.Repositories.RepositoryFramework;
 using RoomM.Models;
 
 namespace RoomM.Repositories
 {
     public class RoomAssetHistoryRepository : RepositoryBase<RoomAssetHistory>, IRoomAssetHistoryRepository
     {
-        public RoomAssetHistoryRepository()
+        public RoomAssetHistoryRepository(EFDataContext _entities)
+            : base(_entities)
         { }
 
         public RoomAssetHistory GetSingle(int assetId)

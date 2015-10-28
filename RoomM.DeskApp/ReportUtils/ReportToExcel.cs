@@ -21,7 +21,7 @@ namespace RoomM.DeskApp
 
         SaveFileDialog saveFileDialog = new SaveFileDialog();
         protected HSSFWorkbook hssfworkbook;
-        protected Sheet activeSheet;
+        protected ISheet activeSheet;
 
         public ReportToExcel(String comanyName, String subject, String templateFileName) {
 

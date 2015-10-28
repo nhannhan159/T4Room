@@ -4,17 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using RoomM.Repositories.RepositoryFramework;
 using RoomM.Models;
 
 namespace RoomM.Repositories
 {
     public class RoomCalendarStatusRepository : RepositoryBase<RoomCalendarStatus>, IRoomCalendarStatusRepository
     {
-        public RoomCalendarStatusRepository()
-        { 
-        
-        }
+        public RoomCalendarStatusRepository(EFDataContext _entities)
+            : base(_entities)
+        { }
 
         public RoomCalendarStatus GetSingle(int statusId)
         {

@@ -5,7 +5,6 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 
-using RoomM.Repositories.RepositoryFramework;
 using RoomM.Repositories;
 using RoomM.Models;
 
@@ -15,17 +14,15 @@ namespace RoomM.WebService
     // NOTE: In order to launch WCF Test Client for testing this service, please select RoomTypeService.svc or RoomTypeService.svc.cs at the Solution Explorer and start debugging.
     public class RoomTypeService : ServiceBase<RoomType>, IRoomTypeService
     {
-        private IRoomTypeRepository roomTypeRepository;
-
         public RoomTypeService()
+            : base()
         {
-            this.roomTypeRepository = RepositoryFactory.GetRepository<IRoomTypeRepository, RoomType>();
-            this.repo = (IRepository<RoomType>)this.roomTypeRepository;
+            this.repo = (IRepository<RoomType>)this.uow.RoomTypeRepository;
         }
 
         public RoomType GetSingle(int roomTypeId)
         {
-            return this.roomTypeRepository.GetSingle(roomTypeId).GetDetached();
+            return this.uow.RoomTypeRepository.GetSingle(roomTypeId).GetDetached();
         }
     }
 }

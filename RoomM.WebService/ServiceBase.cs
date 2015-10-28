@@ -9,23 +9,23 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-using RoomM.Repositories.RepositoryFramework;
+using RoomM.Repositories;
 
 namespace RoomM.WebService
 {
     public abstract class ServiceBase<T> : IService<T> where T : Detachable<T>, new() 
     {
         protected IRepository<T> repo;
+        protected UnitOfWork uow;
+
+        public ServiceBase()
+        {
+            this.uow = new UnitOfWork();
+        }
 
         public IList<T> GetAll()
         {
-            IList<T> items = this.repo.GetAll();
-            IList<T> detachedItems = new List<T>();
-            foreach (T item in items)
-            {
-                detachedItems.Add(item.GetDetached());
-            }
-            return detachedItems;
+            return this.GetDetachedList(this.repo.GetAll());
         }
 
         public void Add(T entity)

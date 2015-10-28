@@ -1,5 +1,4 @@
-﻿using RoomM.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
@@ -9,16 +8,19 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RoomM.Repositories.RepositoryFramework
+using RoomM.Models;
+
+namespace RoomM.Repositories
 {
     public abstract class  RepositoryBase<T> : 
         IRepository<T> where T : EntityBase, new() 
     {
 
-        private EFDataContext _entities = EFDataContext.instance;
-        public EFDataContext Context {
-            get { return _entities; }
-            set { _entities = value; }
+        private EFDataContext _entities;
+
+        public RepositoryBase(EFDataContext _entities)
+        {
+            this._entities = _entities;
         }
 
         public virtual IEnumerable<T> GetWithRawSql(string query, params object[] parameters)

@@ -5,7 +5,6 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 
-using RoomM.Repositories.RepositoryFramework;
 using RoomM.Repositories;
 using RoomM.Models;
 
@@ -15,27 +14,25 @@ namespace RoomM.WebService
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class AssetService : ServiceBase<Asset>, IAssetService
     {
-        private IAssetRepository assetRepository;
-
         public AssetService()
+            : base()
         {
-            this.assetRepository = RepositoryFactory.GetRepository<IAssetRepository, Asset>();
-            this.repo = (IRepository<Asset>)this.assetRepository;
+            this.repo = (IRepository<Asset>)this.uow.AssetRepository;
         }
 
         public Asset GetSingle(int assetId)
         {
-            return this.assetRepository.GetSingle(assetId).GetDetached();
+            return this.uow.AssetRepository.GetSingle(assetId).GetDetached();
         }
 
         public IList<string> GetNameList()
         {
-            return this.assetRepository.GetNameList();
+            return this.uow.AssetRepository.GetNameList();
         }
 
         public bool isUniqueName(string name)
         {
-            return this.assetRepository.isUniqueName(name);
+            return this.uow.AssetRepository.isUniqueName(name);
         }
     }
 }

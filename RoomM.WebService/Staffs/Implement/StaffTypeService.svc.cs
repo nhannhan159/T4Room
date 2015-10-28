@@ -5,7 +5,6 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 
-using RoomM.Repositories.RepositoryFramework;
 using RoomM.Repositories;
 using RoomM.Models;
 
@@ -15,17 +14,15 @@ namespace RoomM.WebService
     // NOTE: In order to launch WCF Test Client for testing this service, please select StaffTypeService.svc or StaffTypeService.svc.cs at the Solution Explorer and start debugging.
     public class StaffTypeService : ServiceBase<StaffType>, IStaffTypeService
     {
-        private IStaffTypeRepository staffTypeRepository;
-
         public StaffTypeService()
+            : base()
         {
-            this.staffTypeRepository = RepositoryFactory.GetRepository<IStaffTypeRepository, StaffType>();
-            this.repo = (IRepository<StaffType>)this.staffTypeRepository;
+            this.repo = (IRepository<StaffType>)this.uow.StaffTypeRepository;
         }
 
         public StaffType GetSingle(int staffTypeId)
         {
-            return this.staffTypeRepository.GetSingle(staffTypeId).GetDetached();
+            return this.uow.StaffTypeRepository.GetSingle(staffTypeId).GetDetached();
         }
     }
 }

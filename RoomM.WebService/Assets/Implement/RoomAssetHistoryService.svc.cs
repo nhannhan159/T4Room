@@ -5,7 +5,6 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 
-using RoomM.Repositories.RepositoryFramework;
 using RoomM.Repositories;
 using RoomM.Models;
 
@@ -15,27 +14,25 @@ namespace RoomM.WebService
     // NOTE: In order to launch WCF Test Client for testing this service, please select RoomAssetHistory.svc or RoomAssetHistory.svc.cs at the Solution Explorer and start debugging.
     public class RoomAssetHistoryService : ServiceBase<RoomAssetHistory>, IRoomAssetHistoryService
     {
-        private IRoomAssetHistoryRepository roomAssetHistoryRepository;
-
         public RoomAssetHistoryService()
+            : base()
         {
-            this.roomAssetHistoryRepository = RepositoryFactory.GetRepository<IRoomAssetHistoryRepository, RoomAssetHistory>();
-            this.repo = (IRepository<RoomAssetHistory>)this.roomAssetHistoryRepository;
+            this.repo = (IRepository<RoomAssetHistory>)this.uow.RoomAssetHistoryRepository;
         }
 
         public RoomAssetHistory GetSingle(int assetId)
         {
-            return this.roomAssetHistoryRepository.GetSingle(assetId).GetDetached();
+            return this.uow.RoomAssetHistoryRepository.GetSingle(assetId).GetDetached();
         }
 
         public IList<RoomAssetHistory> GetByRoomId(Int64 id)
         {
-            return this.GetDetachedList(this.roomAssetHistoryRepository.GetByRoomId(id));
+            return this.GetDetachedList(this.uow.RoomAssetHistoryRepository.GetByRoomId(id));
         }
 
         public IList<RoomAssetHistory> GetByRoom2RoomId(Room room, DateTime timeForBacktrace)
         {
-            return this.GetDetachedList(this.roomAssetHistoryRepository.GetByRoom2RoomId(room, timeForBacktrace));
+            return this.GetDetachedList(this.uow.RoomAssetHistoryRepository.GetByRoom2RoomId(room, timeForBacktrace));
         }
     }
 }

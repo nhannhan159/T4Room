@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 using NPOI.SS.UserModel;
 
-using RoomM.Repositories.RepositoryFramework;
 using RoomM.Models;
 
 namespace RoomM.DeskApp
@@ -23,13 +22,13 @@ namespace RoomM.DeskApp
             activeSheet = hssfworkbook.GetSheet("Sheet1");
 
             // set profile
-            Row r0 = activeSheet.GetRow(2);
+            IRow r0 = activeSheet.GetRow(2);
             r0.GetCell(4).SetCellValue(DateTime.Now.ToShortDateString());
 
-            Row r1 = activeSheet.GetRow(3);
+            IRow r1 = activeSheet.GetRow(3);
             r1.GetCell(4).SetCellValue("Nguyễn Văn A");
 
-            Row r2 = activeSheet.GetRow(4);
+            IRow r2 = activeSheet.GetRow(4);
             r2.GetCell(4).SetCellValue("Quản lí phòng");
 
             int startRow = 7;
@@ -38,7 +37,7 @@ namespace RoomM.DeskApp
             foreach(Asset rAsset in assetsList) 
             {
 
-                Row row = activeSheet.CreateRow(startRow);
+                IRow row = activeSheet.CreateRow(startRow);
                 row.CreateCell(1).SetCellValue(index);
                 row.CreateCell(2).SetCellValue(rAsset.ID);
                 row.CreateCell(3).SetCellValue(rAsset.Name);

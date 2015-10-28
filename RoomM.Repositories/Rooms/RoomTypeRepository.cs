@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using RoomM.Repositories.RepositoryFramework;
 using RoomM.Models;
 
 namespace RoomM.Repositories
 {
     public class RoomTypeRepository : RepositoryBase<RoomType>, IRoomTypeRepository
     {
-        public RoomTypeRepository()
+        public RoomTypeRepository(EFDataContext _entities)
+            : base(_entities)
         { }
 
         public RoomType GetSingle(int roomTypeId)
