@@ -18,9 +18,9 @@ namespace RoomM.WebService
         protected IRepository<T> repo;
         protected UnitOfWork uow;
 
-        public ServiceBase()
+        public ServiceBase(EFDataContext context)
         {
-            this.uow = new UnitOfWork();
+            this.uow = new UnitOfWork(context);
         }
 
         public IList<T> GetAll()
@@ -31,26 +31,25 @@ namespace RoomM.WebService
         public void Add(T entity)
         {
             this.repo.Add(entity);
+            this.uow.Commit();
         }
 
         public void Delete(T entity)
         {
             this.repo.Delete(entity);
+            this.uow.Commit();
         }
 
         public void Delete(object id)
         {
             this.repo.Delete(id);
+            this.uow.Commit();
         }
 
         public void Edit(T entity)
         {
             this.repo.Edit(entity);
-        }
-
-        public void Save()
-        {
-            this.repo.Save();
+            this.uow.Commit();
         }
 
         protected IList<T> GetDetachedList(IList<T> rawlist)

@@ -132,7 +132,7 @@ namespace RoomM.DeskApp.ViewModels
                     this.uow.RoomRepository.Edit(this.CurrentEntity);
                 else
                     this.uow.RoomRepository.Add(this.CurrentEntity);
-                this.uow.RoomRepository.Save();
+                this.uow.Commit();
                 System.Windows.Forms.MessageBox.Show("Cập nhật dữ liệu thành công!");
             }
             catch (Exception ex)
@@ -344,7 +344,7 @@ namespace RoomM.DeskApp.ViewModels
                         // CurrentRoomCalendar.IsWatched = true;
 
                     this.uow.RoomCalendarRepository.Edit(this.CurrentRoomCalendar);
-                    this.uow.RoomCalendarRepository.Save();
+                    this.uow.Commit();
 
                     this.EntitiesView.Refresh();
                     this.OnPropertyChanged("CurrentRoomCalendar");

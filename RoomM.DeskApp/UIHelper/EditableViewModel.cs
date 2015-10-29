@@ -26,6 +26,7 @@ namespace RoomM.DeskApp.UIHelper
         private ICollectionView entitiesView;
         private string namefilter;
 
+        protected EFDataContext dbcontext;
         protected UnitOfWork uow;
         protected bool canExecuteSaveCommand;
         protected bool canExecuteNewCommand;
@@ -34,7 +35,8 @@ namespace RoomM.DeskApp.UIHelper
         protected EditableViewModel()
             : base()
         {
-            this.uow = new UnitOfWork();
+            this.dbcontext = new EFDataContext();
+            this.uow = new UnitOfWork(this.dbcontext);
             this.currentEntity = default(T);
             this.entitiesList = this.GetEntitiesList();
             this.entitiesView = CollectionViewSource.GetDefaultView(this.entitiesList);

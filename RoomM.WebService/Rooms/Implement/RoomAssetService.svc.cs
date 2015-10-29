@@ -14,8 +14,8 @@ namespace RoomM.WebService
     // NOTE: In order to launch WCF Test Client for testing this service, please select RoomAssetService.svc or RoomAssetService.svc.cs at the Solution Explorer and start debugging.
     public class RoomAssetService : ServiceBase<RoomAsset>, IRoomAssetService
     {
-        public RoomAssetService()
-            : base()
+        public RoomAssetService(EFDataContext context)
+            : base(context)
         {
             this.repo = (IRepository<RoomAsset>)this.uow.RoomAssetRepository;
         }
@@ -28,6 +28,7 @@ namespace RoomM.WebService
         public void AddOrUpdate(Int64 assetId, Int64 roomId, int amount)
         {
             this.uow.RoomAssetRepository.AddOrUpdate(assetId, roomId, amount);
+            this.uow.Commit();
         }
 
         public IList<RoomAsset> GetByRoomId(Int64 id)

@@ -28,9 +28,19 @@ namespace RoomM.Repositories
         private IStaffRepository staffRepo;
         private IStaffTypeRepository staffTypeRepo;
 
-        public UnitOfWork()
+        public UnitOfWork(EFDataContext _context)
         {
-            this.context = new EFDataContext();
+            this.context = _context;
+        }
+
+        public EFDataContext Context
+        {
+            set { this.context = value; }
+        }
+
+        public void Commit()
+        {
+            this.context.SaveChanges();
         }
 
         public IRoomRepository RoomRepository

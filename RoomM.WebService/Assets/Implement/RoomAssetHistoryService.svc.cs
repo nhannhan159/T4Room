@@ -14,8 +14,8 @@ namespace RoomM.WebService
     // NOTE: In order to launch WCF Test Client for testing this service, please select RoomAssetHistory.svc or RoomAssetHistory.svc.cs at the Solution Explorer and start debugging.
     public class RoomAssetHistoryService : ServiceBase<RoomAssetHistory>, IRoomAssetHistoryService
     {
-        public RoomAssetHistoryService()
-            : base()
+        public RoomAssetHistoryService(EFDataContext context)
+            : base(context)
         {
             this.repo = (IRepository<RoomAssetHistory>)this.uow.RoomAssetHistoryRepository;
         }

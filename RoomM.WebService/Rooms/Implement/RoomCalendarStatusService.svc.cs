@@ -14,8 +14,8 @@ namespace RoomM.WebService
     // NOTE: In order to launch WCF Test Client for testing this service, please select RoomCalendarStatusService.svc or RoomCalendarStatusService.svc.cs at the Solution Explorer and start debugging.
     public class RoomCalendarStatusService : ServiceBase<RoomCalendarStatus>, IRoomCalendarStatusService
     {
-        public RoomCalendarStatusService()
-            : base()
+        public RoomCalendarStatusService(EFDataContext context)
+            : base(context)
         {
             this.repo = (IRepository<RoomCalendarStatus>)this.uow.RoomCalendarStatusRepository;
         }

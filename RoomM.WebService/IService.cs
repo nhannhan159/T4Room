@@ -26,8 +26,5 @@ namespace RoomM.WebService
 
         [OperationContract]
         void Edit(T entity);
-
-        [OperationContract]
-        void Save();
     }
 }

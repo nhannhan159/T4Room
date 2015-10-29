@@ -14,8 +14,8 @@ namespace RoomM.WebService
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class AssetService : ServiceBase<Asset>, IAssetService
     {
-        public AssetService()
-            : base()
+        public AssetService(EFDataContext context)
+            : base(context)
         {
             this.repo = (IRepository<Asset>)this.uow.AssetRepository;
         }

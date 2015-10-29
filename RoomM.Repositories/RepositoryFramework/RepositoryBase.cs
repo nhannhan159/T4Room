@@ -126,10 +126,5 @@ namespace RoomM.Repositories
                 entry.State = EntityState.Modified;
             }
         }
-
-        public void Save()
-        {
-            _entities.SaveChanges();
-        }
     }
 }

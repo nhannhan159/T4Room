@@ -15,8 +15,8 @@ namespace RoomM.WebService
     // NOTE: In order to launch WCF Test Client for testing this service, please select RoomService.svc or RoomService.svc.cs at the Solution Explorer and start debugging.
     public class RoomService : ServiceBase<Room>, IRoomService
     {
-        public RoomService()
-            : base()
+        public RoomService(EFDataContext context)
+            : base(context)
         {
             this.repo = (IRepository<Room>)this.uow.RoomRepository;
         }

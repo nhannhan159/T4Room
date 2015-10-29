@@ -19,7 +19,5 @@ namespace RoomM.Repositories
         void Delete(T entity);
         void Delete(object id);
         void Edit(T entity);
-        // void Insert(T entity);
-        void Save();
     }
 }

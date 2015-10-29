@@ -14,8 +14,8 @@ namespace RoomM.WebService
     // NOTE: In order to launch WCF Test Client for testing this service, please select StaffTypeService.svc or StaffTypeService.svc.cs at the Solution Explorer and start debugging.
     public class StaffTypeService : ServiceBase<StaffType>, IStaffTypeService
     {
-        public StaffTypeService()
-            : base()
+        public StaffTypeService(EFDataContext context)
+            : base(context)
         {
             this.repo = (IRepository<StaffType>)this.uow.StaffTypeRepository;
         }

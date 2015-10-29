@@ -75,7 +75,7 @@ namespace RoomM.DeskApp.ViewModels
                     this.uow.StaffRepository.Edit(this.CurrentEntity);
                 else
                     this.uow.StaffRepository.Add(this.CurrentEntity);
-                this.uow.StaffRepository.Save();
+                this.uow.Commit();
                 System.Windows.Forms.MessageBox.Show("Cập nhật dữ liệu thành công!");
             }
             catch (Exception ex)

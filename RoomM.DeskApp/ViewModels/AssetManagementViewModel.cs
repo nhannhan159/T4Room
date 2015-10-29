@@ -85,7 +85,7 @@ namespace RoomM.DeskApp.ViewModels
                     this.uow.AssetRepository.Edit(this.CurrentEntity);
                 else
                     this.uow.AssetRepository.Add(this.CurrentEntity);
-                this.uow.AssetRepository.Save();
+                this.uow.Commit();
                 // System.Windows.Forms.MessageBox.Show("Cập nhật dữ liệu thành công!");
             }
             catch (Exception ex)
@@ -255,10 +255,9 @@ namespace RoomM.DeskApp.ViewModels
                 if (result == MessageBoxResult.Yes)
                 {
                     this.uow.RoomAssetRepository.AddOrUpdate(this.CurrentEntity.ID, this.Room1.ID, this.Amount1);
-                    this.uow.RoomAssetRepository.Save();
                     RoomAssetHistory roomAssHis = new RoomAssetHistory(DateTime.Now, 3, this.CurrentEntity.ID, this.Room1.ID, "", this.Amount1);
                     this.uow.RoomAssetHistoryRepository.Add(roomAssHis);
-                    this.uow.RoomAssetHistoryRepository.Save();
+                    this.uow.Commit();
                     this.SetAdditionViewChange();
                     MainWindowViewModel.instance.ChangeStateToComplete("Cập nhật thành công");
                 }
@@ -291,10 +290,9 @@ namespace RoomM.DeskApp.ViewModels
                             this.CurrentRoomAsset.Amount -= this.Amount2;
                             this.uow.RoomAssetRepository.Edit(this.CurrentRoomAsset);
                         }
-                        this.uow.RoomAssetRepository.Save();
                         RoomAssetHistory roomAssHis = new RoomAssetHistory(DateTime.Now, 2, this.CurrentEntity.ID, this.CurrentRoomAsset.RoomId, "", num);
                         this.uow.RoomAssetHistoryRepository.Add(roomAssHis);
-                        this.uow.RoomAssetHistoryRepository.Save();
+                        this.uow.Commit();
                         this.SetAdditionViewChange();
                         // System.Windows.Forms.MessageBox.Show("Cập nhật dữ liệu thành công!");
                         MainWindowViewModel.instance.ChangeStateToComplete("Cập nhật thành công");
@@ -335,12 +333,11 @@ namespace RoomM.DeskApp.ViewModels
                             this.CurrentRoomAsset.Amount -= this.Amount3;
                             this.uow.RoomAssetRepository.Edit(this.CurrentRoomAsset);
                         }
-                        this.uow.RoomAssetRepository.Save();
                         RoomAssetHistory roomAssHis1 = new RoomAssetHistory(DateTime.Now, 1, this.CurrentEntity.ID, this.CurrentRoomAsset.RoomId, this.Room2.Name, num);
                         RoomAssetHistory roomAssHis2 = new RoomAssetHistory(DateTime.Now, 4, this.CurrentEntity.ID, this.Room2.ID, this.CurrentRoomAsset.Room.Name, num);
                         this.uow.RoomAssetHistoryRepository.Add(roomAssHis1);
                         this.uow.RoomAssetHistoryRepository.Add(roomAssHis2);
-                        this.uow.RoomAssetHistoryRepository.Save();
+                        this.uow.Commit();
                         this.SetAdditionViewChange();
                         // System.Windows.Forms.MessageBox.Show("Cập nhật dữ liệu thành công!");
                         MainWindowViewModel.instance.ChangeStateToComplete("Cập nhật thành công");

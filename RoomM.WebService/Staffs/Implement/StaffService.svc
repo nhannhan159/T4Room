@@ -1,1 +1,2 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="RoomM.WebService.StaffService" CodeBehind="StaffService.svc.cs" %>
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="RoomM.WebService.StaffService" CodeBehind="StaffService.svc.cs" 
+    Factory="Ninject.Extensions.Wcf.NinjectServiceHostFactory" %>
