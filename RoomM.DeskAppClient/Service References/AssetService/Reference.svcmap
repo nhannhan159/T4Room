@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="28a448f3-de30-49ff-a909-312fdcd59b12" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="141fc8c9-09a9-4c8f-9635-f95d77c1a369" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -21,15 +21,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:62978/Assets/Implement/AssetService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="net.tcp://localhost:8282/Assets/Implement/AssetService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="AssetService.disco" MetadataType="Disco" ID="72150c2d-e318-4287-bc45-a384f2107648" SourceId="1" SourceUrl="http://localhost:62978/Assets/Implement/AssetService.svc?disco" />
-    <MetadataFile FileName="AssetService.xsd" MetadataType="Schema" ID="307f91f8-50ba-4746-90b7-1cd797991d47" SourceId="1" SourceUrl="http://localhost:62978/Assets/Implement/AssetService.svc?xsd=xsd0" />
-    <MetadataFile FileName="AssetService1.xsd" MetadataType="Schema" ID="c361f3e5-b192-47f1-9e05-d72e538ddb95" SourceId="1" SourceUrl="http://localhost:62978/Assets/Implement/AssetService.svc?xsd=xsd1" />
-    <MetadataFile FileName="AssetService2.xsd" MetadataType="Schema" ID="34150de8-4def-4a33-a35b-01e96ae84a0b" SourceId="1" SourceUrl="http://localhost:62978/Assets/Implement/AssetService.svc?xsd=xsd2" />
-    <MetadataFile FileName="AssetService3.xsd" MetadataType="Schema" ID="c7eef359-fc1c-44a2-8be0-66a630e4585f" SourceId="1" SourceUrl="http://localhost:62978/Assets/Implement/AssetService.svc?xsd=xsd3" />
-    <MetadataFile FileName="AssetService.wsdl" MetadataType="Wsdl" ID="e35ef487-60ac-4c78-893c-894fcd1ce16a" SourceId="1" SourceUrl="http://localhost:62978/Assets/Implement/AssetService.svc?wsdl" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="ab6741f4-6441-4dc2-b75f-b872caff4e90" SourceId="1" SourceUrl="net.tcp://localhost:8282/Assets/Implement/AssetService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="cc7c2e46-cc62-4421-916c-f846754e3c5c" SourceId="1" SourceUrl="net.tcp://localhost:8282/Assets/Implement/AssetService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="ed2197c9-e373-472e-ae94-bf8b5f0169e2" SourceId="1" SourceUrl="net.tcp://localhost:8282/Assets/Implement/AssetService/mex" />
+    <MetadataFile FileName="RoomM.Models.xsd" MetadataType="Schema" ID="dd2c35f7-fc40-499d-9baf-85a2dc9ecab0" SourceId="1" SourceUrl="net.tcp://localhost:8282/Assets/Implement/AssetService/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="dfe05108-af87-4801-af99-2d8108468567" SourceId="1" SourceUrl="net.tcp://localhost:8282/Assets/Implement/AssetService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

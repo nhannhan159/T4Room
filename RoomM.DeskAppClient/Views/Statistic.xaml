@@ -11,7 +11,6 @@
     <Page.DataContext>
         <local:StatisticViewModel />
     </Page.DataContext>
-
     <Grid>
         <TabControl >
             <TabItem Header="Tần xuất đăng kí phòng" Width="200">
@@ -19,22 +18,18 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="*" />
-
                     </Grid.RowDefinitions>
-
                     <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,10">
-                        <Label   Content="Từ ngày:"/>
-                        <DatePicker   SelectedDate="{Binding FromTimeRegister,StringFormat='dd/MM/yyy'}"/>
-
-                        <Label   Content="Đến ngày:" Margin="100,0,0,0"/>
-                        <DatePicker   SelectedDate="{Binding ToTimeRegister,StringFormat='dd/MM/yyy'}"/>
-
+                        <Label Content="Từ ngày:"/>
+                        <DatePicker SelectedDate="{Binding FromTimeRegister, StringFormat='dd/MM/yyy'}"/>
+                        <Label Content="Đến ngày:" Margin="100,0,0,0"/>
+                        <DatePicker SelectedDate="{Binding ToTimeRegister, StringFormat='dd/MM/yyy'}"/>
                     </StackPanel>
                     <chartingToolkit:Chart Grid.Row="1" Height="450" 
-		             Margin="5,10,5,10" Name="fusingBChart" Title="Tần xuất đăng ký phòng" 
-		            VerticalAlignment="Bottom" FontSize="12pt" >
-                        <chartingToolkit:ColumnSeries DependentValuePath="Value" 
-		            IndependentValuePath="Name" ItemsSource="{Binding GetRegisterStatistic}" Title="Số lần đăng kí" />
+                                           Margin="5,10,5,10" Name="fusingBChart" Title="Tần xuất đăng ký phòng" 
+                                           VerticalAlignment="Bottom" FontSize="12pt" >
+                        <chartingToolkit:ColumnSeries DependentValuePath="Value" IndependentValuePath="Name" 
+                                                      ItemsSource="{Binding GetRegisterStatistic}" Title="Số lần đăng kí" />
                     </chartingToolkit:Chart>
                 </Grid>
             </TabItem>
@@ -42,31 +37,22 @@
                 <Grid Margin="40,40,40,40">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
-                        <RowDefinition Height="*" />
-                        
+                        <RowDefinition Height="*" />    
                     </Grid.RowDefinitions>
-                    
                     <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,10">
-                        <Label   Content="Từ ngày:"/>
-                        <DatePicker   SelectedDate="{Binding FromTimeStaff,StringFormat='dd/MM/yyy'}"/>
-
-                        <Label   Content="Đến ngày:" Margin="100,0,0,0"/>
-                        <DatePicker   SelectedDate="{Binding ToTimeStaff,StringFormat='dd/MM/yyy'}"/>
-                        
+                        <Label Content="Từ ngày:"/>
+                        <DatePicker SelectedDate="{Binding FromTimeStaff, StringFormat='dd/MM/yyy'}"/>
+                        <Label Content="Đến ngày:" Margin="100,0,0,0"/>
+                        <DatePicker SelectedDate="{Binding ToTimeStaff, StringFormat='dd/MM/yyy'}"/>  
                     </StackPanel>
                     <chartingToolkit:Chart Grid.Row="1" Height="450" 
-		             Margin="5,10,5,10" Name="fusingChart" Title="Tần xuất sử dụng phòng" 
-		            VerticalAlignment="Bottom" FontSize="12pt" >
-                        <chartingToolkit:ColumnSeries DependentValuePath="Value" 
-		        IndependentValuePath="Name" ItemsSource="{Binding GetStaffStatistic}" Title="Số lần sử dụng" />
+                                           Margin="5,10,5,10" Name="fusingChart" Title="Tần xuất sử dụng phòng" 
+                                           VerticalAlignment="Bottom" FontSize="12pt" >
+                        <chartingToolkit:ColumnSeries DependentValuePath="Value" IndependentValuePath="Name"
+                                                      ItemsSource="{Binding GetStaffStatistic}" Title="Số lần sử dụng" />
                     </chartingToolkit:Chart>
                 </Grid>
             </TabItem>
         </TabControl>
-
-
-
-
-
     </Grid>
 </Page>

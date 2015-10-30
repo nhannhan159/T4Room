@@ -34,8 +34,6 @@ namespace RoomM.DeskApp.RoomService {
         System.Threading.Tasks.Task DeleteByTAsync(RoomM.Models.Room entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Room/DeleteByObject", ReplyAction="http://tempuri.org/IServiceOf_Room/DeleteByObjectResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<System.Collections.DictionaryEntry>))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.DictionaryEntry))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<RoomM.Models.Room>))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RoomM.Models.Room))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RoomM.Models.Detachable<RoomM.Models.Room>))]
@@ -62,6 +60,8 @@ namespace RoomM.DeskApp.RoomService {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<RoomM.Models.Staff>))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RoomM.Models.RoomType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RoomM.Models.Detachable<RoomM.Models.RoomType>))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<System.Collections.DictionaryEntry>))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.DictionaryEntry))]
         void DeleteByObject(object id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Room/DeleteByObject", ReplyAction="http://tempuri.org/IServiceOf_Room/DeleteByObjectResponse")]

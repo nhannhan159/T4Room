@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RoomM.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RoomM.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfStaffType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="StaffType" nillable="true" type="tns:StaffType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfStaffType" nillable="true" type="tns:ArrayOfStaffType" />
+  <xs:complexType name="StaffType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DetachableOfStaffTypeWLdSoSTl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Staffs" nillable="true" type="tns:ArrayOfStaff" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="StaffType" nillable="true" type="tns:StaffType" />
+  <xs:complexType name="DetachableOfStaffTypeWLdSoSTl">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="DetachableOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/RoomM.Models" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="StaffType" Namespace="http://schemas.datacontract.org/2004/07/RoomM.Models">
+          </GenericParameter>
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EntityBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DetachableOfStaffTypeWLdSoSTl" nillable="true" type="tns:DetachableOfStaffTypeWLdSoSTl" />
+  <xs:complexType name="EntityBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EntityBase" nillable="true" type="tns:EntityBase" />
+  <xs:complexType name="ArrayOfStaff">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Staff" nillable="true" type="tns:Staff" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfStaff" nillable="true" type="tns:ArrayOfStaff" />
+  <xs:complexType name="Staff">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DetachableOfStaffWLdSoSTl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IsWorking" type="xs:boolean" />
+          <xs:element minOccurs="0" name="LastLogin" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PasswordStored" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RoomCalendars" nillable="true" type="tns:ArrayOfRoomCalendar" />
+          <xs:element minOccurs="0" name="Sex" type="xs:boolean" />
+          <xs:element minOccurs="0" name="StaffType" nillable="true" type="tns:StaffType" />
+          <xs:element minOccurs="0" name="StaffTypeId" type="xs:long" />
+          <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Staff" nillable="true" type="tns:Staff" />
+  <xs:complexType name="DetachableOfStaffWLdSoSTl">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="DetachableOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/RoomM.Models" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Staff" Namespace="http://schemas.datacontract.org/2004/07/RoomM.Models">
+          </GenericParameter>
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EntityBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DetachableOfStaffWLdSoSTl" nillable="true" type="tns:DetachableOfStaffWLdSoSTl" />
+  <xs:complexType name="ArrayOfRoomCalendar">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RoomCalendar" nillable="true" type="tns:RoomCalendar" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRoomCalendar" nillable="true" type="tns:ArrayOfRoomCalendar" />
+  <xs:complexType name="RoomCalendar">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DetachableOfRoomCalendarWLdSoSTl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="IsWatched" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Length" type="xs:int" />
+          <xs:element minOccurs="0" name="Room" nillable="true" type="tns:Room" />
+          <xs:element minOccurs="0" name="RoomCalendarStatus" nillable="true" type="tns:RoomCalendarStatus" />
+          <xs:element minOccurs="0" name="RoomCalendarStatusId" type="xs:long" />
+          <xs:element minOccurs="0" name="RoomId" type="xs:long" />
+          <xs:element minOccurs="0" name="Staff" nillable="true" type="tns:Staff" />
+          <xs:element minOccurs="0" name="StaffId" type="xs:long" />
+          <xs:element minOccurs="0" name="Start" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RoomCalendar" nillable="true" type="tns:RoomCalendar" />
+  <xs:complexType name="DetachableOfRoomCalendarWLdSoSTl">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="DetachableOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/RoomM.Models" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="RoomCalendar" Namespace="http://schemas.datacontract.org/2004/07/RoomM.Models">
+          </GenericParameter>
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EntityBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DetachableOfRoomCalendarWLdSoSTl" nillable="true" type="tns:DetachableOfRoomCalendarWLdSoSTl" />
+  <xs:complexType name="Room">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DetachableOfRoomWLdSoSTl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AssetHistories" nillable="true" type="tns:ArrayOfRoomAssetHistory" />
+          <xs:element minOccurs="0" name="DateCreate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IsUsing" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RoomAssets" nillable="true" type="tns:ArrayOfRoomAsset" />
+          <xs:element minOccurs="0" name="RoomCalendars" nillable="true" type="tns:ArrayOfRoomCalendar" />
+          <xs:element minOccurs="0" name="RoomType" nillable="true" type="tns:RoomType" />
+          <xs:element minOccurs="0" name="RoomTypeId" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Room" nillable="true" type="tns:Room" />
+  <xs:complexType name="DetachableOfRoomWLdSoSTl">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="DetachableOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/RoomM.Models" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Room" Namespace="http://schemas.datacontract.org/2004/07/RoomM.Models">
+          </GenericParameter>
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EntityBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DetachableOfRoomWLdSoSTl" nillable="true" type="tns:DetachableOfRoomWLdSoSTl" />
+  <xs:complexType name="ArrayOfRoomAssetHistory">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RoomAssetHistory" nillable="true" type="tns:RoomAssetHistory" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRoomAssetHistory" nillable="true" type="tns:ArrayOfRoomAssetHistory" />
+  <xs:complexType name="RoomAssetHistory">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DetachableOfRoomAssetHistoryWLdSoSTl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Amount" type="xs:int" />
+          <xs:element minOccurs="0" name="Asset" nillable="true" type="tns:Asset" />
+          <xs:element minOccurs="0" name="AssetHistoryTypeId" type="xs:long" />
+          <xs:element minOccurs="0" name="AssetId" type="xs:long" />
+          <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="HistoryType" nillable="true" type="tns:HistoryType" />
+          <xs:element minOccurs="0" name="Room" nillable="true" type="tns:Room" />
+          <xs:element minOccurs="0" name="Room2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RoomId" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RoomAssetHistory" nillable="true" type="tns:RoomAssetHistory" />
+  <xs:complexType name="DetachableOfRoomAssetHistoryWLdSoSTl">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="DetachableOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/RoomM.Models" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="RoomAssetHistory" Namespace="http://schemas.datacontract.org/2004/07/RoomM.Models">
+          </GenericParameter>
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EntityBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DetachableOfRoomAssetHistoryWLdSoSTl" nillable="true" type="tns:DetachableOfRoomAssetHistoryWLdSoSTl" />
+  <xs:complexType name="Asset">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DetachableOfAssetWLdSoSTl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AssetHistories" nillable="true" type="tns:ArrayOfRoomAssetHistory" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IsUsing" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RoomAssets" nillable="true" type="tns:ArrayOfRoomAsset" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Asset" nillable="true" type="tns:Asset" />
+  <xs:complexType name="DetachableOfAssetWLdSoSTl">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="DetachableOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/RoomM.Models" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Asset" Namespace="http://schemas.datacontract.org/2004/07/RoomM.Models">
+          </GenericParameter>
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EntityBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DetachableOfAssetWLdSoSTl" nillable="true" type="tns:DetachableOfAssetWLdSoSTl" />
+  <xs:complexType name="ArrayOfRoomAsset">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RoomAsset" nillable="true" type="tns:RoomAsset" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRoomAsset" nillable="true" type="tns:ArrayOfRoomAsset" />
+  <xs:complexType name="RoomAsset">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DetachableOfRoomAssetWLdSoSTl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Amount" type="xs:int" />
+          <xs:element minOccurs="0" name="Asset" nillable="true" type="tns:Asset" />
+          <xs:element minOccurs="0" name="AssetId" type="xs:long" />
+          <xs:element minOccurs="0" name="Room" nillable="true" type="tns:Room" />
+          <xs:element minOccurs="0" name="RoomId" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RoomAsset" nillable="true" type="tns:RoomAsset" />
+  <xs:complexType name="DetachableOfRoomAssetWLdSoSTl">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="DetachableOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/RoomM.Models" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="RoomAsset" Namespace="http://schemas.datacontract.org/2004/07/RoomM.Models">
+          </GenericParameter>
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EntityBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DetachableOfRoomAssetWLdSoSTl" nillable="true" type="tns:DetachableOfRoomAssetWLdSoSTl" />
+  <xs:complexType name="HistoryType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DetachableOfHistoryTypeWLdSoSTl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AssetHistories" nillable="true" type="tns:ArrayOfRoomAssetHistory" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="HistoryType" nillable="true" type="tns:HistoryType" />
+  <xs:complexType name="DetachableOfHistoryTypeWLdSoSTl">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="DetachableOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/RoomM.Models" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="HistoryType" Namespace="http://schemas.datacontract.org/2004/07/RoomM.Models">
+          </GenericParameter>
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EntityBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DetachableOfHistoryTypeWLdSoSTl" nillable="true" type="tns:DetachableOfHistoryTypeWLdSoSTl" />
+  <xs:complexType name="RoomType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DetachableOfRoomTypeWLdSoSTl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Rooms" nillable="true" type="tns:ArrayOfRoom" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RoomType" nillable="true" type="tns:RoomType" />
+  <xs:complexType name="DetachableOfRoomTypeWLdSoSTl">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="DetachableOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/RoomM.Models" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="RoomType" Namespace="http://schemas.datacontract.org/2004/07/RoomM.Models">
+          </GenericParameter>
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EntityBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DetachableOfRoomTypeWLdSoSTl" nillable="true" type="tns:DetachableOfRoomTypeWLdSoSTl" />
+  <xs:complexType name="ArrayOfRoom">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Room" nillable="true" type="tns:Room" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRoom" nillable="true" type="tns:ArrayOfRoom" />
+  <xs:complexType name="RoomCalendarStatus">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DetachableOfRoomCalendarStatusWLdSoSTl">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RoomCalendars" nillable="true" type="tns:ArrayOfRoomCalendar" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RoomCalendarStatus" nillable="true" type="tns:RoomCalendarStatus" />
+  <xs:complexType name="DetachableOfRoomCalendarStatusWLdSoSTl">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="DetachableOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/RoomM.Models" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="RoomCalendarStatus" Namespace="http://schemas.datacontract.org/2004/07/RoomM.Models">
+          </GenericParameter>
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EntityBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DetachableOfRoomCalendarStatusWLdSoSTl" nillable="true" type="tns:DetachableOfRoomCalendarStatusWLdSoSTl" />
+</xs:schema>

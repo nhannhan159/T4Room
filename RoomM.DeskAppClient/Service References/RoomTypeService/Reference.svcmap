@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="67e60591-4411-4556-92ec-e9858b173f63" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="fd0263ba-a258-47d8-8d1f-b3b38ad9fe99" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -21,14 +21,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:62978/Rooms/Implement/RoomTypeService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="net.tcp://localhost:8282/Rooms/Implement/RoomTypeService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="RoomTypeService.wsdl" MetadataType="Wsdl" ID="9c855828-c1d5-409b-ab99-7dfc4c20b5de" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomTypeService.svc?wsdl" />
-    <MetadataFile FileName="RoomTypeService.xsd" MetadataType="Schema" ID="0e6af2c7-9265-4cbd-b095-db87a81c72ad" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomTypeService.svc?xsd=xsd1" />
-    <MetadataFile FileName="RoomTypeService.disco" MetadataType="Disco" ID="ed6e76e5-4477-46c1-a33e-717379d1e40e" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomTypeService.svc?disco" />
-    <MetadataFile FileName="RoomTypeService1.xsd" MetadataType="Schema" ID="e6e175aa-7e05-4095-bacc-979e7b3f8ca5" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomTypeService.svc?xsd=xsd2" />
-    <MetadataFile FileName="RoomTypeService2.xsd" MetadataType="Schema" ID="71549503-ab31-497d-9fe0-a0220715f5dd" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomTypeService.svc?xsd=xsd0" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="f6790a20-cbc8-4c22-90ae-84e988ca181e" SourceId="1" SourceUrl="net.tcp://localhost:8282/Rooms/Implement/RoomTypeService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="59f94a10-860f-4ce9-a078-db24ac6087f7" SourceId="1" SourceUrl="net.tcp://localhost:8282/Rooms/Implement/RoomTypeService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="8d42b6d0-a929-4e0b-8511-0cd7b5b2a27d" SourceId="1" SourceUrl="net.tcp://localhost:8282/Rooms/Implement/RoomTypeService/mex" />
+    <MetadataFile FileName="RoomM.Models.xsd" MetadataType="Schema" ID="ba42f355-7ef3-40e3-b62b-9294a6b991b2" SourceId="1" SourceUrl="net.tcp://localhost:8282/Rooms/Implement/RoomTypeService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
