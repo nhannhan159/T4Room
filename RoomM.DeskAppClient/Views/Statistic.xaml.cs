@@ -23,6 +23,10 @@ namespace RoomM.DeskApp.Views
     public partial class Statictis : Page
     {
 
+        // private IStaffRepository staffRep= RepositoryFactory.GetRepository<IStaffRepository, Staff>();
+        // private IRoomRepository roomRep = RepositoryFactory.GetRepository<IRoomRepository, Room>();
+
+
         public Statictis()
         {
             InitializeComponent();

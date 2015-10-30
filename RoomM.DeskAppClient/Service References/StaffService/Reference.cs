@@ -9,94 +9,7 @@
 //------------------------------------------------------------------------------
 
 namespace RoomM.DeskApp.StaffService {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DictionaryEntry", Namespace="http://schemas.datacontract.org/2004/07/System.Collections")]
-    [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<RoomM.Models.Staff>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RoomM.Models.Staff))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RoomM.Models.Detachable<RoomM.Models.Staff>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RoomM.Models.EntityBase))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<RoomM.Models.RoomCalendar>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RoomM.Models.RoomCalendar))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RoomM.Models.Detachable<RoomM.Models.RoomCalendar>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RoomM.Models.Room))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RoomM.Models.Detachable<RoomM.Models.Room>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<RoomM.Models.RoomAssetHistory>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RoomM.Models.RoomAssetHistory))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RoomM.Models.Detachable<RoomM.Models.RoomAssetHistory>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RoomM.Models.Asset))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RoomM.Models.Detachable<RoomM.Models.Asset>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<RoomM.Models.RoomAsset>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RoomM.Models.RoomAsset))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RoomM.Models.Detachable<RoomM.Models.RoomAsset>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RoomM.Models.HistoryType))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RoomM.Models.Detachable<RoomM.Models.HistoryType>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RoomM.Models.RoomType))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RoomM.Models.Detachable<RoomM.Models.RoomType>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<RoomM.Models.Room>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RoomM.Models.RoomCalendarStatus))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RoomM.Models.Detachable<RoomM.Models.RoomCalendarStatus>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RoomM.Models.StaffType))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(RoomM.Models.Detachable<RoomM.Models.StaffType>))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(System.Collections.Generic.List<RoomM.DeskApp.StaffService.DictionaryEntry>))]
-    public partial struct DictionaryEntry : System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private object _keyField;
-        
-        private object _valueField;
-        
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public object _key {
-            get {
-                return this._keyField;
-            }
-            set {
-                if ((object.ReferenceEquals(this._keyField, value) != true)) {
-                    this._keyField = value;
-                    this.RaisePropertyChanged("_key");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public object _value {
-            get {
-                return this._valueField;
-            }
-            set {
-                if ((object.ReferenceEquals(this._valueField, value) != true)) {
-                    this._valueField = value;
-                    this.RaisePropertyChanged("_value");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="StaffService.IStaffService")]
@@ -147,8 +60,8 @@ namespace RoomM.DeskApp.StaffService {
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RoomM.Models.Detachable<RoomM.Models.RoomCalendarStatus>))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RoomM.Models.StaffType))]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RoomM.Models.Detachable<RoomM.Models.StaffType>))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<RoomM.DeskApp.StaffService.DictionaryEntry>))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RoomM.DeskApp.StaffService.DictionaryEntry))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<System.Collections.DictionaryEntry>))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.DictionaryEntry))]
         void DeleteByObject(object id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Staff/DeleteByObject", ReplyAction="http://tempuri.org/IServiceOf_Staff/DeleteByObjectResponse")]
@@ -159,12 +72,6 @@ namespace RoomM.DeskApp.StaffService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Staff/Edit", ReplyAction="http://tempuri.org/IServiceOf_Staff/EditResponse")]
         System.Threading.Tasks.Task EditAsync(RoomM.Models.Staff entity);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Staff/Save", ReplyAction="http://tempuri.org/IServiceOf_Staff/SaveResponse")]
-        void Save();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Staff/Save", ReplyAction="http://tempuri.org/IServiceOf_Staff/SaveResponse")]
-        System.Threading.Tasks.Task SaveAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStaffService/GetSingle", ReplyAction="http://tempuri.org/IStaffService/GetSingleResponse")]
         RoomM.Models.Staff GetSingle(int staffId);
@@ -285,12 +192,12 @@ namespace RoomM.DeskApp.StaffService {
     public partial class GetStaffLimitByRegister_ListDictionaryEntryResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="GetStaffLimitByRegister_List_x003C_DictionaryEntry_x003E_Result", Namespace="http://tempuri.org/", Order=0)]
-        public System.Collections.Generic.List<RoomM.DeskApp.StaffService.DictionaryEntry> GetStaffLimitByRegister_ListDictionaryEntryResult;
+        public System.Collections.Generic.List<System.Collections.DictionaryEntry> GetStaffLimitByRegister_ListDictionaryEntryResult;
         
         public GetStaffLimitByRegister_ListDictionaryEntryResponse() {
         }
         
-        public GetStaffLimitByRegister_ListDictionaryEntryResponse(System.Collections.Generic.List<RoomM.DeskApp.StaffService.DictionaryEntry> GetStaffLimitByRegister_ListDictionaryEntryResult) {
+        public GetStaffLimitByRegister_ListDictionaryEntryResponse(System.Collections.Generic.List<System.Collections.DictionaryEntry> GetStaffLimitByRegister_ListDictionaryEntryResult) {
             this.GetStaffLimitByRegister_ListDictionaryEntryResult = GetStaffLimitByRegister_ListDictionaryEntryResult;
         }
     }
@@ -362,14 +269,6 @@ namespace RoomM.DeskApp.StaffService {
             return base.Channel.EditAsync(entity);
         }
         
-        public void Save() {
-            base.Channel.Save();
-        }
-        
-        public System.Threading.Tasks.Task SaveAsync() {
-            return base.Channel.SaveAsync();
-        }
-        
         public RoomM.Models.Staff GetSingle(int staffId) {
             return base.Channel.GetSingle(staffId);
         }
@@ -422,7 +321,7 @@ namespace RoomM.DeskApp.StaffService {
             return base.Channel.GetStaffLimitByRegister_ListDictionaryEntry(request);
         }
         
-        public System.Collections.Generic.List<RoomM.DeskApp.StaffService.DictionaryEntry> GetStaffLimitByRegister_ListDictionaryEntry(int limit, System.DateTime from, System.DateTime to) {
+        public System.Collections.Generic.List<System.Collections.DictionaryEntry> GetStaffLimitByRegister_ListDictionaryEntry(int limit, System.DateTime from, System.DateTime to) {
             RoomM.DeskApp.StaffService.GetStaffLimitByRegister_ListDictionaryEntryRequest inValue = new RoomM.DeskApp.StaffService.GetStaffLimitByRegister_ListDictionaryEntryRequest();
             inValue.limit = limit;
             inValue.from = from;

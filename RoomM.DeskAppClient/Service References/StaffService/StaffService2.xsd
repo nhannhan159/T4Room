@@ -62,16 +62,6 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="Save">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SaveResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
   <xs:element name="GetSingle">
     <xs:complexType>
       <xs:sequence>

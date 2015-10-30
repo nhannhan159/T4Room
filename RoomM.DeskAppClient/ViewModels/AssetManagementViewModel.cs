@@ -28,13 +28,13 @@ namespace RoomM.DeskApp.ViewModels
             this.roomAssetViewFilterIsCheck = false;
             this.ravRoomNameFilter = "";
             this.currentRoomAsset = default(RoomAsset);
-            List<RoomType> roomTypeList = this.roomTypeService.GetAll();
+            List<RoomType> roomTypeList = new List<RoomType>(this.sc.RoomTypeService.GetAll());
             roomTypeList.Add(new RoomType("Tất cả"));
             this.roomTypeFilters1 = new CollectionView(roomTypeList);
             this.roomTypeFilters2 = new CollectionView(roomTypeList);
             this.roomTypeFilter1 = roomTypeList[roomTypeList.Count - 1];
             this.roomTypeFilter2 = roomTypeList[roomTypeList.Count - 1];
-            List<Room> roomList = this.roomService.GetAll();
+            List<Room> roomList = new List<Room>(this.sc.RoomService.GetAll());
             this.roomView1 = CollectionViewSource.GetDefaultView(roomList);
             this.roomView2 = CollectionViewSource.GetDefaultView(roomList);
             this.room1 = (roomList.Count == 0) ? null : roomList[0];
@@ -47,12 +47,6 @@ namespace RoomM.DeskApp.ViewModels
         #endregion
 
         #region PrivateField
-
-        private AssetService.AssetServiceClient assService = new AssetService.AssetServiceClient();
-        private RoomAssetHistoryService.RoomAssetHistoryServiceClient assHisService = new RoomAssetHistoryService.RoomAssetHistoryServiceClient();
-        private RoomService.RoomServiceClient roomService = new RoomService.RoomServiceClient();
-        private RoomTypeService.RoomTypeServiceClient roomTypeService = new RoomTypeService.RoomTypeServiceClient();
-        private RoomAssetService.RoomAssetServiceClient roomAssService = new RoomAssetService.RoomAssetServiceClient();
 
         private string roomFilter;
         private NewAsset newAssetDialog;
@@ -79,7 +73,7 @@ namespace RoomM.DeskApp.ViewModels
 
         protected override List<Asset> GetEntitiesList()
         {
-            return this.assService.GetAll();
+            return new List<Asset>(this.sc.AssetService.GetAll());
         }
 
         protected override void SaveCurrentEntity()
@@ -87,10 +81,9 @@ namespace RoomM.DeskApp.ViewModels
             try
             {
                 if (this.CurrentEntity.ID > 0)
-                    this.assService.Edit(this.CurrentEntity);
+                    this.sc.AssetService.Edit(this.CurrentEntity);
                 else
-                    this.assService.Add(this.CurrentEntity);
-                this.assService.Save();
+                    this.sc.AssetService.Add(this.CurrentEntity);
                 // System.Windows.Forms.MessageBox.Show("Cập nhật dữ liệu thành công!");
             }
             catch (Exception ex)
@@ -142,7 +135,7 @@ namespace RoomM.DeskApp.ViewModels
             if (this.CurrentEntity == null)
                 this.currentRoomAssetView = CollectionViewSource.GetDefaultView(new List<RoomAsset>());
             else
-                this.currentRoomAssetView = CollectionViewSource.GetDefaultView(new List<RoomAsset>(this.roomAssService.GetByAssetId(this.CurrentEntity.ID)));
+                this.currentRoomAssetView = CollectionViewSource.GetDefaultView(new List<RoomAsset>(this.sc.RoomAssetService.GetByAssetId(this.CurrentEntity.ID)));
             this.currentRoomAssetView.Filter += RoomAssetViewFilter;
             this.EntitiesView.Refresh();
             this.OnPropertyChanged("CurrentRoomAssetView");
@@ -155,7 +148,7 @@ namespace RoomM.DeskApp.ViewModels
             MessageBoxResult result = System.Windows.MessageBox.Show("Bạn muốn sửa thông tin tài sản?", "Xác nhận sửa thông tin", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
-                // if (roomService.isUniqueName(CurrentEntity.Name.Trim()))
+                // if (roomRepo.isUniqueName(CurrentEntity.Name.Trim()))
                 // {
                 this.SaveCurrentEntity();
                 MainWindowViewModel.instance.ChangeStateToComplete("Cập nhật thành công");
@@ -171,7 +164,7 @@ namespace RoomM.DeskApp.ViewModels
 
         protected override void NewCommandHandler()
         {
-            if (assService.isUniqueName(newEntityViewModel.NewEntity.Name.Trim()))
+            if (this.sc.AssetService.isUniqueName(newEntityViewModel.NewEntity.Name.Trim()))
             {
                 this.CloseNewEntityDialog();
                 base.NewCommandHandler();
@@ -259,11 +252,9 @@ namespace RoomM.DeskApp.ViewModels
                 MessageBoxResult result = System.Windows.MessageBox.Show("Bạn muốn nhập tài sản?", "Xác nhận nhập tài sản", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
-                    this.roomAssService.AddOrUpdate(this.CurrentEntity.ID, this.Room1.ID, this.Amount1);
-                    this.roomAssService.Save();
+                    this.sc.RoomAssetService.AddOrUpdate(this.CurrentEntity.ID, this.Room1.ID, this.Amount1);
                     RoomAssetHistory roomAssHis = new RoomAssetHistory(DateTime.Now, 3, this.CurrentEntity.ID, this.Room1.ID, "", this.Amount1);
-                    this.assHisService.Add(roomAssHis);
-                    this.assHisService.Save();
+                    this.sc.RoomAssetHistoryService.Add(roomAssHis);
                     this.SetAdditionViewChange();
                     MainWindowViewModel.instance.ChangeStateToComplete("Cập nhật thành công");
                 }
@@ -288,18 +279,16 @@ namespace RoomM.DeskApp.ViewModels
                         if (this.Amount2 >= this.CurrentRoomAsset.Amount)
                         {
                             num = this.CurrentRoomAsset.Amount;
-                            this.roomAssService.DeleteByT(this.CurrentRoomAsset);
+                            this.sc.RoomAssetService.DeleteByT(this.CurrentRoomAsset);
                         }
                         else
                         {
                             num = this.Amount2;
                             this.CurrentRoomAsset.Amount -= this.Amount2;
-                            this.roomAssService.Edit(this.CurrentRoomAsset);
+                            this.sc.RoomAssetService.Edit(this.CurrentRoomAsset);
                         }
-                        this.roomAssService.Save();
                         RoomAssetHistory roomAssHis = new RoomAssetHistory(DateTime.Now, 2, this.CurrentEntity.ID, this.CurrentRoomAsset.RoomId, "", num);
-                        this.assHisService.Add(roomAssHis);
-                        this.assHisService.Save();
+                        this.sc.RoomAssetHistoryService.Add(roomAssHis);
                         this.SetAdditionViewChange();
                         // System.Windows.Forms.MessageBox.Show("Cập nhật dữ liệu thành công!");
                         MainWindowViewModel.instance.ChangeStateToComplete("Cập nhật thành công");
@@ -330,22 +319,20 @@ namespace RoomM.DeskApp.ViewModels
                         if (this.Amount3 >= this.CurrentRoomAsset.Amount)
                         {
                             num = this.CurrentRoomAsset.Amount;
-                            this.roomAssService.AddOrUpdate(this.CurrentEntity.ID, this.Room2.ID, this.CurrentRoomAsset.Amount);
-                            this.roomAssService.DeleteByT(this.CurrentRoomAsset);
+                            this.sc.RoomAssetService.AddOrUpdate(this.CurrentEntity.ID, this.Room2.ID, this.CurrentRoomAsset.Amount);
+                            this.sc.RoomAssetService.DeleteByT(this.CurrentRoomAsset);
                         }
                         else
                         {
                             num = this.Amount3;
-                            this.roomAssService.AddOrUpdate(this.CurrentEntity.ID, this.Room2.ID, this.Amount3);
+                            this.sc.RoomAssetService.AddOrUpdate(this.CurrentEntity.ID, this.Room2.ID, this.Amount3);
                             this.CurrentRoomAsset.Amount -= this.Amount3;
-                            this.roomAssService.Edit(this.CurrentRoomAsset);
+                            this.sc.RoomAssetService.Edit(this.CurrentRoomAsset);
                         }
-                        this.roomAssService.Save();
                         RoomAssetHistory roomAssHis1 = new RoomAssetHistory(DateTime.Now, 1, this.CurrentEntity.ID, this.CurrentRoomAsset.RoomId, this.Room2.Name, num);
                         RoomAssetHistory roomAssHis2 = new RoomAssetHistory(DateTime.Now, 4, this.CurrentEntity.ID, this.Room2.ID, this.CurrentRoomAsset.Room.Name, num);
-                        this.assHisService.Add(roomAssHis1);
-                        this.assHisService.Add(roomAssHis2);
-                        this.assHisService.Save();
+                        this.sc.RoomAssetHistoryService.Add(roomAssHis1);
+                        this.sc.RoomAssetHistoryService.Add(roomAssHis2);
                         this.SetAdditionViewChange();
                         // System.Windows.Forms.MessageBox.Show("Cập nhật dữ liệu thành công!");
                         MainWindowViewModel.instance.ChangeStateToComplete("Cập nhật thành công");
@@ -379,7 +366,7 @@ namespace RoomM.DeskApp.ViewModels
             set
             {
                 this.roomTypeFilter1 = value;
-                List<Room> roomList = new List<Room>(this.roomService.GetAll());
+                List<Room> roomList = new List<Room>(this.sc.RoomService.GetAll());
                 if (this.roomTypeFilter1.Name != "Tất cả")
                 {
                     var query = roomList.Where(p => p.RoomType.Name == this.roomTypeFilter1.Name);
@@ -402,7 +389,7 @@ namespace RoomM.DeskApp.ViewModels
             {
                 this.roomTypeFilter2 = value;
 
-                List<Room> roomList = new List<Room>(this.roomService.GetAll());
+                List<Room> roomList = new List<Room>(this.sc.RoomService.GetAll());
                 if (this.roomTypeFilter2.Name != "Tất cả")
                 {
                     var query = roomList.Where(p => p.RoomType.Name == this.roomTypeFilter2.Name);
@@ -466,8 +453,6 @@ namespace RoomM.DeskApp.ViewModels
         }
 
         #endregion
-
-
 
 
         // command handler

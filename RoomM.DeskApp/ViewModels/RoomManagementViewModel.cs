@@ -18,11 +18,11 @@ using RoomM.Models;
 
 namespace RoomM.DeskApp.ViewModels
 {
-    class RoomManagementViewModel : EditableViewModel<Room>
+    public class RoomManagementViewModel : EditableViewModel<Room>
     {
 
-        public RoomManagementViewModel()
-            : base()
+        public RoomManagementViewModel(EFDataContext context)
+            : base(context)
         {
             List<RoomType> roomTypeList = new List<RoomType>(this.uow.RoomTypeRepository.GetAll());
             roomTypeList.Add(new RoomType("Tất cả"));

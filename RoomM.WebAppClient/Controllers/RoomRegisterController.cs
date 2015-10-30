@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using WebMatrix.WebData;
 
 using RoomM.WebApp.Models.RoomM;
-using RoomM.Repositories.RepositoryFramework;
 using RoomM.Repositories;
 using RoomM.Models;
 
@@ -14,27 +13,28 @@ namespace RoomM.WebApp.Controllers
 {
     public class RoomRegisterController : Controller
     {
-        IStaffRepository staffRep = RepositoryFactory.GetRepository<IStaffRepository, Staff>();
-        IRoomRepository roomRepo = RepositoryFactory.GetRepository<IRoomRepository, Room>();
-        IRoomTypeRepository roomTypeRepo = RepositoryFactory.GetRepository<IRoomTypeRepository, RoomType>();
-        IRoomCalendarRepository roomCalRepo = RepositoryFactory.GetRepository<IRoomCalendarRepository, RoomCalendar>();
-        IRoomCalendarStatusRepository roomCalStatusRepo = RepositoryFactory.GetRepository<IRoomCalendarStatusRepository, RoomCalendarStatus>();
-        
+        private UnitOfWork uow;
+
+        public RoomRegisterController(EFDataContext _context)
+        {
+            this.uow = new UnitOfWork(_context);
+        }
+
         //
         // GET: /RoomRegister/
 
         // show add register of staff id
         public ActionResult Index()
         {
-            IList<RoomType> allRoomType = roomTypeRepo.GetAll();
-            IList<Room> allRoom = roomRepo.GetAll();
+            IList<RoomType> allRoomType = this.uow.RoomTypeRepository.GetAll();
+            IList<Room> allRoom = this.uow.RoomRepository.GetAll();
 
             ViewBag.RoomTypeId = new SelectList(allRoomType, "ID", "Name", allRoomType.Count > 0 ? allRoomType[0].ID : 0);
             ViewBag.RoomId = new SelectList(allRoom, "ID", "Name", allRoom.Count > 0 ? allRoom[0].ID : 0);
 
             // default day 1/5/2011
-            IList<RoomCalendar> calInDate = roomCalRepo.GetByDateAndRoomId(DateTime.Now, allRoom.Count > 0 ? allRoom[0].ID : -1);
-            IList<RoomCalendar> calInWeek = roomCalRepo.GetByWeekAndRoomId(DateTime.Now, allRoom.Count > 0 ? allRoom[0].ID : -1);
+            IList<RoomCalendar> calInDate = this.uow.RoomCalendarRepository.GetByDateAndRoomId(DateTime.Now, allRoom.Count > 0 ? allRoom[0].ID : -1);
+            IList<RoomCalendar> calInWeek = this.uow.RoomCalendarRepository.GetByWeekAndRoomId(DateTime.Now, allRoom.Count > 0 ? allRoom[0].ID : -1);
 
             DateTime currentDate = DateTime.Now;
             DateTime startDateOfWeek = getStartDayOfWeek(currentDate);
@@ -56,7 +56,7 @@ namespace RoomM.WebApp.Controllers
         {
             // IList<RoomCalendar> calLst1 = roomCalRepo.GetAll();
 
-            IList<RoomCalendar> calLst = roomCalRepo.GetByWatchedState(false, staffRep.GetUserId(User.Identity.Name));
+            IList<RoomCalendar> calLst = this.uow.RoomCalendarRepository.GetByWatchedState(false, this.uow.StaffRepository.GetUserId(User.Identity.Name));
             ViewBag.MessageConfirm = messageConfirm;
             return View(calLst);
         }
@@ -64,10 +64,10 @@ namespace RoomM.WebApp.Controllers
         [Authorize(Roles = "Teacher")]
         public ActionResult RoomRegisteredAccept(int id)
         {
-            RoomCalendar rc = roomCalRepo.GetSingle(id);
+            RoomCalendar rc = this.uow.RoomCalendarRepository.GetSingle(id);
             rc.IsWatched = true;
-            roomCalRepo.Edit(rc);
-            roomCalRepo.Save();
+            this.uow.RoomCalendarRepository.Edit(rc);
+            this.uow.Commit();
 
             string message = "";
             if (rc.RoomCalendarStatusId == 3) // huy dk tu quan tri vien
@@ -83,7 +83,7 @@ namespace RoomM.WebApp.Controllers
         [Authorize(Roles = "Teacher")]
         public ActionResult RoomRegisteredReject(int id)
         {
-            RoomCalendar rc = roomCalRepo.GetSingle(id);
+            RoomCalendar rc = this.uow.RoomCalendarRepository.GetSingle(id);
 
             RoomCalendar rcInfo = new RoomCalendar
             {
@@ -111,8 +111,8 @@ namespace RoomM.WebApp.Controllers
 
             // rc.IsWatched = true;
             // roomCalRepo.Edit(rc);
-            roomCalRepo.Delete(id);
-            roomCalRepo.Save();
+            this.uow.RoomCalendarRepository.Delete(id);
+            this.uow.Commit();
 
             string message = "Xác nhận hủy đăng kí phòng " + rcInfo.Room.Name + " vào ngày "
                 + rcInfo.Date.ToShortDateString() + " từ tiết " + rcInfo.Start + " đến tiết " + (rcInfo.Start + rcInfo.Length - 1);
@@ -122,7 +122,7 @@ namespace RoomM.WebApp.Controllers
         [Authorize(Roles = "Teacher")]
         public ActionResult HistoryRegistered()
         {
-            IList<RoomCalendar> calLst = roomCalRepo.GetByWatchedState(true, staffRep.GetUserId(User.Identity.Name));
+            IList<RoomCalendar> calLst = this.uow.RoomCalendarRepository.GetByWatchedState(true, this.uow.StaffRepository.GetUserId(User.Identity.Name));
             return View(calLst);
         }
 
@@ -133,7 +133,7 @@ namespace RoomM.WebApp.Controllers
         public ActionResult Create(string messageConfirm = "", bool isErrorMessage = false, int roomIdBefore = -1)
         {
             // IList<RoomType> allRoomType = roomTypeRepo.GetAll();
-            IList<Room> allRoom = roomRepo.GetAll();
+            IList<Room> allRoom = this.uow.RoomRepository.GetAll();
 
             // ViewBag.RoomTypeId = new SelectList(allRoomType, "ID", "Name", allRoomType.Count > 0 ? allRoomType[0].ID : 0);
 
@@ -144,14 +144,14 @@ namespace RoomM.WebApp.Controllers
             if (roomIdBefore > 0)
             {
                 ViewBag.RoomId = new SelectList(allRoom, "ID", "Name", roomIdBefore);
-                calInDate = roomCalRepo.GetByDateAndRoomId(DateTime.Now, roomIdBefore);
-                calInWeek = roomCalRepo.GetByWeekAndRoomId(DateTime.Now, roomIdBefore);
+                calInDate = this.uow.RoomCalendarRepository.GetByDateAndRoomId(DateTime.Now, roomIdBefore);
+                calInWeek = this.uow.RoomCalendarRepository.GetByWeekAndRoomId(DateTime.Now, roomIdBefore);
             }
             else
             {
                 ViewBag.RoomId = new SelectList(allRoom, "ID", "Name", allRoom.Count > 0 ? allRoom[0].ID : 0);
-                calInDate = roomCalRepo.GetByDateAndRoomId(DateTime.Now, allRoom.Count > 0 ? allRoom[0].ID : -1);
-                calInWeek = roomCalRepo.GetByWeekAndRoomId(DateTime.Now, allRoom.Count > 0 ? allRoom[0].ID : -1);
+                calInDate = this.uow.RoomCalendarRepository.GetByDateAndRoomId(DateTime.Now, allRoom.Count > 0 ? allRoom[0].ID : -1);
+                calInWeek = this.uow.RoomCalendarRepository.GetByWeekAndRoomId(DateTime.Now, allRoom.Count > 0 ? allRoom[0].ID : -1);
             }
 
             // default day 1/5/2011
@@ -204,20 +204,19 @@ namespace RoomM.WebApp.Controllers
                 {
                     // roomCal.Room = roomRepo.GetSingle(roomCal.RoomId);
                     roomCal.RoomCalendarStatusId = 1; // wait
-                    roomCal.StaffId = staffRep.GetUserId(User.Identity.Name);
+                    roomCal.StaffId = this.uow.StaffRepository.GetUserId(User.Identity.Name);
 
 
-                    Room room = roomRepo.GetSingle(roomCal.RoomId);
+                    Room room = this.uow.RoomRepository.GetSingle(roomCal.RoomId);
                     //room.IsHaveRegistered = true;
-                    roomRepo.Edit(room);
-                    roomRepo.Save();
+                    this.uow.RoomRepository.Edit(room);
 
                     // save
-                    roomCalRepo.Add(roomCal);
-                    roomCalRepo.Save();
+                    this.uow.RoomCalendarRepository.Add(roomCal);
+                    this.uow.Commit();
 
 
-                    string message = "Phòng " + roomRepo.GetSingle(roomCal.RoomId).Name + " đã được đăng kí từ tiết " + roomCal.Start + " đến tiết " + (roomCal.Start + roomCal.Length - 1);
+                    string message = "Phòng " + this.uow.RoomRepository.GetSingle(roomCal.RoomId).Name + " đã được đăng kí từ tiết " + roomCal.Start + " đến tiết " + (roomCal.Start + roomCal.Length - 1);
                     return RedirectToAction("Create", new { messageConfirm = message, isErrorMessage = false, roomIdBefore = roomCal.RoomId });
                 }
             }
@@ -229,8 +228,8 @@ namespace RoomM.WebApp.Controllers
         public ActionResult ChangeSelect(int day, int month, int year, int roomId)
         {
             DateTime currentDate = new DateTime(year, month, day);
-            IList<RoomCalendar> calInDate = roomCalRepo.GetByDateAndRoomId(currentDate, roomId);
-            IList<RoomCalendar> calInWeek = roomCalRepo.GetByWeekAndRoomId(currentDate, roomId);
+            IList<RoomCalendar> calInDate = this.uow.RoomCalendarRepository.GetByDateAndRoomId(currentDate, roomId);
+            IList<RoomCalendar> calInWeek = this.uow.RoomCalendarRepository.GetByWeekAndRoomId(currentDate, roomId);
             
             DateTime startDateOfWeek = getStartDayOfWeek(currentDate);
             DateTime endDateOfWeek = getEndDayOfWeek(currentDate);

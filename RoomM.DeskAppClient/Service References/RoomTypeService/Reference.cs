@@ -72,12 +72,6 @@ namespace RoomM.DeskApp.RoomTypeService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomType/Edit", ReplyAction="http://tempuri.org/IServiceOf_RoomType/EditResponse")]
         System.Threading.Tasks.Task EditAsync(RoomM.Models.RoomType entity);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomType/Save", ReplyAction="http://tempuri.org/IServiceOf_RoomType/SaveResponse")]
-        void Save();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomType/Save", ReplyAction="http://tempuri.org/IServiceOf_RoomType/SaveResponse")]
-        System.Threading.Tasks.Task SaveAsync();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomTypeService/GetSingle", ReplyAction="http://tempuri.org/IRoomTypeService/GetSingleResponse")]
         RoomM.Models.RoomType GetSingle(int roomTypeId);
         
@@ -150,14 +144,6 @@ namespace RoomM.DeskApp.RoomTypeService {
         
         public System.Threading.Tasks.Task EditAsync(RoomM.Models.RoomType entity) {
             return base.Channel.EditAsync(entity);
-        }
-        
-        public void Save() {
-            base.Channel.Save();
-        }
-        
-        public System.Threading.Tasks.Task SaveAsync() {
-            return base.Channel.SaveAsync();
         }
         
         public RoomM.Models.RoomType GetSingle(int roomTypeId) {

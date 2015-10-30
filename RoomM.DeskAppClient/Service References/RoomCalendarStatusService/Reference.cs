@@ -73,12 +73,6 @@ namespace RoomM.DeskApp.RoomCalendarStatusService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomCalendarStatus/Edit", ReplyAction="http://tempuri.org/IServiceOf_RoomCalendarStatus/EditResponse")]
         System.Threading.Tasks.Task EditAsync(RoomM.Models.RoomCalendarStatus entity);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomCalendarStatus/Save", ReplyAction="http://tempuri.org/IServiceOf_RoomCalendarStatus/SaveResponse")]
-        void Save();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomCalendarStatus/Save", ReplyAction="http://tempuri.org/IServiceOf_RoomCalendarStatus/SaveResponse")]
-        System.Threading.Tasks.Task SaveAsync();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomCalendarStatusService/GetSingle", ReplyAction="http://tempuri.org/IRoomCalendarStatusService/GetSingleResponse")]
         RoomM.Models.RoomCalendarStatus GetSingle(int statusId);
         
@@ -157,14 +151,6 @@ namespace RoomM.DeskApp.RoomCalendarStatusService {
         
         public System.Threading.Tasks.Task EditAsync(RoomM.Models.RoomCalendarStatus entity) {
             return base.Channel.EditAsync(entity);
-        }
-        
-        public void Save() {
-            base.Channel.Save();
-        }
-        
-        public System.Threading.Tasks.Task SaveAsync() {
-            return base.Channel.SaveAsync();
         }
         
         public RoomM.Models.RoomCalendarStatus GetSingle(int statusId) {

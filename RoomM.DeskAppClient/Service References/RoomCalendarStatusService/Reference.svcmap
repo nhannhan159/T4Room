@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="cf07292e-9803-43bc-8c1c-622094e581e7" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="cc05f6db-ea35-4172-9aed-e32a3e47b64d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -15,10 +15,8 @@
     <GenerateSerializableTypes>true</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
     <UseSerializerForFaults>true</UseSerializerForFaults>
-    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
-    <ReferencedAssemblies>
-      <ReferencedAssembly AssemblyName="RoomM.Models" />
-    </ReferencedAssemblies>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
     <ReferencedDataContractTypes />
     <ServiceContractMappings />
   </ClientOptions>
@@ -26,12 +24,12 @@
     <MetadataSource Address="http://localhost:62978/Rooms/Implement/RoomCalendarStatusService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="RoomCalendarStatusService.wsdl" MetadataType="Wsdl" ID="3b9d7c5b-36fb-434f-8435-8aaf0d32ac4f" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomCalendarStatusService.svc?wsdl" />
-    <MetadataFile FileName="RoomCalendarStatusService.xsd" MetadataType="Schema" ID="f572e5f4-43ce-440b-9aca-f41a0189d18b" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomCalendarStatusService.svc?xsd=xsd0" />
-    <MetadataFile FileName="RoomCalendarStatusService1.xsd" MetadataType="Schema" ID="52649f49-dd2e-48a0-9045-e89c8a8e0c02" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomCalendarStatusService.svc?xsd=xsd1" />
-    <MetadataFile FileName="RoomCalendarStatusService2.xsd" MetadataType="Schema" ID="40a35015-b13c-430f-ab8b-7c23d119c434" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomCalendarStatusService.svc?xsd=xsd2" />
-    <MetadataFile FileName="RoomCalendarStatusService3.xsd" MetadataType="Schema" ID="25851122-51da-4954-b820-fb9f08ec86e9" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomCalendarStatusService.svc?xsd=xsd3" />
-    <MetadataFile FileName="RoomCalendarStatusService.disco" MetadataType="Disco" ID="0f5ee1cf-df20-4d50-808c-336031ed645e" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomCalendarStatusService.svc?disco" />
+    <MetadataFile FileName="RoomCalendarStatusService.wsdl" MetadataType="Wsdl" ID="d9cbb38a-e204-4c73-941e-75759fc73b8c" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomCalendarStatusService.svc?wsdl" />
+    <MetadataFile FileName="RoomCalendarStatusService.xsd" MetadataType="Schema" ID="55e5bb01-c702-44ca-9f0d-e3ed8fa4a2e2" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomCalendarStatusService.svc?xsd=xsd0" />
+    <MetadataFile FileName="RoomCalendarStatusService1.xsd" MetadataType="Schema" ID="bd820783-e026-4676-902e-d777b4874b19" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomCalendarStatusService.svc?xsd=xsd1" />
+    <MetadataFile FileName="RoomCalendarStatusService2.xsd" MetadataType="Schema" ID="b643cf00-1a30-4a5a-91c4-20c5559403e6" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomCalendarStatusService.svc?xsd=xsd2" />
+    <MetadataFile FileName="RoomCalendarStatusService3.xsd" MetadataType="Schema" ID="4e8f9be2-1353-4452-8325-d74da7643e2a" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomCalendarStatusService.svc?xsd=xsd3" />
+    <MetadataFile FileName="RoomCalendarStatusService.disco" MetadataType="Disco" ID="61ae05ca-c32a-4473-ae2e-84149d658cd8" SourceId="1" SourceUrl="http://localhost:62978/Rooms/Implement/RoomCalendarStatusService.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

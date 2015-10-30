@@ -71,12 +71,6 @@ namespace RoomM.DeskApp.RoomCalenderService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomCalendar/Edit", ReplyAction="http://tempuri.org/IServiceOf_RoomCalendar/EditResponse")]
         System.Threading.Tasks.Task EditAsync(RoomM.Models.RoomCalendar entity);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomCalendar/Save", ReplyAction="http://tempuri.org/IServiceOf_RoomCalendar/SaveResponse")]
-        void Save();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomCalendar/Save", ReplyAction="http://tempuri.org/IServiceOf_RoomCalendar/SaveResponse")]
-        System.Threading.Tasks.Task SaveAsync();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomCalenderService/GetSingle", ReplyAction="http://tempuri.org/IRoomCalenderService/GetSingleResponse")]
         RoomM.Models.RoomCalendar GetSingle(int roomCalId);
         
@@ -191,14 +185,6 @@ namespace RoomM.DeskApp.RoomCalenderService {
         
         public System.Threading.Tasks.Task EditAsync(RoomM.Models.RoomCalendar entity) {
             return base.Channel.EditAsync(entity);
-        }
-        
-        public void Save() {
-            base.Channel.Save();
-        }
-        
-        public System.Threading.Tasks.Task SaveAsync() {
-            return base.Channel.SaveAsync();
         }
         
         public RoomM.Models.RoomCalendar GetSingle(int roomCalId) {

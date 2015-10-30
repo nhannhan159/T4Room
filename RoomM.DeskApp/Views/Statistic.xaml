@@ -7,11 +7,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="639" d:DesignWidth="1100"
       xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
-	  Title="Statictis">
-    <Page.DataContext>
-        <local:StatisticViewModel />
-    </Page.DataContext>
-
+	  Title="Statictis"
+      DataContext="{Binding StatisticViewModel, Source={StaticResource ViewModelLocator}}">
     <Grid>
         <TabControl >
             <TabItem Header="Tần xuất đăng kí phòng" Width="200">
@@ -31,10 +28,10 @@
 
                     </StackPanel>
                     <chartingToolkit:Chart Grid.Row="1" Height="450" 
-		             Margin="5,10,5,10" Name="fusingBChart" Title="Tần xuất đăng ký phòng" 
-		            VerticalAlignment="Bottom" FontSize="12pt" >
-                        <chartingToolkit:ColumnSeries DependentValuePath="Value" 
-		            IndependentValuePath="Name" ItemsSource="{Binding GetRegisterStatistic}" Title="Số lần đăng kí" />
+                                           Margin="5,10,5,10" Name="fusingBChart" Title="Tần xuất đăng ký phòng" 
+                                           VerticalAlignment="Bottom" FontSize="12pt" >
+                        <chartingToolkit:ColumnSeries DependentValuePath="Value" IndependentValuePath="Name" 
+                                                      ItemsSource="{Binding GetRegisterStatistic}" Title="Số lần đăng kí" />
                     </chartingToolkit:Chart>
                 </Grid>
             </TabItem>
@@ -55,18 +52,14 @@
                         
                     </StackPanel>
                     <chartingToolkit:Chart Grid.Row="1" Height="450" 
-		             Margin="5,10,5,10" Name="fusingChart" Title="Tần xuất sử dụng phòng" 
-		            VerticalAlignment="Bottom" FontSize="12pt" >
+                                           Margin="5,10,5,10" Name="fusingChart" Title="Tần xuất sử dụng phòng" 
+                                           VerticalAlignment="Bottom" FontSize="12pt" >
                         <chartingToolkit:ColumnSeries DependentValuePath="Value" 
-		        IndependentValuePath="Name" ItemsSource="{Binding GetStaffStatistic}" Title="Số lần sử dụng" />
+                                                      IndependentValuePath="Name" ItemsSource="{Binding GetStaffStatistic}" Title="Số lần sử dụng" />
                     </chartingToolkit:Chart>
                 </Grid>
             </TabItem>
         </TabControl>
-
-
-
-
 
     </Grid>
 </Page>

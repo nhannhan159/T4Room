@@ -38,12 +38,6 @@
   <wsdl:message name="IAssetService_Edit_OutputMessage">
     <wsdl:part name="parameters" element="tns:EditResponse" />
   </wsdl:message>
-  <wsdl:message name="IAssetService_Save_InputMessage">
-    <wsdl:part name="parameters" element="tns:Save" />
-  </wsdl:message>
-  <wsdl:message name="IAssetService_Save_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SaveResponse" />
-  </wsdl:message>
   <wsdl:message name="IAssetService_GetSingle_InputMessage">
     <wsdl:part name="parameters" element="tns:GetSingle" />
   </wsdl:message>
@@ -82,10 +76,6 @@
     <wsdl:operation name="Edit">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Asset/Edit" message="tns:IAssetService_Edit_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Asset/EditResponse" message="tns:IAssetService_Edit_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="Save">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Asset/Save" message="tns:IAssetService_Save_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Asset/SaveResponse" message="tns:IAssetService_Save_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetSingle">
       <wsdl:input wsaw:Action="http://tempuri.org/IAssetService/GetSingle" message="tns:IAssetService_GetSingle_InputMessage" />
@@ -140,15 +130,6 @@
     </wsdl:operation>
     <wsdl:operation name="Edit">
       <soap:operation soapAction="http://tempuri.org/IServiceOf_Asset/Edit" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Save">
-      <soap:operation soapAction="http://tempuri.org/IServiceOf_Asset/Save" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

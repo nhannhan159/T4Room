@@ -72,12 +72,6 @@ namespace RoomM.DeskApp.RoomAssetHistoryTypeService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_HistoryType/Edit", ReplyAction="http://tempuri.org/IServiceOf_HistoryType/EditResponse")]
         System.Threading.Tasks.Task EditAsync(RoomM.Models.HistoryType entity);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_HistoryType/Save", ReplyAction="http://tempuri.org/IServiceOf_HistoryType/SaveResponse")]
-        void Save();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_HistoryType/Save", ReplyAction="http://tempuri.org/IServiceOf_HistoryType/SaveResponse")]
-        System.Threading.Tasks.Task SaveAsync();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomAssetHistoryTypeService/GetSingle", ReplyAction="http://tempuri.org/IRoomAssetHistoryTypeService/GetSingleResponse")]
         RoomM.Models.HistoryType GetSingle(int id);
         
@@ -150,14 +144,6 @@ namespace RoomM.DeskApp.RoomAssetHistoryTypeService {
         
         public System.Threading.Tasks.Task EditAsync(RoomM.Models.HistoryType entity) {
             return base.Channel.EditAsync(entity);
-        }
-        
-        public void Save() {
-            base.Channel.Save();
-        }
-        
-        public System.Threading.Tasks.Task SaveAsync() {
-            return base.Channel.SaveAsync();
         }
         
         public RoomM.Models.HistoryType GetSingle(int id) {

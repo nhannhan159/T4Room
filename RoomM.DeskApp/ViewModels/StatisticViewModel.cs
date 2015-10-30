@@ -22,8 +22,8 @@ namespace RoomM.DeskApp.ViewModels
         private DateTime toTimeRegister;
 
 
-        public StatisticViewModel()
-            : base()
+        public StatisticViewModel(EFDataContext context)
+            : base(context)
         {
             // DateTime now = new DateTime(DateTime.);
             fromTimeStaff = new DateTime(DateTime.Now.Year - 1, 1, 1);

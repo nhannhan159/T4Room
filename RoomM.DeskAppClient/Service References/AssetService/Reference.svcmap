@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a808298e-161c-4fce-85ef-1f3e0ee6553d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="28a448f3-de30-49ff-a909-312fdcd59b12" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -15,10 +15,8 @@
     <GenerateSerializableTypes>true</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
     <UseSerializerForFaults>true</UseSerializerForFaults>
-    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
-    <ReferencedAssemblies>
-      <ReferencedAssembly AssemblyName="RoomM.Models" />
-    </ReferencedAssemblies>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
     <ReferencedDataContractTypes />
     <ServiceContractMappings />
   </ClientOptions>
@@ -26,12 +24,12 @@
     <MetadataSource Address="http://localhost:62978/Assets/Implement/AssetService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="AssetService.disco" MetadataType="Disco" ID="47a03e1f-96d1-4d72-8bdf-02c1e5da9c3a" SourceId="1" SourceUrl="http://localhost:62978/Assets/Implement/AssetService.svc?disco" />
-    <MetadataFile FileName="AssetService.xsd" MetadataType="Schema" ID="2365349d-b7a7-427f-ba19-05cad8ee61b7" SourceId="1" SourceUrl="http://localhost:62978/Assets/Implement/AssetService.svc?xsd=xsd0" />
-    <MetadataFile FileName="AssetService1.xsd" MetadataType="Schema" ID="be2ddd19-ceb8-4888-ad9b-6c9e0ddb261d" SourceId="1" SourceUrl="http://localhost:62978/Assets/Implement/AssetService.svc?xsd=xsd1" />
-    <MetadataFile FileName="AssetService2.xsd" MetadataType="Schema" ID="7cd2dc26-e63c-4fed-bc81-11da43cad591" SourceId="1" SourceUrl="http://localhost:62978/Assets/Implement/AssetService.svc?xsd=xsd2" />
-    <MetadataFile FileName="AssetService3.xsd" MetadataType="Schema" ID="12289a97-cac5-4a3b-a0a0-499d853090e3" SourceId="1" SourceUrl="http://localhost:62978/Assets/Implement/AssetService.svc?xsd=xsd3" />
-    <MetadataFile FileName="AssetService.wsdl" MetadataType="Wsdl" ID="cba876a7-b72e-4d04-a37d-3b5833ef7d94" SourceId="1" SourceUrl="http://localhost:62978/Assets/Implement/AssetService.svc?wsdl" />
+    <MetadataFile FileName="AssetService.disco" MetadataType="Disco" ID="72150c2d-e318-4287-bc45-a384f2107648" SourceId="1" SourceUrl="http://localhost:62978/Assets/Implement/AssetService.svc?disco" />
+    <MetadataFile FileName="AssetService.xsd" MetadataType="Schema" ID="307f91f8-50ba-4746-90b7-1cd797991d47" SourceId="1" SourceUrl="http://localhost:62978/Assets/Implement/AssetService.svc?xsd=xsd0" />
+    <MetadataFile FileName="AssetService1.xsd" MetadataType="Schema" ID="c361f3e5-b192-47f1-9e05-d72e538ddb95" SourceId="1" SourceUrl="http://localhost:62978/Assets/Implement/AssetService.svc?xsd=xsd1" />
+    <MetadataFile FileName="AssetService2.xsd" MetadataType="Schema" ID="34150de8-4def-4a33-a35b-01e96ae84a0b" SourceId="1" SourceUrl="http://localhost:62978/Assets/Implement/AssetService.svc?xsd=xsd2" />
+    <MetadataFile FileName="AssetService3.xsd" MetadataType="Schema" ID="c7eef359-fc1c-44a2-8be0-66a630e4585f" SourceId="1" SourceUrl="http://localhost:62978/Assets/Implement/AssetService.svc?xsd=xsd3" />
+    <MetadataFile FileName="AssetService.wsdl" MetadataType="Wsdl" ID="e35ef487-60ac-4c78-893c-894fcd1ce16a" SourceId="1" SourceUrl="http://localhost:62978/Assets/Implement/AssetService.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -21,8 +21,8 @@ namespace RoomM.DeskApp.ViewModels
 
         #region Construction
 
-        public StaffManagementViewModel()
-            : base() 
+        public StaffManagementViewModel(EFDataContext context)
+            : base(context) 
         {
             this.sexFilter = 0;
             this.roomCalendarViewFilterIsCheck = false;

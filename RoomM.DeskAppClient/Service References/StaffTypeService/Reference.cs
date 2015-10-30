@@ -72,12 +72,6 @@ namespace RoomM.DeskApp.StaffTypeService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_StaffType/Edit", ReplyAction="http://tempuri.org/IServiceOf_StaffType/EditResponse")]
         System.Threading.Tasks.Task EditAsync(RoomM.Models.StaffType entity);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_StaffType/Save", ReplyAction="http://tempuri.org/IServiceOf_StaffType/SaveResponse")]
-        void Save();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_StaffType/Save", ReplyAction="http://tempuri.org/IServiceOf_StaffType/SaveResponse")]
-        System.Threading.Tasks.Task SaveAsync();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStaffTypeService/GetSingle", ReplyAction="http://tempuri.org/IStaffTypeService/GetSingleResponse")]
         RoomM.Models.StaffType GetSingle(int staffTypeId);
         
@@ -150,14 +144,6 @@ namespace RoomM.DeskApp.StaffTypeService {
         
         public System.Threading.Tasks.Task EditAsync(RoomM.Models.StaffType entity) {
             return base.Channel.EditAsync(entity);
-        }
-        
-        public void Save() {
-            base.Channel.Save();
-        }
-        
-        public System.Threading.Tasks.Task SaveAsync() {
-            return base.Channel.SaveAsync();
         }
         
         public RoomM.Models.StaffType GetSingle(int staffTypeId) {

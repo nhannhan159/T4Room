@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{43B13507-686D-4D50-B207-3135877386C8}</ProjectGuid>
+    <ProjectGuid>{ACE832E1-0DA9-4EBF-8572-D88A74CA4289}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>RoomM.DeskApp</RootNamespace>
@@ -38,8 +38,33 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NPOI">
-      <HintPath>..\Libs\NPOI.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.1.3.1\lib\net40\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI, Version=2.1.3.1, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.1.3.1\lib\net40\NPOI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.1.3.1, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.1.3.1\lib\net40\NPOI.OOXML.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.1.3.1, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.1.3.1\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.1.3.1, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.1.3.1\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -47,9 +72,9 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows" />
-    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\System.Windows.Controls.DataVisualization.Toolkit.dll</HintPath>
+    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Controls.DataVisualization.Toolkit.4.0.0.0\lib\net40-Client\System.Windows.Controls.DataVisualization.Toolkit.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Windows.Controls.Input.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\System.Windows.Controls.Input.Toolkit.dll</HintPath>
@@ -142,6 +167,7 @@
     <Compile Include="UIHelper\PropertySupport.cs" />
     <Compile Include="UIHelper\RelayCommand.cs" />
     <Compile Include="UIHelper\ViewModel.cs" />
+    <Compile Include="ServicesCollector.cs" />
     <Compile Include="ViewModels\AssetManagementViewModel.cs" />
     <Compile Include="UIHelper\NewEntityViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -312,9 +338,6 @@
     <None Include="Service References\RoomCalenderService\RoomCalenderService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomService\RoomM.DeskApp.RoomService.DictionaryEntry.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Service References\RoomService\RoomService.wsdl" />
     <None Include="Service References\RoomService\RoomService.xsd">
       <SubType>Designer</SubType>
@@ -337,9 +360,6 @@
     </None>
     <None Include="Service References\RoomTypeService\RoomTypeService2.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\StaffService\RoomM.DeskApp.StaffService.DictionaryEntry.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\StaffService\RoomM.DeskApp.StaffService.GetStaffLimitByRegister_IListStaffResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -370,7 +390,6 @@
     <None Include="Service References\StaffTypeService\StaffTypeService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Views\packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -381,6 +400,12 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RoomM.Models\RoomM.Models.csproj">
+      <Project>{a2cd9ea0-9e0c-4b0a-87f5-9baddc4f9422}</Project>
+      <Name>RoomM.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icon\icon-room.png" />
@@ -418,12 +443,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RoomM.Models\RoomM.Models.csproj">
-      <Project>{a2cd9ea0-9e0c-4b0a-87f5-9baddc4f9422}</Project>
-      <Name>RoomM.Models</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadataStorage Include="Service References\AssetService\" />
     <WCFMetadataStorage Include="Service References\RoomAssetHistoryService\" />
     <WCFMetadataStorage Include="Service References\RoomAssetHistoryTypeService\" />
@@ -436,21 +455,6 @@
     <WCFMetadataStorage Include="Service References\StaffTypeService\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\RoomAssetHistoryService\RoomAssetHistoryService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomAssetHistoryService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomAssetHistoryService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\RoomAssetHistoryService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\AssetService\AssetService.disco" />
   </ItemGroup>
   <ItemGroup>
@@ -461,6 +465,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\AssetService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RoomAssetHistoryService\RoomAssetHistoryService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RoomAssetHistoryService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RoomAssetHistoryService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RoomAssetHistoryService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -556,21 +575,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\StaffTypeService\StaffTypeService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\StaffTypeService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\StaffTypeService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\StaffTypeService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\StaffService\StaffService.disco" />
   </ItemGroup>
   <ItemGroup>
@@ -581,6 +585,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\StaffService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\StaffTypeService\StaffTypeService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\StaffTypeService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\StaffTypeService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\StaffTypeService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

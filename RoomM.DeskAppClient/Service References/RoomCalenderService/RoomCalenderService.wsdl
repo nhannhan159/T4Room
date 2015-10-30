@@ -37,12 +37,6 @@
   <wsdl:message name="IRoomCalenderService_Edit_OutputMessage">
     <wsdl:part name="parameters" element="tns:EditResponse" />
   </wsdl:message>
-  <wsdl:message name="IRoomCalenderService_Save_InputMessage">
-    <wsdl:part name="parameters" element="tns:Save" />
-  </wsdl:message>
-  <wsdl:message name="IRoomCalenderService_Save_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SaveResponse" />
-  </wsdl:message>
   <wsdl:message name="IRoomCalenderService_GetSingle_InputMessage">
     <wsdl:part name="parameters" element="tns:GetSingle" />
   </wsdl:message>
@@ -111,10 +105,6 @@
     <wsdl:operation name="Edit">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_RoomCalendar/Edit" message="tns:IRoomCalenderService_Edit_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_RoomCalendar/EditResponse" message="tns:IRoomCalenderService_Edit_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="Save">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_RoomCalendar/Save" message="tns:IRoomCalenderService_Save_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_RoomCalendar/SaveResponse" message="tns:IRoomCalenderService_Save_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetSingle">
       <wsdl:input wsaw:Action="http://tempuri.org/IRoomCalenderService/GetSingle" message="tns:IRoomCalenderService_GetSingle_InputMessage" />
@@ -189,15 +179,6 @@
     </wsdl:operation>
     <wsdl:operation name="Edit">
       <soap:operation soapAction="http://tempuri.org/IServiceOf_RoomCalendar/Edit" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Save">
-      <soap:operation soapAction="http://tempuri.org/IServiceOf_RoomCalendar/Save" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

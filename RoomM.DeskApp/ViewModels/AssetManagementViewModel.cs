@@ -17,13 +17,13 @@ using RoomM.Models;
 
 namespace RoomM.DeskApp.ViewModels
 {
-    class AssetManagementViewModel : EditableViewModel<Asset>
+    public class AssetManagementViewModel : EditableViewModel<Asset>
     {
 
         #region Contruction
 
-        public AssetManagementViewModel()
-            : base()
+        public AssetManagementViewModel(EFDataContext context)
+            : base(context)
         {
             this.roomFilter = "";
             this.roomAssetViewFilterIsCheck = false;

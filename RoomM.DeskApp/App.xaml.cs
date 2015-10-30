@@ -13,5 +13,10 @@ namespace RoomM.DeskApp
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            IocKernel.Initialize(new DeskAppModule());
+            base.OnStartup(e);
+        }
     }
 }

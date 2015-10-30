@@ -6,10 +6,8 @@
       xmlns:local="clr-namespace:RoomM.DeskApp.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="639" d:DesignWidth="1100"
-	Title="AssetManagement">
-    <Page.DataContext>
-        <local:AssetManagementViewModel />
-    </Page.DataContext>
+	  Title="AssetManagement"
+      DataContext="{Binding AssetManagementViewModel, Source={StaticResource ViewModelLocator}}">
     <Page.Resources>
         <Style TargetType="ToggleButton">
             <Setter Property="Padding" Value="3" />

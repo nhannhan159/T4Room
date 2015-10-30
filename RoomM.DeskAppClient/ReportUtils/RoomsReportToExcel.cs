@@ -14,9 +14,7 @@ namespace RoomM.DeskApp
     {
         public RoomsReportToExcel(String companyName, String subject, String template)
             : base(companyName, subject, template)
-        {
-            
-        }
+        { }
 
 
         public override void setupExport(List<Room> roomList, Room room = null)
@@ -27,13 +25,13 @@ namespace RoomM.DeskApp
 
 
             // set profile
-            Row r0 = activeSheet.GetRow(2);
+            IRow r0 = activeSheet.GetRow(2);
             r0.GetCell(5).SetCellValue(DateTime.Now.ToShortDateString());
 
-            Row r1 = activeSheet.GetRow(3);
+            IRow r1 = activeSheet.GetRow(3);
             r1.GetCell(5).SetCellValue("Nguyen Van A");
 
-            Row r2 = activeSheet.GetRow(4);
+            IRow r2 = activeSheet.GetRow(4);
             r2.GetCell(5).SetCellValue("Nhân sự");
 
             int startRow = 8;
@@ -41,7 +39,7 @@ namespace RoomM.DeskApp
 
             foreach(Room r in roomList) 
             {
-                Row row = activeSheet.CreateRow(startRow);
+                IRow row = activeSheet.CreateRow(startRow);
                 row.CreateCell(1).SetCellValue(index);
                 row.CreateCell(2).SetCellValue(r.Name);
                 row.CreateCell(3).SetCellValue(r.RoomType.Name);

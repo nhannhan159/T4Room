@@ -9,11 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.WebApp", "RoomM.WebAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.Models", "RoomM.Models\RoomM.Models.csproj", "{A2CD9EA0-9E0C-4B0A-87F5-9BADDC4F9422}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.DeskAppClient", "RoomM.DeskAppClient\RoomM.DeskAppClient.csproj", "{43B13507-686D-4D50-B207-3135877386C8}"
-	ProjectSection(ProjectDependencies) = postProject
-		{5BF3ED16-67B2-432E-AFB9-AFCB8ED78555} = {5BF3ED16-67B2-432E-AFB9-AFCB8ED78555}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.WebService", "RoomM.WebService\RoomM.WebService.csproj", "{5BF3ED16-67B2-432E-AFB9-AFCB8ED78555}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.WebServiceTest", "RoomM.WebServiceTest\RoomM.WebServiceTest.csproj", "{8070BF28-A73D-4AC6-9068-58CC7BD98206}"
@@ -23,10 +18,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.WebServiceTest", "Roo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.DeskApp", "RoomM.DeskApp\RoomM.DeskApp.csproj", "{5EC56C8B-1681-489B-A9EA-F1F69A4560BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.WebAppClient", "RoomM.WebAppClient\RoomM.WebAppClient.csproj", "{4A80CB15-EF21-4928-A6AE-3C81B5C21264}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.DeskAppClient", "RoomM.DeskAppClient\RoomM.DeskAppClient.csproj", "{ACE832E1-0DA9-4EBF-8572-D88A74CA4289}"
 	ProjectSection(ProjectDependencies) = postProject
 		{5BF3ED16-67B2-432E-AFB9-AFCB8ED78555} = {5BF3ED16-67B2-432E-AFB9-AFCB8ED78555}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.WebAppClient", "RoomM.WebAppClient\RoomM.WebAppClient.csproj", "{93C0C9AF-4007-4355-9688-8B6856880A45}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,10 +43,6 @@ Global
 		{A2CD9EA0-9E0C-4B0A-87F5-9BADDC4F9422}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2CD9EA0-9E0C-4B0A-87F5-9BADDC4F9422}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2CD9EA0-9E0C-4B0A-87F5-9BADDC4F9422}.Release|Any CPU.Build.0 = Release|Any CPU
-		{43B13507-686D-4D50-B207-3135877386C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{43B13507-686D-4D50-B207-3135877386C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{43B13507-686D-4D50-B207-3135877386C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{43B13507-686D-4D50-B207-3135877386C8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5BF3ED16-67B2-432E-AFB9-AFCB8ED78555}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5BF3ED16-67B2-432E-AFB9-AFCB8ED78555}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BF3ED16-67B2-432E-AFB9-AFCB8ED78555}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -62,10 +55,14 @@ Global
 		{5EC56C8B-1681-489B-A9EA-F1F69A4560BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5EC56C8B-1681-489B-A9EA-F1F69A4560BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5EC56C8B-1681-489B-A9EA-F1F69A4560BC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4A80CB15-EF21-4928-A6AE-3C81B5C21264}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4A80CB15-EF21-4928-A6AE-3C81B5C21264}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4A80CB15-EF21-4928-A6AE-3C81B5C21264}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4A80CB15-EF21-4928-A6AE-3C81B5C21264}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACE832E1-0DA9-4EBF-8572-D88A74CA4289}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACE832E1-0DA9-4EBF-8572-D88A74CA4289}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACE832E1-0DA9-4EBF-8572-D88A74CA4289}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACE832E1-0DA9-4EBF-8572-D88A74CA4289}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93C0C9AF-4007-4355-9688-8B6856880A45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93C0C9AF-4007-4355-9688-8B6856880A45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93C0C9AF-4007-4355-9688-8B6856880A45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93C0C9AF-4007-4355-9688-8B6856880A45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

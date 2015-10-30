@@ -38,12 +38,6 @@
   <wsdl:message name="IRoomService_Edit_OutputMessage">
     <wsdl:part name="parameters" element="tns:EditResponse" />
   </wsdl:message>
-  <wsdl:message name="IRoomService_Save_InputMessage">
-    <wsdl:part name="parameters" element="tns:Save" />
-  </wsdl:message>
-  <wsdl:message name="IRoomService_Save_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SaveResponse" />
-  </wsdl:message>
   <wsdl:message name="IRoomService_GetSingle_InputMessage">
     <wsdl:part name="parameters" element="tns:GetSingle" />
   </wsdl:message>
@@ -94,10 +88,6 @@
     <wsdl:operation name="Edit">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Room/Edit" message="tns:IRoomService_Edit_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Room/EditResponse" message="tns:IRoomService_Edit_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="Save">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Room/Save" message="tns:IRoomService_Save_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Room/SaveResponse" message="tns:IRoomService_Save_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetSingle">
       <wsdl:input wsaw:Action="http://tempuri.org/IRoomService/GetSingle" message="tns:IRoomService_GetSingle_InputMessage" />
@@ -160,15 +150,6 @@
     </wsdl:operation>
     <wsdl:operation name="Edit">
       <soap:operation soapAction="http://tempuri.org/IServiceOf_Room/Edit" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Save">
-      <soap:operation soapAction="http://tempuri.org/IServiceOf_Room/Save" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

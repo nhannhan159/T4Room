@@ -6,10 +6,8 @@
       xmlns:local="clr-namespace:RoomM.DeskApp.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="639" d:DesignWidth="1100"
-	Title="RoomManagement">
-    <Page.DataContext>
-        <local:RoomManagementViewModel />
-    </Page.DataContext>
+      Title="RoomManagement"
+      DataContext="{Binding RoomManagementViewModel, Source={StaticResource ViewModelLocator}}">
     <Grid Margin="20,0,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.8*"/>

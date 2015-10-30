@@ -71,12 +71,6 @@ namespace RoomM.DeskApp.RoomAssetService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomAsset/Edit", ReplyAction="http://tempuri.org/IServiceOf_RoomAsset/EditResponse")]
         System.Threading.Tasks.Task EditAsync(RoomM.Models.RoomAsset entity);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomAsset/Save", ReplyAction="http://tempuri.org/IServiceOf_RoomAsset/SaveResponse")]
-        void Save();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomAsset/Save", ReplyAction="http://tempuri.org/IServiceOf_RoomAsset/SaveResponse")]
-        System.Threading.Tasks.Task SaveAsync();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomAssetService/GetSingle", ReplyAction="http://tempuri.org/IRoomAssetService/GetSingleResponse")]
         RoomM.Models.RoomAsset GetSingle(long roomDeviceId);
         
@@ -167,14 +161,6 @@ namespace RoomM.DeskApp.RoomAssetService {
         
         public System.Threading.Tasks.Task EditAsync(RoomM.Models.RoomAsset entity) {
             return base.Channel.EditAsync(entity);
-        }
-        
-        public void Save() {
-            base.Channel.Save();
-        }
-        
-        public System.Threading.Tasks.Task SaveAsync() {
-            return base.Channel.SaveAsync();
         }
         
         public RoomM.Models.RoomAsset GetSingle(long roomDeviceId) {

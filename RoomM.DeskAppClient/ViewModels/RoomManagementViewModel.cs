@@ -23,7 +23,7 @@ namespace RoomM.DeskApp.ViewModels
         public RoomManagementViewModel()
             : base()
         {
-            List<RoomType> roomTypeList = this.roomTypeService.GetAll();
+            List<RoomType> roomTypeList = new List<RoomType>(this.sc.RoomTypeService.GetAll());
             roomTypeList.Add(new RoomType("Tất cả"));
             this.roomTypeFilters = new CollectionView(roomTypeList);
             this.roomTypeFilter = roomTypeList[roomTypeList.Count - 1];
@@ -36,7 +36,7 @@ namespace RoomM.DeskApp.ViewModels
             this.rcvBeginTimeFilter = 0;
             this.rcvRegistrantFilter = "";
 
-            List<RoomCalendarStatus> rcvStatusList = this.roomCalStatusService.GetAll();
+            List<RoomCalendarStatus> rcvStatusList = new List<RoomCalendarStatus>(this.sc.RoomCalendarStatusService.GetAll());
             rcvStatusList.Add(new RoomCalendarStatus("Tất cả"));
             this.rcvStatusFilters = new CollectionView(rcvStatusList);
             this.rcvStatusFilter = rcvStatusList[rcvStatusList.Count - 1];
@@ -45,7 +45,7 @@ namespace RoomM.DeskApp.ViewModels
             this.rhvDateToFilter = DateTime.Now;
             this.rhvAssetNameFilter = "";
 
-            List<HistoryType> rhvTypeList = this.assHistoryTypeService.GetAll();
+            List<HistoryType> rhvTypeList = new List<HistoryType>(this.sc.RoomAssetHistoryTypeService.GetAll());
             rhvTypeList.Add(new HistoryType("Tất cả"));
             this.rhvTypeFilters = new CollectionView(rhvTypeList);
             this.rhvTypeFilter = rhvTypeList[rhvTypeList.Count - 1];
@@ -66,14 +66,6 @@ namespace RoomM.DeskApp.ViewModels
         }
 
         #region PrivateField
-
-        private RoomService.RoomServiceClient roomService = new RoomService.RoomServiceClient();
-        private RoomAssetService.RoomAssetServiceClient roomAssService = new RoomAssetService.RoomAssetServiceClient();
-        private RoomCalenderService.RoomCalenderServiceClient roomCalService = new RoomCalenderService.RoomCalenderServiceClient();
-        private RoomTypeService.RoomTypeServiceClient roomTypeService = new RoomTypeService.RoomTypeServiceClient();
-        private RoomCalendarStatusService.RoomCalendarStatusServiceClient roomCalStatusService = new RoomCalendarStatusService.RoomCalendarStatusServiceClient();
-        private RoomAssetHistoryService.RoomAssetHistoryServiceClient assHisService = new RoomAssetHistoryService.RoomAssetHistoryServiceClient();
-        private RoomAssetHistoryTypeService.RoomAssetHistoryTypeServiceClient assHistoryTypeService = new RoomAssetHistoryTypeService.RoomAssetHistoryTypeServiceClient();
 
         private NewRoom newRoomDialog;
         private RoomType roomTypeFilter;
@@ -128,7 +120,7 @@ namespace RoomM.DeskApp.ViewModels
 
         protected override List<Room> GetEntitiesList()
         {
-            return this.roomService.GetAll();
+            return new List<Room>(this.sc.RoomService.GetAll());
         }
 
         protected override void SaveCurrentEntity()
@@ -136,10 +128,9 @@ namespace RoomM.DeskApp.ViewModels
             try
             {
                 if (this.CurrentEntity.ID > 0)
-                    this.roomService.Edit(this.CurrentEntity);
+                    this.sc.RoomService.Edit(this.CurrentEntity);
                 else
-                    this.roomService.Add(this.CurrentEntity);
-                this.roomService.Save();
+                    this.sc.RoomService.Add(this.CurrentEntity);
                 System.Windows.Forms.MessageBox.Show("Cập nhật dữ liệu thành công!");
             }
             catch (Exception ex)
@@ -199,8 +190,8 @@ namespace RoomM.DeskApp.ViewModels
             else
             {
                 this.currentRoomCalendarView = CollectionViewSource.GetDefaultView(this.CurrentEntity.RoomCalendars);
-                this.currentRoomAssetView = CollectionViewSource.GetDefaultView(this.roomAssService.GetByRoomId(this.CurrentEntity.ID));
-                this.currentRoomHistoryView = CollectionViewSource.GetDefaultView(this.assHisService.GetByRoomId(this.CurrentEntity.ID));
+                this.currentRoomAssetView = CollectionViewSource.GetDefaultView(this.sc.RoomAssetService.GetByRoomId(this.CurrentEntity.ID));
+                this.currentRoomHistoryView = CollectionViewSource.GetDefaultView(this.sc.RoomAssetHistoryService.GetByRoomId(this.CurrentEntity.ID));
             }
             this.currentRoomCalendarView.Filter += RoomCalendarViewFilter;
             this.currentRoomAssetView.Filter += RoomAssetViewFilter;
@@ -212,16 +203,14 @@ namespace RoomM.DeskApp.ViewModels
 
         public ICollectionView RoomTypesView
         {
-            get { return CollectionViewSource.GetDefaultView(roomTypeService.GetAll()); }
+            get { return CollectionViewSource.GetDefaultView(this.sc.RoomTypeService.GetAll()); }
         }
 
         #endregion
 
-
-
         public ICollectionView RoomCalendarStatusView
         {
-            get { return CollectionViewSource.GetDefaultView(roomCalStatusService.GetAll()); }
+            get { return CollectionViewSource.GetDefaultView(this.sc.RoomCalendarStatusService.GetAll()); }
         }
 
         public RoomCalendar CurrentRoomCalendar
@@ -352,8 +341,7 @@ namespace RoomM.DeskApp.ViewModels
                     if (CurrentRoomCalendar.RoomCalendarStatusId == 2 || CurrentRoomCalendar.RoomCalendarStatusId == 3)
                         // CurrentRoomCalendar.IsWatched = true;
 
-                    this.roomCalService.Edit(this.CurrentRoomCalendar);
-                    this.roomCalService.Save();
+                    this.sc.RoomCalendarService.Edit(this.CurrentRoomCalendar);
 
                     this.EntitiesView.Refresh();
                     this.OnPropertyChanged("CurrentRoomCalendar");
@@ -517,7 +505,7 @@ namespace RoomM.DeskApp.ViewModels
             // Dictionary<String, int> dic = new Dictionary<string,int>();
             Hashtable hm = new Hashtable();
             
-            IList<RoomAssetHistory> hisList = assHisService.GetByRoom2RoomId(CurrentEntity, timeForBacktrace);
+            IList<RoomAssetHistory> hisList = this.sc.RoomAssetHistoryService.GetByRoom2RoomId(CurrentEntity, timeForBacktrace);
             foreach (RoomAssetHistory his in hisList)
             {
                 if (his.Date.Date <= timeForBacktrace)
@@ -600,7 +588,7 @@ namespace RoomM.DeskApp.ViewModels
             MessageBoxResult result = System.Windows.MessageBox.Show("Bạn muốn sửa thông tin phòng?", "Xác nhận sửa thông tin", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
-                // if (roomService.isUniqueName(CurrentEntity.Name.Trim()))
+                // if (roomRepo.isUniqueName(CurrentEntity.Name.Trim()))
                 // {
                     this.SaveCurrentEntity();
                     MainWindowViewModel.instance.ChangeStateToComplete("Cập nhật thành công");
@@ -617,7 +605,7 @@ namespace RoomM.DeskApp.ViewModels
 
         protected override void NewCommandHandler()
         {
-            if (roomService.isUniqueName(newEntityViewModel.NewEntity.Name.Trim()))
+            if (this.sc.RoomService.isUniqueName(newEntityViewModel.NewEntity.Name.Trim()))
             {
                 this.CloseNewEntityDialog();
                 base.NewCommandHandler();

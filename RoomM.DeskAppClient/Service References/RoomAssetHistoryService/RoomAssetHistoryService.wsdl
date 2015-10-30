@@ -37,12 +37,6 @@
   <wsdl:message name="IRoomAssetHistoryService_Edit_OutputMessage">
     <wsdl:part name="parameters" element="tns:EditResponse" />
   </wsdl:message>
-  <wsdl:message name="IRoomAssetHistoryService_Save_InputMessage">
-    <wsdl:part name="parameters" element="tns:Save" />
-  </wsdl:message>
-  <wsdl:message name="IRoomAssetHistoryService_Save_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SaveResponse" />
-  </wsdl:message>
   <wsdl:message name="IRoomAssetHistoryService_GetSingle_InputMessage">
     <wsdl:part name="parameters" element="tns:GetSingle" />
   </wsdl:message>
@@ -81,10 +75,6 @@
     <wsdl:operation name="Edit">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_RoomAssetHistory/Edit" message="tns:IRoomAssetHistoryService_Edit_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_RoomAssetHistory/EditResponse" message="tns:IRoomAssetHistoryService_Edit_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="Save">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_RoomAssetHistory/Save" message="tns:IRoomAssetHistoryService_Save_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_RoomAssetHistory/SaveResponse" message="tns:IRoomAssetHistoryService_Save_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetSingle">
       <wsdl:input wsaw:Action="http://tempuri.org/IRoomAssetHistoryService/GetSingle" message="tns:IRoomAssetHistoryService_GetSingle_InputMessage" />
@@ -139,15 +129,6 @@
     </wsdl:operation>
     <wsdl:operation name="Edit">
       <soap:operation soapAction="http://tempuri.org/IServiceOf_RoomAssetHistory/Edit" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="Save">
-      <soap:operation soapAction="http://tempuri.org/IServiceOf_RoomAssetHistory/Save" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

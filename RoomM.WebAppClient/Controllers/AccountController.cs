@@ -11,7 +11,6 @@ using WebMatrix.WebData;
 
 using RoomM.WebApp.Filters;
 using RoomM.WebApp.Models;
-using RoomM.Repositories.RepositoryFramework;
 using RoomM.Repositories;
 using RoomM.Models;
 
@@ -22,7 +21,12 @@ namespace RoomM.WebApp.Controllers
     public class AccountController : Controller
     {
 
-        IStaffRepository staffRep = RepositoryFactory.GetRepository<IStaffRepository, Staff>();
+        private UnitOfWork uow;
+
+        public AccountController(EFDataContext _context)
+        {
+            this.uow = new UnitOfWork(_context);
+        }
 
         //
         // GET: /Account/Login
@@ -43,7 +47,7 @@ namespace RoomM.WebApp.Controllers
         public ActionResult Login(LoginModel model, string returnUrl)
         {
 
-            if (staffRep.UserNameIsWorking(model.UserName) &&
+            if (this.uow.StaffRepository.UserNameIsWorking(model.UserName) &&
                 ModelState.IsValid &&
                 WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
@@ -85,7 +89,7 @@ namespace RoomM.WebApp.Controllers
         public ActionResult Register(RegisterModel model)
         {
 
-            if (ModelState.IsValid && !staffRep.IsExists(model.UserName))
+            if (ModelState.IsValid && !this.uow.StaffRepository.IsExists(model.UserName))
             {
                 // Attempt to register the user
                 try
@@ -94,7 +98,7 @@ namespace RoomM.WebApp.Controllers
                     WebSecurity.Login(model.UserName, model.Password);
 
                     // save to staffs table
-                    staffRep.Add(new Staff
+                    this.uow.StaffRepository.Add(new Staff
                     {
                         Name = model.UserName,
                         Password = model.Password,
@@ -106,7 +110,7 @@ namespace RoomM.WebApp.Controllers
                         UserName = model.UserName
                     });
 
-                    staffRep.Save();
+                    this.uow.Commit();
 
                     return RedirectToAction("Index", "Home");
                 }

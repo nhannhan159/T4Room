@@ -24,6 +24,8 @@ namespace RoomM.DeskApp.UIHelper
         private List<T> entitiesList;
         private ICollectionView entitiesView;
         private string namefilter;
+
+        protected ServicesCollector sc;
         protected bool canExecuteSaveCommand;
         protected bool canExecuteNewCommand;
         protected NewEntityViewModel<T> newEntityViewModel;
@@ -31,6 +33,7 @@ namespace RoomM.DeskApp.UIHelper
         protected EditableViewModel()
             : base()
         {
+            this.sc = new ServicesCollector();
             this.currentEntity = default(T);
             this.entitiesList = this.GetEntitiesList();
             this.entitiesView = CollectionViewSource.GetDefaultView(this.entitiesList);
