@@ -109,6 +109,7 @@ namespace RoomM.DeskApp.ViewModels
 
         private void rebuildStaffData(DateTime from, DateTime to)
         { 
+            /*
             List<DictionaryEntry> staffDics = this.sc.StaffService.GetStaffLimitByRegister_ListDictionaryEntry(10, from, to);
 
             if (null == chartStaffItems)
@@ -125,10 +126,12 @@ namespace RoomM.DeskApp.ViewModels
                 });
 
             }
+            */
         }
 
         private void rebuildRegisterData(DateTime from, DateTime to)
         {
+            /*
             List<DictionaryEntry> roomDics = this.sc.RoomService.GetRoomLimitByRegister(10, from, to);
 
             if (null == chartRegisterItems)
@@ -145,6 +148,7 @@ namespace RoomM.DeskApp.ViewModels
                 });
 
             }
+            */
         }
     }
 
