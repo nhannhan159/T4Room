@@ -21,14 +21,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="net.tcp://localhost:8282/Rooms/Implement/StaffService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="net.tcp://localhost:8282/StaffService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="bf1f783f-4eca-406d-b812-ed06eebe4981" SourceId="1" SourceUrl="net.tcp://localhost:8282/Rooms/Implement/StaffService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="9230ddcd-44b5-4020-925d-c364159c4e2b" SourceId="1" SourceUrl="net.tcp://localhost:8282/Rooms/Implement/StaffService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="23f16b3f-176b-4341-a5af-da56f3e13f5c" SourceId="1" SourceUrl="net.tcp://localhost:8282/Rooms/Implement/StaffService/mex" />
-    <MetadataFile FileName="RoomM.Models.xsd" MetadataType="Schema" ID="b85e0ba8-ec59-4c61-87fd-65d53f3ad7a1" SourceId="1" SourceUrl="net.tcp://localhost:8282/Rooms/Implement/StaffService/mex" />
-    <MetadataFile FileName="System.Collections.xsd" MetadataType="Schema" ID="78f04bc6-2917-45b9-a483-3a48924cef45" SourceId="1" SourceUrl="net.tcp://localhost:8282/Rooms/Implement/StaffService/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="58320ca9-f52c-4596-a9c0-a5ef273bd134" SourceId="1" SourceUrl="net.tcp://localhost:8282/StaffService/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="078d11bc-e47e-4996-b81b-0739c4795bb3" SourceId="1" SourceUrl="net.tcp://localhost:8282/StaffService/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="7cd081cd-7aff-4923-9889-b5a5ca2c920c" SourceId="1" SourceUrl="net.tcp://localhost:8282/StaffService/mex" />
+    <MetadataFile FileName="RoomM.Models1.xsd" MetadataType="Schema" ID="938d5a56-a008-4bf9-8e7e-a9999abaef15" SourceId="1" SourceUrl="net.tcp://localhost:8282/StaffService/mex" />
+    <MetadataFile FileName="System.Collections1.xsd" MetadataType="Schema" ID="f0fab6bd-554d-41d3-b3b4-1c2a5f486810" SourceId="1" SourceUrl="net.tcp://localhost:8282/StaffService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

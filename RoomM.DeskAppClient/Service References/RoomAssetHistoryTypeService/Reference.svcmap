@@ -21,13 +21,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="net.tcp://localhost:8282/Assets/Implement/RoomAssetHistoryTypeService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="net.tcp://localhost:8282/RoomAssetHistoryTypeService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="1a868324-de9f-4124-b0f6-6e3bdade5218" SourceId="1" SourceUrl="net.tcp://localhost:8282/Assets/Implement/RoomAssetHistoryTypeService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="cb3ba4be-73fe-4977-9762-bd9551752757" SourceId="1" SourceUrl="net.tcp://localhost:8282/Assets/Implement/RoomAssetHistoryTypeService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="d039699b-3f66-496b-a51a-7419c199172a" SourceId="1" SourceUrl="net.tcp://localhost:8282/Assets/Implement/RoomAssetHistoryTypeService/mex" />
-    <MetadataFile FileName="RoomM.Models.xsd" MetadataType="Schema" ID="0e40cf23-e0d9-4539-8bb9-b58c8bed9a14" SourceId="1" SourceUrl="net.tcp://localhost:8282/Assets/Implement/RoomAssetHistoryTypeService/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="ecb31a20-593a-463b-9bd1-3c4872c37bb4" SourceId="1" SourceUrl="net.tcp://localhost:8282/RoomAssetHistoryTypeService/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="e9e8266b-c07e-4c7a-8ec1-58c4a237874b" SourceId="1" SourceUrl="net.tcp://localhost:8282/RoomAssetHistoryTypeService/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="3dfed9ab-c51b-43a6-8e45-9d9255fadebe" SourceId="1" SourceUrl="net.tcp://localhost:8282/RoomAssetHistoryTypeService/mex" />
+    <MetadataFile FileName="RoomM.Models1.xsd" MetadataType="Schema" ID="e9a79a1a-9626-4b83-a137-ba9c1c512642" SourceId="1" SourceUrl="net.tcp://localhost:8282/RoomAssetHistoryTypeService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

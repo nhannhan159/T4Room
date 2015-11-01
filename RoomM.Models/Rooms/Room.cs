@@ -5,26 +5,32 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace RoomM.Models
 {
-    public class Room : Detachable<Room>
+    [DataContract]
+    public class Room : EntityBase
     {
+        [DataMember]
         [Required]
         [Display(Name = "Tên phòng")]
         [StringLength(120)]
         public string Name { get; set; }
 
+        [DataMember]
         [Display(Name = "Ngày tạo")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DateCreate { get; set; }
 
+        [DataMember]
         [Display(Name = "Loại phòng")]
         public Int64 RoomTypeId { get; set; }
 
         public virtual RoomType RoomType { get; set; }
 
+        [DataMember]
         public Boolean IsUsing { get; set; }
 
         public Boolean IsHaveRegistered
@@ -41,14 +47,15 @@ namespace RoomM.Models
 
         public string NotifyText
         {
-            get { return this.IsHaveRegistered ? "!!!" : ""; }
+            get { return "xxx"; return this.IsHaveRegistered ? "!!!" : ""; }
         }
 
         public string NotifyToolTip
         {
-            get { return this.IsHaveRegistered ? "Đang có người đăng ký cần xác nhận" : ""; }
+            get { return "aaa"; return this.IsHaveRegistered ? "Đang có người đăng ký cần xác nhận" : ""; }
         }
 
+        [DataMember]
         public string Description { get; set; }
 
         public virtual ICollection<RoomAsset> RoomAssets { get; set; }
@@ -68,20 +75,5 @@ namespace RoomM.Models
         {
             return ID + "#" + Name + "#RoomType:" + RoomTypeId + "#Status: " + IsUsing;
         }
-
-        public override Room GetDetached()
-        {
-            Room detached = new Room();
-            detached.ID = this.ID;
-            detached.Name = this.Name;
-            detached.DateCreate = this.DateCreate;
-            detached.RoomTypeId = this.RoomTypeId;
-            detached.Description = this.Description;
-            detached.IsUsing = this.IsUsing;
-            //detached.IsHaveRegistered = this.IsHaveRegistered;
-            detached.RoomType = this.RoomType.GetDetached();
-            return detached;
-        }
-
     }
 }

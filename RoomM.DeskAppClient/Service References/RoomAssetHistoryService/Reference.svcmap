@@ -21,13 +21,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="net.tcp://localhost:8282/Assets/Implement/RoomAssetHistoryService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="net.tcp://localhost:8282/RoomAssetHistoryService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="e4a916e4-89bb-4f88-a8bb-6e9159f182c3" SourceId="1" SourceUrl="net.tcp://localhost:8282/Assets/Implement/RoomAssetHistoryService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="2c102ae8-5ff7-4f3d-8a27-c64af3d3aa9b" SourceId="1" SourceUrl="net.tcp://localhost:8282/Assets/Implement/RoomAssetHistoryService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="87890a99-37a2-4b28-aa31-b956db5dff65" SourceId="1" SourceUrl="net.tcp://localhost:8282/Assets/Implement/RoomAssetHistoryService/mex" />
-    <MetadataFile FileName="RoomM.Models.xsd" MetadataType="Schema" ID="54a86248-7c66-4c44-b008-d9382fc81fa5" SourceId="1" SourceUrl="net.tcp://localhost:8282/Assets/Implement/RoomAssetHistoryService/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="c55dac90-f2eb-42c8-a395-12c33896c81e" SourceId="1" SourceUrl="net.tcp://localhost:8282/RoomAssetHistoryService/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="5c65ee78-80d0-4580-9600-1a0cc7b5b933" SourceId="1" SourceUrl="net.tcp://localhost:8282/RoomAssetHistoryService/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="1f550fd8-7414-45f0-9345-ca8bc38387c2" SourceId="1" SourceUrl="net.tcp://localhost:8282/RoomAssetHistoryService/mex" />
+    <MetadataFile FileName="RoomM.Models1.xsd" MetadataType="Schema" ID="4c67c655-893a-4c11-be9d-e5f3caab61e1" SourceId="1" SourceUrl="net.tcp://localhost:8282/RoomAssetHistoryService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

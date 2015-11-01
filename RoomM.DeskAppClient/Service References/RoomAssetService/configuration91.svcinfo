@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="8n7iLtSSRKekofaXwgcxBQG2MTo=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="7WknOJZwm8OFJB1ldWKg67gIMdY=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IRoomAssetService">
       <properties>
@@ -227,10 +227,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IRoomAssetService" contract="RoomAssetService.IRoomAssetService" bindingType="basicHttpBinding" address="http://localhost:62978/Rooms/Implement/RoomAssetService" bindingConfiguration="BasicHttpBinding_IRoomAssetService">
+    <endpoint name="BasicHttpBinding_IRoomAssetService" contract="RoomAssetService.IRoomAssetService" bindingType="basicHttpBinding" address="http://localhost:62978/RoomAssetService" bindingConfiguration="BasicHttpBinding_IRoomAssetService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:62978/Rooms/Implement/RoomAssetService</serializedValue>
+          <serializedValue>http://localhost:62978/RoomAssetService</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -312,10 +312,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_IRoomAssetService" contract="RoomAssetService.IRoomAssetService" bindingType="netTcpBinding" address="net.tcp://localhost:8282/Rooms/Implement/RoomAssetService" bindingConfiguration="NetTcpBinding_IRoomAssetService">
+    <endpoint name="NetTcpBinding_IRoomAssetService" contract="RoomAssetService.IRoomAssetService" bindingType="netTcpBinding" address="net.tcp://localhost:8282/RoomAssetService" bindingConfiguration="NetTcpBinding_IRoomAssetService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://localhost:8282/Rooms/Implement/RoomAssetService</serializedValue>
+          <serializedValue>net.tcp://localhost:8282/RoomAssetService</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

@@ -16,7 +16,7 @@ namespace RoomM.WebService
         /// </summary>
         public override void Load()
         {
-            this.Bind<EFDataContext>().ToSelf();
+            this.Bind<EFDataContext>().ToSelf().InTransientScope();
         }
     }
 }

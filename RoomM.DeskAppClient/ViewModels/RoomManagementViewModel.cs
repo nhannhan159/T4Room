@@ -189,7 +189,7 @@ namespace RoomM.DeskApp.ViewModels
             }
             else
             {
-                this.currentRoomCalendarView = CollectionViewSource.GetDefaultView(this.CurrentEntity.RoomCalendars);
+                this.currentRoomCalendarView = CollectionViewSource.GetDefaultView(this.sc.RoomCalendarService.GetByRoomId(this.CurrentEntity.ID));
                 this.currentRoomAssetView = CollectionViewSource.GetDefaultView(this.sc.RoomAssetService.GetByRoomId(this.CurrentEntity.ID));
                 this.currentRoomHistoryView = CollectionViewSource.GetDefaultView(this.sc.RoomAssetHistoryService.GetByRoomId(this.CurrentEntity.ID));
             }

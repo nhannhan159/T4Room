@@ -197,12 +197,12 @@
   </wsdl:binding>
   <wsdl:service name="RoomTypeService">
     <wsdl:port name="BasicHttpBinding_IRoomTypeService" binding="tns:BasicHttpBinding_IRoomTypeService">
-      <soap:address location="http://localhost:62978/Rooms/Implement/RoomTypeService" />
+      <soap:address location="http://localhost:62978/RoomTypeService" />
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IRoomTypeService" binding="tns:NetTcpBinding_IRoomTypeService">
-      <soap12:address location="net.tcp://localhost:8282/Rooms/Implement/RoomTypeService" />
+      <soap12:address location="net.tcp://localhost:8282/RoomTypeService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8282/Rooms/Implement/RoomTypeService</wsa10:Address>
+        <wsa10:Address>net.tcp://localhost:8282/RoomTypeService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>

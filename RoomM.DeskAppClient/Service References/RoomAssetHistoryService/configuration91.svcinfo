@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="SQ3LHm3nHcx4EBClPxmgSvcYTlc=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="qtXu+6buJ+XWnCf2pjbbaGAOvt0=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IRoomAssetHistoryService">
       <properties>
@@ -227,10 +227,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IRoomAssetHistoryService" contract="RoomAssetHistoryService.IRoomAssetHistoryService" bindingType="basicHttpBinding" address="http://localhost:62978/Assets/Implement/RoomAssetHistoryService" bindingConfiguration="BasicHttpBinding_IRoomAssetHistoryService">
+    <endpoint name="BasicHttpBinding_IRoomAssetHistoryService" contract="RoomAssetHistoryService.IRoomAssetHistoryService" bindingType="basicHttpBinding" address="http://localhost:62978/RoomAssetHistoryService" bindingConfiguration="BasicHttpBinding_IRoomAssetHistoryService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:62978/Assets/Implement/RoomAssetHistoryService</serializedValue>
+          <serializedValue>http://localhost:62978/RoomAssetHistoryService</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -312,10 +312,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_IRoomAssetHistoryService" contract="RoomAssetHistoryService.IRoomAssetHistoryService" bindingType="netTcpBinding" address="net.tcp://localhost:8282/Assets/Implement/RoomAssetHistoryService" bindingConfiguration="NetTcpBinding_IRoomAssetHistoryService">
+    <endpoint name="NetTcpBinding_IRoomAssetHistoryService" contract="RoomAssetHistoryService.IRoomAssetHistoryService" bindingType="netTcpBinding" address="net.tcp://localhost:8282/RoomAssetHistoryService" bindingConfiguration="NetTcpBinding_IRoomAssetHistoryService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://localhost:8282/Assets/Implement/RoomAssetHistoryService</serializedValue>
+          <serializedValue>net.tcp://localhost:8282/RoomAssetHistoryService</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

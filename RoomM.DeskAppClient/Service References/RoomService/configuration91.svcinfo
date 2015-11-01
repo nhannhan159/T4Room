@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="Bwny0ok3t4c6g1DkVS1A8CYiuNc=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="auMZucH+WcO2igtpXl3hWtZ4G3Y=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IRoomService">
       <properties>
@@ -227,10 +227,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IRoomService" contract="RoomService.IRoomService" bindingType="basicHttpBinding" address="http://localhost:62978/Rooms/Implement/RoomService" bindingConfiguration="BasicHttpBinding_IRoomService">
+    <endpoint name="BasicHttpBinding_IRoomService" contract="RoomService.IRoomService" bindingType="basicHttpBinding" address="http://localhost:62978/RoomService" bindingConfiguration="BasicHttpBinding_IRoomService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:62978/Rooms/Implement/RoomService</serializedValue>
+          <serializedValue>http://localhost:62978/RoomService</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -312,10 +312,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_IRoomService" contract="RoomService.IRoomService" bindingType="netTcpBinding" address="net.tcp://localhost:8282/Rooms/Implement/RoomService" bindingConfiguration="NetTcpBinding_IRoomService">
+    <endpoint name="NetTcpBinding_IRoomService" contract="RoomService.IRoomService" bindingType="netTcpBinding" address="net.tcp://localhost:8282/RoomService" bindingConfiguration="NetTcpBinding_IRoomService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://localhost:8282/Rooms/Implement/RoomService</serializedValue>
+          <serializedValue>net.tcp://localhost:8282/RoomService</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

@@ -310,12 +310,12 @@
   </wsdl:binding>
   <wsdl:service name="RoomService">
     <wsdl:port name="BasicHttpBinding_IRoomService" binding="tns:BasicHttpBinding_IRoomService">
-      <soap:address location="http://localhost:62978/Rooms/Implement/RoomService" />
+      <soap:address location="http://localhost:62978/RoomService" />
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IRoomService" binding="tns:NetTcpBinding_IRoomService">
-      <soap12:address location="net.tcp://localhost:8282/Rooms/Implement/RoomService" />
+      <soap12:address location="net.tcp://localhost:8282/RoomService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8282/Rooms/Implement/RoomService</wsa10:Address>
+        <wsa10:Address>net.tcp://localhost:8282/RoomService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>

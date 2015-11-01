@@ -22,7 +22,7 @@ namespace RoomM.WebService
 
         public StaffType GetSingle(int staffTypeId)
         {
-            return this.uow.StaffTypeRepository.GetSingle(staffTypeId).GetDetached();
+            return this.uow.StaffTypeRepository.GetSingle(staffTypeId);
         }
     }
 }

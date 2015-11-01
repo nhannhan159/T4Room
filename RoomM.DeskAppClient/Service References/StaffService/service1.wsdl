@@ -394,12 +394,12 @@
   </wsdl:binding>
   <wsdl:service name="StaffService">
     <wsdl:port name="BasicHttpBinding_IStaffService" binding="tns:BasicHttpBinding_IStaffService">
-      <soap:address location="http://localhost:62978/Rooms/Implement/StaffService" />
+      <soap:address location="http://localhost:62978/StaffService" />
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IStaffService" binding="tns:NetTcpBinding_IStaffService">
-      <soap12:address location="net.tcp://localhost:8282/Rooms/Implement/StaffService" />
+      <soap12:address location="net.tcp://localhost:8282/StaffService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8282/Rooms/Implement/StaffService</wsa10:Address>
+        <wsa10:Address>net.tcp://localhost:8282/StaffService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>

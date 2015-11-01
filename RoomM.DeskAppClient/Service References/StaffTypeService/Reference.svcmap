@@ -21,13 +21,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="net.tcp://localhost:8282/Staffs/Implement/StaffTypeService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="net.tcp://localhost:8282/StaffTypeService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="a3d3b038-fb74-4430-8362-f6d0230a4475" SourceId="1" SourceUrl="net.tcp://localhost:8282/Staffs/Implement/StaffTypeService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="e24ed01e-8dc3-4f4b-9f5a-d641cbe38e01" SourceId="1" SourceUrl="net.tcp://localhost:8282/Staffs/Implement/StaffTypeService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="96574a31-7a34-4c12-8cb4-3be359db4116" SourceId="1" SourceUrl="net.tcp://localhost:8282/Staffs/Implement/StaffTypeService/mex" />
-    <MetadataFile FileName="RoomM.Models.xsd" MetadataType="Schema" ID="ca6afc90-9180-42d0-a443-0fb07c1f56e8" SourceId="1" SourceUrl="net.tcp://localhost:8282/Staffs/Implement/StaffTypeService/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="1df5b6c3-fba4-4489-9527-81c519405849" SourceId="1" SourceUrl="net.tcp://localhost:8282/StaffTypeService/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="cf44193e-3e13-406e-a99e-9cdacbd88e27" SourceId="1" SourceUrl="net.tcp://localhost:8282/StaffTypeService/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="4ec1f31e-f908-42ce-bb04-bbad7340f435" SourceId="1" SourceUrl="net.tcp://localhost:8282/StaffTypeService/mex" />
+    <MetadataFile FileName="RoomM.Models1.xsd" MetadataType="Schema" ID="5f51fa85-c768-4e6d-9ddd-36a9de2e58ff" SourceId="1" SourceUrl="net.tcp://localhost:8282/StaffTypeService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

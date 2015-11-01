@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="menBe2sUsjB9C3kKR9gmBLbOy1k=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="XJeBbYO8SvVdgiZ0jzqSBd5sbYU=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IAssetService">
       <properties>
@@ -227,10 +227,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IAssetService" contract="AssetService.IAssetService" bindingType="basicHttpBinding" address="http://localhost:62978/Assets/Implement/AssetService" bindingConfiguration="BasicHttpBinding_IAssetService">
+    <endpoint name="BasicHttpBinding_IAssetService" contract="AssetService.IAssetService" bindingType="basicHttpBinding" address="http://localhost:62978/AssetService" bindingConfiguration="BasicHttpBinding_IAssetService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:62978/Assets/Implement/AssetService</serializedValue>
+          <serializedValue>http://localhost:62978/AssetService</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -312,10 +312,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_IAssetService" contract="AssetService.IAssetService" bindingType="netTcpBinding" address="net.tcp://localhost:8282/Assets/Implement/AssetService" bindingConfiguration="NetTcpBinding_IAssetService">
+    <endpoint name="NetTcpBinding_IAssetService" contract="AssetService.IAssetService" bindingType="netTcpBinding" address="net.tcp://localhost:8282/AssetService" bindingConfiguration="NetTcpBinding_IAssetService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://localhost:8282/Assets/Implement/AssetService</serializedValue>
+          <serializedValue>net.tcp://localhost:8282/AssetService</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

@@ -21,13 +21,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="net.tcp://localhost:8282/Rooms/Implement/RoomAssetService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="net.tcp://localhost:8282/RoomAssetService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="26e53928-1853-44c8-8151-c7156f61f3fa" SourceId="1" SourceUrl="net.tcp://localhost:8282/Rooms/Implement/RoomAssetService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="1c26df41-8253-4664-a207-e6596ffe1cc7" SourceId="1" SourceUrl="net.tcp://localhost:8282/Rooms/Implement/RoomAssetService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="abc370f9-519e-4b26-a530-65192562e026" SourceId="1" SourceUrl="net.tcp://localhost:8282/Rooms/Implement/RoomAssetService/mex" />
-    <MetadataFile FileName="RoomM.Models.xsd" MetadataType="Schema" ID="ec8d7b08-b678-4f3c-8ad0-32cf17620f28" SourceId="1" SourceUrl="net.tcp://localhost:8282/Rooms/Implement/RoomAssetService/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="39f31861-2a1a-4427-9ebd-d5031ece1163" SourceId="1" SourceUrl="net.tcp://localhost:8282/RoomAssetService/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="31c9def6-d2a6-47ba-acc4-e9a2aa407e59" SourceId="1" SourceUrl="net.tcp://localhost:8282/RoomAssetService/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="0d4b51d4-3ce0-4e76-a609-56189883183a" SourceId="1" SourceUrl="net.tcp://localhost:8282/RoomAssetService/mex" />
+    <MetadataFile FileName="RoomM.Models1.xsd" MetadataType="Schema" ID="88aa013e-d077-4390-9d06-3b2da027f4f4" SourceId="1" SourceUrl="net.tcp://localhost:8282/RoomAssetService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

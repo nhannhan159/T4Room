@@ -197,12 +197,12 @@
   </wsdl:binding>
   <wsdl:service name="StaffTypeService">
     <wsdl:port name="BasicHttpBinding_IStaffTypeService" binding="tns:BasicHttpBinding_IStaffTypeService">
-      <soap:address location="http://localhost:62978/Staffs/Implement/StaffTypeService" />
+      <soap:address location="http://localhost:62978/StaffTypeService" />
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IStaffTypeService" binding="tns:NetTcpBinding_IStaffTypeService">
-      <soap12:address location="net.tcp://localhost:8282/Staffs/Implement/StaffTypeService" />
+      <soap12:address location="net.tcp://localhost:8282/StaffTypeService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8282/Staffs/Implement/StaffTypeService</wsa10:Address>
+        <wsa10:Address>net.tcp://localhost:8282/StaffTypeService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>

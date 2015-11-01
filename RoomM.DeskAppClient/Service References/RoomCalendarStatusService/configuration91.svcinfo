@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="O5Si8c6k2PFUl4G4xbdmRdsOspA=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="C56h8tBD9k+VKqfTTQse6JNQW0Y=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IRoomCalendarStatusService">
       <properties>
@@ -227,10 +227,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IRoomCalendarStatusService" contract="RoomCalendarStatusService.IRoomCalendarStatusService" bindingType="basicHttpBinding" address="http://localhost:62978/Rooms/Implement/RoomCalendarStatusService" bindingConfiguration="BasicHttpBinding_IRoomCalendarStatusService">
+    <endpoint name="BasicHttpBinding_IRoomCalendarStatusService" contract="RoomCalendarStatusService.IRoomCalendarStatusService" bindingType="basicHttpBinding" address="http://localhost:62978/RoomCalendarStatusService" bindingConfiguration="BasicHttpBinding_IRoomCalendarStatusService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:62978/Rooms/Implement/RoomCalendarStatusService</serializedValue>
+          <serializedValue>http://localhost:62978/RoomCalendarStatusService</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -312,10 +312,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_IRoomCalendarStatusService" contract="RoomCalendarStatusService.IRoomCalendarStatusService" bindingType="netTcpBinding" address="net.tcp://localhost:8282/Rooms/Implement/RoomCalendarStatusService" bindingConfiguration="NetTcpBinding_IRoomCalendarStatusService">
+    <endpoint name="NetTcpBinding_IRoomCalendarStatusService" contract="RoomCalendarStatusService.IRoomCalendarStatusService" bindingType="netTcpBinding" address="net.tcp://localhost:8282/RoomCalendarStatusService" bindingConfiguration="NetTcpBinding_IRoomCalendarStatusService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://localhost:8282/Rooms/Implement/RoomCalendarStatusService</serializedValue>
+          <serializedValue>net.tcp://localhost:8282/RoomCalendarStatusService</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

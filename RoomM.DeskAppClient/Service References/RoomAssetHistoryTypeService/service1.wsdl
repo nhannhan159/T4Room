@@ -197,12 +197,12 @@
   </wsdl:binding>
   <wsdl:service name="RoomAssetHistoryTypeService">
     <wsdl:port name="BasicHttpBinding_IRoomAssetHistoryTypeService" binding="tns:BasicHttpBinding_IRoomAssetHistoryTypeService">
-      <soap:address location="http://localhost:62978/Assets/Implement/RoomAssetHistoryTypeService" />
+      <soap:address location="http://localhost:62978/RoomAssetHistoryTypeService" />
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IRoomAssetHistoryTypeService" binding="tns:NetTcpBinding_IRoomAssetHistoryTypeService">
-      <soap12:address location="net.tcp://localhost:8282/Assets/Implement/RoomAssetHistoryTypeService" />
+      <soap12:address location="net.tcp://localhost:8282/RoomAssetHistoryTypeService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8282/Assets/Implement/RoomAssetHistoryTypeService</wsa10:Address>
+        <wsa10:Address>net.tcp://localhost:8282/RoomAssetHistoryTypeService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>

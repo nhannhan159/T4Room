@@ -5,12 +5,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace RoomM.Models
 {
-    public class RoomCalendarStatus : Detachable<RoomCalendarStatus>
+    [DataContract]
+    public class RoomCalendarStatus : EntityBase
     {
+        [DataMember]
         public string Name { get; set; }
+
         public virtual ICollection<RoomCalendar> RoomCalendars { get; set; }
 
         public RoomCalendarStatus()
@@ -22,14 +26,6 @@ namespace RoomM.Models
         {
             this.Name = name;
             this.RoomCalendars = new List<RoomCalendar>();
-        }
-
-        public override RoomCalendarStatus GetDetached()
-        {
-            RoomCalendarStatus detached = new RoomM.Models.RoomCalendarStatus();
-            detached.ID = this.ID;
-            detached.Name = this.Name;
-            return detached;
         }
     }
 }

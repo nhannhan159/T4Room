@@ -226,12 +226,12 @@
   </wsdl:binding>
   <wsdl:service name="RoomCalendarStatusService">
     <wsdl:port name="BasicHttpBinding_IRoomCalendarStatusService" binding="tns:BasicHttpBinding_IRoomCalendarStatusService">
-      <soap:address location="http://localhost:62978/Rooms/Implement/RoomCalendarStatusService" />
+      <soap:address location="http://localhost:62978/RoomCalendarStatusService" />
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IRoomCalendarStatusService" binding="tns:NetTcpBinding_IRoomCalendarStatusService">
-      <soap12:address location="net.tcp://localhost:8282/Rooms/Implement/RoomCalendarStatusService" />
+      <soap12:address location="net.tcp://localhost:8282/RoomCalendarStatusService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8282/Rooms/Implement/RoomCalendarStatusService</wsa10:Address>
+        <wsa10:Address>net.tcp://localhost:8282/RoomCalendarStatusService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>

@@ -5,12 +5,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace RoomM.Models
 {
-    public class RoomType : Detachable<RoomType>
+    [DataContract]
+    public class RoomType : EntityBase
     {
+        [DataMember]
         public string Name { get; set; }
+
         public virtual ICollection<Room> Rooms { get; set; }
 
         public RoomType()
@@ -22,14 +26,6 @@ namespace RoomM.Models
         {
             this.Name = name;
             this.Rooms = new List<Room>();
-        }
-
-        public override RoomType GetDetached()
-        {
-            RoomType detached = new RoomType();
-            detached.ID = this.ID;
-            detached.Name = this.Name;
-            return detached;
         }
     }
 }

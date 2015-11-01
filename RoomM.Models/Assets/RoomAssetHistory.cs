@@ -5,24 +5,35 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace RoomM.Models
 {
-    public class RoomAssetHistory : Detachable<RoomAssetHistory>
+    [DataContract]
+    public class RoomAssetHistory : EntityBase
     {
+        [DataMember]
         public Int64 AssetHistoryTypeId { get; set; }
+
         public virtual HistoryType HistoryType { get; set; }
-        
+
+        [DataMember]
         public DateTime Date { get; set; }
 
+        [DataMember]
         public Int64 AssetId { get; set; }
+
         public virtual Asset Asset { get; set; }
 
+        [DataMember]
         public Int64 RoomId { get; set; }
+
         public virtual Room Room { get; set; }
 
+        [DataMember]
         public string Room2 { get; set; }
 
+        [DataMember]
         public int Amount { get; set; }
 
         public override string ToString()
@@ -41,23 +52,6 @@ namespace RoomM.Models
         }
 
         public RoomAssetHistory()
-        {
-        }
-
-        public override RoomAssetHistory GetDetached()
-        {
-            RoomAssetHistory detached = new RoomAssetHistory();
-            detached.ID = this.ID;
-            detached.AssetHistoryTypeId = this.AssetHistoryTypeId;
-            detached.HistoryType = this.HistoryType.GetDetached();
-            detached.Date = this.Date;
-            detached.AssetId = this.AssetId;
-            detached.Asset = this.Asset.GetDetached();
-            detached.RoomId = this.RoomId;
-            detached.Room = this.Room.GetDetached();
-            detached.Room2 = this.Room2;
-            detached.Amount = this.Amount;
-            return detached;
-        }
+        { }
     }
 }

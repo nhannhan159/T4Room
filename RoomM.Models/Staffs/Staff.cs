@@ -5,14 +5,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace RoomM.Models
 {
-    public class Staff : Detachable<Staff>
+    [DataContract]
+    public class Staff : EntityBase
     {
+        [DataMember]
         [StringLength(50)]
         public string Name { get; set; }
 
+        [DataMember]
         public bool Sex { get; set; }
 
         public string SexName
@@ -20,16 +24,20 @@ namespace RoomM.Models
             get { return this.Sex ? "Nữ" : "Nam"; }
         }
 
+        [DataMember]
         [StringLength(15)]
         public string Phone { get; set; }
 
+        [DataMember]
         public Int64 StaffTypeId { get; set; }
 
         public virtual StaffType StaffType { get; set; }
 
+        [DataMember]
         [StringLength(50)]
         public string UserName { get; set; }
 
+        [DataMember]
         [StringLength(30, MinimumLength = 6)]
         [DataType(DataType.Password)]
         public string PasswordStored { get; set; }
@@ -41,10 +49,13 @@ namespace RoomM.Models
             set { PasswordStored = CryptorEngine.Encrypt(value, true); }
         }
 
+        [DataMember]
         public Boolean IsWorking { get; set; }
 
+        [DataMember]
         public string Description { get; set; }
 
+        [DataMember]
         [Display(Name = "Lan cuoi dang nhap")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime LastLogin { get; set; }
@@ -60,23 +71,6 @@ namespace RoomM.Models
         {
             this.IsWorking = true;
             this.RoomCalendars = new List<RoomCalendar>();
-        }
-
-        public override Staff GetDetached()
-        {
-            Staff detached = new Staff();
-            detached.ID = this.ID;
-            detached.Name = this.Name;
-            detached.Sex = this.Sex;
-            detached.Phone = this.Phone;
-            detached.StaffTypeId = this.StaffTypeId;
-            detached.StaffType = this.StaffType.GetDetached();
-            detached.UserName = this.UserName;
-            detached.PasswordStored = this.PasswordStored;
-            detached.IsWorking = this.IsWorking;
-            detached.Description = this.Description;
-            detached.LastLogin = this.LastLogin;
-            return detached;
         }
     }
 }

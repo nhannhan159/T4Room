@@ -254,12 +254,12 @@
   </wsdl:binding>
   <wsdl:service name="AssetService">
     <wsdl:port name="BasicHttpBinding_IAssetService" binding="tns:BasicHttpBinding_IAssetService">
-      <soap:address location="http://localhost:62978/Assets/Implement/AssetService" />
+      <soap:address location="http://localhost:62978/AssetService" />
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IAssetService" binding="tns:NetTcpBinding_IAssetService">
-      <soap12:address location="net.tcp://localhost:8282/Assets/Implement/AssetService" />
+      <soap12:address location="net.tcp://localhost:8282/AssetService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8282/Assets/Implement/AssetService</wsa10:Address>
+        <wsa10:Address>net.tcp://localhost:8282/AssetService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>

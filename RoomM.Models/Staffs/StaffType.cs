@@ -5,20 +5,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace RoomM.Models
 {
-    public class StaffType : Detachable<StaffType>
+    [DataContract]
+    public class StaffType : EntityBase
     {
+        [DataMember]
         public string Name { get; set; }
-        public virtual ICollection<Staff> Staffs { get; set; }
 
-        public override StaffType GetDetached()
-        {
-            StaffType detached = new StaffType();
-            detached.ID = this.ID;
-            detached.Name = this.Name;
-            return detached;
-        }
+        public virtual ICollection<Staff> Staffs { get; set; }
     }
 }

@@ -5,13 +5,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace RoomM.Models
 {
-    public class Asset : Detachable<Asset>
+    [DataContract]
+    public class Asset : EntityBase
     {
+        [DataMember]
         public string Name { get; set; }
+
+        [DataMember]
         public Boolean IsUsing { get; set; }
+
+        [DataMember]
         public string Description { get; set; }
 
         public virtual ICollection<RoomAsset> RoomAssets { get; set; }
@@ -44,25 +51,5 @@ namespace RoomM.Models
             this.RoomAssets = new List<RoomAsset>();
             this.AssetHistories = new List<RoomAssetHistory>();
         }
-
-        public override Asset GetDetached()
-        {
-            Asset detached = new Asset();
-            detached.ID = this.ID;
-            detached.Name = this.Name;
-            detached.Description = this.Description;
-            detached.IsUsing = this.IsUsing;
-            /*
-            List<RoomAsset> detachedRoomAssets = new List<RoomAsset>();
-            List<RoomAsset> roomAssets = new List<RoomAsset>(this.RoomAssets);
-            foreach (RoomAsset roomAsset in roomAssets)
-            {
-                detachedRoomAssets.Add(roomAsset.GetDetached());
-            }
-            detached.RoomAssets = this.RoomAssets;
-             */
-            return detached;
-        }
-
     }
 }

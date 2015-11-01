@@ -13,19 +13,21 @@ using RoomM.Repositories;
 
 namespace RoomM.WebService
 {
-    public abstract class ServiceBase<T> : IService<T> where T : Detachable<T>, new() 
+    public abstract class ServiceBase<T> : IService<T> where T : EntityBase, new() 
     {
         protected IRepository<T> repo;
         protected UnitOfWork uow;
 
         public ServiceBase(EFDataContext context)
         {
+            context.Configuration.ProxyCreationEnabled = false;
+            //context.Configuration.LazyLoadingEnabled = false;
             this.uow = new UnitOfWork(context);
         }
 
-        public IList<T> GetAll()
+        public virtual IList<T> GetAll()
         {
-            return this.GetDetachedList(this.repo.GetAll());
+            return this.repo.GetAll();
         }
 
         public void Add(T entity)
@@ -50,16 +52,6 @@ namespace RoomM.WebService
         {
             this.repo.Edit(entity);
             this.uow.Commit();
-        }
-
-        protected IList<T> GetDetachedList(IList<T> rawlist)
-        {
-            IList<T> detachedlist = new List<T>();
-            foreach (T rawitem in rawlist)
-            {
-                detachedlist.Add(rawitem.GetDetached());
-            }
-            return detachedlist;
         }
     }
 }

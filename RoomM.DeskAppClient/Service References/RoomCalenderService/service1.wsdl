@@ -393,12 +393,12 @@
   </wsdl:binding>
   <wsdl:service name="RoomCalenderService">
     <wsdl:port name="BasicHttpBinding_IRoomCalenderService" binding="tns:BasicHttpBinding_IRoomCalenderService">
-      <soap:address location="http://localhost:62978/Rooms/Implement/RoomCalenderService" />
+      <soap:address location="http://localhost:62978/RoomCalenderService" />
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IRoomCalenderService" binding="tns:NetTcpBinding_IRoomCalenderService">
-      <soap12:address location="net.tcp://localhost:8282/Rooms/Implement/RoomCalenderService" />
+      <soap12:address location="net.tcp://localhost:8282/RoomCalenderService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8282/Rooms/Implement/RoomCalenderService</wsa10:Address>
+        <wsa10:Address>net.tcp://localhost:8282/RoomCalenderService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>

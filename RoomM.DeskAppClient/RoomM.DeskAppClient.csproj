@@ -277,93 +277,93 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\AssetService\Arrays.xsd">
+    <None Include="Service References\AssetService\Arrays1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\AssetService\RoomM.Models.xsd">
+    <None Include="Service References\AssetService\RoomM.Models1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\AssetService\service.wsdl" />
-    <None Include="Service References\AssetService\service.xsd">
+    <None Include="Service References\AssetService\service1.wsdl" />
+    <None Include="Service References\AssetService\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\AssetService\service1.xsd">
+    <None Include="Service References\AssetService\service21.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomAssetHistoryService\RoomM.Models.xsd">
+    <None Include="Service References\RoomAssetHistoryService\RoomM.Models1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomAssetHistoryService\service.wsdl" />
-    <None Include="Service References\RoomAssetHistoryService\service.xsd">
+    <None Include="Service References\RoomAssetHistoryService\service1.wsdl" />
+    <None Include="Service References\RoomAssetHistoryService\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomAssetHistoryService\service1.xsd">
+    <None Include="Service References\RoomAssetHistoryService\service21.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomAssetHistoryTypeService\RoomM.Models.xsd">
+    <None Include="Service References\RoomAssetHistoryTypeService\RoomM.Models1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomAssetHistoryTypeService\service.wsdl" />
-    <None Include="Service References\RoomAssetHistoryTypeService\service.xsd">
+    <None Include="Service References\RoomAssetHistoryTypeService\service1.wsdl" />
+    <None Include="Service References\RoomAssetHistoryTypeService\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomAssetHistoryTypeService\service1.xsd">
+    <None Include="Service References\RoomAssetHistoryTypeService\service21.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomAssetService\RoomM.Models.xsd">
+    <None Include="Service References\RoomAssetService\RoomM.Models1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomAssetService\service.wsdl" />
-    <None Include="Service References\RoomAssetService\service.xsd">
+    <None Include="Service References\RoomAssetService\service1.wsdl" />
+    <None Include="Service References\RoomAssetService\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomAssetService\service1.xsd">
+    <None Include="Service References\RoomAssetService\service21.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomCalendarStatusService\Arrays.xsd">
+    <None Include="Service References\RoomCalendarStatusService\Arrays1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomCalendarStatusService\RoomM.Models.xsd">
+    <None Include="Service References\RoomCalendarStatusService\RoomM.Models1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomCalendarStatusService\service.wsdl" />
-    <None Include="Service References\RoomCalendarStatusService\service.xsd">
+    <None Include="Service References\RoomCalendarStatusService\service1.wsdl" />
+    <None Include="Service References\RoomCalendarStatusService\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomCalendarStatusService\service1.xsd">
+    <None Include="Service References\RoomCalendarStatusService\service21.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomCalenderService\RoomM.Models.xsd">
+    <None Include="Service References\RoomCalenderService\RoomM.Models1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomCalenderService\service.wsdl" />
-    <None Include="Service References\RoomCalenderService\service.xsd">
+    <None Include="Service References\RoomCalenderService\service1.wsdl" />
+    <None Include="Service References\RoomCalenderService\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomCalenderService\service1.xsd">
+    <None Include="Service References\RoomCalenderService\service21.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomService\RoomM.Models.xsd">
+    <None Include="Service References\RoomService\RoomM.Models1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomService\service.wsdl" />
-    <None Include="Service References\RoomService\service.xsd">
+    <None Include="Service References\RoomService\service1.wsdl" />
+    <None Include="Service References\RoomService\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomService\service1.xsd">
+    <None Include="Service References\RoomService\service21.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomService\System.Collections.xsd">
+    <None Include="Service References\RoomService\System.Collections1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomTypeService\RoomM.Models.xsd">
+    <None Include="Service References\RoomTypeService\RoomM.Models1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomTypeService\service.wsdl" />
-    <None Include="Service References\RoomTypeService\service.xsd">
+    <None Include="Service References\RoomTypeService\service1.wsdl" />
+    <None Include="Service References\RoomTypeService\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomTypeService\service1.xsd">
+    <None Include="Service References\RoomTypeService\service21.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\StaffService\RoomM.DeskApp.StaffService.GetStaffLimitByRegister_IListStaffResponse.datasource">
@@ -372,27 +372,27 @@
     <None Include="Service References\StaffService\RoomM.DeskApp.StaffService.GetStaffLimitByRegister_ListDictionaryEntryResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\StaffService\RoomM.Models.xsd">
+    <None Include="Service References\StaffService\RoomM.Models1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\StaffService\service.wsdl" />
-    <None Include="Service References\StaffService\service.xsd">
+    <None Include="Service References\StaffService\service1.wsdl" />
+    <None Include="Service References\StaffService\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\StaffService\service1.xsd">
+    <None Include="Service References\StaffService\service21.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\StaffService\System.Collections.xsd">
+    <None Include="Service References\StaffService\System.Collections1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\StaffTypeService\RoomM.Models.xsd">
+    <None Include="Service References\StaffTypeService\RoomM.Models1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\StaffTypeService\service.wsdl" />
-    <None Include="Service References\StaffTypeService\service.xsd">
+    <None Include="Service References\StaffTypeService\service1.wsdl" />
+    <None Include="Service References\StaffTypeService\service2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\StaffTypeService\service1.xsd">
+    <None Include="Service References\StaffTypeService\service21.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

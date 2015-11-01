@@ -21,13 +21,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="net.tcp://localhost:8282/Rooms/Implement/RoomCalenderService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="net.tcp://localhost:8282/RoomCalenderService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="81fa4a81-9886-49a7-a73c-6faaa589cfa6" SourceId="1" SourceUrl="net.tcp://localhost:8282/Rooms/Implement/RoomCalenderService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="2b75023a-7f91-47dc-aa6f-ace8c0e3e3db" SourceId="1" SourceUrl="net.tcp://localhost:8282/Rooms/Implement/RoomCalenderService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="5f7974f9-40b9-4ae8-a9e6-36a469e0a5db" SourceId="1" SourceUrl="net.tcp://localhost:8282/Rooms/Implement/RoomCalenderService/mex" />
-    <MetadataFile FileName="RoomM.Models.xsd" MetadataType="Schema" ID="e7504425-71cc-4360-9f88-4515e42a3814" SourceId="1" SourceUrl="net.tcp://localhost:8282/Rooms/Implement/RoomCalenderService/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="327f4848-2c1e-4756-a0ce-05518d324037" SourceId="1" SourceUrl="net.tcp://localhost:8282/RoomCalenderService/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="2b75a34c-3536-409f-96d7-9ca14bd43c18" SourceId="1" SourceUrl="net.tcp://localhost:8282/RoomCalenderService/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="1d655f92-2053-46ce-9322-489380e34315" SourceId="1" SourceUrl="net.tcp://localhost:8282/RoomCalenderService/mex" />
+    <MetadataFile FileName="RoomM.Models1.xsd" MetadataType="Schema" ID="0dcc8fb6-50a9-4b64-95f8-74e2b6cbd561" SourceId="1" SourceUrl="net.tcp://localhost:8282/RoomCalenderService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

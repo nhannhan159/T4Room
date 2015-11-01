@@ -281,12 +281,12 @@
   </wsdl:binding>
   <wsdl:service name="RoomAssetService">
     <wsdl:port name="BasicHttpBinding_IRoomAssetService" binding="tns:BasicHttpBinding_IRoomAssetService">
-      <soap:address location="http://localhost:62978/Rooms/Implement/RoomAssetService" />
+      <soap:address location="http://localhost:62978/RoomAssetService" />
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IRoomAssetService" binding="tns:NetTcpBinding_IRoomAssetService">
-      <soap12:address location="net.tcp://localhost:8282/Rooms/Implement/RoomAssetService" />
+      <soap12:address location="net.tcp://localhost:8282/RoomAssetService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:8282/Rooms/Implement/RoomAssetService</wsa10:Address>
+        <wsa10:Address>net.tcp://localhost:8282/RoomAssetService</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>

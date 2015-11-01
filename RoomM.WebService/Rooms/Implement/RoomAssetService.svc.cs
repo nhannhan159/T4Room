@@ -22,7 +22,7 @@ namespace RoomM.WebService
 
         public RoomAsset GetSingle(Int64 roomDeviceId)
         {
-            return this.uow.RoomAssetRepository.GetSingle(roomDeviceId).GetDetached();
+            return this.uow.RoomAssetRepository.GetSingle(roomDeviceId);
         }
 
         public void AddOrUpdate(Int64 assetId, Int64 roomId, int amount)
@@ -33,12 +33,12 @@ namespace RoomM.WebService
 
         public IList<RoomAsset> GetByRoomId(Int64 id)
         {
-            return this.GetDetachedList(this.uow.RoomAssetRepository.GetByRoomId(id));
+            return this.uow.RoomAssetRepository.GetByRoomId(id);
         }
 
         public IList<RoomAsset> GetByAssetId(Int64 id)
         {
-            return this.GetDetachedList(this.uow.RoomAssetRepository.GetByAssetId(id));
+            return this.uow.RoomAssetRepository.GetByAssetId(id);
         }
     }
 }

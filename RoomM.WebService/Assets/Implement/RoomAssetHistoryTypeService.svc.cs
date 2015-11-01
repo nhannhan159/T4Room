@@ -22,7 +22,7 @@ namespace RoomM.WebService
 
         public HistoryType GetSingle(int typeId)
         {
-            return this.uow.RoomAssetHistoryTypeRepository.GetSingle(typeId).GetDetached();
+            return this.uow.RoomAssetHistoryTypeRepository.GetSingle(typeId);
         }
     }
 }

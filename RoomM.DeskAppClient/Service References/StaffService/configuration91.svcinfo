@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="rne3lIimAZI2EJJSpm5T9gZPELM=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="lgU2C69ZrRib0T/+MWFG6X40+2Y=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IStaffService">
       <properties>
@@ -227,10 +227,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IStaffService" contract="StaffService.IStaffService" bindingType="basicHttpBinding" address="http://localhost:62978/Rooms/Implement/StaffService" bindingConfiguration="BasicHttpBinding_IStaffService">
+    <endpoint name="BasicHttpBinding_IStaffService" contract="StaffService.IStaffService" bindingType="basicHttpBinding" address="http://localhost:62978/StaffService" bindingConfiguration="BasicHttpBinding_IStaffService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:62978/Rooms/Implement/StaffService</serializedValue>
+          <serializedValue>http://localhost:62978/StaffService</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -312,10 +312,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_IStaffService" contract="StaffService.IStaffService" bindingType="netTcpBinding" address="net.tcp://localhost:8282/Rooms/Implement/StaffService" bindingConfiguration="NetTcpBinding_IStaffService">
+    <endpoint name="NetTcpBinding_IStaffService" contract="StaffService.IStaffService" bindingType="netTcpBinding" address="net.tcp://localhost:8282/StaffService" bindingConfiguration="NetTcpBinding_IStaffService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://localhost:8282/Rooms/Implement/StaffService</serializedValue>
+          <serializedValue>net.tcp://localhost:8282/StaffService</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

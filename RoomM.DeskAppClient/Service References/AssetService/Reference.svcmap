@@ -21,14 +21,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="net.tcp://localhost:8282/Assets/Implement/AssetService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="net.tcp://localhost:8282/AssetService/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="ab6741f4-6441-4dc2-b75f-b872caff4e90" SourceId="1" SourceUrl="net.tcp://localhost:8282/Assets/Implement/AssetService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="cc7c2e46-cc62-4421-916c-f846754e3c5c" SourceId="1" SourceUrl="net.tcp://localhost:8282/Assets/Implement/AssetService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="ed2197c9-e373-472e-ae94-bf8b5f0169e2" SourceId="1" SourceUrl="net.tcp://localhost:8282/Assets/Implement/AssetService/mex" />
-    <MetadataFile FileName="RoomM.Models.xsd" MetadataType="Schema" ID="dd2c35f7-fc40-499d-9baf-85a2dc9ecab0" SourceId="1" SourceUrl="net.tcp://localhost:8282/Assets/Implement/AssetService/mex" />
-    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="dfe05108-af87-4801-af99-2d8108468567" SourceId="1" SourceUrl="net.tcp://localhost:8282/Assets/Implement/AssetService/mex" />
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="9ae51764-603d-4788-9439-d71c3a30654c" SourceId="1" SourceUrl="net.tcp://localhost:8282/AssetService/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="d0081099-34db-498c-a843-599afa58e313" SourceId="1" SourceUrl="net.tcp://localhost:8282/AssetService/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="33546d7e-9042-4d29-bfa2-10523726165c" SourceId="1" SourceUrl="net.tcp://localhost:8282/AssetService/mex" />
+    <MetadataFile FileName="RoomM.Models1.xsd" MetadataType="Schema" ID="1ef407f6-f53f-45d8-b5c3-a0f61349bfd1" SourceId="1" SourceUrl="net.tcp://localhost:8282/AssetService/mex" />
+    <MetadataFile FileName="Arrays1.xsd" MetadataType="Schema" ID="3a9616a2-9630-4588-85ea-6edd92fd59de" SourceId="1" SourceUrl="net.tcp://localhost:8282/AssetService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
