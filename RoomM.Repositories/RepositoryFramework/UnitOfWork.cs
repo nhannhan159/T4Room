@@ -14,7 +14,7 @@ namespace RoomM.Repositories
 
         // from "Room"
         private IRoomRepository roomRepo;
-        private IRoomTypeRepository roomTypeRepo;
+        private IRepository<RoomType> roomTypeRepo;
         private IRoomAssetRepository roomAssRepo;
         private IRoomCalendarRepository roomCalRepo;
         private IRoomCalendarStatusRepository roomCalStatusRepo;
@@ -22,11 +22,11 @@ namespace RoomM.Repositories
         // from "Asset"
         private IAssetRepository assRepo;
         private IRoomAssetHistoryRepository assHisRepo;
-        private IRoomAssetHistoryTypeRepository assHistoryTypeRepo;
+        private IRepository<HistoryType> assHistoryTypeRepo;
 
         // from "Staff"
         private IStaffRepository staffRepo;
-        private IStaffTypeRepository staffTypeRepo;
+        private IRepository<StaffType> staffTypeRepo;
 
         public UnitOfWork(EFDataContext _context)
         {
@@ -55,13 +55,13 @@ namespace RoomM.Repositories
             }
         }
 
-        public IRoomTypeRepository RoomTypeRepository
+        public IRepository<RoomType> RoomTypeRepository
         {
             get
             {
                 if (this.roomTypeRepo == null)
                 {
-                    this.roomTypeRepo = new RoomTypeRepository(this.context);
+                    this.roomTypeRepo = new RepositoryBase<RoomType>(this.context);
                 }
                 return roomTypeRepo;
             }
@@ -127,13 +127,13 @@ namespace RoomM.Repositories
             }
         }
 
-        public IRoomAssetHistoryTypeRepository RoomAssetHistoryTypeRepository
+        public IRepository<HistoryType> RoomAssetHistoryTypeRepository
         {
             get
             {
                 if (this.assHistoryTypeRepo == null)
                 {
-                    this.assHistoryTypeRepo = new RoomAssetHistoryTypeRepository(this.context);
+                    this.assHistoryTypeRepo = new RepositoryBase<HistoryType>(this.context);
                 }
                 return assHistoryTypeRepo;
             }
@@ -151,13 +151,13 @@ namespace RoomM.Repositories
             }
         }
 
-        public IStaffTypeRepository StaffTypeRepository
+        public IRepository<StaffType> StaffTypeRepository
         {
             get
             {
                 if (this.staffTypeRepo == null)
                 {
-                    this.staffTypeRepo = new StaffTypeRepository(this.context);
+                    this.staffTypeRepo = new RepositoryBase<StaffType>(this.context);
                 }
                 return staffTypeRepo;
             }

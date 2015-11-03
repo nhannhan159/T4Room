@@ -17,12 +17,7 @@ namespace RoomM.WebService
         public AssetService(EFDataContext context)
             : base(context)
         {
-            this.repo = (IRepository<Asset>)this.uow.AssetRepository;
-        }
-
-        public Asset GetSingle(int assetId)
-        {
-            return this.uow.AssetRepository.GetSingle(assetId);
+            this.repo = this.uow.AssetRepository;
         }
 
         public IList<string> GetNameList()

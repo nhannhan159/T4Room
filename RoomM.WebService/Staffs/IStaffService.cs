@@ -15,9 +15,6 @@ namespace RoomM.WebService
     public interface IStaffService : IService<Staff>
     {
         [OperationContract]
-        Staff GetSingle(int staffId);
-
-        [OperationContract]
         Boolean CheckPassword(Staff staff, string password);
 
         [OperationContract]
@@ -33,7 +30,7 @@ namespace RoomM.WebService
         bool IsExists(string username);
 
         [OperationContract]
-        int GetUserId(string username);
+        Int64 GetUserId(string username);
 
         [OperationContract]
         bool UserNameIsWorking(string username);

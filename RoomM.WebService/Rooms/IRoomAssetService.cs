@@ -14,9 +14,6 @@ namespace RoomM.WebService
     public interface IRoomAssetService : IService<RoomAsset>
     {
         [OperationContract]
-        RoomAsset GetSingle(Int64 roomDeviceId);
-
-        [OperationContract]
         IList<RoomAsset> GetByRoomId(Int64 id);
 
         [OperationContract]

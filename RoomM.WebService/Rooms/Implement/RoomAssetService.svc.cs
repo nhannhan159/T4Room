@@ -17,12 +17,7 @@ namespace RoomM.WebService
         public RoomAssetService(EFDataContext context)
             : base(context)
         {
-            this.repo = (IRepository<RoomAsset>)this.uow.RoomAssetRepository;
-        }
-
-        public RoomAsset GetSingle(Int64 roomDeviceId)
-        {
-            return this.uow.RoomAssetRepository.GetSingle(roomDeviceId);
+            this.repo = this.uow.RoomAssetRepository;
         }
 
         public void AddOrUpdate(Int64 assetId, Int64 roomId, int amount)

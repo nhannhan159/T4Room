@@ -10,15 +10,9 @@ namespace RoomM.Repositories
 {
     public class RoomCalendarRepository : RepositoryBase<RoomCalendar>, IRoomCalendarRepository
     {
-        public RoomCalendarRepository(EFDataContext _entities)
-            : base(_entities)
+        public RoomCalendarRepository(EFDataContext context)
+            : base(context)
         { }
-
-        public RoomCalendar GetSingle(int roomCalId)
-        {
-            var query = GetAllWithQuery().SingleOrDefault(x => x.ID == roomCalId);
-            return query;
-        }
 
         public IList<RoomCalendar> GetByRoomId(Int64 roomId)
         {
@@ -41,14 +35,14 @@ namespace RoomM.Repositories
                     select p).ToList();
         }
 
-        public IList<RoomCalendar> GetByDateAndRoomId(DateTime date, long roomId)
+        public IList<RoomCalendar> GetByDateAndRoomId(DateTime date, Int64 roomId)
         {
             return (from p in GetAllWithQuery()
                     where p.Room.ID == roomId && (p.Date.Day == date.Day && p.Date.Month == date.Month && p.Date.Year == date.Year)
                     select p).ToList();
         }
 
-        public IList<RoomCalendar> GetByWeekAndRoomId(DateTime date, long roomId)
+        public IList<RoomCalendar> GetByWeekAndRoomId(DateTime date, Int64 roomId)
         {
 
             List<DateTime> dateLst = new List<DateTime>();
@@ -76,7 +70,7 @@ namespace RoomM.Repositories
             return calLst;
         }
 
-        public IList<RoomCalendar> GetByWatchedState(bool isWatched, int staffId)
+        public IList<RoomCalendar> GetByWatchedState(bool isWatched, Int64 staffId)
         {
             IList<RoomCalendar> dataR = new List<RoomCalendar>();
             IList<RoomCalendar> dataLst = (from p in GetAllWithQuery()
@@ -93,7 +87,7 @@ namespace RoomM.Repositories
             
         }
 
-        public IList<RoomCalendar> GetByRegisteredState(int registeredState, int staffId)
+        public IList<RoomCalendar> GetByRegisteredState(int registeredState, Int64 staffId)
         {
             return (from p in GetAllWithQuery()
                     where p.Staff.ID == staffId && p.RoomCalendarStatusId == registeredState

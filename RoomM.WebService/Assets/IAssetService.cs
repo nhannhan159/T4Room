@@ -14,9 +14,6 @@ namespace RoomM.WebService
     public interface IAssetService : IService<Asset>
     {
         [OperationContract]
-        Asset GetSingle(int deviceId);
-
-        [OperationContract]
         IList<String> GetNameList();
 
         [OperationContract]

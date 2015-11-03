@@ -18,14 +18,8 @@ namespace RoomM.WebService
         public StaffService(EFDataContext context)
             : base(context)
         {
-            this.repo = (IRepository<Staff>)this.uow.StaffRepository;
+            this.repo = this.uow.StaffRepository;
         }
-
-        public Staff GetSingle(int staffId)
-        {
-            return this.uow.StaffRepository.GetSingle(staffId);
-        }
-
 
         public bool CheckPassword(Staff staff, string password)
         {
@@ -42,24 +36,20 @@ namespace RoomM.WebService
             return this.uow.StaffRepository.GetStaffLimitByRegister(limit);
         }
 
-
         public List<DictionaryEntry> GetStaffLimitByRegister(int limit, DateTime from, DateTime to)
         {
             return this.uow.StaffRepository.GetStaffLimitByRegister(limit, from, to);
         }
-
 
         public bool IsExists(string username)
         {
             return this.uow.StaffRepository.IsExists(username);
         }
 
-
-        public int GetUserId(string username)
+        public Int64 GetUserId(string username)
         {
             return this.uow.StaffRepository.GetUserId(username);
         }
-
 
         public bool UserNameIsWorking(string username)
         {

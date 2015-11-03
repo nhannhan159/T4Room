@@ -17,12 +17,7 @@ namespace RoomM.WebService
         public RoomCalendarStatusService(EFDataContext context)
             : base(context)
         {
-            this.repo = (IRepository<RoomCalendarStatus>)this.uow.RoomCalendarStatusRepository;
-        }
-
-        public RoomCalendarStatus GetSingle(int statusId)
-        {
-            return this.uow.RoomCalendarStatusRepository.GetSingle(statusId);
+            this.repo = this.uow.RoomCalendarStatusRepository;
         }
 
         public IList<string> GetNameList()

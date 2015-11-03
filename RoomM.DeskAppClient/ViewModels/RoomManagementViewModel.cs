@@ -23,7 +23,7 @@ namespace RoomM.DeskApp.ViewModels
         public RoomManagementViewModel()
             : base()
         {
-            List<RoomType> roomTypeList = new List<RoomType>(this.sc.RoomTypeService.GetAll());
+            List<RoomType> roomTypeList = this.sc.RoomTypeService.GetAll();
             roomTypeList.Add(new RoomType("Tất cả"));
             this.roomTypeFilters = new CollectionView(roomTypeList);
             this.roomTypeFilter = roomTypeList[roomTypeList.Count - 1];
@@ -36,7 +36,7 @@ namespace RoomM.DeskApp.ViewModels
             this.rcvBeginTimeFilter = 0;
             this.rcvRegistrantFilter = "";
 
-            List<RoomCalendarStatus> rcvStatusList = new List<RoomCalendarStatus>(this.sc.RoomCalendarStatusService.GetAll());
+            List<RoomCalendarStatus> rcvStatusList = this.sc.RoomCalendarStatusService.GetAll();
             rcvStatusList.Add(new RoomCalendarStatus("Tất cả"));
             this.rcvStatusFilters = new CollectionView(rcvStatusList);
             this.rcvStatusFilter = rcvStatusList[rcvStatusList.Count - 1];
@@ -45,7 +45,7 @@ namespace RoomM.DeskApp.ViewModels
             this.rhvDateToFilter = DateTime.Now;
             this.rhvAssetNameFilter = "";
 
-            List<HistoryType> rhvTypeList = new List<HistoryType>(this.sc.RoomAssetHistoryTypeService.GetAll());
+            List<HistoryType> rhvTypeList = this.sc.RoomAssetHistoryTypeService.GetAll();
             rhvTypeList.Add(new HistoryType("Tất cả"));
             this.rhvTypeFilters = new CollectionView(rhvTypeList);
             this.rhvTypeFilter = rhvTypeList[rhvTypeList.Count - 1];
@@ -120,7 +120,7 @@ namespace RoomM.DeskApp.ViewModels
 
         protected override List<Room> GetEntitiesList()
         {
-            return new List<Room>(this.sc.RoomService.GetAll());
+            return this.sc.RoomService.GetAll();
         }
 
         protected override void SaveCurrentEntity()

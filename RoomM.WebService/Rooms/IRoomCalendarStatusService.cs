@@ -14,9 +14,6 @@ namespace RoomM.WebService
     public interface IRoomCalendarStatusService : IService<RoomCalendarStatus>
     {
         [OperationContract]
-        RoomCalendarStatus GetSingle(int statusId);
-
-        [OperationContract]
         IList<String> GetNameList();
     }
 }

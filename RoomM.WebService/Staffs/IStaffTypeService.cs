@@ -13,7 +13,5 @@ namespace RoomM.WebService
     [ServiceContract]
     public interface IStaffTypeService : IService<StaffType>
     {
-        [OperationContract]
-        StaffType GetSingle(int staffTypeId);
     }
 }

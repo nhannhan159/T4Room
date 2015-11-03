@@ -12,40 +12,37 @@ using RoomM.Models;
 
 namespace RoomM.Repositories
 {
-    public abstract class  RepositoryBase<T> : 
-        IRepository<T> where T : EntityBase, new() 
+    public class RepositoryBase<T> : IRepository<T> where T : EntityBase, new()
     {
+        private EFDataContext context;
 
-        private EFDataContext _entities;
-
-        public RepositoryBase(EFDataContext _entities)
+        public RepositoryBase(EFDataContext context)
         {
-            this._entities = _entities;
+            this.context = context;
         }
 
-        public virtual IEnumerable<T> GetWithRawSql(string query, params object[] parameters)
+        public IEnumerable<T> GetWithRawSql(string query, params object[] parameters)
         {
-            return _entities.Set<T>().SqlQuery(query, parameters).ToList();
+            return context.Set<T>().SqlQuery(query, parameters).ToList();
         }
 
-        public virtual IEnumerable<T> Get(
+        public IEnumerable<T> Get(
             Expression<Func<T, bool>> filter = null,
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             string includeProperties = "")
         {
-
-            var context = ((IObjectContextAdapter)_entities).ObjectContext;
-            var refreshableObjects = (from entry in context.ObjectStateManager.GetObjectStateEntries(
-                                                        EntityState.Added
-                                                       | EntityState.Deleted
-                                                       | EntityState.Modified
-                                                       | EntityState.Unchanged)
+            var _context = ((IObjectContextAdapter)context).ObjectContext;
+            var refreshableObjects = (from entry in _context.ObjectStateManager.GetObjectStateEntries(
+                                          EntityState.Added
+                                          | EntityState.Deleted
+                                          | EntityState.Modified
+                                          | EntityState.Unchanged)
                                       where entry.EntityKey != null
                                       select entry.Entity).ToList();
 
-            context.Refresh(RefreshMode.StoreWins, refreshableObjects);
+            _context.Refresh(RefreshMode.StoreWins, refreshableObjects);
 
-            IQueryable<T> query = _entities.Set<T>();
+            IQueryable<T> query = context.Set<T>();
 
             if (filter != null)
             {
@@ -73,47 +70,51 @@ namespace RoomM.Repositories
             return Get().ToList();
         }
 
-        public virtual IQueryable<T> GetAllWithQuery()
+        public IQueryable<T> GetAllWithQuery()
         {
-            IQueryable<T> query = _entities.Set<T>();
+            IQueryable<T> query = context.Set<T>();
+            return query;
+        }
+
+        public T GetSingle(Int64 id)
+        {
+            var query = GetAllWithQuery().SingleOrDefault(x => x.ID == id);
             return query;
         }
 
         public void Add(T entity)
         {
-            _entities.Set<T>().Add(entity);
+            context.Set<T>().Add(entity);
         }
 
         public void Delete(T entity)
         {
-            _entities.Set<T>().Remove(entity);
+            context.Set<T>().Remove(entity);
         }
 
-        public void Delete(object id)
+        public void Delete(Int64 id)
         {
-            T entityToDelete = _entities.Set<T>().Find(id);
+            T entityToDelete = context.Set<T>().Find(id);
             Delete(entityToDelete);
         }
 
         public void Edit(T entity)
         {
-            // _entities.Entry(entity).State = EntityState.Modified;
             if (entity == null)
             {
                 throw new ArgumentException("Cannot add a null entity.");
             }
-            
-            var entry = _entities.Entry<T>(entity);
+
+            var entry = context.Entry<T>(entity);
 
             if (entry.State == EntityState.Detached)
             {
-                var set = _entities.Set<T>();
-                T attachedEntity = set.Local.SingleOrDefault(e => e.ID == entity.ID);  // You need to have access to key
+                var set = context.Set<T>();
+                T attachedEntity = set.Local.SingleOrDefault(e => e.ID == entity.ID);
 
                 if (attachedEntity != null)
                 {
-                    // Console.WriteLine("heheeeeeeeeeeeeee");
-                    var attachedEntry = _entities.Entry(attachedEntity);
+                    var attachedEntry = context.Entry(attachedEntity);
                     attachedEntry.CurrentValues.SetValues(entity);
                 }
                 else

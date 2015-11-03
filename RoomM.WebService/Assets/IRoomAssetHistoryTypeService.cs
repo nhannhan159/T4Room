@@ -13,7 +13,5 @@ namespace RoomM.WebService
     [ServiceContract]
     public interface IRoomAssetHistoryTypeService : IService<HistoryType>
     {
-        [OperationContract]
-        HistoryType GetSingle(int id);
     }
 }

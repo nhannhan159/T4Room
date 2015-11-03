@@ -10,15 +10,9 @@ namespace RoomM.Repositories
 {
     public class RoomAssetRepository : RepositoryBase<RoomAsset>, IRoomAssetRepository
     {
-        public RoomAssetRepository(EFDataContext _entities)
-            : base(_entities)
+        public RoomAssetRepository(EFDataContext context)
+            : base(context)
         { }
-
-        public RoomAsset GetSingle(Int64 roomDeviceId)
-        {
-            var query = GetAllWithQuery().SingleOrDefault(x => x.ID == roomDeviceId);
-            return query;
-        }
 
         public void AddOrUpdate(Int64 assetId, Int64 roomId, int amount)
         {

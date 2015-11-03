@@ -10,13 +10,12 @@ namespace RoomM.Repositories
 {
     public interface IRoomCalendarRepository : IRepository<RoomCalendar>
     {
-        RoomCalendar GetSingle(int roomCalId);
         IList<RoomCalendar> GetByRoomId(Int64 roomId);
         IList<RoomCalendar> GetByStaffId(Int64 staffId);
         IList<RoomCalendar> GetByDate(DateTime date);
-        IList<RoomCalendar> GetByDateAndRoomId(DateTime date, long roomId);
-        IList<RoomCalendar> GetByWeekAndRoomId(DateTime date, long roomId);
-        IList<RoomCalendar> GetByWatchedState(bool isWatched, int staffId);
-        IList<RoomCalendar> GetByRegisteredState(int registeredState, int staffId);
+        IList<RoomCalendar> GetByDateAndRoomId(DateTime date, Int64 roomId);
+        IList<RoomCalendar> GetByWeekAndRoomId(DateTime date, Int64 roomId);
+        IList<RoomCalendar> GetByWatchedState(bool isWatched, Int64 staffId);
+        IList<RoomCalendar> GetByRegisteredState(int registeredState, Int64 staffId);
     }
 }

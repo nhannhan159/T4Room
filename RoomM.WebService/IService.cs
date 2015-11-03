@@ -13,6 +13,9 @@ namespace RoomM.WebService
     public interface IService<T> where T : EntityBase
     {
         [OperationContract]
+        T GetSingle(Int64 id);
+
+        [OperationContract]
         IList<T> GetAll();
 
         [OperationContract]
@@ -22,7 +25,7 @@ namespace RoomM.WebService
         void Delete(T entity);
 
         [OperationContract(Name = "DeleteByObject")]
-        void Delete(object id);
+        void Delete(Int64 id);
 
         [OperationContract]
         void Edit(T entity);

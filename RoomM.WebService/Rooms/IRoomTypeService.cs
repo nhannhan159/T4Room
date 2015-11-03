@@ -13,7 +13,5 @@ namespace RoomM.WebService
     [ServiceContract]
     public interface IRoomTypeService : IService<RoomType>
     {
-        [OperationContract]
-        RoomType GetSingle(int roomTypeId);
     }
 }

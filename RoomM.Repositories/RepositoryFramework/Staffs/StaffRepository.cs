@@ -11,16 +11,9 @@ namespace RoomM.Repositories
 {
     public class StaffRepository : RepositoryBase<Staff>, IStaffRepository
     {
-        public StaffRepository(EFDataContext _entities)
-            : base(_entities)
+        public StaffRepository(EFDataContext context)
+            : base(context)
         { }
-
-        public Staff GetSingle(int staffId)
-        {
-            var query = GetAllWithQuery().SingleOrDefault(x => x.ID == staffId);
-            return query;
-        }
-
 
         public bool CheckPassword(Staff staff, string password)
         {
@@ -40,7 +33,6 @@ namespace RoomM.Repositories
                     orderby p.RoomCalendars.Count descending
                     select p).Take(limit).ToList();
         }
-
 
         public List<DictionaryEntry> GetStaffLimitByRegister(int limit, DateTime from, DateTime to)
         {
@@ -65,7 +57,6 @@ namespace RoomM.Repositories
             return dic;
         }
 
-
         public bool IsExists(string username)
         {
             return (from p in GetAllWithQuery()
@@ -73,20 +64,18 @@ namespace RoomM.Repositories
                     select p).ToList().Count > 0;
         }
 
-
-        public int GetUserId(string username)
+        public Int64 GetUserId(string username)
         {
-            return (int) (from p in GetAllWithQuery()
+            return (from p in GetAllWithQuery()
                     where p.Name.Equals(username)
                     select p).ToList()[0].ID;
         }
 
-
         public bool UserNameIsWorking(string username)
         {
             return (from p in GetAllWithQuery()
-                         where p.Name.Equals(username) && p.IsWorking
-                         select p).ToList().Count > 0;
+                    where p.Name.Equals(username) && p.IsWorking
+                    select p).ToList().Count > 0;
         }
     }
 }

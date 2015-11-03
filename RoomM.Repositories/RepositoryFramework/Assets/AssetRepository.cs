@@ -10,15 +10,9 @@ namespace RoomM.Repositories
 {
     public class AssetRepository : RepositoryBase<Asset>, IAssetRepository
     {
-        public AssetRepository(EFDataContext _entities)
-            : base(_entities)
+        public AssetRepository(EFDataContext context)
+            : base(context)
         { }
-
-        public Asset GetSingle(int assetId)
-        {
-            var query = GetAllWithQuery().SingleOrDefault(x => x.ID == assetId);
-            return query;
-        }
 
         public IList<string> GetNameList()
         {

@@ -17,7 +17,6 @@ namespace RoomM.DeskApp.UIHelper
     public abstract class EditableViewModel<T> 
         : ViewModel where T : EntityBase, new()
     {
-
         private bool allPlusIsCheck;
         private bool filterIsCheck;
         private T currentEntity;

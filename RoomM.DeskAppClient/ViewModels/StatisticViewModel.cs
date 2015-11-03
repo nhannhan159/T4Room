@@ -38,7 +38,7 @@ namespace RoomM.DeskApp.ViewModels
 
         protected override List<Room> GetEntitiesList()
         {
-            return this.sc.RoomService.GetAll() as List<Room>;
+            return this.sc.RoomService.GetAll();
         }
 
        

@@ -15,9 +15,6 @@ namespace RoomM.WebService
     public interface IRoomService : IService<Room>
     {
         [OperationContract]
-        Room GetSingle(Int64 roomId);
-
-        [OperationContract]
         IList<Room> GetByRoomTypeId(Int64 roomTypeId);
 
         [OperationContract]

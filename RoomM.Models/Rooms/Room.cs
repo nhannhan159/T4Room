@@ -28,6 +28,7 @@ namespace RoomM.Models
         [Display(Name = "Loại phòng")]
         public Int64 RoomTypeId { get; set; }
 
+        [DataMember]
         public virtual RoomType RoomType { get; set; }
 
         [DataMember]

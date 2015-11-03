@@ -17,12 +17,7 @@ namespace RoomM.WebService
         public RoomAssetHistoryTypeService(EFDataContext context)
             : base(context)
         {
-            this.repo = (IRepository<HistoryType>)this.uow.RoomAssetHistoryTypeRepository;
-        }
-
-        public HistoryType GetSingle(int typeId)
-        {
-            return this.uow.RoomAssetHistoryTypeRepository.GetSingle(typeId);
+            this.repo = this.uow.RoomAssetHistoryTypeRepository;
         }
     }
 }

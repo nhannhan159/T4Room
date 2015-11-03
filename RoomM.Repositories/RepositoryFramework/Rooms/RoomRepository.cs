@@ -11,17 +11,11 @@ namespace RoomM.Repositories
 {
     public class RoomRepository : RepositoryBase<Room>, IRoomRepository
     {
-        public RoomRepository(EFDataContext _entities)
-            : base(_entities)
+        public RoomRepository(EFDataContext context)
+            : base(context)
         { }
 
-        public Room GetSingle(Int64 roomId)
-        {
-            var query = GetAllWithQuery().SingleOrDefault(x => x.ID == roomId);
-            return query;
-        }
-
-        public IList<Room> GetByRoomTypeId(long roomTypeId)
+        public IList<Room> GetByRoomTypeId(Int64 roomTypeId)
         {
             return (from p in GetAllWithQuery()
                     where p.RoomType.ID == roomTypeId
@@ -63,6 +57,5 @@ namespace RoomM.Repositories
                     select p).ToList().Count == 0;
 
         }
-
     }
 }

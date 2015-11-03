@@ -14,9 +14,6 @@ namespace RoomM.WebService
     public interface IRoomCalenderService : IService<RoomCalendar>
     {
         [OperationContract]
-        RoomCalendar GetSingle(int roomCalId);
-
-        [OperationContract]
         IList<RoomCalendar> GetByRoomId(Int64 roomId);
 
         [OperationContract]
@@ -26,15 +23,15 @@ namespace RoomM.WebService
         IList<RoomCalendar> GetByDate(DateTime date);
 
         [OperationContract]
-        IList<RoomCalendar> GetByDateAndRoomId(DateTime date, long roomId);
+        IList<RoomCalendar> GetByDateAndRoomId(DateTime date, Int64 roomId);
 
         [OperationContract]
-        IList<RoomCalendar> GetByWeekAndRoomId(DateTime date, long roomId);
+        IList<RoomCalendar> GetByWeekAndRoomId(DateTime date, Int64 roomId);
 
         [OperationContract]
-        IList<RoomCalendar> GetByWatchedState(bool isWatched, int staffId);
+        IList<RoomCalendar> GetByWatchedState(bool isWatched, Int64 staffId);
 
         [OperationContract]
-        IList<RoomCalendar> GetByRegisteredState(int registeredState, int staffId);
+        IList<RoomCalendar> GetByRegisteredState(int registeredState, Int64 staffId);
     }
 }

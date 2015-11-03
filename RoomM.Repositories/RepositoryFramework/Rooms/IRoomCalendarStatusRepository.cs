@@ -8,8 +8,8 @@ using RoomM.Models;
 
 namespace RoomM.Repositories
 {
-    public interface IRoomAssetHistoryTypeRepository : IRepository<HistoryType>
+    public interface IRoomCalendarStatusRepository : IRepository<RoomCalendarStatus>
     {
-        HistoryType GetSingle(int id);      
+        IList<String> GetNameList();
     }
 }

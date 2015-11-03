@@ -28,13 +28,13 @@ namespace RoomM.DeskApp.ViewModels
             this.roomAssetViewFilterIsCheck = false;
             this.ravRoomNameFilter = "";
             this.currentRoomAsset = default(RoomAsset);
-            List<RoomType> roomTypeList = new List<RoomType>(this.sc.RoomTypeService.GetAll());
+            List<RoomType> roomTypeList = this.sc.RoomTypeService.GetAll();
             roomTypeList.Add(new RoomType("Tất cả"));
             this.roomTypeFilters1 = new CollectionView(roomTypeList);
             this.roomTypeFilters2 = new CollectionView(roomTypeList);
             this.roomTypeFilter1 = roomTypeList[roomTypeList.Count - 1];
             this.roomTypeFilter2 = roomTypeList[roomTypeList.Count - 1];
-            List<Room> roomList = new List<Room>(this.sc.RoomService.GetAll());
+            List<Room> roomList = this.sc.RoomService.GetAll();
             this.roomView1 = CollectionViewSource.GetDefaultView(roomList);
             this.roomView2 = CollectionViewSource.GetDefaultView(roomList);
             this.room1 = (roomList.Count == 0) ? null : roomList[0];
@@ -73,7 +73,7 @@ namespace RoomM.DeskApp.ViewModels
 
         protected override List<Asset> GetEntitiesList()
         {
-            return new List<Asset>(this.sc.AssetService.GetAll());
+            return this.sc.AssetService.GetAll();
         }
 
         protected override void SaveCurrentEntity()
@@ -135,7 +135,7 @@ namespace RoomM.DeskApp.ViewModels
             if (this.CurrentEntity == null)
                 this.currentRoomAssetView = CollectionViewSource.GetDefaultView(new List<RoomAsset>());
             else
-                this.currentRoomAssetView = CollectionViewSource.GetDefaultView(new List<RoomAsset>(this.sc.RoomAssetService.GetByAssetId(this.CurrentEntity.ID)));
+                this.currentRoomAssetView = CollectionViewSource.GetDefaultView(this.sc.RoomAssetService.GetByAssetId(this.CurrentEntity.ID));
             this.currentRoomAssetView.Filter += RoomAssetViewFilter;
             this.EntitiesView.Refresh();
             this.OnPropertyChanged("CurrentRoomAssetView");
@@ -366,7 +366,7 @@ namespace RoomM.DeskApp.ViewModels
             set
             {
                 this.roomTypeFilter1 = value;
-                List<Room> roomList = new List<Room>(this.sc.RoomService.GetAll());
+                List<Room> roomList = this.sc.RoomService.GetAll();
                 if (this.roomTypeFilter1.Name != "Tất cả")
                 {
                     var query = roomList.Where(p => p.RoomType.Name == this.roomTypeFilter1.Name);
@@ -389,7 +389,7 @@ namespace RoomM.DeskApp.ViewModels
             {
                 this.roomTypeFilter2 = value;
 
-                List<Room> roomList = new List<Room>(this.sc.RoomService.GetAll());
+                List<Room> roomList = this.sc.RoomService.GetAll();
                 if (this.roomTypeFilter2.Name != "Tất cả")
                 {
                     var query = roomList.Where(p => p.RoomType.Name == this.roomTypeFilter2.Name);

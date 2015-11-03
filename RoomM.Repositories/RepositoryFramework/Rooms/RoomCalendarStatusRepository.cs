@@ -10,16 +10,9 @@ namespace RoomM.Repositories
 {
     public class RoomCalendarStatusRepository : RepositoryBase<RoomCalendarStatus>, IRoomCalendarStatusRepository
     {
-        public RoomCalendarStatusRepository(EFDataContext _entities)
-            : base(_entities)
+        public RoomCalendarStatusRepository(EFDataContext context)
+            : base(context)
         { }
-
-        public RoomCalendarStatus GetSingle(int statusId)
-        {
-            var query = GetAllWithQuery().SingleOrDefault(x => x.ID == statusId);
-            return query;
-        }
-
 
         public IList<string> GetNameList()
         {

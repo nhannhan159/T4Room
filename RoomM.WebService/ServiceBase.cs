@@ -21,13 +21,18 @@ namespace RoomM.WebService
         public ServiceBase(EFDataContext context)
         {
             context.Configuration.ProxyCreationEnabled = false;
-            //context.Configuration.LazyLoadingEnabled = false;
+            // context.Configuration.LazyLoadingEnabled = false;
             this.uow = new UnitOfWork(context);
         }
 
-        public virtual IList<T> GetAll()
+        public IList<T> GetAll()
         {
             return this.repo.GetAll();
+        }
+
+        public T GetSingle(Int64 id)
+        {
+            return this.repo.GetSingle(id);
         }
 
         public void Add(T entity)
@@ -42,7 +47,7 @@ namespace RoomM.WebService
             this.uow.Commit();
         }
 
-        public void Delete(object id)
+        public void Delete(Int64 id)
         {
             this.repo.Delete(id);
             this.uow.Commit();

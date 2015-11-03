@@ -17,12 +17,7 @@ namespace RoomM.WebService
         public RoomCalenderService(EFDataContext context)
             : base(context)
         {
-            this.repo = (IRepository<RoomCalendar>)this.uow.RoomCalendarRepository;
-        }
-
-        public RoomCalendar GetSingle(int roomCalId)
-        {
-            return this.uow.RoomCalendarRepository.GetSingle(roomCalId);
+            this.repo = this.uow.RoomCalendarRepository;
         }
 
         public IList<RoomCalendar> GetByRoomId(Int64 roomId)
@@ -43,25 +38,25 @@ namespace RoomM.WebService
         }
 
 
-        public IList<RoomCalendar> GetByDateAndRoomId(DateTime date, long roomId)
+        public IList<RoomCalendar> GetByDateAndRoomId(DateTime date, Int64 roomId)
         {
             return this.uow.RoomCalendarRepository.GetByDateAndRoomId(date, roomId);
         }
 
 
-        public IList<RoomCalendar> GetByWeekAndRoomId(DateTime date, long roomId)
+        public IList<RoomCalendar> GetByWeekAndRoomId(DateTime date, Int64 roomId)
         {
             return this.uow.RoomCalendarRepository.GetByWeekAndRoomId(date, roomId);
         }
 
 
-        public IList<RoomCalendar> GetByWatchedState(bool isWatched, int staffId)
+        public IList<RoomCalendar> GetByWatchedState(bool isWatched, Int64 staffId)
         {
             return this.uow.RoomCalendarRepository.GetByWatchedState(isWatched, staffId);
         }
 
 
-        public IList<RoomCalendar> GetByRegisteredState(int registeredState, int staffId)
+        public IList<RoomCalendar> GetByRegisteredState(int registeredState, Int64 staffId)
         {
             return this.uow.RoomCalendarRepository.GetByRegisteredState(registeredState, staffId);
         }

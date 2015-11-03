@@ -10,14 +10,18 @@ namespace RoomM.Repositories
 {
     public interface IRepository<T> where T : EntityBase
     {
+        T GetSingle(Int64 id);
         IList<T> GetAll();
         IQueryable<T> GetAllWithQuery();
-        // IQueryable<T> FindBy(Expression<Func<T, bool>> predicate);
-        // T GetByID(object id);
-
+        IEnumerable<T> GetWithRawSql(string query, params object[] parameters);
+        IEnumerable<T> Get(
+            Expression<Func<T, bool>> filter,
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy,
+            string includeProperties);
+        
         void Add(T entity);
         void Delete(T entity);
-        void Delete(object id);
+        void Delete(Int64 id);
         void Edit(T entity);
     }
 }

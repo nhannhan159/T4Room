@@ -17,12 +17,7 @@ namespace RoomM.WebService
         public StaffTypeService(EFDataContext context)
             : base(context)
         {
-            this.repo = (IRepository<StaffType>)this.uow.StaffTypeRepository;
-        }
-
-        public StaffType GetSingle(int staffTypeId)
-        {
-            return this.uow.StaffTypeRepository.GetSingle(staffTypeId);
+            this.repo = this.uow.StaffTypeRepository;
         }
     }
 }

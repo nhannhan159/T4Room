@@ -8,9 +8,9 @@ using RoomM.Models;
 
 namespace RoomM.Repositories
 {
-    public interface IRoomCalendarStatusRepository : IRepository<RoomCalendarStatus>
+    public interface IAssetRepository : IRepository<Asset>
     {
-        RoomCalendarStatus GetSingle(int statusId);
         IList<String> GetNameList();
+        bool isUniqueName(string name);
     }
 }

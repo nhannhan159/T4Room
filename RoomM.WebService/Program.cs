@@ -46,7 +46,7 @@ namespace RoomM.WebService
                 roomAssetHistoryTypeServiceConfig))
             {
                 selfHost.Start();
-                Console.WriteLine("All Services Started. Press \"Enter\" to stop thems...");
+                Console.Write("All Services Started. Press \"Enter\" to stop thems...");
                 Console.ReadLine();
             }
         }

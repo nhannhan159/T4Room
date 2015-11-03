@@ -30,7 +30,7 @@ namespace RoomM.DeskApp.ViewModels
             this.rcvDateToFilter = DateTime.Now;
             this.rcvPeriodsFilter = 0;
             this.rcvBeginTimeFilter = 0;
-            List<RoomCalendarStatus> rcvStatusList = new List<RoomCalendarStatus>(this.sc.RoomCalendarStatusService.GetAll());
+            List<RoomCalendarStatus> rcvStatusList = this.sc.RoomCalendarStatusService.GetAll();
             rcvStatusList.Add(new RoomCalendarStatus("Tất cả"));
             this.rcvStatusFilters = new CollectionView(rcvStatusList);
             this.rcvStatusFilter = rcvStatusList[rcvStatusList.Count - 1];
@@ -58,7 +58,7 @@ namespace RoomM.DeskApp.ViewModels
 
         protected override List<Staff> GetEntitiesList()
         {
-            return new List<Staff>(this.sc.StaffService.GetAll());
+            return this.sc.StaffService.GetAll();
         }
 
         public ICollectionView StaffTypesView

@@ -18,15 +18,10 @@ namespace RoomM.WebService
         public RoomService(EFDataContext context)
             : base(context)
         {
-            this.repo = (IRepository<Room>)this.uow.RoomRepository;
+            this.repo = this.uow.RoomRepository;
         }
 
-        public Room GetSingle(Int64 roomId)
-        {
-            return this.uow.RoomRepository.GetSingle(roomId);
-        }
-
-        public IList<Room> GetByRoomTypeId(long roomTypeId)
+        public IList<Room> GetByRoomTypeId(Int64 roomTypeId)
         {
             return this.uow.RoomRepository.GetByRoomTypeId(roomTypeId);
         }
