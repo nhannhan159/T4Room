@@ -15,6 +15,7 @@ namespace RoomM.Models
         [DataMember]
         public Int64 AssetHistoryTypeId { get; set; }
 
+        [DataMember]
         public virtual HistoryType HistoryType { get; set; }
 
         [DataMember]
@@ -23,11 +24,13 @@ namespace RoomM.Models
         [DataMember]
         public Int64 AssetId { get; set; }
 
+        [DataMember]
         public virtual Asset Asset { get; set; }
 
         [DataMember]
         public Int64 RoomId { get; set; }
 
+        [DataMember]
         public virtual Room Room { get; set; }
 
         [DataMember]
@@ -38,8 +41,11 @@ namespace RoomM.Models
 
         public override string ToString()
         {
-            return ID + " # " + " #type:" + AssetHistoryTypeId + " #roomID: " + RoomId;
+            return this.ID + " # " + " #type:" + this.AssetHistoryTypeId + " #roomID: " + this.RoomId;
         }
+
+        public RoomAssetHistory()
+        { }
 
         public RoomAssetHistory(DateTime Date, Int64 AssetHistoryTypeId, Int64 AssetId, Int64 RoomId, string Room2, int Amount)
         {
@@ -50,8 +56,5 @@ namespace RoomM.Models
             this.Room2 = Room2;
             this.Amount = Amount;
         }
-
-        public RoomAssetHistory()
-        { }
     }
 }

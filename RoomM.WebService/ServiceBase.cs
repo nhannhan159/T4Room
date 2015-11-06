@@ -21,7 +21,7 @@ namespace RoomM.WebService
         public ServiceBase(EFDataContext context)
         {
             context.Configuration.ProxyCreationEnabled = false;
-            // context.Configuration.LazyLoadingEnabled = false;
+            context.Configuration.LazyLoadingEnabled = false;
             this.uow = new UnitOfWork(context);
         }
 

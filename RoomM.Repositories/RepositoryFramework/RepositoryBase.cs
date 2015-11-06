@@ -15,21 +15,19 @@ namespace RoomM.Repositories
     public class RepositoryBase<T> : IRepository<T> where T : EntityBase, new()
     {
         private EFDataContext context;
+        private DbSet<T> dbSet;
 
         public RepositoryBase(EFDataContext context)
         {
             this.context = context;
+            this.dbSet = context.Set<T>();
         }
 
-        public IEnumerable<T> GetWithRawSql(string query, params object[] parameters)
-        {
-            return context.Set<T>().SqlQuery(query, parameters).ToList();
+        protected virtual string IncludeProperties() {
+            return "";
         }
 
-        public IEnumerable<T> Get(
-            Expression<Func<T, bool>> filter = null,
-            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-            string includeProperties = "")
+        private void RefreshContext()
         {
             var _context = ((IObjectContextAdapter)context).ObjectContext;
             var refreshableObjects = (from entry in _context.ObjectStateManager.GetObjectStateEntries(
@@ -41,15 +39,28 @@ namespace RoomM.Repositories
                                       select entry.Entity).ToList();
 
             _context.Refresh(RefreshMode.StoreWins, refreshableObjects);
+        }
 
-            IQueryable<T> query = context.Set<T>();
+        public IQueryable<T> GetWithRawSql(string query, params object[] parameters)
+        {
+            this.RefreshContext();
+            return this.dbSet.SqlQuery(query, parameters).AsQueryable();
+        }
+
+        public IQueryable<T> Get(
+            Expression<Func<T, bool>> filter = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null)
+        {
+            this.RefreshContext();
+
+            IQueryable<T> query = this.dbSet;
 
             if (filter != null)
             {
                 query = query.Where(filter);
             }
 
-            foreach (var includeProperty in includeProperties.Split
+            foreach (var includeProperty in this.IncludeProperties().Split
                 (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
             {
                 query = query.Include(includeProperty);
@@ -57,49 +68,45 @@ namespace RoomM.Repositories
 
             if (orderBy != null)
             {
-                return orderBy(query).ToList();
+                return orderBy(query);
             }
             else
             {
-                return query.ToList();
+                return query;
             }
         }
 
         public IList<T> GetAll()
         {
-            return Get().ToList();
-        }
-
-        public IQueryable<T> GetAllWithQuery()
-        {
-            IQueryable<T> query = context.Set<T>();
-            return query;
+            return this.Get().ToList();
         }
 
         public T GetSingle(Int64 id)
         {
-            var query = GetAllWithQuery().SingleOrDefault(x => x.ID == id);
-            return query;
+            return this.Get().SingleOrDefault(x => x.ID == id);
         }
 
         public void Add(T entity)
         {
-            context.Set<T>().Add(entity);
+            this.dbSet.Add(entity);
         }
 
         public void Delete(T entity)
         {
-            context.Set<T>().Remove(entity);
+            this.dbSet.Remove(entity);
         }
 
         public void Delete(Int64 id)
         {
-            T entityToDelete = context.Set<T>().Find(id);
-            Delete(entityToDelete);
+            T entityToDelete = this.dbSet.Find(id);
+            this.Delete(entityToDelete);
         }
 
         public void Edit(T entity)
         {
+            this.dbSet.Attach(entity);
+            this.context.Entry(entity).State = EntityState.Modified;
+            /*
             if (entity == null)
             {
                 throw new ArgumentException("Cannot add a null entity.");
@@ -126,6 +133,7 @@ namespace RoomM.Repositories
             {
                 entry.State = EntityState.Modified;
             }
+            */
         }
     }
 }

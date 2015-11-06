@@ -21,28 +21,25 @@ namespace RoomM.Models
         [DataMember]
         public string Description { get; set; }
 
+        [DataMember]
         public virtual ICollection<RoomAsset> RoomAssets { get; set; }
+
+        [DataMember]
         public virtual ICollection<RoomAssetHistory> AssetHistories { get; set; }
+
+        public string AllRoomName
+        {
+            get { return string.Join(",", this.RoomAssets.Select(p => p.Room.Name)); }
+        }
 
         public int Amount
         {
             get { return this.RoomAssets.Sum(x => x.Amount); }
         }
 
-        public string AllRoomName
-        {
-            get
-            {
-                string str = "";
-                foreach (RoomAsset roomAss in RoomAssets)
-                    str += roomAss.Room.Name;
-                return str;
-            }
-        }
-
         public override string ToString()
         {
-            return ID + " # " + Name;
+            return this.ID + " # " + this.Name;
         }
 
         public Asset()

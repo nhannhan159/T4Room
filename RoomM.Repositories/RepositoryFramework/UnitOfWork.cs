@@ -35,6 +35,7 @@ namespace RoomM.Repositories
 
         public EFDataContext Context
         {
+            get { return this.context; }
             set { this.context = value; }
         }
 

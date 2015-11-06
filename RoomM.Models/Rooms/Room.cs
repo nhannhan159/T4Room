@@ -34,34 +34,38 @@ namespace RoomM.Models
         [DataMember]
         public Boolean IsUsing { get; set; }
 
+        [DataMember]
+        public string Description { get; set; }
+
+        [DataMember]
+        public virtual ICollection<RoomAsset> RoomAssets { get; set; }
+
+        [DataMember]
+        public virtual ICollection<RoomAssetHistory> AssetHistories { get; set; }
+
+        [DataMember]
+        public virtual ICollection<RoomCalendar> RoomCalendars { get; set; }
+
         public Boolean IsHaveRegistered
         {
-            get
-            {
-                var query = from p in RoomCalendars
-                            where p.RoomCalendarStatusId == 1
-                            select p;
-                return query.Count() > 0;
-            }
+            get { return this.RoomCalendars.Count(p => p.RoomCalendarStatusId == 1) > 0; }
            
         }
 
         public string NotifyText
         {
-            get { return "xxx"; return this.IsHaveRegistered ? "!!!" : ""; }
+            get { return this.IsHaveRegistered ? "!!!" : ""; }
         }
 
         public string NotifyToolTip
         {
-            get { return "aaa"; return this.IsHaveRegistered ? "Đang có người đăng ký cần xác nhận" : ""; }
+            get { return this.IsHaveRegistered ? "Đang có người đăng ký cần xác nhận" : ""; }
         }
 
-        [DataMember]
-        public string Description { get; set; }
-
-        public virtual ICollection<RoomAsset> RoomAssets { get; set; }
-        public virtual ICollection<RoomAssetHistory> AssetHistories { get; set; }
-        public virtual ICollection<RoomCalendar> RoomCalendars { get; set; }
+        public override string ToString()
+        {
+            return this.ID + "#" + this.Name + "#RoomType:" + this.RoomTypeId + "#Status: " + this.IsUsing;
+        }
 
         public Room()
         {
@@ -70,11 +74,6 @@ namespace RoomM.Models
             this.RoomAssets = new List<RoomAsset>();
             this.AssetHistories = new List<RoomAssetHistory>();
             this.RoomCalendars = new List<RoomCalendar>();
-        }
-
-        public override string ToString()
-        {
-            return ID + "#" + Name + "#RoomType:" + RoomTypeId + "#Status: " + IsUsing;
         }
     }
 }

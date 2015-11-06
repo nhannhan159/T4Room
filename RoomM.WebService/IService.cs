@@ -13,6 +13,7 @@ namespace RoomM.WebService
     public interface IService<T> where T : EntityBase
     {
         [OperationContract]
+        [ApplyDataContractResolver]
         T GetSingle(Int64 id);
 
         [OperationContract]

@@ -15,6 +15,7 @@ namespace RoomM.Models
         [DataMember]
         public string Name { get; set; }
 
+        [DataMember]
         public virtual ICollection<Staff> Staffs { get; set; }
     }
 }

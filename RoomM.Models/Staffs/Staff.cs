@@ -31,6 +31,7 @@ namespace RoomM.Models
         [DataMember]
         public Int64 StaffTypeId { get; set; }
 
+        [DataMember]
         public virtual StaffType StaffType { get; set; }
 
         [DataMember]
@@ -60,11 +61,12 @@ namespace RoomM.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime LastLogin { get; set; }
 
+        [DataMember]
         public virtual ICollection<RoomCalendar> RoomCalendars { get; set; }
 
         public override string ToString()
         {
-            return ID + " #name " + Name + " #username " + UserName + " #pass " + PasswordStored + "#realpass " + Password;
+            return this.ID + " #name " + this.Name + " #username " + this.UserName + " #pass " + this.PasswordStored + "#realpass " + this.Password;
         }
 
         public Staff()

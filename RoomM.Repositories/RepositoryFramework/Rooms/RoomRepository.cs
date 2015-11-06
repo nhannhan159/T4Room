@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
+using System.Data.Entity;
+using System.Linq.Expressions;
 
 using RoomM.Models;
 
@@ -15,18 +17,19 @@ namespace RoomM.Repositories
             : base(context)
         { }
 
+        protected override string IncludeProperties()
+        {
+            return "RoomType";
+        }
+
         public IList<Room> GetByRoomTypeId(Int64 roomTypeId)
         {
-            return (from p in GetAllWithQuery()
-                    where p.RoomType.ID == roomTypeId
-                    select p).ToList();
+            return this.Get(filter: p => p.ID == roomTypeId).ToList();
         }
 
         public IList<Room> GetRoomListLimitByRegister(int limit)
         {
-            return (from p in GetAllWithQuery()
-                    orderby p.RoomCalendars.Count descending
-                    select p).Take(limit).ToList();
+            return this.Get(orderBy: q => q.OrderBy(d => d.RoomCalendars.Count)).Take(limit).ToList();
         }
 
         public List<DictionaryEntry> GetRoomLimitByRegister(int limit, DateTime from, DateTime to)
@@ -34,15 +37,10 @@ namespace RoomM.Repositories
             IList<Room> roomList = GetAll();
             Hashtable hm = new Hashtable();
 
-            int c;
-            foreach (Room s in roomList)
+            foreach (Room room in roomList)
             {
-                c = 0;
-                foreach (RoomCalendar rc in s.RoomCalendars)
-                    if (rc.Date.Date >= from.Date && rc.Date.Date <= to.Date)
-                        c++;
-
-                hm.Add(s, c);
+                int count = room.RoomCalendars.Count(p => p.Date >= from && p.Date <= to);
+                hm.Add(room, count);
             }
 
             List<DictionaryEntry> dic = hm.Cast<DictionaryEntry>().OrderByDescending(entry => entry.Value).Take(limit).ToList();
@@ -52,10 +50,7 @@ namespace RoomM.Repositories
 
         public bool isUniqueName(string name)
         {
-            return (from p in GetAllWithQuery()
-                    where p.Name.Equals(name)
-                    select p).ToList().Count == 0;
-
+            return this.Get(filter: p => p.Name.Equals(name)).Count() == 0;
         }
     }
 }

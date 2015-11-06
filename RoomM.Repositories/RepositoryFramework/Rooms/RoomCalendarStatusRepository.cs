@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 using RoomM.Models;
 
@@ -16,8 +17,7 @@ namespace RoomM.Repositories
 
         public IList<string> GetNameList()
         {
-            return (from p in GetAllWithQuery()
-                    select p.Name).ToList();
+            return this.Get().Select(p => p.Name).ToList();
         }
     }
 }

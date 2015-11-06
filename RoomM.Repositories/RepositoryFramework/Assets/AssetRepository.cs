@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 using RoomM.Models;
 
@@ -16,15 +17,12 @@ namespace RoomM.Repositories
 
         public IList<string> GetNameList()
         {
-            return (from p in GetAllWithQuery()
-                    select p.Name).ToList();
+            return this.Get().Select(p => p.Name).ToList();
         }
 
         public bool isUniqueName(string name)
         {
-            return (from p in GetAllWithQuery()
-                    where p.Name.Equals(name)
-                    select p).ToList().Count == 0;
+            return this.Get(filter: p => p.Name.Equals(name)).Count() == 0;
         }
     }
 }

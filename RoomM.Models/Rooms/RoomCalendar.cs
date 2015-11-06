@@ -29,16 +29,19 @@ namespace RoomM.Models
         [Display(Name = "Mã phòng")]
         public Int64 RoomId { get; set; }
 
+        [DataMember]
         public virtual Room Room { get; set; }
 
         [DataMember]
         public Int64 StaffId { get; set; }
 
+        [DataMember]
         public virtual Staff Staff { get; set; }
 
         [DataMember]
         public Int64 RoomCalendarStatusId { get; set; }
 
+        [DataMember]
         [Display(Name = "Trạng thái đăng kí")]
         public virtual RoomCalendarStatus RoomCalendarStatus { get; set; }
 
@@ -47,7 +50,7 @@ namespace RoomM.Models
 
         public override string ToString()
         {
-            return ID + " #room " + RoomId + " #user " + StaffId + " #start " + Start + " #len " + Length;
+            return this.ID + " #room " + this.RoomId + " #user " + this.StaffId + " #start " + this.Start + " #len " + this.Length;
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 using RoomM.Models;
 
@@ -14,11 +15,14 @@ namespace RoomM.Repositories
             : base(context)
         { }
 
+        protected override string IncludeProperties()
+        {
+            return "Room,Asset";
+        }
+
         public void AddOrUpdate(Int64 assetId, Int64 roomId, int amount)
         {
-            var query = from p in GetAllWithQuery()
-                        where p.RoomId == roomId && p.AssetId == assetId
-                        select p;
+            var query = this.Get(filter: p => p.RoomId == roomId && p.AssetId == assetId);
             RoomAsset entity;
             if (query.Count() > 0)
             {
@@ -35,16 +39,12 @@ namespace RoomM.Repositories
 
         public IList<RoomAsset> GetByRoomId(Int64 id)
         {
-            return (from p in GetAllWithQuery()
-                    where p.Room.ID == id
-                    select p).ToList();
+            return this.Get(filter: p => p.RoomId == id).ToList();
         }
 
         public IList<RoomAsset> GetByAssetId(Int64 id)
         {
-            return (from p in GetAllWithQuery()
-                    where p.Asset.ID == id
-                    select p).ToList();
+            return this.Get(filter: p => p.AssetId == id).ToList();
         }
     }
 }
