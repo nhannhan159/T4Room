@@ -145,7 +145,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplyDataContractResolverAttribute.cs" />
     <Compile Include="Assets\IRoomAssetHistoryService.cs" />
     <Compile Include="Assets\IAssetService.cs" />
     <Compile Include="Assets\Implement\RoomAssetHistoryService.svc.cs">

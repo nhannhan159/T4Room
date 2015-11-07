@@ -9,7 +9,7 @@ using System.Runtime.Serialization;
 
 namespace RoomM.Models
 {
-    [DataContract]
+    [DataContract(IsReference = true)]
     public class RoomType : EntityBase
     {
         [DataMember]

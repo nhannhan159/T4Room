@@ -41,24 +41,20 @@ namespace RoomM.Repositories
             _context.Refresh(RefreshMode.StoreWins, refreshableObjects);
         }
 
-        public IQueryable<T> GetWithRawSql(string query, params object[] parameters)
+        protected IQueryable<T> GetWithRawSql(string query, params object[] parameters)
         {
             this.RefreshContext();
             return this.dbSet.SqlQuery(query, parameters).AsQueryable();
         }
 
-        public IQueryable<T> Get(
+        protected IQueryable<T> Get(
             Expression<Func<T, bool>> filter = null,
-            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null)
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+            int limit = 0)
         {
             this.RefreshContext();
 
             IQueryable<T> query = this.dbSet;
-
-            if (filter != null)
-            {
-                query = query.Where(filter);
-            }
 
             foreach (var includeProperty in this.IncludeProperties().Split
                 (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
@@ -66,24 +62,32 @@ namespace RoomM.Repositories
                 query = query.Include(includeProperty);
             }
 
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
             if (orderBy != null)
             {
-                return orderBy(query);
+                query = orderBy(query);
             }
-            else
-            {
-                return query;
-            }
-        }
 
-        public IList<T> GetAll()
-        {
-            return this.Get().ToList();
+            if (limit > 0)
+            {
+                query = query.Take(limit);
+            }
+
+            return query;
         }
 
         public T GetSingle(Int64 id)
         {
             return this.Get().SingleOrDefault(x => x.ID == id);
+        }
+
+        public IList<T> GetAll()
+        {
+            return this.Get().ToList();
         }
 
         public void Add(T entity)
@@ -104,21 +108,10 @@ namespace RoomM.Repositories
 
         public void Edit(T entity)
         {
-            this.dbSet.Attach(entity);
-            this.context.Entry(entity).State = EntityState.Modified;
-            /*
-            if (entity == null)
-            {
-                throw new ArgumentException("Cannot add a null entity.");
-            }
-
             var entry = context.Entry<T>(entity);
-
             if (entry.State == EntityState.Detached)
             {
-                var set = context.Set<T>();
-                T attachedEntity = set.Local.SingleOrDefault(e => e.ID == entity.ID);
-
+                T attachedEntity = this.dbSet.Local.SingleOrDefault(e => e.ID == entity.ID);
                 if (attachedEntity != null)
                 {
                     var attachedEntry = context.Entry(attachedEntity);
@@ -133,7 +126,7 @@ namespace RoomM.Repositories
             {
                 entry.State = EntityState.Modified;
             }
-            */
+            
         }
     }
 }

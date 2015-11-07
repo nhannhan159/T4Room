@@ -33,9 +33,9 @@ namespace RoomM.Repositories
 
         public IList<Staff> GetStaffLimitByRegister(int limit)
         {
-            return this.Get(orderBy: q => q.OrderBy(d => d.RoomCalendars.Count))
-                .Take(limit)
-                .ToList();
+            return this.Get(
+                orderBy: q => q.OrderBy(d => d.RoomCalendars.Count),
+                limit: limit).ToList();
         }
 
         public List<DictionaryEntry> GetStaffLimitByRegister(int limit, DateTime from, DateTime to)

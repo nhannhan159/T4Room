@@ -24,7 +24,6 @@ namespace RoomM.DeskApp.ViewModels
         public StatisticViewModel()
             : base()
         {
-            // DateTime now = new DateTime(DateTime.);
             fromTimeStaff = new DateTime(DateTime.Now.Year - 1, 1, 1);
             toTimeStaff = DateTime.Now;
 
@@ -35,13 +34,11 @@ namespace RoomM.DeskApp.ViewModels
             rebuildRegisterData(fromTimeRegister, toTimeRegister);
         }
 
-
         protected override List<Room> GetEntitiesList()
         {
             return this.sc.RoomService.GetAll();
         }
 
-       
         public ObservableCollection<ChartElement> GetStaffStatistic
         {
             get { return this.chartStaffItems; }
@@ -126,7 +123,7 @@ namespace RoomM.DeskApp.ViewModels
                 });
 
             }
-            */
+            */ 
         }
 
         private void rebuildRegisterData(DateTime from, DateTime to)

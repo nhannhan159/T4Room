@@ -28,15 +28,14 @@ namespace RoomM.Repositories
         private IStaffRepository staffRepo;
         private IRepository<StaffType> staffTypeRepo;
 
-        public UnitOfWork(EFDataContext _context)
+        public UnitOfWork(EFDataContext context)
         {
-            this.context = _context;
+            this.context = context;
         }
 
         public EFDataContext Context
         {
             get { return this.context; }
-            set { this.context = value; }
         }
 
         public void Commit()

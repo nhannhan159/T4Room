@@ -25,7 +25,6 @@ namespace RoomM.DeskApp.ViewModels
         public StatisticViewModel(EFDataContext context)
             : base(context)
         {
-            // DateTime now = new DateTime(DateTime.);
             fromTimeStaff = new DateTime(DateTime.Now.Year - 1, 1, 1);
             toTimeStaff = DateTime.Now;
 
@@ -36,12 +35,10 @@ namespace RoomM.DeskApp.ViewModels
             rebuildRegisterData(fromTimeRegister, toTimeRegister);
         }
 
-
         protected override List<Room> GetEntitiesList()
         {
             return this.uow.RoomRepository.GetAll() as List<Room>;
         }
-
        
         public ObservableCollection<ChartElement> GetStaffStatistic
         {

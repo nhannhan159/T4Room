@@ -30,7 +30,7 @@ namespace RoomM.WebService
             return this.repo.GetAll();
         }
 
-        public T GetSingle(Int64 id)
+        public virtual T GetSingle(Int64 id)
         {
             return this.repo.GetSingle(id);
         }

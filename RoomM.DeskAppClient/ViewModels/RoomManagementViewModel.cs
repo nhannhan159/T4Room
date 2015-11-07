@@ -20,6 +20,8 @@ namespace RoomM.DeskApp.ViewModels
     class RoomManagementViewModel : EditableViewModel<Room>
     {
 
+        #region Contruction
+
         public RoomManagementViewModel()
             : base()
         {
@@ -51,19 +53,12 @@ namespace RoomM.DeskApp.ViewModels
             this.rhvTypeFilter = rhvTypeList[rhvTypeList.Count - 1];
             this.currentRoomCalendar = default(RoomCalendar);
 
-
             this.timeForBacktrace = DateTime.Now;
             this.historiesList = new List<HistoryRecord>();
-            /* historiesList.Add(new HistoryRecord
-            {
-                AssetName = "sadsadasdasd",
-                Amount = 1000
-            });*/
-
             this.historiesView = new CollectionView(historiesList);
-
-
         }
+
+        #endregion
 
         #region PrivateField
 

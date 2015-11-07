@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 
 namespace RoomM.Models
 {
-    [DataContract]
+    [DataContract(IsReference = true)]
     public abstract class EntityBase
     {
         [DataMember]

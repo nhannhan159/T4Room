@@ -14,9 +14,9 @@ namespace RoomM.ServiceTest
         {
             RoomService.RoomServiceClient roomService = new RoomService.RoomServiceClient();
             Room room = roomService.GetSingle(1);
-            System.Console.Out.WriteLine("test: " + room.RoomType.Name + " end");
+            System.Console.Out.WriteLine("test: " + room.Name + " " + room.RoomType.Name + " end");
             System.Console.In.ReadLine();
-            room.Name = "X201";
+            room.Name = "X205";
             roomService.Edit(room);
             System.Console.Out.WriteLine(roomService.GetSingle(1).Name);
             System.Console.In.ReadLine();

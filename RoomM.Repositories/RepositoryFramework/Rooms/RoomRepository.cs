@@ -29,7 +29,9 @@ namespace RoomM.Repositories
 
         public IList<Room> GetRoomListLimitByRegister(int limit)
         {
-            return this.Get(orderBy: q => q.OrderBy(d => d.RoomCalendars.Count)).Take(limit).ToList();
+            return this.Get(
+                orderBy: q => q.OrderBy(d => d.RoomCalendars.Count),
+                limit: limit).ToList();
         }
 
         public List<DictionaryEntry> GetRoomLimitByRegister(int limit, DateTime from, DateTime to)

@@ -59,7 +59,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Tên" Width="0.3*" Binding="{Binding Name}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Ngày tạo" Width="0.2*" Binding="{Binding DateCreate, StringFormat=\{0:dd/MM/yyyy \}}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Loại phòng" Width="0.3*" Binding="{Binding RoomTypeId}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Loại phòng" Width="0.3*" Binding="{Binding RoomType.Name}" IsReadOnly="True"/>
                     <DataGridTemplateColumn Width="0.2*" Header="Hành động">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

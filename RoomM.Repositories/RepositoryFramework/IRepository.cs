@@ -12,10 +12,6 @@ namespace RoomM.Repositories
     {
         T GetSingle(Int64 id);
         IList<T> GetAll();
-        IQueryable<T> GetWithRawSql(string query, params object[] parameters);
-        IQueryable<T> Get(
-            Expression<Func<T, bool>> filter,
-            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy);
         
         void Add(T entity);
         void Delete(T entity);
