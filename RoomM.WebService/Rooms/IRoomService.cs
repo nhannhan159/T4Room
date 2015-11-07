@@ -21,7 +21,7 @@ namespace RoomM.WebService
         IList<Room> GetRoomListLimitByRegister(int limit);
 
         [OperationContract]
-        List<DictionaryEntry> GetRoomLimitByRegister(int limit, DateTime from, DateTime to);
+        IList<KeyValuePair<Room, int>> GetRoomLimitByRegister(int limit, DateTime from, DateTime to);
 
         [OperationContract]
         bool isUniqueName(string name);

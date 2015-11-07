@@ -36,7 +36,7 @@ namespace RoomM.WebService
             return this.uow.StaffRepository.GetStaffLimitByRegister(limit);
         }
 
-        public List<DictionaryEntry> GetStaffLimitByRegister(int limit, DateTime from, DateTime to)
+        public IList<KeyValuePair<Staff, int>> GetStaffLimitByRegister(int limit, DateTime from, DateTime to)
         {
             return this.uow.StaffRepository.GetStaffLimitByRegister(limit, from, to);
         }

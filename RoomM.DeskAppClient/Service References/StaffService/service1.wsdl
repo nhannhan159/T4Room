@@ -15,9 +15,15 @@
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/RoomM.Models" />
-      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.Collections" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IStaffService_GetSingle_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSingle" />
+  </wsdl:message>
+  <wsdl:message name="IStaffService_GetSingle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSingleResponse" />
+  </wsdl:message>
   <wsdl:message name="IStaffService_GetAll_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAll" />
   </wsdl:message>
@@ -47,12 +53,6 @@
   </wsdl:message>
   <wsdl:message name="IStaffService_Edit_OutputMessage">
     <wsdl:part name="parameters" element="tns:EditResponse" />
-  </wsdl:message>
-  <wsdl:message name="IStaffService_GetSingle_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetSingle" />
-  </wsdl:message>
-  <wsdl:message name="IStaffService_GetSingle_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetSingleResponse" />
   </wsdl:message>
   <wsdl:message name="IStaffService_CheckPassword_InputMessage">
     <wsdl:part name="parameters" element="tns:CheckPassword" />
@@ -97,6 +97,10 @@
     <wsdl:part name="parameters" element="tns:UserNameIsWorkingResponse" />
   </wsdl:message>
   <wsdl:portType name="IStaffService">
+    <wsdl:operation name="GetSingle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Staff/GetSingle" message="tns:IStaffService_GetSingle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Staff/GetSingleResponse" message="tns:IStaffService_GetSingle_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetAll">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Staff/GetAll" message="tns:IStaffService_GetAll_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Staff/GetAllResponse" message="tns:IStaffService_GetAll_OutputMessage" />
@@ -116,10 +120,6 @@
     <wsdl:operation name="Edit">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Staff/Edit" message="tns:IStaffService_Edit_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Staff/EditResponse" message="tns:IStaffService_Edit_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetSingle">
-      <wsdl:input wsaw:Action="http://tempuri.org/IStaffService/GetSingle" message="tns:IStaffService_GetSingle_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IStaffService/GetSingleResponse" message="tns:IStaffService_GetSingle_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="CheckPassword">
       <wsdl:input wsaw:Action="http://tempuri.org/IStaffService/CheckPassword" message="tns:IStaffService_CheckPassword_InputMessage" />
@@ -152,6 +152,15 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IStaffService" type="tns:IStaffService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetSingle">
+      <soap:operation soapAction="http://tempuri.org/IServiceOf_Staff/GetSingle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetAll">
       <soap:operation soapAction="http://tempuri.org/IServiceOf_Staff/GetAll" style="document" />
       <wsdl:input>
@@ -190,15 +199,6 @@
     </wsdl:operation>
     <wsdl:operation name="Edit">
       <soap:operation soapAction="http://tempuri.org/IServiceOf_Staff/Edit" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetSingle">
-      <soap:operation soapAction="http://tempuri.org/IStaffService/GetSingle" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -274,6 +274,15 @@
     <wsp:PolicyReference URI="#NetTcpBinding_IStaffService_policy">
     </wsp:PolicyReference>
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="GetSingle">
+      <soap12:operation soapAction="http://tempuri.org/IServiceOf_Staff/GetSingle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetAll">
       <soap12:operation soapAction="http://tempuri.org/IServiceOf_Staff/GetAll" style="document" />
       <wsdl:input>
@@ -312,15 +321,6 @@
     </wsdl:operation>
     <wsdl:operation name="Edit">
       <soap12:operation soapAction="http://tempuri.org/IServiceOf_Staff/Edit" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetSingle">
-      <soap12:operation soapAction="http://tempuri.org/IStaffService/GetSingle" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -15,9 +15,15 @@
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/RoomM.Models" />
-      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.Collections" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IRoomService_GetSingle_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSingle" />
+  </wsdl:message>
+  <wsdl:message name="IRoomService_GetSingle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSingleResponse" />
+  </wsdl:message>
   <wsdl:message name="IRoomService_GetAll_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAll" />
   </wsdl:message>
@@ -48,12 +54,6 @@
   <wsdl:message name="IRoomService_Edit_OutputMessage">
     <wsdl:part name="parameters" element="tns:EditResponse" />
   </wsdl:message>
-  <wsdl:message name="IRoomService_GetSingle_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetSingle" />
-  </wsdl:message>
-  <wsdl:message name="IRoomService_GetSingle_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetSingleResponse" />
-  </wsdl:message>
   <wsdl:message name="IRoomService_GetByRoomTypeId_InputMessage">
     <wsdl:part name="parameters" element="tns:GetByRoomTypeId" />
   </wsdl:message>
@@ -79,6 +79,10 @@
     <wsdl:part name="parameters" element="tns:isUniqueNameResponse" />
   </wsdl:message>
   <wsdl:portType name="IRoomService">
+    <wsdl:operation name="GetSingle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Room/GetSingle" message="tns:IRoomService_GetSingle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Room/GetSingleResponse" message="tns:IRoomService_GetSingle_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetAll">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Room/GetAll" message="tns:IRoomService_GetAll_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Room/GetAllResponse" message="tns:IRoomService_GetAll_OutputMessage" />
@@ -99,10 +103,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceOf_Room/Edit" message="tns:IRoomService_Edit_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceOf_Room/EditResponse" message="tns:IRoomService_Edit_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetSingle">
-      <wsdl:input wsaw:Action="http://tempuri.org/IRoomService/GetSingle" message="tns:IRoomService_GetSingle_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IRoomService/GetSingleResponse" message="tns:IRoomService_GetSingle_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetByRoomTypeId">
       <wsdl:input wsaw:Action="http://tempuri.org/IRoomService/GetByRoomTypeId" message="tns:IRoomService_GetByRoomTypeId_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRoomService/GetByRoomTypeIdResponse" message="tns:IRoomService_GetByRoomTypeId_OutputMessage" />
@@ -122,6 +122,15 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IRoomService" type="tns:IRoomService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetSingle">
+      <soap:operation soapAction="http://tempuri.org/IServiceOf_Room/GetSingle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetAll">
       <soap:operation soapAction="http://tempuri.org/IServiceOf_Room/GetAll" style="document" />
       <wsdl:input>
@@ -160,15 +169,6 @@
     </wsdl:operation>
     <wsdl:operation name="Edit">
       <soap:operation soapAction="http://tempuri.org/IServiceOf_Room/Edit" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetSingle">
-      <soap:operation soapAction="http://tempuri.org/IRoomService/GetSingle" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -217,6 +217,15 @@
     <wsp:PolicyReference URI="#NetTcpBinding_IRoomService_policy">
     </wsp:PolicyReference>
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="GetSingle">
+      <soap12:operation soapAction="http://tempuri.org/IServiceOf_Room/GetSingle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetAll">
       <soap12:operation soapAction="http://tempuri.org/IServiceOf_Room/GetAll" style="document" />
       <wsdl:input>
@@ -255,15 +264,6 @@
     </wsdl:operation>
     <wsdl:operation name="Edit">
       <soap12:operation soapAction="http://tempuri.org/IServiceOf_Room/Edit" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetSingle">
-      <soap12:operation soapAction="http://tempuri.org/IRoomService/GetSingle" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

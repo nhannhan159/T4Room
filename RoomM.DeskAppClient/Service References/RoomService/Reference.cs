@@ -15,6 +15,12 @@ namespace RoomM.DeskApp.RoomService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RoomService.IRoomService")]
     public interface IRoomService {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Room/GetSingle", ReplyAction="http://tempuri.org/IServiceOf_Room/GetSingleResponse")]
+        RoomM.Models.Room GetSingle(long id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Room/GetSingle", ReplyAction="http://tempuri.org/IServiceOf_Room/GetSingleResponse")]
+        System.Threading.Tasks.Task<RoomM.Models.Room> GetSingleAsync(long id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Room/GetAll", ReplyAction="http://tempuri.org/IServiceOf_Room/GetAllResponse")]
         System.Collections.Generic.List<RoomM.Models.Room> GetAll();
         
@@ -34,27 +40,16 @@ namespace RoomM.DeskApp.RoomService {
         System.Threading.Tasks.Task DeleteByTAsync(RoomM.Models.Room entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Room/DeleteByObject", ReplyAction="http://tempuri.org/IServiceOf_Room/DeleteByObjectResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<RoomM.Models.Room>))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RoomM.Models.Room))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RoomM.Models.EntityBase))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<System.Collections.DictionaryEntry>))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.DictionaryEntry))]
-        void DeleteByObject(object id);
+        void DeleteByObject(long id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Room/DeleteByObject", ReplyAction="http://tempuri.org/IServiceOf_Room/DeleteByObjectResponse")]
-        System.Threading.Tasks.Task DeleteByObjectAsync(object id);
+        System.Threading.Tasks.Task DeleteByObjectAsync(long id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Room/Edit", ReplyAction="http://tempuri.org/IServiceOf_Room/EditResponse")]
         void Edit(RoomM.Models.Room entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Room/Edit", ReplyAction="http://tempuri.org/IServiceOf_Room/EditResponse")]
         System.Threading.Tasks.Task EditAsync(RoomM.Models.Room entity);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomService/GetSingle", ReplyAction="http://tempuri.org/IRoomService/GetSingleResponse")]
-        RoomM.Models.Room GetSingle(long roomId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomService/GetSingle", ReplyAction="http://tempuri.org/IRoomService/GetSingleResponse")]
-        System.Threading.Tasks.Task<RoomM.Models.Room> GetSingleAsync(long roomId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomService/GetByRoomTypeId", ReplyAction="http://tempuri.org/IRoomService/GetByRoomTypeIdResponse")]
         System.Collections.Generic.List<RoomM.Models.Room> GetByRoomTypeId(long roomTypeId);
@@ -69,10 +64,10 @@ namespace RoomM.DeskApp.RoomService {
         System.Threading.Tasks.Task<System.Collections.Generic.List<RoomM.Models.Room>> GetRoomListLimitByRegisterAsync(int limit);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomService/GetRoomLimitByRegister", ReplyAction="http://tempuri.org/IRoomService/GetRoomLimitByRegisterResponse")]
-        System.Collections.Generic.List<System.Collections.DictionaryEntry> GetRoomLimitByRegister(int limit, System.DateTime from, System.DateTime to);
+        System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<RoomM.Models.Room, int>> GetRoomLimitByRegister(int limit, System.DateTime from, System.DateTime to);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomService/GetRoomLimitByRegister", ReplyAction="http://tempuri.org/IRoomService/GetRoomLimitByRegisterResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<System.Collections.DictionaryEntry>> GetRoomLimitByRegisterAsync(int limit, System.DateTime from, System.DateTime to);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<RoomM.Models.Room, int>>> GetRoomLimitByRegisterAsync(int limit, System.DateTime from, System.DateTime to);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomService/isUniqueName", ReplyAction="http://tempuri.org/IRoomService/isUniqueNameResponse")]
         bool isUniqueName(string name);
@@ -108,6 +103,14 @@ namespace RoomM.DeskApp.RoomService {
                 base(binding, remoteAddress) {
         }
         
+        public RoomM.Models.Room GetSingle(long id) {
+            return base.Channel.GetSingle(id);
+        }
+        
+        public System.Threading.Tasks.Task<RoomM.Models.Room> GetSingleAsync(long id) {
+            return base.Channel.GetSingleAsync(id);
+        }
+        
         public System.Collections.Generic.List<RoomM.Models.Room> GetAll() {
             return base.Channel.GetAll();
         }
@@ -132,11 +135,11 @@ namespace RoomM.DeskApp.RoomService {
             return base.Channel.DeleteByTAsync(entity);
         }
         
-        public void DeleteByObject(object id) {
+        public void DeleteByObject(long id) {
             base.Channel.DeleteByObject(id);
         }
         
-        public System.Threading.Tasks.Task DeleteByObjectAsync(object id) {
+        public System.Threading.Tasks.Task DeleteByObjectAsync(long id) {
             return base.Channel.DeleteByObjectAsync(id);
         }
         
@@ -146,14 +149,6 @@ namespace RoomM.DeskApp.RoomService {
         
         public System.Threading.Tasks.Task EditAsync(RoomM.Models.Room entity) {
             return base.Channel.EditAsync(entity);
-        }
-        
-        public RoomM.Models.Room GetSingle(long roomId) {
-            return base.Channel.GetSingle(roomId);
-        }
-        
-        public System.Threading.Tasks.Task<RoomM.Models.Room> GetSingleAsync(long roomId) {
-            return base.Channel.GetSingleAsync(roomId);
         }
         
         public System.Collections.Generic.List<RoomM.Models.Room> GetByRoomTypeId(long roomTypeId) {
@@ -172,11 +167,11 @@ namespace RoomM.DeskApp.RoomService {
             return base.Channel.GetRoomListLimitByRegisterAsync(limit);
         }
         
-        public System.Collections.Generic.List<System.Collections.DictionaryEntry> GetRoomLimitByRegister(int limit, System.DateTime from, System.DateTime to) {
+        public System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<RoomM.Models.Room, int>> GetRoomLimitByRegister(int limit, System.DateTime from, System.DateTime to) {
             return base.Channel.GetRoomLimitByRegister(limit, from, to);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<System.Collections.DictionaryEntry>> GetRoomLimitByRegisterAsync(int limit, System.DateTime from, System.DateTime to) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<RoomM.Models.Room, int>>> GetRoomLimitByRegisterAsync(int limit, System.DateTime from, System.DateTime to) {
             return base.Channel.GetRoomLimitByRegisterAsync(limit, from, to);
         }
         

@@ -38,22 +38,18 @@ namespace RoomM.Repositories
                 limit: limit).ToList();
         }
 
-        public List<DictionaryEntry> GetStaffLimitByRegister(int limit, DateTime from, DateTime to)
+        public IList<KeyValuePair<Staff, int>> GetStaffLimitByRegister(int limit, DateTime from, DateTime to)
         {
-            IList<Staff>  staffList = GetAll();
-            
-            IList<KeyValuePair<Staff, int>> result = new List<KeyValuePair<Staff, int>>();
-            Hashtable hm = new Hashtable();
+            IList<Staff> staffList = GetAll();
+            IList<KeyValuePair<Staff, int>> list = new List<KeyValuePair<Staff, int>>();
             
             foreach (Staff staff in staffList) 
             {
                 int count = staff.RoomCalendars.Count(p => p.Date >= from && p.Date <= to);
-                hm.Add(staff, count);
+                list.Add(new KeyValuePair<Staff, int>(staff, count));
             }
 
-            List<DictionaryEntry> dic = hm.Cast<DictionaryEntry>().OrderByDescending(entry => entry.Value).Take(limit).ToList();
-
-            return dic;
+            return list.OrderByDescending(p => p.Value).Take(limit).ToList();
         }
 
         public bool IsExists(string username)

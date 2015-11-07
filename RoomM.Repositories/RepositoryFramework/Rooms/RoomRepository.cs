@@ -34,20 +34,18 @@ namespace RoomM.Repositories
                 limit: limit).ToList();
         }
 
-        public List<DictionaryEntry> GetRoomLimitByRegister(int limit, DateTime from, DateTime to)
+        public IList<KeyValuePair<Room, int>> GetRoomLimitByRegister(int limit, DateTime from, DateTime to)
         {
             IList<Room> roomList = GetAll();
-            Hashtable hm = new Hashtable();
+            IList<KeyValuePair<Room, int>> list = new List<KeyValuePair<Room, int>>();
 
             foreach (Room room in roomList)
             {
                 int count = room.RoomCalendars.Count(p => p.Date >= from && p.Date <= to);
-                hm.Add(room, count);
+                list.Add(new KeyValuePair<Room, int>(room, count));
             }
 
-            List<DictionaryEntry> dic = hm.Cast<DictionaryEntry>().OrderByDescending(entry => entry.Value).Take(limit).ToList();
-
-            return dic;
+            return list.OrderByDescending(p => p.Value).Take(limit).ToList();
         }
 
         public bool isUniqueName(string name)

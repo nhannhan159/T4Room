@@ -24,7 +24,7 @@ namespace RoomM.WebService
         IList<Staff> GetStaffLimitByRegister(int limit);
 
         [OperationContract(Name = "GetStaffLimitByRegister_List<DictionaryEntry>")]
-        List<DictionaryEntry> GetStaffLimitByRegister(int limit, DateTime from, DateTime to);
+        IList<KeyValuePair<Staff, int>> GetStaffLimitByRegister(int limit, DateTime from, DateTime to);
 
         [OperationContract]
         bool IsExists(string username);

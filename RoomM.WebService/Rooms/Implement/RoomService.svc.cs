@@ -31,7 +31,7 @@ namespace RoomM.WebService
             return this.uow.RoomRepository.GetRoomListLimitByRegister(limit);
         }
 
-        public List<DictionaryEntry> GetRoomLimitByRegister(int limit, DateTime from, DateTime to)
+        public IList<KeyValuePair<Room, int>> GetRoomLimitByRegister(int limit, DateTime from, DateTime to)
         {
             return this.uow.RoomRepository.GetRoomLimitByRegister(limit, from, to);
         }

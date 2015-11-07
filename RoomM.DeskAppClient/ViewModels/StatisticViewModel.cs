@@ -106,46 +106,40 @@ namespace RoomM.DeskApp.ViewModels
 
         private void rebuildStaffData(DateTime from, DateTime to)
         { 
-            /*
-            List<DictionaryEntry> staffDics = this.sc.StaffService.GetStaffLimitByRegister_ListDictionaryEntry(10, from, to);
+            IList<KeyValuePair<Staff, int>> staffDics = this.sc.StaffService.GetStaffLimitByRegister_ListDictionaryEntry(10, from, to);
 
             if (null == chartStaffItems)
                 chartStaffItems = new ObservableCollection<ChartElement>();
             else
                 chartStaffItems.Clear();
 
-            foreach (DictionaryEntry d in staffDics)
+            foreach (KeyValuePair<Staff, int> d in staffDics)
             {
                 chartStaffItems.Add(new ChartElement
                 {
-                    Name = (d.Key as Staff).Name,
-                    Value = (int) d.Value
+                    Name = d.Key.Name,
+                    Value = d.Value
                 });
-
             }
-            */ 
         }
 
         private void rebuildRegisterData(DateTime from, DateTime to)
         {
-            /*
-            List<DictionaryEntry> roomDics = this.sc.RoomService.GetRoomLimitByRegister(10, from, to);
+            IList<KeyValuePair<Room, int>> roomDics = this.sc.RoomService.GetRoomLimitByRegister(10, from, to);
 
             if (null == chartRegisterItems)
                 chartRegisterItems = new ObservableCollection<ChartElement>();
             else
                 chartRegisterItems.Clear();
 
-            foreach (DictionaryEntry d in roomDics)
+            foreach (KeyValuePair<Room, int> d in roomDics)
             {
                 chartRegisterItems.Add(new ChartElement
                 {
-                    Name = (d.Key as Room).Name,
-                    Value = (int)d.Value
+                    Name = d.Key.Name,
+                    Value = d.Value
                 });
-
             }
-            */
         }
     }
 

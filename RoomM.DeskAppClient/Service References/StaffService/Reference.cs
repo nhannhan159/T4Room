@@ -15,6 +15,12 @@ namespace RoomM.DeskApp.StaffService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="StaffService.IStaffService")]
     public interface IStaffService {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Staff/GetSingle", ReplyAction="http://tempuri.org/IServiceOf_Staff/GetSingleResponse")]
+        RoomM.Models.Staff GetSingle(long id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Staff/GetSingle", ReplyAction="http://tempuri.org/IServiceOf_Staff/GetSingleResponse")]
+        System.Threading.Tasks.Task<RoomM.Models.Staff> GetSingleAsync(long id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Staff/GetAll", ReplyAction="http://tempuri.org/IServiceOf_Staff/GetAllResponse")]
         System.Collections.Generic.List<RoomM.Models.Staff> GetAll();
         
@@ -34,27 +40,16 @@ namespace RoomM.DeskApp.StaffService {
         System.Threading.Tasks.Task DeleteByTAsync(RoomM.Models.Staff entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Staff/DeleteByObject", ReplyAction="http://tempuri.org/IServiceOf_Staff/DeleteByObjectResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<RoomM.Models.Staff>))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RoomM.Models.Staff))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RoomM.Models.EntityBase))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<System.Collections.DictionaryEntry>))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.DictionaryEntry))]
-        void DeleteByObject(object id);
+        void DeleteByObject(long id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Staff/DeleteByObject", ReplyAction="http://tempuri.org/IServiceOf_Staff/DeleteByObjectResponse")]
-        System.Threading.Tasks.Task DeleteByObjectAsync(object id);
+        System.Threading.Tasks.Task DeleteByObjectAsync(long id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Staff/Edit", ReplyAction="http://tempuri.org/IServiceOf_Staff/EditResponse")]
         void Edit(RoomM.Models.Staff entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_Staff/Edit", ReplyAction="http://tempuri.org/IServiceOf_Staff/EditResponse")]
         System.Threading.Tasks.Task EditAsync(RoomM.Models.Staff entity);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStaffService/GetSingle", ReplyAction="http://tempuri.org/IStaffService/GetSingleResponse")]
-        RoomM.Models.Staff GetSingle(int staffId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStaffService/GetSingle", ReplyAction="http://tempuri.org/IStaffService/GetSingleResponse")]
-        System.Threading.Tasks.Task<RoomM.Models.Staff> GetSingleAsync(int staffId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStaffService/CheckPassword", ReplyAction="http://tempuri.org/IStaffService/CheckPasswordResponse")]
         bool CheckPassword(RoomM.Models.Staff staff, string password);
@@ -91,10 +86,10 @@ namespace RoomM.DeskApp.StaffService {
         System.Threading.Tasks.Task<bool> IsExistsAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStaffService/GetUserId", ReplyAction="http://tempuri.org/IStaffService/GetUserIdResponse")]
-        int GetUserId(string username);
+        long GetUserId(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStaffService/GetUserId", ReplyAction="http://tempuri.org/IStaffService/GetUserIdResponse")]
-        System.Threading.Tasks.Task<int> GetUserIdAsync(string username);
+        System.Threading.Tasks.Task<long> GetUserIdAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStaffService/UserNameIsWorking", ReplyAction="http://tempuri.org/IStaffService/UserNameIsWorkingResponse")]
         bool UserNameIsWorking(string username);
@@ -169,12 +164,12 @@ namespace RoomM.DeskApp.StaffService {
     public partial class GetStaffLimitByRegister_ListDictionaryEntryResponse {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="GetStaffLimitByRegister_List_x003C_DictionaryEntry_x003E_Result", Namespace="http://tempuri.org/", Order=0)]
-        public System.Collections.Generic.List<System.Collections.DictionaryEntry> GetStaffLimitByRegister_ListDictionaryEntryResult;
+        public System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<RoomM.Models.Staff, int>> GetStaffLimitByRegister_ListDictionaryEntryResult;
         
         public GetStaffLimitByRegister_ListDictionaryEntryResponse() {
         }
         
-        public GetStaffLimitByRegister_ListDictionaryEntryResponse(System.Collections.Generic.List<System.Collections.DictionaryEntry> GetStaffLimitByRegister_ListDictionaryEntryResult) {
+        public GetStaffLimitByRegister_ListDictionaryEntryResponse(System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<RoomM.Models.Staff, int>> GetStaffLimitByRegister_ListDictionaryEntryResult) {
             this.GetStaffLimitByRegister_ListDictionaryEntryResult = GetStaffLimitByRegister_ListDictionaryEntryResult;
         }
     }
@@ -206,6 +201,14 @@ namespace RoomM.DeskApp.StaffService {
                 base(binding, remoteAddress) {
         }
         
+        public RoomM.Models.Staff GetSingle(long id) {
+            return base.Channel.GetSingle(id);
+        }
+        
+        public System.Threading.Tasks.Task<RoomM.Models.Staff> GetSingleAsync(long id) {
+            return base.Channel.GetSingleAsync(id);
+        }
+        
         public System.Collections.Generic.List<RoomM.Models.Staff> GetAll() {
             return base.Channel.GetAll();
         }
@@ -230,11 +233,11 @@ namespace RoomM.DeskApp.StaffService {
             return base.Channel.DeleteByTAsync(entity);
         }
         
-        public void DeleteByObject(object id) {
+        public void DeleteByObject(long id) {
             base.Channel.DeleteByObject(id);
         }
         
-        public System.Threading.Tasks.Task DeleteByObjectAsync(object id) {
+        public System.Threading.Tasks.Task DeleteByObjectAsync(long id) {
             return base.Channel.DeleteByObjectAsync(id);
         }
         
@@ -244,14 +247,6 @@ namespace RoomM.DeskApp.StaffService {
         
         public System.Threading.Tasks.Task EditAsync(RoomM.Models.Staff entity) {
             return base.Channel.EditAsync(entity);
-        }
-        
-        public RoomM.Models.Staff GetSingle(int staffId) {
-            return base.Channel.GetSingle(staffId);
-        }
-        
-        public System.Threading.Tasks.Task<RoomM.Models.Staff> GetSingleAsync(int staffId) {
-            return base.Channel.GetSingleAsync(staffId);
         }
         
         public bool CheckPassword(RoomM.Models.Staff staff, string password) {
@@ -298,7 +293,7 @@ namespace RoomM.DeskApp.StaffService {
             return base.Channel.GetStaffLimitByRegister_ListDictionaryEntry(request);
         }
         
-        public System.Collections.Generic.List<System.Collections.DictionaryEntry> GetStaffLimitByRegister_ListDictionaryEntry(int limit, System.DateTime from, System.DateTime to) {
+        public System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<RoomM.Models.Staff, int>> GetStaffLimitByRegister_ListDictionaryEntry(int limit, System.DateTime from, System.DateTime to) {
             RoomM.DeskApp.StaffService.GetStaffLimitByRegister_ListDictionaryEntryRequest inValue = new RoomM.DeskApp.StaffService.GetStaffLimitByRegister_ListDictionaryEntryRequest();
             inValue.limit = limit;
             inValue.from = from;
@@ -328,11 +323,11 @@ namespace RoomM.DeskApp.StaffService {
             return base.Channel.IsExistsAsync(username);
         }
         
-        public int GetUserId(string username) {
+        public long GetUserId(string username) {
             return base.Channel.GetUserId(username);
         }
         
-        public System.Threading.Tasks.Task<int> GetUserIdAsync(string username) {
+        public System.Threading.Tasks.Task<long> GetUserIdAsync(string username) {
             return base.Channel.GetUserIdAsync(username);
         }
         

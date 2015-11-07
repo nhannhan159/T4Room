@@ -28,7 +28,7 @@
     <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="504a315d-a6ad-43b2-80ec-4147202b0642" SourceId="1" SourceUrl="net.tcp://localhost:8282/RoomService/mex" />
     <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="1b086dd0-bf4b-4148-891b-b96aba0302e0" SourceId="1" SourceUrl="net.tcp://localhost:8282/RoomService/mex" />
     <MetadataFile FileName="RoomM.Models1.xsd" MetadataType="Schema" ID="43dfc00f-d43d-4d1f-98da-b6a7cb7f8036" SourceId="1" SourceUrl="net.tcp://localhost:8282/RoomService/mex" />
-    <MetadataFile FileName="System.Collections1.xsd" MetadataType="Schema" ID="5faf8fba-4ec7-4386-8407-13e29d627e12" SourceId="1" SourceUrl="net.tcp://localhost:8282/RoomService/mex" />
+    <MetadataFile FileName="System.Collections.Generic.xsd" MetadataType="Schema" ID="db2acdd1-16ac-4937-a593-281bc4b7264c" SourceId="1" SourceUrl="net.tcp://localhost:8282/RoomService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

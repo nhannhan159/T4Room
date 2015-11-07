@@ -14,7 +14,7 @@ namespace RoomM.Repositories
         Boolean CheckPassword(Staff staff, string password);
         Boolean CheckUserExists(string username);
         IList<Staff> GetStaffLimitByRegister(int limit);
-        List<DictionaryEntry> GetStaffLimitByRegister(int limit, DateTime from, DateTime to);
+        IList<KeyValuePair<Staff, int>> GetStaffLimitByRegister(int limit, DateTime from, DateTime to);
         bool IsExists(string username);
         Int64 GetUserId(string username);
         bool UserNameIsWorking(string username);
