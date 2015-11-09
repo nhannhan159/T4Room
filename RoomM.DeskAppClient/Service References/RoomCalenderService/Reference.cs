@@ -15,6 +15,12 @@ namespace RoomM.DeskApp.RoomCalenderService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RoomCalenderService.IRoomCalenderService")]
     public interface IRoomCalenderService {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomCalendar/GetSingle", ReplyAction="http://tempuri.org/IServiceOf_RoomCalendar/GetSingleResponse")]
+        RoomM.Models.RoomCalendar GetSingle(long id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomCalendar/GetSingle", ReplyAction="http://tempuri.org/IServiceOf_RoomCalendar/GetSingleResponse")]
+        System.Threading.Tasks.Task<RoomM.Models.RoomCalendar> GetSingleAsync(long id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomCalendar/GetAll", ReplyAction="http://tempuri.org/IServiceOf_RoomCalendar/GetAllResponse")]
         System.Collections.Generic.List<RoomM.Models.RoomCalendar> GetAll();
         
@@ -34,25 +40,16 @@ namespace RoomM.DeskApp.RoomCalenderService {
         System.Threading.Tasks.Task DeleteByTAsync(RoomM.Models.RoomCalendar entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomCalendar/DeleteByObject", ReplyAction="http://tempuri.org/IServiceOf_RoomCalendar/DeleteByObjectResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<RoomM.Models.RoomCalendar>))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RoomM.Models.RoomCalendar))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RoomM.Models.EntityBase))]
-        void DeleteByObject(object id);
+        void DeleteByObject(long id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomCalendar/DeleteByObject", ReplyAction="http://tempuri.org/IServiceOf_RoomCalendar/DeleteByObjectResponse")]
-        System.Threading.Tasks.Task DeleteByObjectAsync(object id);
+        System.Threading.Tasks.Task DeleteByObjectAsync(long id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomCalendar/Edit", ReplyAction="http://tempuri.org/IServiceOf_RoomCalendar/EditResponse")]
         void Edit(RoomM.Models.RoomCalendar entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomCalendar/Edit", ReplyAction="http://tempuri.org/IServiceOf_RoomCalendar/EditResponse")]
         System.Threading.Tasks.Task EditAsync(RoomM.Models.RoomCalendar entity);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomCalenderService/GetSingle", ReplyAction="http://tempuri.org/IRoomCalenderService/GetSingleResponse")]
-        RoomM.Models.RoomCalendar GetSingle(int roomCalId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomCalenderService/GetSingle", ReplyAction="http://tempuri.org/IRoomCalenderService/GetSingleResponse")]
-        System.Threading.Tasks.Task<RoomM.Models.RoomCalendar> GetSingleAsync(int roomCalId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomCalenderService/GetByRoomId", ReplyAction="http://tempuri.org/IRoomCalenderService/GetByRoomIdResponse")]
         System.Collections.Generic.List<RoomM.Models.RoomCalendar> GetByRoomId(long roomId);
@@ -85,16 +82,16 @@ namespace RoomM.DeskApp.RoomCalenderService {
         System.Threading.Tasks.Task<System.Collections.Generic.List<RoomM.Models.RoomCalendar>> GetByWeekAndRoomIdAsync(System.DateTime date, long roomId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomCalenderService/GetByWatchedState", ReplyAction="http://tempuri.org/IRoomCalenderService/GetByWatchedStateResponse")]
-        System.Collections.Generic.List<RoomM.Models.RoomCalendar> GetByWatchedState(bool isWatched, int staffId);
+        System.Collections.Generic.List<RoomM.Models.RoomCalendar> GetByWatchedState(bool isWatched, long staffId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomCalenderService/GetByWatchedState", ReplyAction="http://tempuri.org/IRoomCalenderService/GetByWatchedStateResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<RoomM.Models.RoomCalendar>> GetByWatchedStateAsync(bool isWatched, int staffId);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<RoomM.Models.RoomCalendar>> GetByWatchedStateAsync(bool isWatched, long staffId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomCalenderService/GetByRegisteredState", ReplyAction="http://tempuri.org/IRoomCalenderService/GetByRegisteredStateResponse")]
-        System.Collections.Generic.List<RoomM.Models.RoomCalendar> GetByRegisteredState(int registeredState, int staffId);
+        System.Collections.Generic.List<RoomM.Models.RoomCalendar> GetByRegisteredState(int registeredState, long staffId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomCalenderService/GetByRegisteredState", ReplyAction="http://tempuri.org/IRoomCalenderService/GetByRegisteredStateResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<RoomM.Models.RoomCalendar>> GetByRegisteredStateAsync(int registeredState, int staffId);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<RoomM.Models.RoomCalendar>> GetByRegisteredStateAsync(int registeredState, long staffId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -124,6 +121,14 @@ namespace RoomM.DeskApp.RoomCalenderService {
                 base(binding, remoteAddress) {
         }
         
+        public RoomM.Models.RoomCalendar GetSingle(long id) {
+            return base.Channel.GetSingle(id);
+        }
+        
+        public System.Threading.Tasks.Task<RoomM.Models.RoomCalendar> GetSingleAsync(long id) {
+            return base.Channel.GetSingleAsync(id);
+        }
+        
         public System.Collections.Generic.List<RoomM.Models.RoomCalendar> GetAll() {
             return base.Channel.GetAll();
         }
@@ -148,11 +153,11 @@ namespace RoomM.DeskApp.RoomCalenderService {
             return base.Channel.DeleteByTAsync(entity);
         }
         
-        public void DeleteByObject(object id) {
+        public void DeleteByObject(long id) {
             base.Channel.DeleteByObject(id);
         }
         
-        public System.Threading.Tasks.Task DeleteByObjectAsync(object id) {
+        public System.Threading.Tasks.Task DeleteByObjectAsync(long id) {
             return base.Channel.DeleteByObjectAsync(id);
         }
         
@@ -162,14 +167,6 @@ namespace RoomM.DeskApp.RoomCalenderService {
         
         public System.Threading.Tasks.Task EditAsync(RoomM.Models.RoomCalendar entity) {
             return base.Channel.EditAsync(entity);
-        }
-        
-        public RoomM.Models.RoomCalendar GetSingle(int roomCalId) {
-            return base.Channel.GetSingle(roomCalId);
-        }
-        
-        public System.Threading.Tasks.Task<RoomM.Models.RoomCalendar> GetSingleAsync(int roomCalId) {
-            return base.Channel.GetSingleAsync(roomCalId);
         }
         
         public System.Collections.Generic.List<RoomM.Models.RoomCalendar> GetByRoomId(long roomId) {
@@ -212,19 +209,19 @@ namespace RoomM.DeskApp.RoomCalenderService {
             return base.Channel.GetByWeekAndRoomIdAsync(date, roomId);
         }
         
-        public System.Collections.Generic.List<RoomM.Models.RoomCalendar> GetByWatchedState(bool isWatched, int staffId) {
+        public System.Collections.Generic.List<RoomM.Models.RoomCalendar> GetByWatchedState(bool isWatched, long staffId) {
             return base.Channel.GetByWatchedState(isWatched, staffId);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<RoomM.Models.RoomCalendar>> GetByWatchedStateAsync(bool isWatched, int staffId) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<RoomM.Models.RoomCalendar>> GetByWatchedStateAsync(bool isWatched, long staffId) {
             return base.Channel.GetByWatchedStateAsync(isWatched, staffId);
         }
         
-        public System.Collections.Generic.List<RoomM.Models.RoomCalendar> GetByRegisteredState(int registeredState, int staffId) {
+        public System.Collections.Generic.List<RoomM.Models.RoomCalendar> GetByRegisteredState(int registeredState, long staffId) {
             return base.Channel.GetByRegisteredState(registeredState, staffId);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<RoomM.Models.RoomCalendar>> GetByRegisteredStateAsync(int registeredState, int staffId) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<RoomM.Models.RoomCalendar>> GetByRegisteredStateAsync(int registeredState, long staffId) {
             return base.Channel.GetByRegisteredStateAsync(registeredState, staffId);
         }
     }

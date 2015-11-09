@@ -54,17 +54,17 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Properties\DataSources\RoomM.Models.Room.datasource" />
-    <None Include="Service References\RoomService\RoomM.Models.xsd">
+    <None Include="Service References\RoomService\RoomService.wsdl" />
+    <None Include="Service References\RoomService\RoomService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomService\service.wsdl" />
-    <None Include="Service References\RoomService\service.xsd">
+    <None Include="Service References\RoomService\RoomService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomService\service1.xsd">
+    <None Include="Service References\RoomService\RoomService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RoomService\System.Collections.xsd">
+    <None Include="Service References\RoomService\RoomService3.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -79,6 +79,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\RoomService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RoomService\RoomService.disco" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\RoomService\configuration91.svcinfo" />

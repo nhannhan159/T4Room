@@ -15,6 +15,12 @@ namespace RoomM.DeskApp.RoomAssetHistoryService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RoomAssetHistoryService.IRoomAssetHistoryService")]
     public interface IRoomAssetHistoryService {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomAssetHistory/GetSingle", ReplyAction="http://tempuri.org/IServiceOf_RoomAssetHistory/GetSingleResponse")]
+        RoomM.Models.RoomAssetHistory GetSingle(long id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomAssetHistory/GetSingle", ReplyAction="http://tempuri.org/IServiceOf_RoomAssetHistory/GetSingleResponse")]
+        System.Threading.Tasks.Task<RoomM.Models.RoomAssetHistory> GetSingleAsync(long id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomAssetHistory/GetAll", ReplyAction="http://tempuri.org/IServiceOf_RoomAssetHistory/GetAllResponse")]
         System.Collections.Generic.List<RoomM.Models.RoomAssetHistory> GetAll();
         
@@ -34,26 +40,16 @@ namespace RoomM.DeskApp.RoomAssetHistoryService {
         System.Threading.Tasks.Task DeleteByTAsync(RoomM.Models.RoomAssetHistory entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomAssetHistory/DeleteByObject", ReplyAction="http://tempuri.org/IServiceOf_RoomAssetHistory/DeleteByObjectResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<RoomM.Models.RoomAssetHistory>))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RoomM.Models.RoomAssetHistory))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RoomM.Models.EntityBase))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RoomM.Models.Room))]
-        void DeleteByObject(object id);
+        void DeleteByObject(long id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomAssetHistory/DeleteByObject", ReplyAction="http://tempuri.org/IServiceOf_RoomAssetHistory/DeleteByObjectResponse")]
-        System.Threading.Tasks.Task DeleteByObjectAsync(object id);
+        System.Threading.Tasks.Task DeleteByObjectAsync(long id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomAssetHistory/Edit", ReplyAction="http://tempuri.org/IServiceOf_RoomAssetHistory/EditResponse")]
         void Edit(RoomM.Models.RoomAssetHistory entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomAssetHistory/Edit", ReplyAction="http://tempuri.org/IServiceOf_RoomAssetHistory/EditResponse")]
         System.Threading.Tasks.Task EditAsync(RoomM.Models.RoomAssetHistory entity);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomAssetHistoryService/GetSingle", ReplyAction="http://tempuri.org/IRoomAssetHistoryService/GetSingleResponse")]
-        RoomM.Models.RoomAssetHistory GetSingle(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomAssetHistoryService/GetSingle", ReplyAction="http://tempuri.org/IRoomAssetHistoryService/GetSingleResponse")]
-        System.Threading.Tasks.Task<RoomM.Models.RoomAssetHistory> GetSingleAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomAssetHistoryService/GetByRoomId", ReplyAction="http://tempuri.org/IRoomAssetHistoryService/GetByRoomIdResponse")]
         System.Collections.Generic.List<RoomM.Models.RoomAssetHistory> GetByRoomId(long id);
@@ -95,6 +91,14 @@ namespace RoomM.DeskApp.RoomAssetHistoryService {
                 base(binding, remoteAddress) {
         }
         
+        public RoomM.Models.RoomAssetHistory GetSingle(long id) {
+            return base.Channel.GetSingle(id);
+        }
+        
+        public System.Threading.Tasks.Task<RoomM.Models.RoomAssetHistory> GetSingleAsync(long id) {
+            return base.Channel.GetSingleAsync(id);
+        }
+        
         public System.Collections.Generic.List<RoomM.Models.RoomAssetHistory> GetAll() {
             return base.Channel.GetAll();
         }
@@ -119,11 +123,11 @@ namespace RoomM.DeskApp.RoomAssetHistoryService {
             return base.Channel.DeleteByTAsync(entity);
         }
         
-        public void DeleteByObject(object id) {
+        public void DeleteByObject(long id) {
             base.Channel.DeleteByObject(id);
         }
         
-        public System.Threading.Tasks.Task DeleteByObjectAsync(object id) {
+        public System.Threading.Tasks.Task DeleteByObjectAsync(long id) {
             return base.Channel.DeleteByObjectAsync(id);
         }
         
@@ -133,14 +137,6 @@ namespace RoomM.DeskApp.RoomAssetHistoryService {
         
         public System.Threading.Tasks.Task EditAsync(RoomM.Models.RoomAssetHistory entity) {
             return base.Channel.EditAsync(entity);
-        }
-        
-        public RoomM.Models.RoomAssetHistory GetSingle(int id) {
-            return base.Channel.GetSingle(id);
-        }
-        
-        public System.Threading.Tasks.Task<RoomM.Models.RoomAssetHistory> GetSingleAsync(int id) {
-            return base.Channel.GetSingleAsync(id);
         }
         
         public System.Collections.Generic.List<RoomM.Models.RoomAssetHistory> GetByRoomId(long id) {

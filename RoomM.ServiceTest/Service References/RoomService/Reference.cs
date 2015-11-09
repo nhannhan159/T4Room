@@ -64,10 +64,10 @@ namespace RoomM.ServiceTest.RoomService {
         System.Threading.Tasks.Task<System.Collections.Generic.List<RoomM.Models.Room>> GetRoomListLimitByRegisterAsync(int limit);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomService/GetRoomLimitByRegister", ReplyAction="http://tempuri.org/IRoomService/GetRoomLimitByRegisterResponse")]
-        System.Collections.Generic.List<System.Collections.DictionaryEntry> GetRoomLimitByRegister(int limit, System.DateTime from, System.DateTime to);
+        System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<RoomM.Models.Room, int>> GetRoomLimitByRegister(int limit, System.DateTime from, System.DateTime to);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomService/GetRoomLimitByRegister", ReplyAction="http://tempuri.org/IRoomService/GetRoomLimitByRegisterResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<System.Collections.DictionaryEntry>> GetRoomLimitByRegisterAsync(int limit, System.DateTime from, System.DateTime to);
+        System.Threading.Tasks.Task<System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<RoomM.Models.Room, int>>> GetRoomLimitByRegisterAsync(int limit, System.DateTime from, System.DateTime to);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomService/isUniqueName", ReplyAction="http://tempuri.org/IRoomService/isUniqueNameResponse")]
         bool isUniqueName(string name);
@@ -167,11 +167,11 @@ namespace RoomM.ServiceTest.RoomService {
             return base.Channel.GetRoomListLimitByRegisterAsync(limit);
         }
         
-        public System.Collections.Generic.List<System.Collections.DictionaryEntry> GetRoomLimitByRegister(int limit, System.DateTime from, System.DateTime to) {
+        public System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<RoomM.Models.Room, int>> GetRoomLimitByRegister(int limit, System.DateTime from, System.DateTime to) {
             return base.Channel.GetRoomLimitByRegister(limit, from, to);
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<System.Collections.DictionaryEntry>> GetRoomLimitByRegisterAsync(int limit, System.DateTime from, System.DateTime to) {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<RoomM.Models.Room, int>>> GetRoomLimitByRegisterAsync(int limit, System.DateTime from, System.DateTime to) {
             return base.Channel.GetRoomLimitByRegisterAsync(limit, from, to);
         }
         

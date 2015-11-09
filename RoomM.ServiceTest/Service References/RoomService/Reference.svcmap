@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b5c5b5aa-4d5c-4b9e-8834-3f8284460307" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="982aba1e-8821-4e25-a36f-38effffba251" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -21,14 +21,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="net.tcp://localhost:8282/RoomService/mex" Protocol="mex" SourceId="1" />
+    <MetadataSource Address="https://localhost:62978/RoomService" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="700d24a6-4e95-4aa9-9be7-ebb263eee99c" SourceId="1" SourceUrl="net.tcp://localhost:8282/RoomService/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="b6a45173-9f2e-4dfb-845d-de7204b76788" SourceId="1" SourceUrl="net.tcp://localhost:8282/RoomService/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="e862fa56-032c-4a06-b4f3-062449ad0d00" SourceId="1" SourceUrl="net.tcp://localhost:8282/RoomService/mex" />
-    <MetadataFile FileName="RoomM.Models.xsd" MetadataType="Schema" ID="95416f12-33c6-474d-a77a-1cb5008eed36" SourceId="1" SourceUrl="net.tcp://localhost:8282/RoomService/mex" />
-    <MetadataFile FileName="System.Collections.xsd" MetadataType="Schema" ID="ae60ef4f-61c5-4d84-a136-1ee9d6a6d107" SourceId="1" SourceUrl="net.tcp://localhost:8282/RoomService/mex" />
+    <MetadataFile FileName="RoomService.xsd" MetadataType="Schema" ID="05533971-0b73-4738-ade9-6976c71ef07b" SourceId="1" SourceUrl="https://localhost:62978/RoomService?xsd=xsd3" />
+    <MetadataFile FileName="RoomService1.xsd" MetadataType="Schema" ID="7c0dc84e-8995-4b8d-9e1b-76785b2f49bc" SourceId="1" SourceUrl="https://localhost:62978/RoomService?xsd=xsd1" />
+    <MetadataFile FileName="RoomService.disco" MetadataType="Disco" ID="40fab88a-7694-4791-9a24-5d5edc8545aa" SourceId="1" SourceUrl="https://localhost:62978/RoomService?disco" />
+    <MetadataFile FileName="RoomService.wsdl" MetadataType="Wsdl" ID="1d8afb72-cc62-4402-b957-3736dd6b1f1e" SourceId="1" SourceUrl="https://localhost:62978/RoomService?wsdl" />
+    <MetadataFile FileName="RoomService2.xsd" MetadataType="Schema" ID="d10edb6f-3259-45be-83b1-c4f7df36cf51" SourceId="1" SourceUrl="https://localhost:62978/RoomService?xsd=xsd2" />
+    <MetadataFile FileName="RoomService3.xsd" MetadataType="Schema" ID="aa2134f6-c23a-421c-8e6e-a91e48949405" SourceId="1" SourceUrl="https://localhost:62978/RoomService?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

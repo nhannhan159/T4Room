@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="http://schemas.datacontract.org/2004/07/RoomM.Models" />
-  <xs:import namespace="http://schemas.datacontract.org/2004/07/System.Collections" />
+  <xs:import schemaLocation="https://localhost:62978/RoomService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/RoomM.Models" />
+  <xs:import schemaLocation="https://localhost:62978/RoomService?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
   <xs:element name="GetSingle">
     <xs:complexType>
       <xs:sequence>
@@ -116,7 +116,7 @@
   <xs:element name="GetRoomLimitByRegisterResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/System.Collections" minOccurs="0" name="GetRoomLimitByRegisterResult" nillable="true" type="q8:ArrayOfDictionaryEntry" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/System.Collections.Generic" minOccurs="0" name="GetRoomLimitByRegisterResult" nillable="true" type="q8:ArrayOfKeyValuePairOfRoomintciODYvhM" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

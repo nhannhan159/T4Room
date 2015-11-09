@@ -15,6 +15,12 @@ namespace RoomM.DeskApp.RoomCalendarStatusService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RoomCalendarStatusService.IRoomCalendarStatusService")]
     public interface IRoomCalendarStatusService {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomCalendarStatus/GetSingle", ReplyAction="http://tempuri.org/IServiceOf_RoomCalendarStatus/GetSingleResponse")]
+        RoomM.Models.RoomCalendarStatus GetSingle(long id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomCalendarStatus/GetSingle", ReplyAction="http://tempuri.org/IServiceOf_RoomCalendarStatus/GetSingleResponse")]
+        System.Threading.Tasks.Task<RoomM.Models.RoomCalendarStatus> GetSingleAsync(long id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomCalendarStatus/GetAll", ReplyAction="http://tempuri.org/IServiceOf_RoomCalendarStatus/GetAllResponse")]
         System.Collections.Generic.List<RoomM.Models.RoomCalendarStatus> GetAll();
         
@@ -34,26 +40,16 @@ namespace RoomM.DeskApp.RoomCalendarStatusService {
         System.Threading.Tasks.Task DeleteByTAsync(RoomM.Models.RoomCalendarStatus entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomCalendarStatus/DeleteByObject", ReplyAction="http://tempuri.org/IServiceOf_RoomCalendarStatus/DeleteByObjectResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<RoomM.Models.RoomCalendarStatus>))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RoomM.Models.RoomCalendarStatus))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RoomM.Models.EntityBase))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<string>))]
-        void DeleteByObject(object id);
+        void DeleteByObject(long id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomCalendarStatus/DeleteByObject", ReplyAction="http://tempuri.org/IServiceOf_RoomCalendarStatus/DeleteByObjectResponse")]
-        System.Threading.Tasks.Task DeleteByObjectAsync(object id);
+        System.Threading.Tasks.Task DeleteByObjectAsync(long id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomCalendarStatus/Edit", ReplyAction="http://tempuri.org/IServiceOf_RoomCalendarStatus/EditResponse")]
         void Edit(RoomM.Models.RoomCalendarStatus entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomCalendarStatus/Edit", ReplyAction="http://tempuri.org/IServiceOf_RoomCalendarStatus/EditResponse")]
         System.Threading.Tasks.Task EditAsync(RoomM.Models.RoomCalendarStatus entity);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomCalendarStatusService/GetSingle", ReplyAction="http://tempuri.org/IRoomCalendarStatusService/GetSingleResponse")]
-        RoomM.Models.RoomCalendarStatus GetSingle(int statusId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomCalendarStatusService/GetSingle", ReplyAction="http://tempuri.org/IRoomCalendarStatusService/GetSingleResponse")]
-        System.Threading.Tasks.Task<RoomM.Models.RoomCalendarStatus> GetSingleAsync(int statusId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomCalendarStatusService/GetNameList", ReplyAction="http://tempuri.org/IRoomCalendarStatusService/GetNameListResponse")]
         System.Collections.Generic.List<string> GetNameList();
@@ -89,6 +85,14 @@ namespace RoomM.DeskApp.RoomCalendarStatusService {
                 base(binding, remoteAddress) {
         }
         
+        public RoomM.Models.RoomCalendarStatus GetSingle(long id) {
+            return base.Channel.GetSingle(id);
+        }
+        
+        public System.Threading.Tasks.Task<RoomM.Models.RoomCalendarStatus> GetSingleAsync(long id) {
+            return base.Channel.GetSingleAsync(id);
+        }
+        
         public System.Collections.Generic.List<RoomM.Models.RoomCalendarStatus> GetAll() {
             return base.Channel.GetAll();
         }
@@ -113,11 +117,11 @@ namespace RoomM.DeskApp.RoomCalendarStatusService {
             return base.Channel.DeleteByTAsync(entity);
         }
         
-        public void DeleteByObject(object id) {
+        public void DeleteByObject(long id) {
             base.Channel.DeleteByObject(id);
         }
         
-        public System.Threading.Tasks.Task DeleteByObjectAsync(object id) {
+        public System.Threading.Tasks.Task DeleteByObjectAsync(long id) {
             return base.Channel.DeleteByObjectAsync(id);
         }
         
@@ -127,14 +131,6 @@ namespace RoomM.DeskApp.RoomCalendarStatusService {
         
         public System.Threading.Tasks.Task EditAsync(RoomM.Models.RoomCalendarStatus entity) {
             return base.Channel.EditAsync(entity);
-        }
-        
-        public RoomM.Models.RoomCalendarStatus GetSingle(int statusId) {
-            return base.Channel.GetSingle(statusId);
-        }
-        
-        public System.Threading.Tasks.Task<RoomM.Models.RoomCalendarStatus> GetSingleAsync(int statusId) {
-            return base.Channel.GetSingleAsync(statusId);
         }
         
         public System.Collections.Generic.List<string> GetNameList() {

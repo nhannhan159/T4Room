@@ -15,6 +15,12 @@ namespace RoomM.DeskApp.RoomAssetService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="RoomAssetService.IRoomAssetService")]
     public interface IRoomAssetService {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomAsset/GetSingle", ReplyAction="http://tempuri.org/IServiceOf_RoomAsset/GetSingleResponse")]
+        RoomM.Models.RoomAsset GetSingle(long id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomAsset/GetSingle", ReplyAction="http://tempuri.org/IServiceOf_RoomAsset/GetSingleResponse")]
+        System.Threading.Tasks.Task<RoomM.Models.RoomAsset> GetSingleAsync(long id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomAsset/GetAll", ReplyAction="http://tempuri.org/IServiceOf_RoomAsset/GetAllResponse")]
         System.Collections.Generic.List<RoomM.Models.RoomAsset> GetAll();
         
@@ -34,25 +40,16 @@ namespace RoomM.DeskApp.RoomAssetService {
         System.Threading.Tasks.Task DeleteByTAsync(RoomM.Models.RoomAsset entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomAsset/DeleteByObject", ReplyAction="http://tempuri.org/IServiceOf_RoomAsset/DeleteByObjectResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(System.Collections.Generic.List<RoomM.Models.RoomAsset>))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RoomM.Models.RoomAsset))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(RoomM.Models.EntityBase))]
-        void DeleteByObject(object id);
+        void DeleteByObject(long id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomAsset/DeleteByObject", ReplyAction="http://tempuri.org/IServiceOf_RoomAsset/DeleteByObjectResponse")]
-        System.Threading.Tasks.Task DeleteByObjectAsync(object id);
+        System.Threading.Tasks.Task DeleteByObjectAsync(long id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomAsset/Edit", ReplyAction="http://tempuri.org/IServiceOf_RoomAsset/EditResponse")]
         void Edit(RoomM.Models.RoomAsset entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceOf_RoomAsset/Edit", ReplyAction="http://tempuri.org/IServiceOf_RoomAsset/EditResponse")]
         System.Threading.Tasks.Task EditAsync(RoomM.Models.RoomAsset entity);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomAssetService/GetSingle", ReplyAction="http://tempuri.org/IRoomAssetService/GetSingleResponse")]
-        RoomM.Models.RoomAsset GetSingle(long roomDeviceId);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomAssetService/GetSingle", ReplyAction="http://tempuri.org/IRoomAssetService/GetSingleResponse")]
-        System.Threading.Tasks.Task<RoomM.Models.RoomAsset> GetSingleAsync(long roomDeviceId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomAssetService/GetByRoomId", ReplyAction="http://tempuri.org/IRoomAssetService/GetByRoomIdResponse")]
         System.Collections.Generic.List<RoomM.Models.RoomAsset> GetByRoomId(long id);
@@ -100,6 +97,14 @@ namespace RoomM.DeskApp.RoomAssetService {
                 base(binding, remoteAddress) {
         }
         
+        public RoomM.Models.RoomAsset GetSingle(long id) {
+            return base.Channel.GetSingle(id);
+        }
+        
+        public System.Threading.Tasks.Task<RoomM.Models.RoomAsset> GetSingleAsync(long id) {
+            return base.Channel.GetSingleAsync(id);
+        }
+        
         public System.Collections.Generic.List<RoomM.Models.RoomAsset> GetAll() {
             return base.Channel.GetAll();
         }
@@ -124,11 +129,11 @@ namespace RoomM.DeskApp.RoomAssetService {
             return base.Channel.DeleteByTAsync(entity);
         }
         
-        public void DeleteByObject(object id) {
+        public void DeleteByObject(long id) {
             base.Channel.DeleteByObject(id);
         }
         
-        public System.Threading.Tasks.Task DeleteByObjectAsync(object id) {
+        public System.Threading.Tasks.Task DeleteByObjectAsync(long id) {
             return base.Channel.DeleteByObjectAsync(id);
         }
         
@@ -138,14 +143,6 @@ namespace RoomM.DeskApp.RoomAssetService {
         
         public System.Threading.Tasks.Task EditAsync(RoomM.Models.RoomAsset entity) {
             return base.Channel.EditAsync(entity);
-        }
-        
-        public RoomM.Models.RoomAsset GetSingle(long roomDeviceId) {
-            return base.Channel.GetSingle(roomDeviceId);
-        }
-        
-        public System.Threading.Tasks.Task<RoomM.Models.RoomAsset> GetSingleAsync(long roomDeviceId) {
-            return base.Channel.GetSingleAsync(roomDeviceId);
         }
         
         public System.Collections.Generic.List<RoomM.Models.RoomAsset> GetByRoomId(long id) {
