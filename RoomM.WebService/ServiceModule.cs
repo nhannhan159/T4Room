@@ -5,7 +5,11 @@ using System.Web;
 
 using Ninject.Modules;
 
-using RoomM.Repositories;
+using RoomM.Domain;
+using RoomM.Infrastructure.Data.UnitOfWork;
+using RoomM.Application.AssetModule.Services;
+using RoomM.Application.RoomModule.Services;
+using RoomM.Application.UserModule.Services;
 
 namespace RoomM.WebService
 {
@@ -16,7 +20,12 @@ namespace RoomM.WebService
         /// </summary>
         public override void Load()
         {
-            this.Bind<EFDataContext>().ToSelf().InTransientScope();
+            Bind<IUnitOfWork>().To<EFContext>().InTransientScope();
+
+            Bind<IAssetManagementService>().To<AssetManagementService>().InTransientScope();
+            Bind<IRoomManagementService>().To<RoomManagementService>().InTransientScope();
+            Bind<IUserManagementService>().To<UserManagementService>().InTransientScope();
+            Bind<IStatisticService>().To<StatisticService>().InTransientScope();
         }
     }
 }

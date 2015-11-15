@@ -61,7 +61,7 @@
                     <DataGridTemplateColumn Width="0.2*" Header="Hành động">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Xoá" Width="50" Height="20"  IsEnabled="{Binding IsUsing}"
+                                <Button Content="Xoá" Width="50" Height="20" IsEnabled="{Binding IsUsing}"
                                         Command="{Binding Path=DataContext.DelCommand,
                                                           RelativeSource={RelativeSource FindAncestor, 
                                                                                          AncestorType={x:Type DataGrid}}}"/>

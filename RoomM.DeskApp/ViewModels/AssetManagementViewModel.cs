@@ -10,10 +10,14 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+
 using RoomM.DeskApp.UIHelper;
 using RoomM.DeskApp.Views;
-using RoomM.Repositories;
-using RoomM.Models;
+using RoomM.Domain.AssetModule.Aggregates;
+using RoomM.Domain.RoomModule.Aggregates;
+using RoomM.Application.AssetModule.Services;
 
 namespace RoomM.DeskApp.ViewModels
 {
@@ -22,20 +26,23 @@ namespace RoomM.DeskApp.ViewModels
 
         #region Contruction
 
-        public AssetManagementViewModel(EFDataContext context)
-            : base(context)
+        public AssetManagementViewModel(IAssetManagementService service)
+            : base()
         {
+            this.service = service;
+            this.BaseInit();
+
             this.roomFilter = "";
             this.roomAssetViewFilterIsCheck = false;
             this.ravRoomNameFilter = "";
-            this.currentRoomAsset = default(RoomAsset);
-            List<RoomType> roomTypeList = new List<RoomType>(this.uow.RoomTypeRepository.GetAll());
+            this.currentAssetDetail = default(AssetDetail);
+            List<RoomType> roomTypeList = new List<RoomType>(this.service.GetRoomTypeList());
             roomTypeList.Add(new RoomType("Tất cả"));
             this.roomTypeFilters1 = new CollectionView(roomTypeList);
             this.roomTypeFilters2 = new CollectionView(roomTypeList);
             this.roomTypeFilter1 = roomTypeList[roomTypeList.Count - 1];
             this.roomTypeFilter2 = roomTypeList[roomTypeList.Count - 1];
-            List<Room> roomList = new List<Room>(this.uow.RoomRepository.GetAll());
+            List<Room> roomList = new List<Room>(this.service.GetRoomList());
             this.roomView1 = CollectionViewSource.GetDefaultView(roomList);
             this.roomView2 = CollectionViewSource.GetDefaultView(roomList);
             this.room1 = (roomList.Count == 0) ? null : roomList[0];
@@ -49,10 +56,12 @@ namespace RoomM.DeskApp.ViewModels
 
         #region PrivateField
 
+        private IAssetManagementService service;
+
         private string roomFilter;
         private NewAsset newAssetDialog;
-        private ICollectionView currentRoomAssetView;
-        private RoomAsset currentRoomAsset;
+        private ICollectionView currentAssetDetailView;
+        private AssetDetail currentAssetDetail;
         private bool roomAssetViewFilterIsCheck;
         private string ravRoomNameFilter;
 
@@ -74,19 +83,26 @@ namespace RoomM.DeskApp.ViewModels
 
         protected override List<Asset> GetEntitiesList()
         {
-            return new List<Asset>(this.uow.AssetRepository.GetAll());
+            return new List<Asset>(this.service.GetAssetList());
         }
 
-        protected override void SaveCurrentEntity()
+        protected override void AddCurrentEntity()
         {
             try
             {
-                if (this.CurrentEntity.ID > 0)
-                    this.uow.AssetRepository.Edit(this.CurrentEntity);
-                else
-                    this.uow.AssetRepository.Add(this.CurrentEntity);
-                this.uow.Commit();
-                // System.Windows.Forms.MessageBox.Show("Cập nhật dữ liệu thành công!");
+                this.service.AddAsset(this.CurrentEntity);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show("Thêm dữ liệu thất bại! \nMã lỗi: " + ex.Message);
+            }
+        }
+
+        protected override void EditCurrentEntity()
+        {
+            try
+            {
+                this.service.EditAsset(this.CurrentEntity);
             }
             catch (Exception ex)
             {
@@ -96,8 +112,14 @@ namespace RoomM.DeskApp.ViewModels
 
         protected override void DeleteCurrentEntity()
         {
-            this.CurrentEntity.IsUsing = false;
-            this.SaveCurrentEntity();
+            try
+            {
+                this.service.DeleteAsset(this.CurrentEntity);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show("Cập nhật dữ liệu thất bại! \nMã lỗi: " + ex.Message);
+            }
         }
 
         protected override bool IsUsing(Asset entity)
@@ -135,48 +157,13 @@ namespace RoomM.DeskApp.ViewModels
         protected override void SetAdditionViewChange()
         {
             if (this.CurrentEntity == null)
-                this.currentRoomAssetView = CollectionViewSource.GetDefaultView(new List<RoomAsset>());
+                this.currentAssetDetailView = CollectionViewSource.GetDefaultView(new List<AssetDetail>());
             else
-                this.currentRoomAssetView = CollectionViewSource.GetDefaultView(new List<RoomAsset>(this.uow.RoomAssetRepository.GetByAssetId(this.CurrentEntity.ID)));
-            this.currentRoomAssetView.Filter += RoomAssetViewFilter;
+                this.currentAssetDetailView = CollectionViewSource.GetDefaultView(new List<AssetDetail>(this.service.GetAssetDetailList(this.CurrentEntity.ID)));
+            this.currentAssetDetailView.Filter += AssetDetailViewFilter;
             this.EntitiesView.Refresh();
-            this.OnPropertyChanged("CurrentRoomAssetView");
-            this.OnPropertyChanged("AssFuncEnabled");
-        }
-
-        protected override void SaveCommandHandler()
-        {
-            MainWindowViewModel.instance.ChangeStateToReady();
-            MessageBoxResult result = System.Windows.MessageBox.Show("Bạn muốn sửa thông tin tài sản?", "Xác nhận sửa thông tin", MessageBoxButton.YesNo);
-            if (result == MessageBoxResult.Yes)
-            {
-                // if (roomRepo.isUniqueName(CurrentEntity.Name.Trim()))
-                // {
-                this.SaveCurrentEntity();
-                MainWindowViewModel.instance.ChangeStateToComplete("Cập nhật thành công");
-                base.SaveCommandHandler();
-                /* } 
-                else 
-                {
-                    System.Windows.Forms.MessageBox.Show("Cập nhật thất bại, tên phòng bị trùng lắp", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    MainWindowViewModel.instance.ChangeStateToComplete("Cập nhật thất bại, tên phòng bị trùng lắp");
-                }*/
-            }
-        }
-
-        protected override void NewCommandHandler()
-        {
-            if (this.uow.AssetRepository.isUniqueName(newEntityViewModel.NewEntity.Name.Trim()))
-            {
-                this.CloseNewEntityDialog();
-                base.NewCommandHandler();
-            }
-            else
-            {
-                System.Windows.Forms.MessageBox.Show("Thêm thất bại, tên tài sản bị trùng lắp", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                MainWindowViewModel.instance.ChangeStateToComplete("Thêm thất bại, tên tài sản bị trùng lắp");
-            }
-
+            this.RaisePropertyChanged(() => this.CurrentAssetDetailView);
+            this.RaisePropertyChanged(() => this.AssFuncEnabled);
         }
 
         #endregion
@@ -185,31 +172,31 @@ namespace RoomM.DeskApp.ViewModels
 
         public bool AssFuncEnabled
         {
-            get { return this.currentRoomAsset != null; }
+            get { return this.currentAssetDetail != null; }
         }
 
-        public RoomAsset CurrentRoomAsset
+        public AssetDetail CurrentAssetDetail
         {
-            get { return this.currentRoomAsset; }
+            get { return this.currentAssetDetail; }
             set
             {
-                if (this.currentRoomAsset != value)
+                if (this.currentAssetDetail != value)
                 {
-                    this.currentRoomAsset = value;
-                    this.OnPropertyChanged("CurrentRoomAsset");
-                    this.OnPropertyChanged("AssFuncEnabled");
+                    this.currentAssetDetail = value;
+                    this.RaisePropertyChanged(() => this.CurrentAssetDetail);
+                    this.RaisePropertyChanged(() => this.AssFuncEnabled);
                 }
             }
         }
 
-        public ICollectionView CurrentRoomAssetView
+        public ICollectionView CurrentAssetDetailView
         {
-            get { return this.currentRoomAssetView; }
+            get { return this.currentAssetDetailView; }
         }
 
-        private bool RoomAssetViewFilter(object obj)
+        private bool AssetDetailViewFilter(object obj)
         {
-            RoomAsset entity = obj as RoomAsset;
+            AssetDetail entity = obj as AssetDetail;
             bool filter = true;
             if (this.roomAssetViewFilterIsCheck)
             {
@@ -218,19 +205,19 @@ namespace RoomM.DeskApp.ViewModels
             return filter;
         }
 
-        public ICommand RoomAssetViewFilterCommand { get { return new RelayCommand(RoomAssetViewFilterCommandHandler, CanExecute); } }
-        public ICommand RoomAssetViewFilterAllCommand { get { return new RelayCommand(RoomAssetViewFilterAllCommandHandler, CanExecute); } }
+        public ICommand AssetDetailViewFilterCommand { get { return new RelayCommand(AssetDetailViewFilterCommandHandler); } }
+        public ICommand AssetDetailViewFilterAllCommand { get { return new RelayCommand(AssetDetailViewFilterAllCommandHandler); } }
 
-        private void RoomAssetViewFilterCommandHandler()
+        private void AssetDetailViewFilterCommandHandler()
         {
             this.roomAssetViewFilterIsCheck = true;
-            this.currentRoomAssetView.Refresh();
+            this.currentAssetDetailView.Refresh();
         }
 
-        private void RoomAssetViewFilterAllCommandHandler()
+        private void AssetDetailViewFilterAllCommandHandler()
         {
             this.roomAssetViewFilterIsCheck = false;
-            this.currentRoomAssetView.Refresh();
+            this.currentAssetDetailView.Refresh();
         }
 
         public string RavRoomNameFilter
@@ -243,9 +230,9 @@ namespace RoomM.DeskApp.ViewModels
 
         #region AssFunctions
 
-        public ICommand AssFunc1Command { get { return new RelayCommand(AssFunc1CommandHandler, CanExecute); } }
-        public ICommand AssFunc2Command { get { return new RelayCommand(AssFunc2CommandHandler, CanExecute); } }
-        public ICommand AssFunc3Command { get { return new RelayCommand(AssFunc3CommandHandler, CanExecute); } }
+        public ICommand AssFunc1Command { get { return new RelayCommand(AssFunc1CommandHandler); } }
+        public ICommand AssFunc2Command { get { return new RelayCommand(AssFunc2CommandHandler); } }
+        public ICommand AssFunc3Command { get { return new RelayCommand(AssFunc3CommandHandler); } }
 
         private void AssFunc1CommandHandler()
         {
@@ -254,10 +241,7 @@ namespace RoomM.DeskApp.ViewModels
                 MessageBoxResult result = System.Windows.MessageBox.Show("Bạn muốn nhập tài sản?", "Xác nhận nhập tài sản", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
-                    this.uow.RoomAssetRepository.AddOrUpdate(this.CurrentEntity.ID, this.Room1.ID, this.Amount1);
-                    RoomAssetHistory roomAssHis = new RoomAssetHistory(DateTime.Now, 3, this.CurrentEntity.ID, this.Room1.ID, "", this.Amount1);
-                    this.uow.RoomAssetHistoryRepository.Add(roomAssHis);
-                    this.uow.Commit();
+                    this.service.ImportAsset(this.CurrentEntity.ID, this.Room1.ID, this.Amount1);
                     this.SetAdditionViewChange();
                     MainWindowViewModel.instance.ChangeStateToComplete("Cập nhật thành công");
                 }
@@ -271,30 +255,15 @@ namespace RoomM.DeskApp.ViewModels
 
         private void AssFunc2CommandHandler()
         {
-            if (this.Amount2 > 0 && this.Amount2 <= this.CurrentRoomAsset.Amount)
+            if (this.Amount2 > 0 && this.Amount2 <= this.CurrentAssetDetail.Amount)
             {
                 MessageBoxResult result = System.Windows.MessageBox.Show("Bạn muốn thanh lý tài sản?", "Xác nhận thanh lý", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
                     try
                     {
-                        int num;
-                        if (this.Amount2 >= this.CurrentRoomAsset.Amount)
-                        {
-                            num = this.CurrentRoomAsset.Amount;
-                            this.uow.RoomAssetRepository.Delete(this.CurrentRoomAsset);
-                        }
-                        else
-                        {
-                            num = this.Amount2;
-                            this.CurrentRoomAsset.Amount -= this.Amount2;
-                            this.uow.RoomAssetRepository.Edit(this.CurrentRoomAsset);
-                        }
-                        RoomAssetHistory roomAssHis = new RoomAssetHistory(DateTime.Now, 2, this.CurrentEntity.ID, this.CurrentRoomAsset.RoomId, "", num);
-                        this.uow.RoomAssetHistoryRepository.Add(roomAssHis);
-                        this.uow.Commit();
+                        this.service.DropAsset(this.CurrentAssetDetail, this.Amount2);
                         this.SetAdditionViewChange();
-                        // System.Windows.Forms.MessageBox.Show("Cập nhật dữ liệu thành công!");
                         MainWindowViewModel.instance.ChangeStateToComplete("Cập nhật thành công");
                     }
                     catch (Exception ex)
@@ -312,34 +281,15 @@ namespace RoomM.DeskApp.ViewModels
 
         private void AssFunc3CommandHandler()
         {
-            if (this.Amount3 > 0 && this.Amount3 <= this.CurrentRoomAsset.Amount && this.Room2 != null)
+            if (this.Amount3 > 0 && this.Amount3 <= this.CurrentAssetDetail.Amount && this.Room2 != null)
             {
                 MessageBoxResult result = System.Windows.MessageBox.Show("Bạn muốn chuyển tài sản?", "Xác nhận chuyển tài sản", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
                     try
                     {
-                        int num;
-                        if (this.Amount3 >= this.CurrentRoomAsset.Amount)
-                        {
-                            num = this.CurrentRoomAsset.Amount;
-                            this.uow.RoomAssetRepository.AddOrUpdate(this.CurrentEntity.ID, this.Room2.ID, this.CurrentRoomAsset.Amount);
-                            this.uow.RoomAssetRepository.Delete(this.CurrentRoomAsset);
-                        }
-                        else
-                        {
-                            num = this.Amount3;
-                            this.uow.RoomAssetRepository.AddOrUpdate(this.CurrentEntity.ID, this.Room2.ID, this.Amount3);
-                            this.CurrentRoomAsset.Amount -= this.Amount3;
-                            this.uow.RoomAssetRepository.Edit(this.CurrentRoomAsset);
-                        }
-                        RoomAssetHistory roomAssHis1 = new RoomAssetHistory(DateTime.Now, 1, this.CurrentEntity.ID, this.CurrentRoomAsset.RoomId, this.Room2.Name, num);
-                        RoomAssetHistory roomAssHis2 = new RoomAssetHistory(DateTime.Now, 4, this.CurrentEntity.ID, this.Room2.ID, this.CurrentRoomAsset.Room.Name, num);
-                        this.uow.RoomAssetHistoryRepository.Add(roomAssHis1);
-                        this.uow.RoomAssetHistoryRepository.Add(roomAssHis2);
-                        this.uow.Commit();
+                        this.service.TransferAsset(this.CurrentAssetDetail, this.Room2, this.Amount3);
                         this.SetAdditionViewChange();
-                        // System.Windows.Forms.MessageBox.Show("Cập nhật dữ liệu thành công!");
                         MainWindowViewModel.instance.ChangeStateToComplete("Cập nhật thành công");
                     }
                     catch (Exception ex)
@@ -347,11 +297,11 @@ namespace RoomM.DeskApp.ViewModels
                         System.Windows.Forms.MessageBox.Show("Cập nhật dữ liệu thất bại! \nMã lỗi: " + ex.Message);
                     }
                 }
-                else
-                {
-                    System.Windows.Forms.MessageBox.Show("Thông tin nhập không hợp lệ");
-                    MainWindowViewModel.instance.ChangeStateToComplete("Thông tin nhập không hợp lệ");
-                }
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Thông tin nhập không hợp lệ");
+                MainWindowViewModel.instance.ChangeStateToComplete("Thông tin nhập không hợp lệ");
             }
         }
 
@@ -371,7 +321,7 @@ namespace RoomM.DeskApp.ViewModels
             set
             {
                 this.roomTypeFilter1 = value;
-                List<Room> roomList = new List<Room>(this.uow.RoomRepository.GetAll());
+                List<Room> roomList = new List<Room>(this.service.GetRoomList());
                 if (this.roomTypeFilter1.Name != "Tất cả")
                 {
                     var query = roomList.Where(p => p.RoomType.Name == this.roomTypeFilter1.Name);
@@ -383,7 +333,7 @@ namespace RoomM.DeskApp.ViewModels
                     this.roomView1 = CollectionViewSource.GetDefaultView(roomList);
                     this.Room1 = roomList.First();
                 }
-                OnPropertyChanged("RoomView1");
+                this.RaisePropertyChanged(() => this.RoomView1);
             }
         }
 
@@ -394,7 +344,7 @@ namespace RoomM.DeskApp.ViewModels
             {
                 this.roomTypeFilter2 = value;
 
-                List<Room> roomList = new List<Room>(this.uow.RoomRepository.GetAll());
+                List<Room> roomList = new List<Room>(this.service.GetRoomList());
                 if (this.roomTypeFilter2.Name != "Tất cả")
                 {
                     var query = roomList.Where(p => p.RoomType.Name == this.roomTypeFilter2.Name);
@@ -406,7 +356,7 @@ namespace RoomM.DeskApp.ViewModels
                     this.roomView2 = CollectionViewSource.GetDefaultView(roomList);
                     this.Room2 = roomList.First();
                 }
-                OnPropertyChanged("RoomView2");
+                this.RaisePropertyChanged(() => this.RoomView2);
             }
         }
 
@@ -415,7 +365,7 @@ namespace RoomM.DeskApp.ViewModels
             get { return this.room1; }
             set { 
                 this.room1 = value;
-                this.OnPropertyChanged("Room1");
+                this.RaisePropertyChanged(() => this.Room1);
             }
         }
 
@@ -425,7 +375,7 @@ namespace RoomM.DeskApp.ViewModels
             set
             {
                 this.room2 = value;
-                this.OnPropertyChanged("Room2");
+                this.RaisePropertyChanged(() => this.Room2);
             }
         }
 
@@ -461,14 +411,14 @@ namespace RoomM.DeskApp.ViewModels
 
 
         // command handler
-        public ICommand AssetsToExcelCommand { get { return new RelayCommand(AssetsToExcelCommandHandler, CanExecute); } }
+        public ICommand AssetsToExcelCommand { get { return new RelayCommand(AssetsToExcelCommandHandler); } }
 
         private void AssetsToExcelCommandHandler()
         {
-            PureAssetsReportToExcel report = new PureAssetsReportToExcel("sgu university", "roomM", "templates/asset_tmp.xls");
+            AssetReportToExcel report = new AssetReportToExcel("sgu university", "roomM", "templates/asset_tmp.xls");
 
             List<Asset> dataList = new List<Asset>();
-            if (AllPlusIsCheck)
+            if (IsIncludeAll)
                 dataList = EntitiesList;
             else
             {

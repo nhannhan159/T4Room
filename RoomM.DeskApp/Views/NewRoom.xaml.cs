@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 
 using RoomM.DeskApp.UIHelper;
 using RoomM.DeskApp.ViewModels;
-using RoomM.Models;
+using RoomM.Domain.RoomModule.Aggregates;
 
 namespace RoomM.DeskApp.Views
 {

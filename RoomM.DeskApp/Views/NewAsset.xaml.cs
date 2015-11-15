@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using RoomM.DeskApp.UIHelper;
-using RoomM.Models;
+using RoomM.Domain.AssetModule.Aggregates;
 
 namespace RoomM.DeskApp.Views
 {

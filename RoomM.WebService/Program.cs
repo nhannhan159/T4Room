@@ -20,30 +20,16 @@ namespace RoomM.WebService
             IKernel kernel = new StandardKernel(new ServiceModule());
 
             // Create service config
-            NinjectWcfConfiguration roomServiceConfig = NinjectWcfConfiguration.Create<RoomService, NinjectServiceSelfHostFactory>();
-            NinjectWcfConfiguration roomTypeServiceConfig = NinjectWcfConfiguration.Create<RoomTypeService, NinjectServiceSelfHostFactory>();
-            NinjectWcfConfiguration roomAssetServiceConfig = NinjectWcfConfiguration.Create<RoomAssetService, NinjectServiceSelfHostFactory>();
-            NinjectWcfConfiguration roomCalenderServiceConfig = NinjectWcfConfiguration.Create<RoomCalenderService, NinjectServiceSelfHostFactory>();
-            NinjectWcfConfiguration roomCalendarStatusServiceConfig = NinjectWcfConfiguration.Create<RoomCalendarStatusService, NinjectServiceSelfHostFactory>();
-
-            NinjectWcfConfiguration staffServiceConfig = NinjectWcfConfiguration.Create<StaffService, NinjectServiceSelfHostFactory>();
-            NinjectWcfConfiguration staffTypeServiceConfig = NinjectWcfConfiguration.Create<StaffTypeService, NinjectServiceSelfHostFactory>();
-
-            NinjectWcfConfiguration assetServiceConfig = NinjectWcfConfiguration.Create<AssetService, NinjectServiceSelfHostFactory>();
-            NinjectWcfConfiguration roomAssetHistoryServiceConfig = NinjectWcfConfiguration.Create<RoomAssetHistoryService, NinjectServiceSelfHostFactory>();
-            NinjectWcfConfiguration roomAssetHistoryTypeServiceConfig = NinjectWcfConfiguration.Create<RoomAssetHistoryTypeService, NinjectServiceSelfHostFactory>();
+            NinjectWcfConfiguration assetManagementWSConfig = NinjectWcfConfiguration.Create<AssetManagementWS, NinjectServiceSelfHostFactory>();
+            NinjectWcfConfiguration roomManagementWSConfig = NinjectWcfConfiguration.Create<RoomManagementWS, NinjectServiceSelfHostFactory>();
+            NinjectWcfConfiguration userManagementWSConfig = NinjectWcfConfiguration.Create<UserManagementWS, NinjectServiceSelfHostFactory>();
+            NinjectWcfConfiguration statisticWSConfig = NinjectWcfConfiguration.Create<StatisticWS, NinjectServiceSelfHostFactory>();
 
             using (var selfHost = new NinjectSelfHostBootstrapper(() => kernel,
-                roomServiceConfig,
-                roomTypeServiceConfig,
-                roomAssetServiceConfig,
-                roomCalenderServiceConfig,
-                roomCalendarStatusServiceConfig,
-                staffServiceConfig,
-                staffTypeServiceConfig,
-                assetServiceConfig,
-                roomAssetHistoryServiceConfig,
-                roomAssetHistoryTypeServiceConfig))
+                assetManagementWSConfig,
+                roomManagementWSConfig,
+                userManagementWSConfig,
+                statisticWSConfig))
             {
                 selfHost.Start();
                 Console.Write("All Services Started. Press \"Enter\" to stop thems...");

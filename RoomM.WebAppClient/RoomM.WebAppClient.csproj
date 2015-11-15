@@ -338,13 +338,13 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RoomM.Models\RoomM.Models.csproj">
+    <ProjectReference Include="..\RoomM.Models\RoomM.Domain.csproj">
       <Project>{a2cd9ea0-9e0c-4b0a-87f5-9baddc4f9422}</Project>
-      <Name>RoomM.Models</Name>
+      <Name>RoomM.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RoomM.Repositories\RoomM.Repositories.csproj">
+    <ProjectReference Include="..\RoomM.Repositories\RoomM.Infrastructure.Data.csproj">
       <Project>{61faa63a-110f-42fb-a273-6362f5730e68}</Project>
-      <Name>RoomM.Repositories</Name>
+      <Name>RoomM.Infrastructure.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

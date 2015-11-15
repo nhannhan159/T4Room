@@ -12,25 +12,25 @@ using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 
 using RoomM.DeskApp.ViewModels;
-using RoomM.Models;
+using RoomM.Domain.RoomModule.Aggregates;
 
 namespace RoomM.DeskApp
 {
     public abstract class ReportToExcel<T>
     {
-
         SaveFileDialog saveFileDialog = new SaveFileDialog();
         protected HSSFWorkbook hssfworkbook;
         protected ISheet activeSheet;
 
-        public ReportToExcel(String comanyName, String subject, String templateFileName) {
+        public ReportToExcel(String comanyName, String subject, String templateFileName)
+        {
 
             if (null != templateFileName)
             {
                 FileStream file = new FileStream(@templateFileName, FileMode.Open, FileAccess.Read);
                 hssfworkbook = new HSSFWorkbook(file);
             }
-            else 
+            else
             {
                 hssfworkbook = new HSSFWorkbook();
             }
@@ -46,7 +46,8 @@ namespace RoomM.DeskApp
             hssfworkbook.SummaryInformation = si;
         }
 
-        public void save() {
+        public void save()
+        {
             MainWindowViewModel.instance.ChangeStateToWait();
 
             saveFileDialog.InitialDirectory = Convert.ToString(Environment.SpecialFolder.MyDocuments);
@@ -65,10 +66,9 @@ namespace RoomM.DeskApp
 
                 Process.Start(filename);
                 MainWindowViewModel.instance.ChangeStateToComplete("Đã lưu tại " + filename);
-            } 
+            }
         }
 
         public abstract void setupExport(List<T> data, Room room = null);
-
     }
 }

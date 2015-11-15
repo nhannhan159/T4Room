@@ -105,69 +105,37 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Implement\AssetService.svc" />
-    <Content Include="Assets\Implement\RoomAssetHistoryService.svc" />
-    <Content Include="Assets\Implement\RoomAssetHistoryTypeService.svc" />
+    <Content Include="AssetModule\Implement\AssetManagementWS.svc" />
     <Content Include="Global.asax" />
-    <Content Include="Rooms\Implement\RoomCalenderService.svc" />
-    <Content Include="Rooms\Implement\RoomService.svc" />
-    <Content Include="Rooms\Implement\RoomAssetService.svc" />
-    <Content Include="Rooms\Implement\RoomCalendarStatusService.svc" />
-    <Content Include="Rooms\Implement\RoomTypeService.svc" />
-    <Content Include="Staffs\Implement\StaffService.svc" />
-    <Content Include="Staffs\Implement\StaffTypeService.svc" />
+    <Content Include="RoomModule\Implement\RoomManagementWS.svc" />
+    <Content Include="RoomModule\Implement\StatisticWS.svc" />
+    <Content Include="UserModule\Implement\UserManagementWS.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\IRoomAssetHistoryService.cs" />
-    <Compile Include="Assets\IAssetService.cs" />
-    <Compile Include="Assets\Implement\RoomAssetHistoryService.svc.cs">
-      <DependentUpon>RoomAssetHistoryService.svc</DependentUpon>
+    <Compile Include="AssetModule\Implement\AssetManagementWS.svc.cs">
+      <DependentUpon>AssetManagementWS.svc</DependentUpon>
     </Compile>
-    <Compile Include="Assets\IRoomAssetHistoryTypeService.cs" />
-    <Compile Include="Assets\Implement\AssetService.svc.cs">
-      <DependentUpon>AssetService.svc</DependentUpon>
-    </Compile>
-    <Compile Include="Assets\Implement\RoomAssetHistoryTypeService.svc.cs">
-      <DependentUpon>RoomAssetHistoryTypeService.svc</DependentUpon>
-    </Compile>
+    <Compile Include="AssetModule\IAssetManagementWS.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="IService.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="ServiceBase.cs" />
-    <Compile Include="Rooms\IRoomCalendarStatusService.cs" />
-    <Compile Include="Rooms\IRoomCalenderService.cs" />
-    <Compile Include="Rooms\Implement\RoomCalenderService.svc.cs">
-      <DependentUpon>RoomCalenderService.svc</DependentUpon>
+    <Compile Include="RoomModule\IStatisticWS.cs" />
+    <Compile Include="RoomModule\IRoomManagementWS.cs" />
+    <Compile Include="RoomModule\Implement\RoomManagementWS.svc.cs">
+      <DependentUpon>RoomManagementWS.svc</DependentUpon>
     </Compile>
-    <Compile Include="Rooms\IRoomAssetService.cs" />
-    <Compile Include="Rooms\IRoomService.cs" />
-    <Compile Include="Rooms\Implement\RoomAssetService.svc.cs">
-      <DependentUpon>RoomAssetService.svc</DependentUpon>
-    </Compile>
-    <Compile Include="Rooms\Implement\RoomService.svc.cs">
-      <DependentUpon>RoomService.svc</DependentUpon>
-    </Compile>
-    <Compile Include="Rooms\Implement\RoomCalendarStatusService.svc.cs">
-      <DependentUpon>RoomCalendarStatusService.svc</DependentUpon>
-    </Compile>
-    <Compile Include="Rooms\IRoomTypeService.cs" />
-    <Compile Include="Rooms\Implement\RoomTypeService.svc.cs">
-      <DependentUpon>RoomTypeService.svc</DependentUpon>
+    <Compile Include="RoomModule\Implement\StatisticWS.svc.cs">
+      <DependentUpon>StatisticWS.svc</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceModule.cs" />
-    <Compile Include="Staffs\IStaffService.cs" />
-    <Compile Include="Staffs\Implement\StaffService.svc.cs">
-      <DependentUpon>StaffService.svc</DependentUpon>
-    </Compile>
-    <Compile Include="Staffs\IStaffTypeService.cs" />
-    <Compile Include="Staffs\Implement\StaffTypeService.svc.cs">
-      <DependentUpon>StaffTypeService.svc</DependentUpon>
+    <Compile Include="UserModule\IUserManagementWS.cs" />
+    <Compile Include="UserModule\Implement\UserManagementWS.svc.cs">
+      <DependentUpon>UserManagementWS.svc</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -183,13 +151,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RoomM.Models\RoomM.Models.csproj">
-      <Project>{a2cd9ea0-9e0c-4b0a-87f5-9baddc4f9422}</Project>
-      <Name>RoomM.Models</Name>
+    <ProjectReference Include="..\RoomM.Application\RoomM.Application.csproj">
+      <Project>{63ceac61-8b2e-47f9-a932-134f5ec6a558}</Project>
+      <Name>RoomM.Application</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RoomM.Repositories\RoomM.Repositories.csproj">
+    <ProjectReference Include="..\RoomM.Domain\RoomM.Domain.csproj">
+      <Project>{a2cd9ea0-9e0c-4b0a-87f5-9baddc4f9422}</Project>
+      <Name>RoomM.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RoomM.Infrastructure.Data\RoomM.Infrastructure.Data.csproj">
       <Project>{61faa63a-110f-42fb-a273-6362f5730e68}</Project>
-      <Name>RoomM.Repositories</Name>
+      <Name>RoomM.Infrastructure.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -11,10 +11,13 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Collections;
 
+using GalaSoft.MvvmLight.Command;
+
 using RoomM.DeskApp.UIHelper;
 using RoomM.DeskApp.Views;
-using RoomM.Repositories;
-using RoomM.Models;
+using RoomM.Domain.AssetModule.Aggregates;
+using RoomM.Domain.RoomModule.Aggregates;
+using RoomM.Application.RoomModule.Services;
 
 namespace RoomM.DeskApp.ViewModels
 {
@@ -23,10 +26,13 @@ namespace RoomM.DeskApp.ViewModels
 
         #region Contruction
 
-        public RoomManagementViewModel(EFDataContext context)
-            : base(context)
+        public RoomManagementViewModel(IRoomManagementService service)
+            : base()
         {
-            List<RoomType> roomTypeList = new List<RoomType>(this.uow.RoomTypeRepository.GetAll());
+            this.service = service;
+            this.BaseInit();
+
+            List<RoomType> roomTypeList = new List<RoomType>(this.service.GetRoomTypeList());
             roomTypeList.Add(new RoomType("Tất cả"));
             this.roomTypeFilters = new CollectionView(roomTypeList);
             this.roomTypeFilter = roomTypeList[roomTypeList.Count - 1];
@@ -39,8 +45,8 @@ namespace RoomM.DeskApp.ViewModels
             this.rcvBeginTimeFilter = 0;
             this.rcvRegistrantFilter = "";
 
-            List<RoomCalendarStatus> rcvStatusList = new List<RoomCalendarStatus>(this.uow.RoomCalendarStatusRepository.GetAll());
-            rcvStatusList.Add(new RoomCalendarStatus("Tất cả"));
+            List<RoomRegType> rcvStatusList = new List<RoomRegType>(this.service.GetRoomRegTypeList());
+            rcvStatusList.Add(new RoomRegType("Tất cả"));
             this.rcvStatusFilters = new CollectionView(rcvStatusList);
             this.rcvStatusFilter = rcvStatusList[rcvStatusList.Count - 1];
             this.ravAssetNameFilter = "";
@@ -48,11 +54,11 @@ namespace RoomM.DeskApp.ViewModels
             this.rhvDateToFilter = DateTime.Now;
             this.rhvAssetNameFilter = "";
 
-            List<HistoryType> rhvTypeList = new List<HistoryType>(this.uow.RoomAssetHistoryTypeRepository.GetAll());
-            rhvTypeList.Add(new HistoryType("Tất cả"));
+            List<AssetHistoryType> rhvTypeList = new List<AssetHistoryType>(this.service.GetAssetHistoryTypeList());
+            rhvTypeList.Add(new AssetHistoryType("Tất cả"));
             this.rhvTypeFilters = new CollectionView(rhvTypeList);
             this.rhvTypeFilter = rhvTypeList[rhvTypeList.Count - 1];
-            this.currentRoomCalendar = default(RoomCalendar);
+            this.currentRoomReg = default(RoomReg);
 
             this.timeForBacktrace = DateTime.Now;
             this.historiesList = new List<HistoryRecord>();
@@ -63,11 +69,13 @@ namespace RoomM.DeskApp.ViewModels
 
         #region PrivateField
 
+        private IRoomManagementService service;
+
         private NewRoom newRoomDialog;
         private RoomType roomTypeFilter;
         private CollectionView roomTypeFilters;
-        private RoomCalendar currentRoomCalendar;
-        private ICollectionView currentRoomCalendarView;
+        private RoomReg currentRoomReg;
+        private ICollectionView currentRoomRegView;
         private ICollectionView currentRoomAssetView;
         private ICollectionView currentRoomHistoryView;
         private bool roomCalendarViewFilterIsCheck;
@@ -78,13 +86,13 @@ namespace RoomM.DeskApp.ViewModels
         private int rcvPeriodsFilter;
         private string rcvRegistrantFilter;
         private int rcvBeginTimeFilter;
-        private RoomCalendarStatus rcvStatusFilter;
+        private RoomRegType rcvStatusFilter;
         private CollectionView rcvStatusFilters;
         private string ravAssetNameFilter;
         private DateTime rhvDateFromFilter;
         private DateTime rhvDateToFilter;
         private string rhvAssetNameFilter;
-        private HistoryType rhvTypeFilter;
+        private AssetHistoryType rhvTypeFilter;
         private CollectionView rhvTypeFilters;
 
         private List<HistoryRecord> historiesList;
@@ -116,19 +124,26 @@ namespace RoomM.DeskApp.ViewModels
 
         protected override List<Room> GetEntitiesList()
         {
-            return new List<Room>(this.uow.RoomRepository.GetAll());
+            return new List<Room>(this.service.GetRoomList());
         }
 
-        protected override void SaveCurrentEntity()
+        protected override void AddCurrentEntity()
         {
             try
             {
-                if (this.CurrentEntity.ID > 0)
-                    this.uow.RoomRepository.Edit(this.CurrentEntity);
-                else
-                    this.uow.RoomRepository.Add(this.CurrentEntity);
-                this.uow.Commit();
-                System.Windows.Forms.MessageBox.Show("Cập nhật dữ liệu thành công!");
+                this.service.AddRoom(this.CurrentEntity);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show("Thêm dữ liệu thất bại! \nMã lỗi: " + ex.Message);
+            }
+        }
+
+        protected override void EditCurrentEntity()
+        {
+            try
+            {
+                this.service.EditRoom(this.CurrentEntity);
             }
             catch (Exception ex)
             {
@@ -138,8 +153,14 @@ namespace RoomM.DeskApp.ViewModels
 
         protected override void DeleteCurrentEntity()
         {
-            this.CurrentEntity.IsUsing = false;
-            this.SaveCurrentEntity();
+            try
+            {
+                this.service.DeleteRoom(this.CurrentEntity);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show("Cập nhật dữ liệu thất bại! \nMã lỗi: " + ex.Message);
+            }
         }
 
         protected override bool IsUsing(Room entity) 
@@ -180,52 +201,52 @@ namespace RoomM.DeskApp.ViewModels
         {
             if (this.CurrentEntity == null)
             {
-                this.currentRoomCalendarView = CollectionViewSource.GetDefaultView(new List<RoomCalendar>());
-                this.currentRoomAssetView = CollectionViewSource.GetDefaultView(new List<RoomAsset>());
-                this.currentRoomHistoryView = CollectionViewSource.GetDefaultView(new List<RoomAssetHistory>());
+                this.currentRoomRegView = CollectionViewSource.GetDefaultView(new List<RoomReg>());
+                this.currentRoomAssetView = CollectionViewSource.GetDefaultView(new List<AssetDetail>());
+                this.currentRoomHistoryView = CollectionViewSource.GetDefaultView(new List<AssetHistory>());
             }
             else
             {
-                this.currentRoomCalendarView = CollectionViewSource.GetDefaultView(this.CurrentEntity.RoomCalendars);
-                this.currentRoomAssetView = CollectionViewSource.GetDefaultView(this.uow.RoomAssetRepository.GetByRoomId(this.CurrentEntity.ID));
-                this.currentRoomHistoryView = CollectionViewSource.GetDefaultView(this.uow.RoomAssetHistoryRepository.GetByRoomId(this.CurrentEntity.ID));
+                this.currentRoomRegView = CollectionViewSource.GetDefaultView(this.CurrentEntity.RoomRegs);
+                this.currentRoomAssetView = CollectionViewSource.GetDefaultView(this.service.GetAssetDetailList(this.CurrentEntity.ID));
+                this.currentRoomHistoryView = CollectionViewSource.GetDefaultView(this.service.GetAssetHistoryList(this.CurrentEntity.ID));
             }
-            this.currentRoomCalendarView.Filter += RoomCalendarViewFilter;
+            this.currentRoomRegView.Filter += RoomRegViewFilter;
             this.currentRoomAssetView.Filter += RoomAssetViewFilter;
             this.currentRoomHistoryView.Filter += RoomHistoryViewFilter;
-            this.OnPropertyChanged("CurrentRoomCalendarView");
-            this.OnPropertyChanged("CurrentRoomAssetView");
-            this.OnPropertyChanged("CurrentRoomHistoryView");
+            this.RaisePropertyChanged(() => this.CurrentRoomRegView);
+            this.RaisePropertyChanged(() => this.CurrentRoomAssetView);
+            this.RaisePropertyChanged(() => this.CurrentRoomHistoryView);
         }
 
         public ICollectionView RoomTypesView
         {
-            get { return CollectionViewSource.GetDefaultView(this.uow.RoomTypeRepository.GetAll()); }
+            get { return CollectionViewSource.GetDefaultView(this.service.GetRoomTypeList()); }
         }
 
         #endregion
 
-        public ICollectionView RoomCalendarStatusView
+        public ICollectionView RoomRegTypeView
         {
-            get { return CollectionViewSource.GetDefaultView(this.uow.RoomCalendarStatusRepository.GetAll()); }
+            get { return CollectionViewSource.GetDefaultView(this.service.GetRoomRegTypeList()); }
         }
 
-        public RoomCalendar CurrentRoomCalendar
+        public RoomReg CurrentRoomReg
         {
-            get { return this.currentRoomCalendar; }
+            get { return this.currentRoomReg; }
             set
             {
-                if (this.currentRoomCalendar != value)
+                if (this.currentRoomReg != value)
                 {
-                    this.currentRoomCalendar = value;
-                    this.OnPropertyChanged("CurrentRoomCalendar");
+                    this.currentRoomReg = value;
+                    this.RaisePropertyChanged(() => this.CurrentRoomReg);
                 }
             }
         }
 
-        public ICollectionView CurrentRoomCalendarView
+        public ICollectionView CurrentRoomRegView
         {
-            get { return this.currentRoomCalendarView; }
+            get { return this.currentRoomRegView; }
         }
 
         public ICollectionView CurrentRoomAssetView
@@ -238,28 +259,28 @@ namespace RoomM.DeskApp.ViewModels
             get { return this.currentRoomHistoryView; }
         }
 
-        private bool RoomCalendarViewFilter(object obj)
+        private bool RoomRegViewFilter(object obj)
         {
-            RoomCalendar entity = obj as RoomCalendar;
+            RoomReg entity = obj as RoomReg;
             bool filter = true;
             if (this.roomCalendarViewFilterIsCheck)
             {
                 filter = filter && (entity.Date >= this.RcvDateFromFilter);
                 filter = filter && (entity.Date <= this.RcvDateToFilter);
-                filter = filter && entity.Staff.Name.Contains(this.RcvRegistrantFilter);
+                filter = filter && entity.User.Name.Contains(this.RcvRegistrantFilter);
                 if (this.RcvPeriodsFilter > 0)
                     filter = filter && (entity.Length == this.RcvPeriodsFilter);
                 if (this.RcvBeginTimeFilter > 0)
                     filter = filter && (entity.Start == this.RcvBeginTimeFilter);
                 if (this.RcvStatusFilter.Name != "Tất cả")
-                    filter = filter && (entity.RoomCalendarStatus.Name == this.RcvStatusFilter.Name);
+                    filter = filter && (entity.RoomRegType.Name == this.RcvStatusFilter.Name);
             }
             return filter;
         }
 
         private bool RoomAssetViewFilter(object obj)
         {
-            RoomAsset entity = obj as RoomAsset;
+            AssetDetail entity = obj as AssetDetail;
             bool filter = true;
             if (this.roomAssetViewFilterIsCheck)
             {
@@ -270,7 +291,7 @@ namespace RoomM.DeskApp.ViewModels
 
         private bool RoomHistoryViewFilter(object obj)
         {
-            RoomAssetHistory entity = obj as RoomAssetHistory;
+            AssetHistory entity = obj as AssetHistory;
             bool filter = true;
             if (this.roomHistoryViewFilterIsCheck)
             {
@@ -278,23 +299,23 @@ namespace RoomM.DeskApp.ViewModels
                 filter = filter && (entity.Date <= this.RhvDateToFilter);
                 filter = filter && entity.Asset.Name.Contains(this.RhvAssetNameFilter);
                 if (this.RhvTypeFilter.Name != "Tất cả")
-                    filter = filter && (entity.HistoryType.Name == this.RhvTypeFilter.Name);
+                    filter = filter && (entity.AssetHistoryType.Name == this.RhvTypeFilter.Name);
             }
             return filter;
         }
 
-        public ICommand RoomCalendarViewFilterCommand { get { return new RelayCommand(RoomCalendarViewFilterCommandHandler, CanExecute); } }
-        public ICommand RoomAssetViewFilterCommand { get { return new RelayCommand(RoomAssetViewFilterCommandHandler, CanExecute); } }
-        public ICommand RoomHistoryViewFilterCommand { get { return new RelayCommand(RoomHistoryViewFilterCommandHandler, CanExecute); } }
-        public ICommand RoomCalendarViewFilterAllCommand { get { return new RelayCommand(RoomCalendarViewFilterAllCommandHandler, CanExecute); } }
-        public ICommand RoomAssetViewFilterAllCommand { get { return new RelayCommand(RoomAssetViewFilterAllCommandHandler, CanExecute); } }
-        public ICommand RoomHistoryViewFilterAllCommand { get { return new RelayCommand(RoomHistoryViewFilterAllCommandHandler, CanExecute); } }
-        public ICommand ChangeCalendarStatusCommand { get { return new RelayCommand(ChangeCalendarStatusCommandHandler, CanExecute); } }
+        public ICommand RoomRegViewFilterCommand { get { return new RelayCommand(RoomRegViewFilterCommandHandler); } }
+        public ICommand RoomAssetViewFilterCommand { get { return new RelayCommand(RoomAssetViewFilterCommandHandler); } }
+        public ICommand RoomHistoryViewFilterCommand { get { return new RelayCommand(RoomHistoryViewFilterCommandHandler); } }
+        public ICommand RoomRegViewFilterAllCommand { get { return new RelayCommand(RoomRegViewFilterAllCommandHandler); } }
+        public ICommand RoomAssetViewFilterAllCommand { get { return new RelayCommand(RoomAssetViewFilterAllCommandHandler); } }
+        public ICommand RoomHistoryViewFilterAllCommand { get { return new RelayCommand(RoomHistoryViewFilterAllCommandHandler); } }
+        public ICommand ChangeCalendarStatusCommand { get { return new RelayCommand(ChangeCalendarStatusCommandHandler); } }
 
-        private void RoomCalendarViewFilterCommandHandler()
+        private void RoomRegViewFilterCommandHandler()
         {
             this.roomCalendarViewFilterIsCheck = true;
-            this.currentRoomCalendarView.Refresh();
+            this.currentRoomRegView.Refresh();
         }
 
 
@@ -310,10 +331,10 @@ namespace RoomM.DeskApp.ViewModels
             this.currentRoomHistoryView.Refresh();
         }
 
-        private void RoomCalendarViewFilterAllCommandHandler()
+        private void RoomRegViewFilterAllCommandHandler()
         {
             this.roomCalendarViewFilterIsCheck = false;
-            this.currentRoomCalendarView.Refresh();
+            this.currentRoomRegView.Refresh();
         }
 
         private void RoomAssetViewFilterAllCommandHandler()
@@ -335,14 +356,8 @@ namespace RoomM.DeskApp.ViewModels
             {
                 try
                 {
-                    if (CurrentRoomCalendar.RoomCalendarStatusId == 2 || CurrentRoomCalendar.RoomCalendarStatusId == 3)
-                        // CurrentRoomCalendar.IsWatched = true;
-
-                    this.uow.RoomCalendarRepository.Edit(this.CurrentRoomCalendar);
-                    this.uow.Commit();
-
+                    this.service.ChangeRoomRegType(this.CurrentRoomReg);
                     this.EntitiesView.Refresh();
-                    this.OnPropertyChanged("CurrentRoomCalendar");
                     System.Windows.Forms.MessageBox.Show("Cập nhật dữ liệu thành công!");
                 }
                 catch (Exception ex)
@@ -350,7 +365,7 @@ namespace RoomM.DeskApp.ViewModels
                     System.Windows.Forms.MessageBox.Show("Cập nhật dữ liệu thất bại! \nMã lỗi: " + ex.Message);
                 }
             }
-            this.currentRoomCalendarView.Refresh();
+            this.currentRoomRegView.Refresh();
         }
 
         public DateTime RcvDateFromFilter
@@ -383,7 +398,7 @@ namespace RoomM.DeskApp.ViewModels
             set { this.rcvRegistrantFilter = value; }
         }
 
-        public RoomCalendarStatus RcvStatusFilter
+        public RoomRegType RcvStatusFilter
         {
             get { return this.rcvStatusFilter; }
             set { this.rcvStatusFilter = value; }
@@ -413,7 +428,7 @@ namespace RoomM.DeskApp.ViewModels
             set { this.rhvDateToFilter = value; }
         }
 
-        public HistoryType RhvTypeFilter
+        public AssetHistoryType RhvTypeFilter
         {
             get { return this.rhvTypeFilter; }
             set { this.rhvTypeFilter = value; }
@@ -430,18 +445,17 @@ namespace RoomM.DeskApp.ViewModels
         }
 
         // commands
-        public ICommand ExportToExcelCommand { get { return new RelayCommand(ExportToExcelCommandHandler, CanExecute); } }
-
-        private void abc() {
-            Console.WriteLine("Cont");
-        }
+        public ICommand ExportToExcelCommand { get { return new RelayCommand(ExportToExcelCommandHandler); } }
+        public ICommand ExportCalRegisterToExcelCommand { get { return new RelayCommand(ExportCalRegisterToExcelCommandHandler); } }
+        public ICommand ExportAssetsToExcelCommand { get { return new RelayCommand(ExportAssetsToExcelCommandHandler); } }
+        public ICommand ExportHistoriesToExcelCommand { get { return new RelayCommand(ExportHistoriesToExcelCommandHandler); } }
 
         private void ExportToExcelCommandHandler()
         {
-            RoomsReportToExcel report = new RoomsReportToExcel("sgu university", "roomM", "templates/roomlist_tmp.xls");
+            RoomReportToExcel report = new RoomReportToExcel("sgu university", "roomM", "templates/roomlist_tmp.xls");
 
             List<Room> dataList = new List<Room>();
-            if (AllPlusIsCheck)
+            if (IsIncludeAll)
                 dataList = EntitiesList;
             else
             {
@@ -454,40 +468,34 @@ namespace RoomM.DeskApp.ViewModels
             report.save();
         }
 
-        public ICommand ExportCalRegisterToExcelCommand { get { return new RelayCommand(ExportCalRegisterToExcelCommandHandler, CanExecute); } }
-
         private void ExportCalRegisterToExcelCommandHandler()
         {
-            List<RoomCalendar> dataList = new List<RoomCalendar>();
-            dataList = CurrentEntity.RoomCalendars.ToList();
+            List<RoomReg> dataList = new List<RoomReg>();
+            dataList = CurrentEntity.RoomRegs.ToList();
 
-            RoomCalendarsReportToExcel report = new RoomCalendarsReportToExcel("sgu university", "roomM", "templates/roomcalendar_tmp.xls");
+            RoomRegReportToExcel report = new RoomRegReportToExcel("sgu university", "roomM", "templates/roomcalendar_tmp.xls");
 
             report.setupExport(dataList, CurrentEntity);
             report.save();
         }
-
-        public ICommand ExportAssetsToExcelCommand { get { return new RelayCommand(ExportAssetsToExcelCommandHandler, CanExecute); } }
 
         private void ExportAssetsToExcelCommandHandler()
         {
-            List<RoomAsset> dataList = new List<RoomAsset>();
-            dataList = CurrentEntity.RoomAssets.ToList();
+            List<AssetDetail> dataList = new List<AssetDetail>();
+            dataList = CurrentEntity.AssetDetails.ToList();
 
-            AssetsReportToExcel report = new AssetsReportToExcel("sgu university", "roomM", "templates/roomasset_tmp.xls");
+            AssetDetailReportToExcel report = new AssetDetailReportToExcel("sgu university", "roomM", "templates/roomasset_tmp.xls");
 
             report.setupExport(dataList, CurrentEntity);
             report.save();
-        }
-
-        public ICommand ExportHistoriesToExcelCommand { get { return new RelayCommand(ExportHistoriesToExcelCommandHandler, CanExecute); } }
+        }     
 
         private void ExportHistoriesToExcelCommandHandler()
         {
-            List<RoomAssetHistory> dataList = new List<RoomAssetHistory>();
+            List<AssetHistory> dataList = new List<AssetHistory>();
             dataList = CurrentEntity.AssetHistories.ToList();
 
-            RoomHistoriesReportToExcel report = new RoomHistoriesReportToExcel("sgu university", "roomM", "templates/roomhistory_tmp.xls");
+            AssetHistoryReportToExcel report = new AssetHistoryReportToExcel("sgu university", "roomM", "templates/roomhistory_tmp.xls");
 
             report.setupExport(dataList, CurrentEntity);
             report.save();
@@ -495,7 +503,7 @@ namespace RoomM.DeskApp.ViewModels
 
 
         // backtrace button
-        public ICommand BacktraceCommand { get { return new RelayCommand(BacktraceCommandHandler, CanExecute); } }
+        public ICommand BacktraceCommand { get { return new RelayCommand(BacktraceCommandHandler); } }
 
         private void BacktraceCommandHandler()
         {
@@ -503,8 +511,8 @@ namespace RoomM.DeskApp.ViewModels
             // Dictionary<String, int> dic = new Dictionary<string,int>();
             Hashtable hm = new Hashtable();
             
-            IList<RoomAssetHistory> hisList = this.uow.RoomAssetHistoryRepository.GetByRoom2RoomId(CurrentEntity, timeForBacktrace);
-            foreach (RoomAssetHistory his in hisList)
+            IList<AssetHistory> hisList = this.service.GetByRoom2RoomId(CurrentEntity, timeForBacktrace);
+            foreach (AssetHistory his in hisList)
             {
                 if (his.Date.Date <= timeForBacktrace)
                 {
@@ -556,7 +564,7 @@ namespace RoomM.DeskApp.ViewModels
         }
 
         // refresh
-        public ICommand RefreshCommand { get { return new RelayCommand(RefreshCommandHandler, CanExecute); } }
+        public ICommand RefreshCommand { get { return new RelayCommand(RefreshCommandHandler); } }
 
         private void RefreshCommandHandler()
         {
@@ -571,53 +579,10 @@ namespace RoomM.DeskApp.ViewModels
 
             this.currentRoomAssetView.Refresh();
             this.currentRoomHistoryView.Refresh();
-            this.currentRoomCalendarView.Refresh();
+            this.currentRoomRegView.Refresh();
             this.currentRoomAssetView.Refresh();
             this.currentRoomHistoryView.Refresh();
         }
-        
-
-
-
-        // save command handler
-        protected override void SaveCommandHandler()
-        {
-            MainWindowViewModel.instance.ChangeStateToReady();
-            MessageBoxResult result = System.Windows.MessageBox.Show("Bạn muốn sửa thông tin phòng?", "Xác nhận sửa thông tin", MessageBoxButton.YesNo);
-            if (result == MessageBoxResult.Yes)
-            {
-                // if (roomRepo.isUniqueName(CurrentEntity.Name.Trim()))
-                // {
-                    this.SaveCurrentEntity();
-                    MainWindowViewModel.instance.ChangeStateToComplete("Cập nhật thành công");
-                    base.SaveCommandHandler();
-                /* } 
-                else 
-                {
-                    
-                    System.Windows.Forms.MessageBox.Show("Cập nhật thất bại, tên phòng bị trùng lắp", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    MainWindowViewModel.instance.ChangeStateToComplete("Cập nhật thất bại, tên phòng bị trùng lắp");
-                }*/
-            }
-        }
-
-        protected override void NewCommandHandler()
-        {
-            if (this.uow.RoomRepository.isUniqueName(newEntityViewModel.NewEntity.Name.Trim()))
-            {
-                this.CloseNewEntityDialog();
-                base.NewCommandHandler();
-            }
-            else
-            {
-                System.Windows.Forms.MessageBox.Show("Thêm thất bại, tên phòng bị trùng lắp", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                MainWindowViewModel.instance.ChangeStateToComplete("Thêm thất bại, tên phòng bị trùng lắp");
-            }
-        }
-
-
-
-
 
         public class HistoryRecord {
             public String AssetName { get; set; }

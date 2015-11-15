@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 using RoomM.DeskApp.UIHelper;
 using RoomM.DeskApp.Views;
-using RoomM.Models;
+using RoomM.Domain;
 
 namespace RoomM.DeskApp.UIHelper
 {

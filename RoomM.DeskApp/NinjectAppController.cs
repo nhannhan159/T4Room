@@ -8,7 +8,18 @@ using Ninject;
 using Ninject.Modules;
 
 using RoomM.DeskApp.ViewModels;
-using RoomM.Repositories;
+using RoomM.Domain;
+using RoomM.Domain.AssetModule.Aggregates;
+using RoomM.Domain.RoomModule.Aggregates;
+using RoomM.Domain.UserModule.Aggregates;
+using RoomM.Infrastructure.Data;
+using RoomM.Infrastructure.Data.UnitOfWork;
+using RoomM.Infrastructure.Data.AssetModule.Repositories;
+using RoomM.Infrastructure.Data.RoomModule.Repositories;
+using RoomM.Infrastructure.Data.UserModule.Repositories;
+using RoomM.Application.AssetModule.Services;
+using RoomM.Application.RoomModule.Services;
+using RoomM.Application.UserModule.Services;
 
 namespace RoomM.DeskApp
 {
@@ -16,10 +27,16 @@ namespace RoomM.DeskApp
     {
         public override void Load()
         {
-            Bind<EFDataContext>().ToSelf().InSingletonScope();
+            Bind<IUnitOfWork>().To<EFContext>().InSingletonScope();
+
+            Bind<IAssetManagementService>().To<AssetManagementService>().InTransientScope();
+            Bind<IRoomManagementService>().To<RoomManagementService>().InTransientScope();
+            Bind<IUserManagementService>().To<UserManagementService>().InTransientScope();
+            Bind<IStatisticService>().To<StatisticService>().InTransientScope();
+
             Bind<RoomManagementViewModel>().ToSelf().InTransientScope();
             Bind<AssetManagementViewModel>().ToSelf().InTransientScope();
-            Bind<StaffManagementViewModel>().ToSelf().InTransientScope();
+            Bind<UserManagementViewModel>().ToSelf().InTransientScope();
             Bind<StatisticViewModel>().ToSelf().InTransientScope();
         }
     }

@@ -17,6 +17,21 @@
     <SccLocalPath>Svn</SccLocalPath>
     <SccAuxPath>Svn</SccAuxPath>
     <SccProvider>SubversionScc</SccProvider>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -46,8 +61,24 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.2.0.37222, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.2.0.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.2.0.37222, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.2.0.0\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.2.0.37226, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.2.0.0\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\packages\NPOI.2.1.3.1\lib\net40\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
@@ -87,6 +118,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.2.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -110,22 +145,19 @@
     </ApplicationDefinition>
     <Compile Include="Contants.cs" />
     <Compile Include="NinjectAppController.cs" />
-    <Compile Include="ReportUtils\AssetsReportToExcel.cs" />
-    <Compile Include="ReportUtils\PureAssetsReportToExcel.cs" />
+    <Compile Include="ReportUtils\AssetDetailReportToExcel.cs" />
+    <Compile Include="ReportUtils\AssetReportToExcel.cs" />
     <Compile Include="ReportUtils\ReportToExcel.cs" />
-    <Compile Include="ReportUtils\RoomCalendarsReportToExcel.cs" />
-    <Compile Include="ReportUtils\RoomHistoriesReportToExcel.cs" />
-    <Compile Include="ReportUtils\RoomsReportToExcel.cs" />
+    <Compile Include="ReportUtils\RoomRegReportToExcel.cs" />
+    <Compile Include="ReportUtils\AssetHistoryReportToExcel.cs" />
+    <Compile Include="ReportUtils\RoomReportToExcel.cs" />
     <Compile Include="UIHelper\EditableViewModel.cs" />
-    <Compile Include="UIHelper\PropertySupport.cs" />
-    <Compile Include="UIHelper\RelayCommand.cs" />
-    <Compile Include="UIHelper\ViewModel.cs" />
     <Compile Include="ViewModels\AssetManagementViewModel.cs" />
     <Compile Include="UIHelper\NewEntityViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="ViewModels\RoomManagementViewModel.cs" />
-    <Compile Include="ViewModels\StaffManagementViewModel.cs" />
+    <Compile Include="ViewModels\UserManagementViewModel.cs" />
     <Compile Include="ViewModels\StatisticViewModel.cs" />
     <Compile Include="Views\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
@@ -133,8 +165,8 @@
     <Compile Include="Views\AssetManagement.xaml.cs">
       <DependentUpon>AssetManagement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NewStaff.xaml.cs">
-      <DependentUpon>NewStaff.xaml</DependentUpon>
+    <Compile Include="Views\NewUser.xaml.cs">
+      <DependentUpon>NewUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewAsset.xaml.cs">
       <DependentUpon>NewAsset.xaml</DependentUpon>
@@ -145,8 +177,8 @@
     <Compile Include="Views\RoomManagement.xaml.cs">
       <DependentUpon>RoomManagement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\StaffManagement.xaml.cs">
-      <DependentUpon>StaffManagement.xaml</DependentUpon>
+    <Compile Include="Views\UserManagement.xaml.cs">
+      <DependentUpon>UserManagement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Statistic.xaml.cs">
       <DependentUpon>Statistic.xaml</DependentUpon>
@@ -159,7 +191,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\NewStaff.xaml">
+    <Page Include="Views\NewUser.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -187,7 +219,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\StaffManagement.xaml">
+    <Page Include="Views\UserManagement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -227,13 +259,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RoomM.Models\RoomM.Models.csproj">
-      <Project>{a2cd9ea0-9e0c-4b0a-87f5-9baddc4f9422}</Project>
-      <Name>RoomM.Models</Name>
+    <ProjectReference Include="..\RoomM.Application\RoomM.Application.csproj">
+      <Project>{63ceac61-8b2e-47f9-a932-134f5ec6a558}</Project>
+      <Name>RoomM.Application</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RoomM.Repositories\RoomM.Repositories.csproj">
+    <ProjectReference Include="..\RoomM.Domain\RoomM.Domain.csproj">
+      <Project>{a2cd9ea0-9e0c-4b0a-87f5-9baddc4f9422}</Project>
+      <Name>RoomM.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RoomM.Infrastructure.Data\RoomM.Infrastructure.Data.csproj">
       <Project>{61faa63a-110f-42fb-a273-6362f5730e68}</Project>
-      <Name>RoomM.Repositories</Name>
+      <Name>RoomM.Infrastructure.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -267,6 +303,23 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icon\icon-launcher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -3,24 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.Repositories", "RoomM.Repositories\RoomM.Repositories.csproj", "{61FAA63A-110F-42FB-A273-6362F5730E68}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.Infrastructure.Data", "RoomM.Infrastructure.Data\RoomM.Infrastructure.Data.csproj", "{61FAA63A-110F-42FB-A273-6362F5730E68}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.WebApp", "RoomM.WebApp\RoomM.WebApp.csproj", "{9B5CF9B6-E3A5-4100-ADEC-0B2AA821A495}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.Models", "RoomM.Models\RoomM.Models.csproj", "{A2CD9EA0-9E0C-4B0A-87F5-9BADDC4F9422}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.Domain", "RoomM.Domain\RoomM.Domain.csproj", "{A2CD9EA0-9E0C-4B0A-87F5-9BADDC4F9422}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.WebService", "RoomM.WebService\RoomM.WebService.csproj", "{5BF3ED16-67B2-432E-AFB9-AFCB8ED78555}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.DeskApp", "RoomM.DeskApp\RoomM.DeskApp.csproj", "{5EC56C8B-1681-489B-A9EA-F1F69A4560BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.DeskAppClient", "RoomM.DeskAppClient\RoomM.DeskAppClient.csproj", "{ACE832E1-0DA9-4EBF-8572-D88A74CA4289}"
-	ProjectSection(ProjectDependencies) = postProject
-		{5BF3ED16-67B2-432E-AFB9-AFCB8ED78555} = {5BF3ED16-67B2-432E-AFB9-AFCB8ED78555}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.WebAppClient", "RoomM.WebAppClient\RoomM.WebAppClient.csproj", "{93C0C9AF-4007-4355-9688-8B6856880A45}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.ServiceTest", "RoomM.ServiceTest\RoomM.ServiceTest.csproj", "{8CDC27DC-9D0D-4D8C-90B1-2CBB3743B66A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.Application", "RoomM.Application\RoomM.Application.csproj", "{63CEAC61-8B2E-47F9-A932-134F5EC6A558}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,10 +45,6 @@ Global
 		{5EC56C8B-1681-489B-A9EA-F1F69A4560BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5EC56C8B-1681-489B-A9EA-F1F69A4560BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5EC56C8B-1681-489B-A9EA-F1F69A4560BC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ACE832E1-0DA9-4EBF-8572-D88A74CA4289}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ACE832E1-0DA9-4EBF-8572-D88A74CA4289}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ACE832E1-0DA9-4EBF-8572-D88A74CA4289}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ACE832E1-0DA9-4EBF-8572-D88A74CA4289}.Release|Any CPU.Build.0 = Release|Any CPU
 		{93C0C9AF-4007-4355-9688-8B6856880A45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{93C0C9AF-4007-4355-9688-8B6856880A45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93C0C9AF-4007-4355-9688-8B6856880A45}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -60,6 +53,10 @@ Global
 		{8CDC27DC-9D0D-4D8C-90B1-2CBB3743B66A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CDC27DC-9D0D-4D8C-90B1-2CBB3743B66A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CDC27DC-9D0D-4D8C-90B1-2CBB3743B66A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63CEAC61-8B2E-47F9-A932-134F5EC6A558}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63CEAC61-8B2E-47F9-A932-134F5EC6A558}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63CEAC61-8B2E-47F9-A932-134F5EC6A558}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63CEAC61-8B2E-47F9-A932-134F5EC6A558}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

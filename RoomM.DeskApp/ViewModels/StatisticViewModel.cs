@@ -6,14 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using GalaSoft.MvvmLight;
+
 using RoomM.DeskApp.UIHelper;
-using RoomM.Repositories;
-using RoomM.Models;
+using RoomM.Domain.RoomModule.Aggregates;
+using RoomM.Domain.UserModule.Aggregates;
+using RoomM.Application.RoomModule.Services;
 
 namespace RoomM.DeskApp.ViewModels
 {
-    public class StatisticViewModel : EditableViewModel<Room>
+    public class StatisticViewModel : ViewModelBase
     {
+        private IStatisticService service;
         private ObservableCollection<ChartElement> chartStaffItems;
         private ObservableCollection<ChartElement> chartRegisterItems;
         private DateTime fromTimeStaff;
@@ -21,25 +25,20 @@ namespace RoomM.DeskApp.ViewModels
         private DateTime fromTimeRegister;
         private DateTime toTimeRegister;
 
-
-        public StatisticViewModel(EFDataContext context)
-            : base(context)
+        public StatisticViewModel(IStatisticService service)
         {
-            fromTimeStaff = new DateTime(DateTime.Now.Year - 1, 1, 1);
-            toTimeStaff = DateTime.Now;
+            this.service = service;
 
-            fromTimeRegister = new DateTime(DateTime.Now.Year - 1, 1, 1);
-            toTimeRegister = DateTime.Now;
+            this.fromTimeStaff = new DateTime(DateTime.Now.Year - 1, 1, 1);
+            this.toTimeStaff = DateTime.Now;
 
-            rebuildStaffData(fromTimeStaff, toTimeStaff);
-            rebuildRegisterData(fromTimeRegister, toTimeRegister);
+            this.fromTimeRegister = new DateTime(DateTime.Now.Year - 1, 1, 1);
+            this.toTimeRegister = DateTime.Now;
+
+            this.rebuildUserData(fromTimeStaff, toTimeStaff);
+            this.rebuildRegisterData(fromTimeRegister, toTimeRegister);
         }
 
-        protected override List<Room> GetEntitiesList()
-        {
-            return this.uow.RoomRepository.GetAll() as List<Room>;
-        }
-       
         public ObservableCollection<ChartElement> GetStaffStatistic
         {
             get { return this.chartStaffItems; }
@@ -52,71 +51,56 @@ namespace RoomM.DeskApp.ViewModels
 
         public DateTime FromTimeStaff 
         {
-            get { return fromTimeStaff; }
+            get { return this.fromTimeStaff; }
             set 
-            { 
-                fromTimeStaff = value;
-                rebuildStaffData(value, ToTimeStaff);
+            {
+                this.fromTimeStaff = value;
+                this.rebuildUserData(value, ToTimeStaff);
             }
         }
 
         public DateTime ToTimeStaff
         {
-            get { return toTimeStaff; }
+            get { return this.toTimeStaff; }
             set 
-            { 
-                toTimeStaff = value;
-                rebuildStaffData(FromTimeStaff, value);   
+            {
+                this.toTimeStaff = value;
+                this.rebuildUserData(FromTimeStaff, value);   
             }
         }
 
         public DateTime FromTimeRegister
         {
-            get { return fromTimeRegister; }
+            get { return this.fromTimeRegister; }
             set
             {
-                fromTimeRegister = value;
-                rebuildRegisterData(value, toTimeRegister);
+                this.fromTimeRegister = value;
+                this.rebuildRegisterData(value, toTimeRegister);
             }
         }
 
         public DateTime ToTimeRegister
         {
-            get { return toTimeRegister; }
+            get { return this.toTimeRegister; }
             set
             {
-                toTimeRegister = value;
-                rebuildRegisterData(fromTimeRegister, value);
+                this.toTimeRegister = value;
+                this.rebuildRegisterData(fromTimeRegister, value);
             }
         }
 
-        protected override void SaveCurrentEntity()
+        private void rebuildUserData(DateTime from, DateTime to)
         {
-            throw new NotImplementedException();
-        }
+            IList<KeyValuePair<User, int>> userDics = this.service.GetUserLimitByRegister(10, from, to);
 
-        protected override void DeleteCurrentEntity()
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override void CloseNewEntityDialog()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void rebuildStaffData(DateTime from, DateTime to)
-        {
-            IList<KeyValuePair<Staff, int>> staffDics = this.uow.StaffRepository.GetStaffLimitByRegister(10, from, to);
-
-            if (null == chartStaffItems)
-                chartStaffItems = new ObservableCollection<ChartElement>();
+            if (null == this.chartStaffItems)
+                this.chartStaffItems = new ObservableCollection<ChartElement>();
             else
-                chartStaffItems.Clear();
+                this.chartStaffItems.Clear();
 
-            foreach (KeyValuePair<Staff, int> d in staffDics)
+            foreach (KeyValuePair<User, int> d in userDics)
             {
-                chartStaffItems.Add(new ChartElement
+                this.chartStaffItems.Add(new ChartElement
                 {
                     Name = d.Key.Name,
                     Value = d.Value
@@ -126,16 +110,16 @@ namespace RoomM.DeskApp.ViewModels
 
         private void rebuildRegisterData(DateTime from, DateTime to)
         {
-            IList<KeyValuePair<Room, int>> roomDics = this.uow.RoomRepository.GetRoomLimitByRegister(10, from, to);
+            IList<KeyValuePair<Room, int>> roomDics = this.service.GetRoomLimitByRegister(10, from, to);
 
-            if (null == chartRegisterItems)
-                chartRegisterItems = new ObservableCollection<ChartElement>();
+            if (null == this.chartRegisterItems)
+                this.chartRegisterItems = new ObservableCollection<ChartElement>();
             else
-                chartRegisterItems.Clear();
+                this.chartRegisterItems.Clear();
 
             foreach (KeyValuePair<Room, int> d in roomDics)
             {
-                chartRegisterItems.Add(new ChartElement
+                this.chartRegisterItems.Add(new ChartElement
                 {
                     Name = d.Key.Name,
                     Value = d.Value

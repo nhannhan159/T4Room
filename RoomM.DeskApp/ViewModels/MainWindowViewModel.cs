@@ -11,12 +11,15 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows;
 
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+
 using RoomM.DeskApp.UIHelper;
 using RoomM.DeskApp.Views;
 
 namespace RoomM.DeskApp.ViewModels
 {
-    public class MainWindowViewModel : ViewModel
+    public class MainWindowViewModel : ViewModelBase
     {
         public static MainWindowViewModel instance;
         public const string READY = "sẵn sàng";
@@ -36,10 +39,10 @@ namespace RoomM.DeskApp.ViewModels
 
         public MainWindowViewModel() : base()
         {
-            instance = this;
-            StatusState = READY;
-            StatusExpend = "";
-            StatusColor = Brushes.DarkSlateGray;
+            MainWindowViewModel.instance = this;
+            this.StatusState = READY;
+            this.StatusExpend = "";
+            this.StatusColor = Brushes.DarkSlateGray;
 
             Console.WriteLine(Brushes.DarkSlateGray.ToString());
 
@@ -48,16 +51,16 @@ namespace RoomM.DeskApp.ViewModels
             switch (Properties.Settings.Default.BkgColor) 
             {
                 case DARKSLATEGRAY:
-                    StatusColor = Brushes.DarkSlateGray;
+                    this.StatusColor = Brushes.DarkSlateGray;
                     break;
                 case BLUE:
-                    StatusColor = Brushes.DarkBlue;
+                    this.StatusColor = Brushes.DarkBlue;
                     break;
-                case ORAGNE: 
-                    StatusColor = Brushes.DarkOrange;
+                case ORAGNE:
+                    this.StatusColor = Brushes.DarkOrange;
                     break;
                 default :
-                    StatusColor = Brushes.DarkSlateGray;
+                    this.StatusColor = Brushes.DarkSlateGray;
                     break;
             }
 
@@ -72,41 +75,41 @@ namespace RoomM.DeskApp.ViewModels
 
         public string StatusState 
         {
-            get { return statusState; }
+            get { return this.statusState; }
             set 
             {
-                if (statusState != value)
+                if (this.statusState != value)
                 {
                     Console.WriteLine("change: " + value);
 
-                    statusState = value;
-                    this.OnPropertyChanged("StatusState");
+                    this.statusState = value;
+                    this.RaisePropertyChanged(() => this.StatusState);
                 }
             }
         }
 
         public string StatusExpend
         {
-            get { return statusExpend; }
+            get { return this.statusExpend; }
             set
             {
-                if (statusExpend != value)
+                if (this.statusExpend != value)
                 {
-                    statusExpend = value;
-                    this.OnPropertyChanged("StatusExpend");
+                    this.statusExpend = value;
+                    this.RaisePropertyChanged(() => this.StatusExpend);
                 }
             }
         }
 
         public SolidColorBrush StatusColor
         {
-            get { return statusColor; }
+            get { return this.statusColor; }
             set
             {
-                if (statusColor != value)
+                if (this.statusColor != value)
                 {
-                    statusColor = value;
-                    this.OnPropertyChanged("StatusColor");
+                    this.statusColor = value;
+                    this.RaisePropertyChanged(() => this.StatusColor);
                 }
             
             }
@@ -114,20 +117,20 @@ namespace RoomM.DeskApp.ViewModels
 
         public void ChangeStateToReady(string expend = "")
         {
-            StatusState = READY;
-            StatusExpend = expend;
+            this.StatusState = READY;
+            this.StatusExpend = expend;
         }
 
         public void ChangeStateToComplete(string expend = "")
         {
-            StatusState = COMPLETE;
-            StatusExpend = expend;
+            this.StatusState = COMPLETE;
+            this.StatusExpend = expend;
         }
 
         public void ChangeStateToWait(string expend = "")
         {
-            StatusState = WAIT;
-            StatusExpend = expend;
+            this.StatusState = WAIT;
+            this.StatusExpend = expend;
         }
 
         //command
@@ -137,14 +140,14 @@ namespace RoomM.DeskApp.ViewModels
         private void FakeCommandHandler()
         {
             Console.WriteLine("click");
-            StatusExpend = "asbdjbakjsdkasndknaskdnklasdkl";
+            this.StatusExpend = "asbdjbakjsdkasndknaskdnklasdkl";
         }
 
         public ICommand BkgGrayCommand { get { return new RelayCommand(BkgGrayHandler, CanExecute); } }
 
         private void BkgGrayHandler()
         {
-            StatusColor = Brushes.DarkSlateGray;
+            this.StatusColor = Brushes.DarkSlateGray;
             Properties.Settings.Default.BkgColor = DARKSLATEGRAY;
             Properties.Settings.Default.Save();
         }
@@ -153,7 +156,7 @@ namespace RoomM.DeskApp.ViewModels
 
         private void BkgBlueHandler()
         {
-            StatusColor = Brushes.DarkBlue;
+            this.StatusColor = Brushes.DarkBlue;
             Properties.Settings.Default.BkgColor = BLUE;
             Properties.Settings.Default.Save();
         }
@@ -162,7 +165,7 @@ namespace RoomM.DeskApp.ViewModels
 
         private void BkgOrangeHandler()
         {
-            StatusColor = Brushes.DarkOrange;
+            this.StatusColor = Brushes.DarkOrange;
             Properties.Settings.Default.BkgColor = ORAGNE;
             Properties.Settings.Default.Save();
         }
@@ -186,7 +189,7 @@ namespace RoomM.DeskApp.ViewModels
 
         private void ExitCommandHandler()
         {
-            Window window = Application.Current.Windows.OfType<Window>().Where(w => w.Name == "MainWindowForApp").FirstOrDefault();
+            Window window = System.Windows.Application.Current.Windows.OfType<Window>().Where(w => w.Name == "MainWindowForApp").FirstOrDefault();
             if (window != null) window.Close();
         }
 

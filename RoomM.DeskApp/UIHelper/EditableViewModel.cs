@@ -9,51 +9,56 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+
 using RoomM.DeskApp.ViewModels;
-using RoomM.Repositories;
-using RoomM.Models;
+using RoomM.Domain;
 
 namespace RoomM.DeskApp.UIHelper
 {
-    public abstract class EditableViewModel<T> 
-        : ViewModel where T : EntityBase, new()
+    public abstract class EditableViewModel<T> : ViewModelBase where T : EntityBase, new()
     {
-
-        private bool allPlusIsCheck;
+        private bool isIncludeAll;
         private bool filterIsCheck;
         private T currentEntity;
         private List<T> entitiesList;
         private ICollectionView entitiesView;
         private string namefilter;
 
-        protected UnitOfWork uow;
-        protected bool canExecuteSaveCommand;
-        protected bool canExecuteNewCommand;
         protected NewEntityViewModel<T> newEntityViewModel;
 
-        protected EditableViewModel(EFDataContext context)
+        protected EditableViewModel()
             : base()
         {
-            this.uow = new UnitOfWork(context);
+            this.NameFilter = "";
+            this.isIncludeAll = false;
+            this.filterIsCheck = false;
+            
+            this.SaveCommand = new RelayCommand(this.SaveCommandHandler, () => { return this.currentEntity != null; });
+            this.NewCommand = new RelayCommand(this.NewCommandHandler);
+            this.NewDialogCommand = new RelayCommand(this.NewDialogCommandHandler);
+            this.DeleteCommand = new RelayCommand(this.DeleteCommandHandler);
+            this.FilterCommand = new RelayCommand(this.FilterCommandHandler);
+            this.FilterAllCommand = new RelayCommand(this.FilterAllCommandHandler);
+            this.FilterAllPlusCommand = new RelayCommand(this.FilterAllPlusCommandHandler);
+        }
+
+        protected void BaseInit()
+        {
             this.currentEntity = default(T);
             this.entitiesList = this.GetEntitiesList();
             this.entitiesView = CollectionViewSource.GetDefaultView(this.entitiesList);
-            this.entitiesView.CurrentChanged += EntitySelectionChanged;
             this.entitiesView.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
             this.entitiesView.GroupDescriptions.Add(this.Grouping());
-            this.NameFilter = "";
-            this.allPlusIsCheck = false;
-            this.filterIsCheck = false;
             this.entitiesView.Filter += EntityFilter;
-            this.canExecuteNewCommand = true;
-            this.canExecuteSaveCommand = false;
         }
 
         protected abstract List<T> GetEntitiesList();
-        protected abstract void SaveCurrentEntity();
+        protected abstract void AddCurrentEntity();
+        protected abstract void EditCurrentEntity();
         protected abstract void DeleteCurrentEntity();
         protected abstract void CloseNewEntityDialog();
-
 
         public T CurrentEntity
         {
@@ -63,8 +68,7 @@ namespace RoomM.DeskApp.UIHelper
                 if (this.currentEntity != value)
                 {
                     this.currentEntity = value;
-                    this.canExecuteSaveCommand = (this.currentEntity != null);
-                    this.OnPropertyChanged("CurrentEntity");
+                    this.RaisePropertyChanged(() => this.CurrentEntity);
                     this.SetAdditionViewChange();
                 }
             }
@@ -75,11 +79,6 @@ namespace RoomM.DeskApp.UIHelper
             return new PropertyGroupDescription("");
         }
 
-        protected virtual void EntitySelectionChanged(object sender, EventArgs e)
-        {
-            Console.WriteLine("CHANGED...");
-        }
-
         protected virtual bool IsUsing(T entity) { return true; }
         protected virtual bool GeneralFilter(T entity) { return true; }
         protected virtual void SetAdditionViewChange() { }
@@ -87,21 +86,21 @@ namespace RoomM.DeskApp.UIHelper
         private bool EntityFilter(object obj)
         {
             T entity = obj as T;
-            bool filter=true;
-            if (!this.allPlusIsCheck)
+            bool filter = true;
+            if (!this.isIncludeAll)
                 filter = filter && this.IsUsing(entity);
             if (this.filterIsCheck)
                 filter = filter && this.GeneralFilter(entity);
             return filter;
         }
 
-        public bool AllPlusIsCheck
+        public bool IsIncludeAll
         {
-            get { return this.allPlusIsCheck; }
+            get { return this.isIncludeAll; }
             set
             {
-                this.allPlusIsCheck = value;
-                OnPropertyChanged("AllPlusIsCheck");
+                this.isIncludeAll = value;
+                this.RaisePropertyChanged(() => this.IsIncludeAll);
             }
         }
 
@@ -131,64 +130,57 @@ namespace RoomM.DeskApp.UIHelper
             get { return this.entitiesView; }
         }
 
-        public ICommand SaveCommand { get { return new RelayCommand(SaveCommandHandler, CanExecuteSaveCommand); } }
-        public ICommand NewCommand { get { return new RelayCommand(NewCommandHandler, CanExecuteNewCommand); } }
-        public ICommand NewDialogCommand { get { return new RelayCommand(NewDialogCommandHandler, CanExecute); } }
-        public ICommand DelCommand { get { return new RelayCommand(DeleteCommandHandler, CanExecute); } }
-        public ICommand FilterCommand { get { return new RelayCommand(FilterCommandHandler, CanExecute); } }
-        public ICommand FilterAllCommand { get { return new RelayCommand(FilterAllCommandHandler, CanExecute); } }
-        public ICommand FilterAllPlusCommand { get { return new RelayCommand(FilterAllPlusCommandHandler, CanExecute); } }
-       
-        private bool CanExecuteSaveCommand() { return canExecuteSaveCommand; }
-        private bool CanExecuteNewCommand() { return canExecuteNewCommand; }
-        protected bool CanExecute() { return true; }
-
         public int NumRowRecord
         {
             get { return this.entitiesList.Count; }
         }
 
-        protected virtual void SaveCommandHandler()
+        public ICommand SaveCommand { get; private set; }
+        public ICommand NewCommand { get; private set; }
+        public ICommand NewDialogCommand { get; private set; }
+        public ICommand DeleteCommand { get; private set; }
+        public ICommand FilterCommand { get; private set; }
+        public ICommand FilterAllCommand { get; private set; }
+        public ICommand FilterAllPlusCommand { get; private set; }
+       
+        private void SaveCommandHandler()
         {
-            /* MainWindowViewModel.instance.ChangeStateToReady();
-            MessageBoxResult result = MessageBox.Show("Bạn muốn sửa thông tin phòng?", "Xác nhận sửa thông tin", MessageBoxButton.YesNo);
+            MainWindowViewModel.instance.ChangeStateToReady();
+            MessageBoxResult result = MessageBox.Show("Bạn muốn sửa thông tin ?", "Xác nhận sửa thông tin", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
-                this.SaveCurrentEntity();
+                this.EditCurrentEntity();
                 MainWindowViewModel.instance.ChangeStateToComplete("Cập nhật thành công");
-            }*/
+            }
             this.entitiesView.Refresh();
         }
 
-        protected virtual void NewCommandHandler()
+        private void NewCommandHandler()
         {
-            // this.CloseNewEntityDialog();
-            this.CurrentEntity = this.newEntityViewModel.NewEntity;
-            this.SaveCurrentEntity();
+            MainWindowViewModel.instance.ChangeStateToReady();
+            MessageBoxResult result = MessageBox.Show("Bạn muốn sửa thông tin ?", "Xác nhận sửa thông tin", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                this.CurrentEntity = this.newEntityViewModel.NewEntity;
+                this.AddCurrentEntity();
+                this.CloseNewEntityDialog();
+                MainWindowViewModel.instance.ChangeStateToComplete("Cập nhật thành công");
+            }
             this.entitiesList.Add(this.currentEntity);
-            this.entitiesView.Refresh();
             this.entitiesView.MoveCurrentToLast();
+            this.entitiesView.Refresh();
         }
 
         private void DeleteCommandHandler()
         {
             MainWindowViewModel.instance.ChangeStateToReady();
-
-            if (this.IsUsing(this.currentEntity))
+            MessageBoxResult result = MessageBox.Show("Bạn có chắc muốn xoá ?", "Xác nhận xóa", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
             {
-                MessageBoxResult result = MessageBox.Show("Bạn muốn xóa phòng này à?", "Xác nhận xóa phòng", MessageBoxButton.YesNo);
-                if (result == MessageBoxResult.Yes)
-                {
-                    this.DeleteCurrentEntity();
-                    MainWindowViewModel.instance.ChangeStateToComplete("Xóa thành công");
-                }
-                this.entitiesView.Refresh();
-
+                this.DeleteCurrentEntity();
+                MainWindowViewModel.instance.ChangeStateToComplete("Xóa thành công");
             }
-            else
-            {
-                MessageBox.Show("Phòng đã bị xoá, không thể xoá tiếp!");
-            }
+            this.entitiesView.Refresh();
         }
 
         protected virtual void NewDialogCommandHandler() { }

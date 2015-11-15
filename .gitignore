@@ -36,3 +36,9 @@
 !/RoomM.DeskApp/bin/Debug/
 /RoomM.DeskApp/bin/Debug/*
 !/RoomM.DeskApp/bin/Debug/templates/
+/RoomM.Application/bin
+/RoomM.Application/obj
+/RoomM.Domain/bin
+/RoomM.Domain/obj
+/RoomM.Infrastructure.Data/bin
+/RoomM.Infrastructure.Data/obj

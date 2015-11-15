@@ -1,0 +1,2 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="RoomM.WebService.AssetManagementWS" CodeBehind="AssetManagementWS.svc.cs" 
+    Factory="Ninject.Extensions.Wcf.NinjectServiceHostFactory" %>

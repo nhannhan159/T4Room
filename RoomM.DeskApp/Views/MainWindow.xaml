@@ -79,7 +79,7 @@
                         </StackPanel>
                     </DataTemplate>
                 </TabItem.HeaderTemplate>
-                <Frame NavigationUIVisibility="Hidden" Content="Frame" Margin="5" Source="StaffManagement.xaml" Grid.Column="2"/>
+                <Frame NavigationUIVisibility="Hidden" Content="Frame" Margin="5" Source="UserManagement.xaml" Grid.Column="2"/>
             </TabItem>
             <TabItem>
                 <TabItem.HeaderTemplate>

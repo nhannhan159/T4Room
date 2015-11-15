@@ -7,9 +7,6 @@ using System.Threading.Tasks;
 using Ninject;
 using Ninject.Modules;
 
-using RoomM.DeskApp.ViewModels;
-using RoomM.Repositories;
-
 namespace RoomM.DeskApp.ViewModels
 {
     public class ViewModelLocator
@@ -24,9 +21,9 @@ namespace RoomM.DeskApp.ViewModels
             get { return IocKernel.Get<AssetManagementViewModel>(); }
         }
 
-        public StaffManagementViewModel StaffManagementViewModel
+        public UserManagementViewModel UserManagementViewModel
         {
-            get { return IocKernel.Get<StaffManagementViewModel>(); }
+            get { return IocKernel.Get<UserManagementViewModel>(); }
         }
 
         public StatisticViewModel StatisticViewModel
