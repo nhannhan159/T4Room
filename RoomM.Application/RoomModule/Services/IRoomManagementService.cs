@@ -18,8 +18,6 @@ namespace RoomM.Application.RoomModule.Services
         IList<RoomRegType> GetRoomRegTypeList();
         IList<AssetHistoryType> GetAssetHistoryTypeList();
         IList<RoomReg> GetRoomRegList(Int64 roomId);
-        IList<RoomReg> GetRoomRegList(Int64 roomId);
-        IList<RoomReg> GetRoomRegList(Int64 roomId);
         IList<RoomReg> GetRoomRegListByDate(DateTime date, Int64 roomId);
         IList<RoomReg> GetRoomRegListByWeek(DateTime date, Int64 roomId);
         IList<RoomReg> GetRoomRegListByWatchedState(bool isWatched, Int64 userId);

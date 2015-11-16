@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 
+using RoomM.Domain;
 using RoomM.Domain.RoomModule.Aggregates;
 using RoomM.Domain.UserModule.Aggregates;
 using RoomM.Application.RoomModule.Services;
@@ -13,24 +14,12 @@ namespace RoomM.WebService
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "RoomCalendarStatusService" in code, svc and config file together.
     // NOTE: In order to launch WCF Test Client for testing this service, please select RoomCalendarStatusService.svc or RoomCalendarStatusService.svc.cs at the Solution Explorer and start debugging.
-    public class StatisticWS : IStatisticWS
+    public class StatisticWS : StatisticService, IStatisticWS
     {
-        private IStatisticService service;
-
-        public StatisticWS(IStatisticService service)
+        public StatisticWS(IUnitOfWork context)
+            : base(context)
         {
-            this.service = service;
-            this.service.EnableWSMode();
-        }
-
-        public IList<KeyValuePair<Room, int>> GetRoomLimitByRegister(int limit, DateTime from, DateTime to)
-        {
-            return this.service.GetRoomLimitByRegister(limit, from, to);
-        }
-
-        public IList<KeyValuePair<User, int>> GetUserLimitByRegister(int limit, DateTime from, DateTime to)
-        {
-            return this.service.GetUserLimitByRegister(limit, from, to);
+            base.EnableWSMode();
         }
     }
 }
