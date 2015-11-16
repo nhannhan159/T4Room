@@ -11,8 +11,6 @@ namespace RoomM.WebApp.App_Start
     using Ninject;
     using Ninject.Web.Common;
 
-    using RoomM.Repositories;
-
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -46,7 +44,6 @@ namespace RoomM.WebApp.App_Start
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
-                kernel.Bind<EFDataContext>().ToSelf().InRequestScope();
 
                 RegisterServices(kernel);
                 return kernel;

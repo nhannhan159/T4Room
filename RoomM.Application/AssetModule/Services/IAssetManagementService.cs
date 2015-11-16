@@ -16,6 +16,7 @@ namespace RoomM.Application.AssetModule.Services
         IList<Asset> GetAssetList();
         IList<Room> GetRoomList();
         IList<RoomType> GetRoomTypeList();
+        IList<AssetDetail> GetAssetDetailList();
         IList<AssetDetail> GetAssetDetailList(Int64 assetId);
         void AddAsset(Asset asset);
         void EditAsset(Asset asset);

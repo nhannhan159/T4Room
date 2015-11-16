@@ -5,44 +5,46 @@ using System.Web;
 using System.Web.Mvc;
 
 using RoomM.WebApp.Models.RoomM;
-using RoomM.Repositories;
-using RoomM.Models;
+using RoomM.Domain.AssetModule.Aggregates;
+using RoomM.Domain.RoomModule.Aggregates;
+using RoomM.Application.AssetModule.Services;
+using RoomM.Application.RoomModule.Services;
 
 namespace RoomM.WebApp.Controllers
 {
     public class RoomAssetsController : Controller
     {
-        private UnitOfWork uow;
+        private IAssetManagementService assetManagementService;
+        private IRoomManagementService roomManagementService;
 
-        public RoomAssetsController(EFDataContext _context)
+        public RoomAssetsController(
+            IAssetManagementService assetManagementService,
+            IRoomManagementService roomManagementService)
         {
-            this.uow = new UnitOfWork(_context);
+            this.assetManagementService = assetManagementService;
+            this.roomManagementService = roomManagementService;
         }
-
-        //
-        // GET: /RoomAssets/
 
         [Authorize(Roles = "Manager")]
         public ActionResult Index()
         {
             // get room list
-            IList<Room> roomLst = this.uow.RoomRepository.GetAll();
+            IList<Room> roomLst = this.roomManagementService.GetRoomList();
 
             // get room tyle
-            IList<RoomType> roomTypeLst = this.uow.RoomTypeRepository.GetAll();
+            IList<RoomType> roomTypeLst = this.roomManagementService.GetRoomTypeList();
 
             // get all room assets 
-            IList<RoomAsset> roomAssetsLst = this.uow.RoomAssetRepository.GetAll();
+            IList<AssetDetail> roomAssetsLst = this.assetManagementService.GetAssetDetailList();
 
             // get all assets type
-            IList<Asset> assetsTypeLst = this.uow.AssetRepository.GetAll();
+            IList<Asset> assetsTypeLst = this.assetManagementService.GetAssetList();
 
             ViewBag.RoomList = new SelectList(roomLst, "ID", "Name", roomLst[0].ID);
             ViewBag.RoomTypeList = new SelectList(roomTypeLst, "ID", "Name");
             ViewBag.AssetsTypeList = new SelectList(assetsTypeLst, "ID", "Name");
 
             ViewBag.Message = roomAssetsLst.Count == 0 ? "Dữ liệu rỗng" : "";
-
             return View(roomAssetsLst);
         }
 
@@ -52,9 +54,9 @@ namespace RoomM.WebApp.Controllers
         {
             List<Room> roomLst;
             if (roomTypeId > 0)
-                roomLst = this.uow.RoomRepository.GetByRoomTypeId(roomTypeId) as List<Room>;
+                roomLst = this.roomManagementService.GetRoomList(roomTypeId) as List<Room>;
             else
-                roomLst = this.uow.RoomRepository.GetAll() as List<Room>;
+                roomLst = this.roomManagementService.GetRoomList() as List<Room>;
 
             List<RoomViewModel> roomVMList = new List<RoomViewModel>();
             foreach (Room r in roomLst)
@@ -65,25 +67,23 @@ namespace RoomM.WebApp.Controllers
                     RoomName = r.Name
                 });
             }
-
             return Json(roomVMList);
         }
-
         
         [HttpPost]
         [Authorize(Roles = "Manager")]
         public ActionResult ChangeOptions(int roomId, int assetsTypeId)
         {
-            var roomAssetsLst = this.uow.RoomAssetRepository.GetByRoomId(roomId);
+            var roomAssetsLst = this.roomManagementService.GetAssetDetailList(roomId);
             if (assetsTypeId > 0) {
-                List<RoomAsset> roomFilter = (from p in roomAssetsLst 
+                List<AssetDetail> roomFilter = (from p in roomAssetsLst 
                              where p.Asset.ID == assetsTypeId
                              select p).ToList();
                 roomAssetsLst = roomFilter;
             }
 
             List<RoomAssetViewModel> result = new List<RoomAssetViewModel>();
-            foreach (RoomAsset rs in roomAssetsLst)
+            foreach (AssetDetail rs in roomAssetsLst)
             {
                 result.Add(new RoomAssetViewModel
                 {
@@ -92,7 +92,6 @@ namespace RoomM.WebApp.Controllers
                     Amount = rs.Amount
                 });
             }
-
             return Json(result);
         }
 

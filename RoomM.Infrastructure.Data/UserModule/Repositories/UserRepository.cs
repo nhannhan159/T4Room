@@ -27,6 +27,12 @@ namespace RoomM.Infrastructure.Data.UserModule.Repositories
             return user.Password.Equals(password);
         }
 
+        public bool ValidateUser(string username, string password)
+        {
+            var user = this.Get(filter: p => p.UserName.Equals(username) && p.IsWorking).First();
+            return (user != null && user.Password.Equals(password));
+        }
+
         public bool CheckUserExists(string username)
         {
             return this.Get(filter: p => p.UserName.Equals(username)).Count() != 0;

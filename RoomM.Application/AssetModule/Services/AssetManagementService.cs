@@ -89,6 +89,11 @@ namespace RoomM.Application.AssetModule.Services
             return this.context.RoomTypeRep.GetAll();
         }
 
+        public IList<AssetDetail> GetAssetDetailList()
+        {
+            return this.context.AssetDetailRep.GetAll();
+        }
+
         public IList<AssetDetail> GetAssetDetailList(Int64 assetId)
         {
             return this.context.AssetDetailRep.GetByAssetId(assetId);

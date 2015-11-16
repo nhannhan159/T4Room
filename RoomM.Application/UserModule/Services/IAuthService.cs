@@ -8,5 +8,7 @@ namespace RoomM.Application.UserModule.Services
 {
     public interface IAuthService
     {
+        void EnableWSMode();
+        bool ValidateUser(string username, string password);
     }
 }

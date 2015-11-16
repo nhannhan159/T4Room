@@ -6,35 +6,33 @@ using System.Web.Mvc;
 using WebMatrix.WebData;
 
 using RoomM.WebApp.Models.RoomM;
-using RoomM.Repositories;
-using RoomM.Models;
+using RoomM.Domain.AssetModule.Aggregates;
+using RoomM.Domain.RoomModule.Aggregates;
+using RoomM.Application.RoomModule.Services;
 
 namespace RoomM.WebApp.Controllers
 {
     public class RoomRegisterController : Controller
     {
-        private UnitOfWork uow;
+        private IRoomManagementService roomManagementService;
 
-        public RoomRegisterController(EFDataContext _context)
+        public RoomRegisterController(IRoomManagementService roomManagementService)
         {
-            this.uow = new UnitOfWork(_context);
+            this.roomManagementService = roomManagementService;
         }
-
-        //
-        // GET: /RoomRegister/
 
         // show add register of staff id
         public ActionResult Index()
         {
-            IList<RoomType> allRoomType = this.uow.RoomTypeRepository.GetAll();
-            IList<Room> allRoom = this.uow.RoomRepository.GetAll();
+            IList<RoomType> allRoomType = this.roomManagementService.GetRoomTypeList();
+            IList<Room> allRoom = this.roomManagementService.GetRoomList();
 
             ViewBag.RoomTypeId = new SelectList(allRoomType, "ID", "Name", allRoomType.Count > 0 ? allRoomType[0].ID : 0);
             ViewBag.RoomId = new SelectList(allRoom, "ID", "Name", allRoom.Count > 0 ? allRoom[0].ID : 0);
 
             // default day 1/5/2011
-            IList<RoomCalendar> calInDate = this.uow.RoomCalendarRepository.GetByDateAndRoomId(DateTime.Now, allRoom.Count > 0 ? allRoom[0].ID : -1);
-            IList<RoomCalendar> calInWeek = this.uow.RoomCalendarRepository.GetByWeekAndRoomId(DateTime.Now, allRoom.Count > 0 ? allRoom[0].ID : -1);
+            IList<RoomReg> calInDate = this.roomManagementService.GetRoomRegListByDate(DateTime.Now, allRoom.Count > 0 ? allRoom[0].ID : -1);
+            IList<RoomReg> calInWeek = this.roomManagementService.GetRoomRegListByWeek(DateTime.Now, allRoom.Count > 0 ? allRoom[0].ID : -1);
 
             DateTime currentDate = DateTime.Now;
             DateTime startDateOfWeek = getStartDayOfWeek(currentDate);
@@ -47,16 +45,13 @@ namespace RoomM.WebApp.Controllers
             var startLst = buildStartList(calInDate);
 
             ViewBag.TimeTbl = buildTimeTableList(calInWeek);
-
             return View();
         }
 
         [Authorize(Roles = "Teacher")]
         public ActionResult RoomRegistered(string messageConfirm)
         {
-            // IList<RoomCalendar> calLst1 = roomCalRepo.GetAll();
-
-            IList<RoomCalendar> calLst = this.uow.RoomCalendarRepository.GetByWatchedState(false, this.uow.StaffRepository.GetUserId(User.Identity.Name));
+            IList<RoomReg> calLst = this.uow.RoomCalendarRepository.GetByWatchedState(false, this.uow.StaffRepository.GetUserId(User.Identity.Name));
             ViewBag.MessageConfirm = messageConfirm;
             return View(calLst);
         }
@@ -228,8 +223,8 @@ namespace RoomM.WebApp.Controllers
         public ActionResult ChangeSelect(int day, int month, int year, int roomId)
         {
             DateTime currentDate = new DateTime(year, month, day);
-            IList<RoomCalendar> calInDate = this.uow.RoomCalendarRepository.GetByDateAndRoomId(currentDate, roomId);
-            IList<RoomCalendar> calInWeek = this.uow.RoomCalendarRepository.GetByWeekAndRoomId(currentDate, roomId);
+            IList<RoomReg> calInDate = this.uow.RoomCalendarRepository.GetByDateAndRoomId(currentDate, roomId);
+            IList<RoomReg> calInWeek = this.uow.RoomCalendarRepository.GetByWeekAndRoomId(currentDate, roomId);
             
             DateTime startDateOfWeek = getStartDayOfWeek(currentDate);
             DateTime endDateOfWeek = getEndDayOfWeek(currentDate);
@@ -248,7 +243,7 @@ namespace RoomM.WebApp.Controllers
         }
 
 
-        private List<ItemList> buildStartList(IList<RoomCalendar> calInDate)
+        private List<ItemList> buildStartList(IList<RoomReg> calInDate)
         {
 
             bool[] offsetday = new Boolean[15]; // false is free
@@ -258,7 +253,7 @@ namespace RoomM.WebApp.Controllers
             }
             offsetday[14] = true;
 
-            foreach (RoomCalendar rc in calInDate)
+            foreach (RoomReg rc in calInDate)
             {
                 for (int i = rc.Start; i <= rc.Start + rc.Length - 1; ++i)
                     offsetday[i] = true;
@@ -285,7 +280,7 @@ namespace RoomM.WebApp.Controllers
             return startLst;
         }
 
-        private List<List<int>> buildTimeTableList(IList<RoomCalendar> calInWeek)
+        private List<List<int>> buildTimeTableList(IList<RoomReg> calInWeek)
         {
             // init time table
             // 0 is free
@@ -307,14 +302,14 @@ namespace RoomM.WebApp.Controllers
                 timeTblList.Add(lst);
             }
 
-            foreach (RoomCalendar rc in calInWeek)
+            foreach (RoomReg rc in calInWeek)
             {
                 int dayOfWeek = (int)rc.Date.DayOfWeek;
                 if (dayOfWeek == 0) dayOfWeek = 7;
 
                 for (int i = rc.Start; i <= rc.Start + rc.Length - 1; ++i)
                 {
-                    timeTblList[i][dayOfWeek] = (int) rc.RoomCalendarStatusId;
+                    timeTblList[i][dayOfWeek] = (int) rc.RoomRegTypeId;
                 }
             }
 

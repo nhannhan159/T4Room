@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.WebService", "RoomM.W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.DeskApp", "RoomM.DeskApp\RoomM.DeskApp.csproj", "{5EC56C8B-1681-489B-A9EA-F1F69A4560BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.WebAppClient", "RoomM.WebAppClient\RoomM.WebAppClient.csproj", "{93C0C9AF-4007-4355-9688-8B6856880A45}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.ServiceTest", "RoomM.ServiceTest\RoomM.ServiceTest.csproj", "{8CDC27DC-9D0D-4D8C-90B1-2CBB3743B66A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomM.Application", "RoomM.Application\RoomM.Application.csproj", "{63CEAC61-8B2E-47F9-A932-134F5EC6A558}"
@@ -45,10 +43,6 @@ Global
 		{5EC56C8B-1681-489B-A9EA-F1F69A4560BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5EC56C8B-1681-489B-A9EA-F1F69A4560BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5EC56C8B-1681-489B-A9EA-F1F69A4560BC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{93C0C9AF-4007-4355-9688-8B6856880A45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93C0C9AF-4007-4355-9688-8B6856880A45}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93C0C9AF-4007-4355-9688-8B6856880A45}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93C0C9AF-4007-4355-9688-8B6856880A45}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8CDC27DC-9D0D-4D8C-90B1-2CBB3743B66A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8CDC27DC-9D0D-4D8C-90B1-2CBB3743B66A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CDC27DC-9D0D-4D8C-90B1-2CBB3743B66A}.Release|Any CPU.ActiveCfg = Release|Any CPU

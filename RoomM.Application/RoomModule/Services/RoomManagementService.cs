@@ -32,6 +32,11 @@ namespace RoomM.Application.RoomModule.Services
             return this.context.RoomRep.GetAll();
         }
 
+        public IList<Room> GetRoomList(Int64 roomTypeId)
+        {
+            return this.context.RoomRep.GetByRoomTypeId(roomTypeId);
+        }
+
         public void AddRoom(Room room)
         {
             try
@@ -97,6 +102,21 @@ namespace RoomM.Application.RoomModule.Services
         public IList<RoomReg> GetRoomRegList(Int64 roomId)
         {
             return this.context.RoomRegRep.GetByRoomId(roomId);
+        }
+
+        public IList<RoomReg> GetRoomRegListByDate(DateTime date, Int64 roomId)
+        {
+            return this.context.RoomRegRep.GetByDateAndRoomId(date, roomId);
+        }
+
+        public IList<RoomReg> GetRoomRegListByWeek(DateTime date, Int64 roomId)
+        {
+            return this.context.RoomRegRep.GetByWeekAndRoomId(date, roomId);
+        }
+
+        public IList<RoomReg> GetRoomRegListByWatchedState(bool isWatched, Int64 userId)
+        {
+            return this.context.RoomRegRep.GetByWatchedState(isWatched, userId);
         }
 
         public IList<AssetDetail> GetAssetDetailList(Int64 roomId)

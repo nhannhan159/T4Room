@@ -8,20 +8,6 @@ using System.Web.Security;
 
 namespace RoomM.WebApp.Models
 {
-    public class UsersContext : DbContext
-    {
-        public static UsersContext instance;
-
-
-        public UsersContext()
-            : base("RoomDB")
-        {
-            instance = this;
-        }
-
-        public DbSet<UserProfile> UserProfiles { get; set; }
-    }
-
     [Table("UserProfile")]
     public class UserProfile
     {
