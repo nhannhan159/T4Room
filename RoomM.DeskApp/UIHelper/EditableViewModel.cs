@@ -158,7 +158,7 @@ namespace RoomM.DeskApp.UIHelper
         private void NewCommandHandler()
         {
             MainWindowViewModel.instance.ChangeStateToReady();
-            MessageBoxResult result = MessageBox.Show("Bạn muốn sửa thông tin ?", "Xác nhận sửa thông tin", MessageBoxButton.YesNo);
+            MessageBoxResult result = MessageBox.Show("Bạn muốn thêm thông tin ?", "Xác nhận thêm thông tin", MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
                 this.CurrentEntity = this.newEntityViewModel.NewEntity;

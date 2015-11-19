@@ -96,6 +96,7 @@ namespace RoomM.Domain.UserModule.Aggregates
 
         public User()
         {
+            this.roles = new List<Role>();
             this.IsWorking = true;
         }
 

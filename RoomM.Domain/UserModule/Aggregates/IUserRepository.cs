@@ -14,7 +14,6 @@ namespace RoomM.Domain.UserModule.Aggregates
         bool IsExists(string username);
         Int64 GetUserId(string username);
         bool UserNameIsWorking(string username);
-        User GetById(Int64 userId);
-        User GetByUsername(string username);
+        User GetSingleByUsername(string username);
     }
 }

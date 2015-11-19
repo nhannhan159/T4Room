@@ -9,7 +9,6 @@ using RoomM.WebApp.Models;
 using RoomM.Domain;
 using RoomM.Domain.UserModule.Aggregates;
 using RoomM.Infrastructure.Data.UnitOfWork;
-using RoomM.Application.UserModule.Services.AuthStores;
 
 namespace RoomM.WebApp
 {
@@ -38,7 +37,7 @@ namespace RoomM.WebApp
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, User, Int64>(
                         validateInterval: TimeSpan.FromMinutes(30),
                         getUserIdCallback: (id) => (id.GetUserId<Int64>()),
-                        regenerateIdentityCallback: (manager, user) => manager.GenerateUserIdentityAsync(user))
+                        regenerateIdentityCallback: (manager, user) => ApplicationUser.GenerateUserIdentityAsync(user, manager))
                 }
             });            
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);

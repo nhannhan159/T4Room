@@ -27,6 +27,16 @@ namespace RoomM.Application.UserModule.Services
 
         #region Basic CRUD
 
+        public User GetSingle(Int64 userId)
+        {
+            return this.context.UserRep.GetSingle(userId);
+        }
+
+        public User GetSingleByUsername(string username)
+        {
+            return this.context.UserRep.GetSingleByUsername(username);
+        }
+
         public IList<User> GetUserList()
         {
             return this.context.UserRep.GetAll();
@@ -36,7 +46,7 @@ namespace RoomM.Application.UserModule.Services
         {
             try
             {
-                this.context.UserRep.Edit(user);
+                this.context.UserRep.Add(user);
                 this.context.Commit();
             }
             catch (DbEntityValidationException ex)
@@ -92,6 +102,21 @@ namespace RoomM.Application.UserModule.Services
         public IList<RoomReg> GetRoomRegList(Int64 userId)
         {
             return this.context.RoomRegRep.GetByUserId(userId);
+        }
+
+        #endregion
+
+        #region Addition Services
+
+        public void AddUserToRole(User user, string roleName)
+        {
+            Role role = this.context.RoleRep.GetByName(roleName);
+            if (role != null)
+            {
+                var _user = this.context.UserRep.GetSingle(user.Id);
+                _user.Roles.Add(role);
+                this.context.UserRep.Edit(_user);
+            }
         }
 
         #endregion

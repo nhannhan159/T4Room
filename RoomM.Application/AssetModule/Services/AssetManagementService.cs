@@ -36,7 +36,7 @@ namespace RoomM.Application.AssetModule.Services
         {
             try
             {
-                this.context.AssetRep.Edit(asset);
+                this.context.AssetRep.Add(asset);
                 this.context.Commit();
             }
             catch (DbEntityValidationException ex)

@@ -59,8 +59,6 @@
     <Compile Include="RoomModule\Services\RoomManagementService.cs" />
     <Compile Include="RoomModule\Services\IStatisticService.cs" />
     <Compile Include="RoomModule\Services\StatisticService.cs" />
-    <Compile Include="UserModule\Services\AuthStores\RoleStore.cs" />
-    <Compile Include="UserModule\Services\AuthStores\UserStore.cs" />
     <Compile Include="UserModule\Services\IUserManagementService.cs" />
     <Compile Include="UserModule\Services\UserManagementService.cs" />
   </ItemGroup>

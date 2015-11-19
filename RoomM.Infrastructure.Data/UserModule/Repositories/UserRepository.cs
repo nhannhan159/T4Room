@@ -57,12 +57,7 @@ namespace RoomM.Infrastructure.Data.UserModule.Repositories
             return this.Get(filter: p => p.UserName.Equals(username) && p.IsWorking).Count() > 0;
         }
 
-        public User GetById(Int64 userId)
-        {
-            return this.Get().SingleOrDefault(x => x.Id == userId);
-        }
-
-        public User GetByUsername(string username)
+        public User GetSingleByUsername(string username)
         {
             return this.Get().SingleOrDefault(x => x.UserName.Equals(username));
         }

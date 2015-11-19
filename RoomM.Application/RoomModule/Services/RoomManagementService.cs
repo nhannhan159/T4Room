@@ -46,7 +46,7 @@ namespace RoomM.Application.RoomModule.Services
         {
             try
             {
-                this.context.RoomRep.Edit(room);
+                this.context.RoomRep.Add(room);
                 this.context.Commit();
             }
             catch (DbEntityValidationException ex)

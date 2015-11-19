@@ -8,18 +8,6 @@ namespace RoomM.Infrastructure.Data.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.Assets",
-                c => new
-                    {
-                        Id = c.Long(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 50),
-                        IsUsing = c.Boolean(nullable: false),
-                        Description = c.String(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .Index(t => t.Name, unique: true);
-            
-            CreateTable(
                 "dbo.AssetDetails",
                 c => new
                     {
@@ -35,20 +23,16 @@ namespace RoomM.Infrastructure.Data.Migrations
                 .Index(t => t.AssetId);
             
             CreateTable(
-                "dbo.Rooms",
+                "dbo.Assets",
                 c => new
                     {
                         Id = c.Long(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 120),
-                        DateCreate = c.DateTime(nullable: false),
-                        RoomTypeId = c.Long(),
+                        Name = c.String(nullable: false, maxLength: 50),
                         IsUsing = c.Boolean(nullable: false),
                         Description = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.RoomTypes", t => t.RoomTypeId, cascadeDelete: true)
-                .Index(t => t.Name, unique: true)
-                .Index(t => t.RoomTypeId);
+                .Index(t => t.Name, unique: true);
             
             CreateTable(
                 "dbo.AssetHistorys",
@@ -67,6 +51,22 @@ namespace RoomM.Infrastructure.Data.Migrations
                 .ForeignKey("dbo.Rooms", t => t.RoomId, cascadeDelete: true)
                 .Index(t => t.AssetId)
                 .Index(t => t.RoomId);
+            
+            CreateTable(
+                "dbo.Rooms",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 120),
+                        DateCreate = c.DateTime(nullable: false),
+                        RoomTypeId = c.Long(),
+                        IsUsing = c.Boolean(nullable: false),
+                        Description = c.String(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.RoomTypes", t => t.RoomTypeId, cascadeDelete: true)
+                .Index(t => t.Name, unique: true)
+                .Index(t => t.RoomTypeId);
             
             CreateTable(
                 "dbo.RoomRegs",
@@ -146,14 +146,14 @@ namespace RoomM.Infrastructure.Data.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.AssetDetails", "RoomId", "dbo.Rooms");
+            DropForeignKey("dbo.AssetDetails", "AssetId", "dbo.Assets");
+            DropForeignKey("dbo.AssetHistorys", "RoomId", "dbo.Rooms");
             DropForeignKey("dbo.Rooms", "RoomTypeId", "dbo.RoomTypes");
             DropForeignKey("dbo.RoomRegs", "UserId", "dbo.Users");
             DropForeignKey("dbo.UsersInRoles", "RoleId", "dbo.Roles");
             DropForeignKey("dbo.UsersInRoles", "UserId", "dbo.Users");
             DropForeignKey("dbo.RoomRegs", "RoomId", "dbo.Rooms");
-            DropForeignKey("dbo.AssetHistorys", "RoomId", "dbo.Rooms");
             DropForeignKey("dbo.AssetHistorys", "AssetId", "dbo.Assets");
-            DropForeignKey("dbo.AssetDetails", "AssetId", "dbo.Assets");
             DropIndex("dbo.UsersInRoles", new[] { "RoleId" });
             DropIndex("dbo.UsersInRoles", new[] { "UserId" });
             DropIndex("dbo.RoomTypes", new[] { "Name" });
@@ -162,22 +162,22 @@ namespace RoomM.Infrastructure.Data.Migrations
             DropIndex("dbo.Users", new[] { "FullName" });
             DropIndex("dbo.RoomRegs", new[] { "UserId" });
             DropIndex("dbo.RoomRegs", new[] { "RoomId" });
-            DropIndex("dbo.AssetHistorys", new[] { "RoomId" });
-            DropIndex("dbo.AssetHistorys", new[] { "AssetId" });
             DropIndex("dbo.Rooms", new[] { "RoomTypeId" });
             DropIndex("dbo.Rooms", new[] { "Name" });
+            DropIndex("dbo.AssetHistorys", new[] { "RoomId" });
+            DropIndex("dbo.AssetHistorys", new[] { "AssetId" });
+            DropIndex("dbo.Assets", new[] { "Name" });
             DropIndex("dbo.AssetDetails", new[] { "AssetId" });
             DropIndex("dbo.AssetDetails", new[] { "RoomId" });
-            DropIndex("dbo.Assets", new[] { "Name" });
             DropTable("dbo.UsersInRoles");
             DropTable("dbo.RoomTypes");
             DropTable("dbo.Roles");
             DropTable("dbo.Users");
             DropTable("dbo.RoomRegs");
-            DropTable("dbo.AssetHistorys");
             DropTable("dbo.Rooms");
-            DropTable("dbo.AssetDetails");
+            DropTable("dbo.AssetHistorys");
             DropTable("dbo.Assets");
+            DropTable("dbo.AssetDetails");
         }
     }
 }

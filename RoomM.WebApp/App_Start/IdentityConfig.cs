@@ -6,15 +6,15 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 
 using RoomM.WebApp.Models;
+using RoomM.WebApp.AuthStores;
 using RoomM.Domain;
 using RoomM.Domain.UserModule.Aggregates;
-using RoomM.Application.UserModule.Services.AuthStores;
+using RoomM.Application.UserModule.Services;
 
 namespace RoomM.WebApp
 {
@@ -39,22 +39,15 @@ namespace RoomM.WebApp
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
     public class ApplicationUserManager : UserManager<User, Int64>
     {
-        public ApplicationUserManager(UserStore store)
+        public ApplicationUserManager(UserStore<User> store)
             : base(store)
         {
         }
 
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(User user)
-        {
-            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
-            var userIdentity = await this.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-            // Add custom user claims here
-            return userIdentity;
-        }
-
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
         {
-            var manager = new ApplicationUserManager(new UserStore(context.Get<IUnitOfWork>()));
+            var manager = new ApplicationUserManager(new UserStore<User>(
+                new UserManagementService(context.Get<IUnitOfWork>())));
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<User, Int64>(manager)
             {
@@ -93,7 +86,7 @@ namespace RoomM.WebApp
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = 
+                manager.UserTokenProvider =
                     new DataProtectorTokenProvider<User, Int64>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
@@ -110,8 +103,7 @@ namespace RoomM.WebApp
 
         public override Task<ClaimsIdentity> CreateUserIdentityAsync(User user)
         {
-            //return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager);
-            return ((ApplicationUserManager)UserManager).GenerateUserIdentityAsync(user);
+            return ApplicationUser.GenerateUserIdentityAsync(user, UserManager);
         }
 
         public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)
