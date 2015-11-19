@@ -9,6 +9,6 @@ namespace RoomM.Domain
     public abstract class EntityBase
     {
         [DataMember]
-        public Int64 ID { get; set; }
+        public Int64 Id { get; set; }
     }
 }

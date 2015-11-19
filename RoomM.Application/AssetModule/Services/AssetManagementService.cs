@@ -94,7 +94,7 @@ namespace RoomM.Application.AssetModule.Services
             return this.context.AssetDetailRep.GetAll();
         }
 
-        public IList<AssetDetail> GetAssetDetailList(Int64 assetId)
+        public IList<AssetDetail> GetAssetDetailListByAssetId(Int64 assetId)
         {
             return this.context.AssetDetailRep.GetByAssetId(assetId);
         }
@@ -109,7 +109,7 @@ namespace RoomM.Application.AssetModule.Services
             {
                 this.context.AssetDetailRep.AddOrUpdate(assetId, roomId, amount);
 
-                AssetHistory assetHistory = new AssetHistory(DateTime.Now, Contants.ASSETS_IMPORT, assetId, roomId, "", amount);
+                AssetHistory assetHistory = new AssetHistory(DateTime.Now, AssetHistory.ASSETS_IMPORT, assetId, roomId, "", amount);
                 this.context.AssetHistoryRep.Add(assetHistory);
 
                 this.context.Commit();
@@ -137,7 +137,7 @@ namespace RoomM.Application.AssetModule.Services
                     this.context.AssetDetailRep.Edit(assetDetail);
                 }
 
-                AssetHistory assetHistory = new AssetHistory(DateTime.Now, Contants.ASSETS_TRANSFER, assetDetail.AssetId, assetDetail.RoomId, "", changedAmount);
+                AssetHistory assetHistory = new AssetHistory(DateTime.Now, AssetHistory.ASSETS_TRANSFER, assetDetail.AssetId, assetDetail.RoomId, "", changedAmount);
                 this.context.AssetHistoryRep.Add(assetHistory);
 
                 this.context.Commit();
@@ -161,18 +161,18 @@ namespace RoomM.Application.AssetModule.Services
                 if (assetDetail.Amount <= amount)
                 {
                     changedAmount = assetDetail.Amount;
-                    this.context.AssetDetailRep.AddOrUpdate(assetDetail.AssetId, target.ID, changedAmount);
+                    this.context.AssetDetailRep.AddOrUpdate(assetDetail.AssetId, target.Id, changedAmount);
                     this.context.AssetDetailRep.Delete(assetDetail);
                 }
                 else
                 {
                     assetDetail.Amount -= changedAmount;
                     this.context.AssetDetailRep.Edit(assetDetail);
-                    this.context.AssetDetailRep.AddOrUpdate(assetDetail.AssetId, target.ID, changedAmount);
+                    this.context.AssetDetailRep.AddOrUpdate(assetDetail.AssetId, target.Id, changedAmount);
                 }
 
-                AssetHistory assetHistory1 = new AssetHistory(DateTime.Now, Contants.ASSETS_TRANSFER, assetDetail_AssetId, assetDetail_RoomId, target.Name, changedAmount);
-                AssetHistory assetHistory2 = new AssetHistory(DateTime.Now, Contants.ASSETS_RECEVIE, assetDetail_AssetId, target.ID, assetDetail_Roomname, changedAmount);
+                AssetHistory assetHistory1 = new AssetHistory(DateTime.Now, AssetHistory.ASSETS_TRANSFER, assetDetail_AssetId, assetDetail_RoomId, target.Name, changedAmount);
+                AssetHistory assetHistory2 = new AssetHistory(DateTime.Now, AssetHistory.ASSETS_RECEVIE, assetDetail_AssetId, target.Id, assetDetail_Roomname, changedAmount);
                 this.context.AssetHistoryRep.Add(assetHistory1);
                 this.context.AssetHistoryRep.Add(assetHistory2);
 

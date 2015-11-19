@@ -30,7 +30,7 @@ namespace RoomM.Infrastructure.Data.AssetModule.Repositories
         public IList<AssetHistory> GetByRoom2RoomId(Room room, DateTime timeForBacktrace)
         {
             return this.Get(
-                filter: p => p.Room2.Equals(room.Name) || p.RoomId == room.ID,
+                filter: p => p.Room2.Equals(room.Name) || p.RoomId == room.Id,
                 orderBy: q => q.OrderBy(d => d.Date)).ToList();
         }
     }

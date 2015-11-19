@@ -37,10 +37,10 @@ namespace RoomM.DeskApp.ViewModels
             this.rcvDateToFilter = DateTime.Now;
             this.rcvPeriodsFilter = 0;
             this.rcvBeginTimeFilter = 0;
-            List<RoomRegType> rcvStatusList = new List<RoomRegType>(this.service.GetRoomRegTypeList());
-            rcvStatusList.Add(new RoomRegType("Tất cả"));
-            this.rcvStatusFilters = new CollectionView(rcvStatusList);
-            this.rcvStatusFilter = rcvStatusList[rcvStatusList.Count - 1];
+
+            this.RcvStatusFilters = RoomReg.GetRegType;
+            this.RcvStatusFilters.Add(0, "Tất cả");
+            this.rcvStatusFilter = 0;
         }
 
         #endregion
@@ -57,8 +57,7 @@ namespace RoomM.DeskApp.ViewModels
         private DateTime rcvDateToFilter;
         private int rcvPeriodsFilter;
         private int rcvBeginTimeFilter;
-        private RoomRegType rcvStatusFilter;
-        private CollectionView rcvStatusFilters;
+        private int rcvStatusFilter;
 
         #endregion
 
@@ -154,7 +153,7 @@ namespace RoomM.DeskApp.ViewModels
             if (this.CurrentEntity == null)
                 this.currentRoomCalendarView = CollectionViewSource.GetDefaultView(new List<RoomReg>());
             else
-                this.currentRoomCalendarView = CollectionViewSource.GetDefaultView(this.service.GetRoomRegList(this.CurrentEntity.ID));
+                this.currentRoomCalendarView = CollectionViewSource.GetDefaultView(this.service.GetRoomRegList(this.CurrentEntity.Id));
             this.currentRoomCalendarView.Filter += RoomCalendarViewFilter;
             this.RaisePropertyChanged(() => this.CurrentRoomCalendarView);
         }
@@ -166,10 +165,7 @@ namespace RoomM.DeskApp.ViewModels
             get { return this.currentRoomCalendarView; }
         }
 
-        public CollectionView RcvStatusFilters
-        {
-            get { return this.rcvStatusFilters; }
-        }
+        public Dictionary<int, string> RcvStatusFilters { get; set; }
 
         private bool RoomCalendarViewFilter(object obj)
         {
@@ -184,8 +180,8 @@ namespace RoomM.DeskApp.ViewModels
                     filter = filter && (entity.Length == this.RcvPeriodsFilter);
                 if (this.RcvBeginTimeFilter > 0)
                     filter = filter && (entity.Start == this.RcvBeginTimeFilter);
-                if (this.RcvStatusFilter.Name != "Tất cả")
-                    filter = filter && (entity.RoomRegType.Name == this.RcvStatusFilter.Name);
+                if (this.RcvStatusFilter != 0)
+                    filter = filter && (entity.RoomRegTypeId == this.RcvStatusFilter);
             }
             return filter;
         }
@@ -235,7 +231,7 @@ namespace RoomM.DeskApp.ViewModels
             set { this.rcvBeginTimeFilter = value; }
         }
 
-        public RoomRegType RcvStatusFilter
+        public int RcvStatusFilter
         {
             get { return this.rcvStatusFilter; }
             set { this.rcvStatusFilter = value; }

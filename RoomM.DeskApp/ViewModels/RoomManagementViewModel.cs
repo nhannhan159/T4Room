@@ -45,19 +45,18 @@ namespace RoomM.DeskApp.ViewModels
             this.rcvBeginTimeFilter = 0;
             this.rcvRegistrantFilter = "";
 
-            List<RoomRegType> rcvStatusList = new List<RoomRegType>(this.service.GetRoomRegTypeList());
-            rcvStatusList.Add(new RoomRegType("Tất cả"));
-            this.rcvStatusFilters = new CollectionView(rcvStatusList);
-            this.rcvStatusFilter = rcvStatusList[rcvStatusList.Count - 1];
+            this.RoomRegTypeView = RoomReg.GetRegType;
+            this.RoomRegTypeView.Add(0, "Tất cả");
+            this.RcvStatusFilters = this.RoomRegTypeView;
+            this.rcvStatusFilter = 0;
             this.ravAssetNameFilter = "";
             this.rhvDateFromFilter = new DateTime(2000, 1, 1);
             this.rhvDateToFilter = DateTime.Now;
             this.rhvAssetNameFilter = "";
 
-            List<AssetHistoryType> rhvTypeList = new List<AssetHistoryType>(this.service.GetAssetHistoryTypeList());
-            rhvTypeList.Add(new AssetHistoryType("Tất cả"));
-            this.rhvTypeFilters = new CollectionView(rhvTypeList);
-            this.rhvTypeFilter = rhvTypeList[rhvTypeList.Count - 1];
+            this.RhvTypeFilters = AssetHistory.GetHistoryType;
+            this.RhvTypeFilters.Add(0, "Tất cả");
+            this.rhvTypeFilter = 0;
             this.currentRoomReg = default(RoomReg);
 
             this.timeForBacktrace = DateTime.Now;
@@ -86,14 +85,12 @@ namespace RoomM.DeskApp.ViewModels
         private int rcvPeriodsFilter;
         private string rcvRegistrantFilter;
         private int rcvBeginTimeFilter;
-        private RoomRegType rcvStatusFilter;
-        private CollectionView rcvStatusFilters;
+        private int rcvStatusFilter;
         private string ravAssetNameFilter;
         private DateTime rhvDateFromFilter;
         private DateTime rhvDateToFilter;
         private string rhvAssetNameFilter;
-        private AssetHistoryType rhvTypeFilter;
-        private CollectionView rhvTypeFilters;
+        private int rhvTypeFilter;
 
         private List<HistoryRecord> historiesList;
         private ICollectionView historiesView;
@@ -207,9 +204,12 @@ namespace RoomM.DeskApp.ViewModels
             }
             else
             {
-                this.currentRoomRegView = CollectionViewSource.GetDefaultView(this.CurrentEntity.RoomRegs);
-                this.currentRoomAssetView = CollectionViewSource.GetDefaultView(this.service.GetAssetDetailList(this.CurrentEntity.ID));
-                this.currentRoomHistoryView = CollectionViewSource.GetDefaultView(this.service.GetAssetHistoryList(this.CurrentEntity.ID));
+                this.currentRoomRegView = CollectionViewSource.GetDefaultView(
+                    this.service.GetRoomRegList(this.CurrentEntity.Id));
+                this.currentRoomAssetView = CollectionViewSource.GetDefaultView(
+                    this.service.GetAssetDetailList(this.CurrentEntity.Id));
+                this.currentRoomHistoryView = CollectionViewSource.GetDefaultView(
+                    this.service.GetAssetHistoryList(this.CurrentEntity.Id));
             }
             this.currentRoomRegView.Filter += RoomRegViewFilter;
             this.currentRoomAssetView.Filter += RoomAssetViewFilter;
@@ -226,10 +226,7 @@ namespace RoomM.DeskApp.ViewModels
 
         #endregion
 
-        public ICollectionView RoomRegTypeView
-        {
-            get { return CollectionViewSource.GetDefaultView(this.service.GetRoomRegTypeList()); }
-        }
+        public Dictionary<int, string> RoomRegTypeView { get; set; }
 
         public RoomReg CurrentRoomReg
         {
@@ -267,13 +264,13 @@ namespace RoomM.DeskApp.ViewModels
             {
                 filter = filter && (entity.Date >= this.RcvDateFromFilter);
                 filter = filter && (entity.Date <= this.RcvDateToFilter);
-                filter = filter && entity.User.Name.Contains(this.RcvRegistrantFilter);
+                filter = filter && entity.User.Name.Contains(this.RcvRegistrantFilter); 
                 if (this.RcvPeriodsFilter > 0)
                     filter = filter && (entity.Length == this.RcvPeriodsFilter);
                 if (this.RcvBeginTimeFilter > 0)
                     filter = filter && (entity.Start == this.RcvBeginTimeFilter);
-                if (this.RcvStatusFilter.Name != "Tất cả")
-                    filter = filter && (entity.RoomRegType.Name == this.RcvStatusFilter.Name);
+                if (this.RcvStatusFilter != 0)
+                    filter = filter && (entity.RoomRegTypeId == this.RcvStatusFilter);
             }
             return filter;
         }
@@ -298,8 +295,8 @@ namespace RoomM.DeskApp.ViewModels
                 filter = filter && (entity.Date >= this.RhvDateFromFilter);
                 filter = filter && (entity.Date <= this.RhvDateToFilter);
                 filter = filter && entity.Asset.Name.Contains(this.RhvAssetNameFilter);
-                if (this.RhvTypeFilter.Name != "Tất cả")
-                    filter = filter && (entity.AssetHistoryType.Name == this.RhvTypeFilter.Name);
+                if (this.RhvTypeFilter != 0)
+                    filter = filter && (entity.AssetHistoryTypeId == this.RhvTypeFilter);
             }
             return filter;
         }
@@ -356,7 +353,7 @@ namespace RoomM.DeskApp.ViewModels
             {
                 try
                 {
-                    this.service.ChangeRoomRegType(this.CurrentRoomReg);
+                    this.service.EditRoomReg(this.CurrentRoomReg);
                     this.EntitiesView.Refresh();
                     System.Windows.Forms.MessageBox.Show("Cập nhật dữ liệu thành công!");
                 }
@@ -398,7 +395,7 @@ namespace RoomM.DeskApp.ViewModels
             set { this.rcvRegistrantFilter = value; }
         }
 
-        public RoomRegType RcvStatusFilter
+        public int RcvStatusFilter
         {
             get { return this.rcvStatusFilter; }
             set { this.rcvStatusFilter = value; }
@@ -428,21 +425,15 @@ namespace RoomM.DeskApp.ViewModels
             set { this.rhvDateToFilter = value; }
         }
 
-        public AssetHistoryType RhvTypeFilter
+        public int RhvTypeFilter
         {
             get { return this.rhvTypeFilter; }
             set { this.rhvTypeFilter = value; }
         }
 
-        public CollectionView RcvStatusFilters
-        {
-            get { return this.rcvStatusFilters; }
-        }
+        public Dictionary<int, string> RcvStatusFilters { get; set; }
 
-        public CollectionView RhvTypeFilters
-        {
-            get { return this.rhvTypeFilters; }
-        }
+        public Dictionary<int, string> RhvTypeFilters { get; set; }
 
         // commands
         public ICommand ExportToExcelCommand { get { return new RelayCommand(ExportToExcelCommandHandler); } }
@@ -536,7 +527,7 @@ namespace RoomM.DeskApp.ViewModels
                     }
                     else if (his.AssetHistoryTypeId == Contants.ASSETS_TRANSFER)
                     {
-                        if (his.Room.ID == CurrentEntity.ID)
+                        if (his.Room.Id == CurrentEntity.Id)
                         {
                             (hm[his.Asset.Name] as HistoryRecord).Amount = (hm[his.Asset.Name] as HistoryRecord).Amount - his.Amount;
                             (hm[his.Asset.Name] as HistoryRecord).AmountRemove = (hm[his.Asset.Name] as HistoryRecord).AmountRemove + his.Amount;

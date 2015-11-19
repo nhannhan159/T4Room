@@ -6,8 +6,6 @@ using System.ServiceModel;
 using System.Text;
 
 using RoomM.Domain;
-using RoomM.Domain.AssetModule.Aggregates;
-using RoomM.Domain.RoomModule.Aggregates;
 using RoomM.Application.AssetModule.Services;
 
 namespace RoomM.WebService

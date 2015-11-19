@@ -159,7 +159,8 @@ namespace RoomM.DeskApp.ViewModels
             if (this.CurrentEntity == null)
                 this.currentAssetDetailView = CollectionViewSource.GetDefaultView(new List<AssetDetail>());
             else
-                this.currentAssetDetailView = CollectionViewSource.GetDefaultView(new List<AssetDetail>(this.service.GetAssetDetailList(this.CurrentEntity.ID)));
+                this.currentAssetDetailView = CollectionViewSource.GetDefaultView(new List<AssetDetail>(
+                    this.service.GetAssetDetailListByAssetId(this.CurrentEntity.Id)));
             this.currentAssetDetailView.Filter += AssetDetailViewFilter;
             this.EntitiesView.Refresh();
             this.RaisePropertyChanged(() => this.CurrentAssetDetailView);
@@ -241,7 +242,7 @@ namespace RoomM.DeskApp.ViewModels
                 MessageBoxResult result = System.Windows.MessageBox.Show("Bạn muốn nhập tài sản?", "Xác nhận nhập tài sản", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
-                    this.service.ImportAsset(this.CurrentEntity.ID, this.Room1.ID, this.Amount1);
+                    this.service.ImportAsset(this.CurrentEntity.Id, this.Room1.Id, this.Amount1);
                     this.SetAdditionViewChange();
                     MainWindowViewModel.instance.ChangeStateToComplete("Cập nhật thành công");
                 }

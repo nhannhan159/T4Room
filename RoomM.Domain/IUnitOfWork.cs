@@ -11,7 +11,7 @@ using RoomM.Domain.UserModule.Aggregates;
 
 namespace RoomM.Domain
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
         void Commit();
         void EnableWSMode();
@@ -19,14 +19,12 @@ namespace RoomM.Domain
         IRoomRepository RoomRep { get; }
         IRepository<RoomType> RoomTypeRep { get; }
         IRoomRegRepository RoomRegRep { get; }
-        IRepository<RoomRegType> RoomRegTypeRep { get; }
 
         IAssetRepository AssetRep { get; }
         IAssetDetailRepository AssetDetailRep { get; }
         IAssetHistoryRepository AssetHistoryRep { get; }
-        IRepository<AssetHistoryType> AssetHistoryTypeRep { get; }
 
         IUserRepository UserRep { get; }
-        IRepository<UserRole> UserRoleRep { get; }
+        IRoleRepository RoleRep { get; }
     }
 }

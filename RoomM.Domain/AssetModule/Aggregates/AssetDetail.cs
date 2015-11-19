@@ -43,7 +43,7 @@ namespace RoomM.Domain.AssetModule.Aggregates
 
         public override string ToString()
         {
-            return this.ID + " #RoomId: " + this.RoomId + " #DeviceId: " + this.AssetId + " #amount: " + this.Amount;
+            return this.Id + " #RoomId: " + this.RoomId + " #DeviceId: " + this.AssetId + " #amount: " + this.Amount;
         }
     }
 }

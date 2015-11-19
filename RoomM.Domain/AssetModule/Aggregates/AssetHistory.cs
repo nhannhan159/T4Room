@@ -14,11 +14,21 @@ namespace RoomM.Domain.AssetModule.Aggregates
     [DataContract(IsReference = true)]
     public class AssetHistory : EntityBase
     {
-        [DataMember]
-        public Int64 AssetHistoryTypeId { get; set; }
+        public static int ASSETS_TRANSFER = 1;
+        public static int ASSETS_REMOVE = 2;
+        public static int ASSETS_IMPORT = 3;
+        public static int ASSETS_RECEVIE = 4;
+
+        public static Dictionary<int, string> GetHistoryType = new Dictionary<int, string>() {
+	        { ASSETS_TRANSFER, "Chuyển thiết bị" },
+            { ASSETS_REMOVE, "Thanh lí thiết bị" },
+            { ASSETS_IMPORT, "Nhập thiết bị" },
+            { ASSETS_RECEVIE, "Nhận thiết bị" }
+        };
 
         [DataMember]
-        public virtual AssetHistoryType AssetHistoryType { get; set; }
+        public int AssetHistoryTypeId { get; set; }
+        public string AssetHistoryType { get { return AssetHistory.GetHistoryType[this.AssetHistoryTypeId]; } }
 
         [DataMember]
         public DateTime Date { get; set; }
@@ -43,12 +53,12 @@ namespace RoomM.Domain.AssetModule.Aggregates
 
         public override string ToString()
         {
-            return this.ID + " # " + " #type:" + this.AssetHistoryTypeId + " #roomID: " + this.RoomId;
+            return this.Id + " # " + " #type:" + this.AssetHistoryTypeId + " #roomID: " + this.RoomId;
         }
 
         public AssetHistory() { }
 
-        public AssetHistory(DateTime Date, Int64 AssetHistoryTypeId, Int64 AssetId, Int64 RoomId, string Room2, int Amount)
+        public AssetHistory(DateTime Date, int AssetHistoryTypeId, Int64 AssetId, Int64 RoomId, string Room2, int Amount)
         {
             this.Date = Date;
             this.AssetHistoryTypeId = AssetHistoryTypeId;

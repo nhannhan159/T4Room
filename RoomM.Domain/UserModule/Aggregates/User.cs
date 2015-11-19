@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using Microsoft.AspNet.Identity;
 
 using RoomM.Domain.RoomModule.Aggregates;
 using RoomM.Domain.Utils;
@@ -14,30 +15,12 @@ using RoomM.Domain.Utils;
 namespace RoomM.Domain.UserModule.Aggregates
 {
     [DataContract(IsReference = true)]
-    public class User : EntityBase
+    public class User : EntityBase, IUser<Int64>
     {
         [DataMember]
         [StringLength(50)]
         [Index(IsUnique = true)]
-        public string Name { get; set; }
-
-        [DataMember]
-        public bool Sex { get; set; }
-
-        public string SexName
-        {
-            get { return this.Sex ? "Nữ" : "Nam"; }
-        }
-
-        [DataMember]
-        [StringLength(15)]
-        public string Phone { get; set; }
-
-        [DataMember]
-        public Int64 UserRoleId { get; set; }
-
-        [DataMember]
-        public virtual UserRole UserRole { get; set; }
+        public string FullName { get; set; }
 
         [DataMember]
         [StringLength(50)]
@@ -45,27 +28,55 @@ namespace RoomM.Domain.UserModule.Aggregates
         public string UserName { get; set; }
 
         [DataMember]
-        [StringLength(30, MinimumLength = 6)]
         [DataType(DataType.Password)]
-        public string PasswordStored { get; set; }
+        public string PasswordHash { get; set; }
 
-        [NotMapped]
+        [StringLength(100, MinimumLength = 6)]
+        [DataType(DataType.Password)]
         public string Password
         {
-            get { return CryptorEngine.Decrypt(PasswordStored, true); }
-            set { PasswordStored = CryptorEngine.Encrypt(value, true); }
+            set { this.PasswordHash = (new PasswordHasher()).HashPassword(value); }
         }
 
         [DataMember]
         public Boolean IsWorking { get; set; }
 
         [DataMember]
+        public bool Sex { get; set; }
+        public string SexName { get { return this.Sex ? "Nữ" : "Nam"; } }
+
+        [DataMember]
+        [StringLength(15)]
+        public string Phone { get; set; }
+
+        [DataMember]
         public string Description { get; set; }
 
         [DataMember]
-        [Display(Name = "Lan cuoi dang nhap")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime LastLogin { get; set; }
+        public int AccessFailedCount { get; set; }
+
+        [DataMember]
+        public bool LockoutEnabled { get; set; }
+
+        [DataMember]
+        public DateTime? LockoutEndDateUtc { get; set; }
+
+        [DataMember]
+        public bool TwoFactorEnabled { get; set; }
+
+        public virtual ICollection<Role> Roles
+        {
+            get
+            {
+                if (this.roles == null)
+                    this.roles = new List<Role>();
+                return this.roles;
+            }
+            set
+            {
+                this.roles = new List<Role>(value);
+            }
+        }
 
         public virtual ICollection<RoomReg> RoomRegs
         {
@@ -81,6 +92,7 @@ namespace RoomM.Domain.UserModule.Aggregates
             }
         }
 
+        private IList<Role> roles;
         private IList<RoomReg> roomRegs;
 
         public User()
@@ -90,7 +102,7 @@ namespace RoomM.Domain.UserModule.Aggregates
 
         public override string ToString()
         {
-            return this.ID + " #name " + this.Name + " #username " + this.UserName + " #pass " + this.PasswordStored + "#realpass " + this.Password;
+            return this.Id + " #name " + this.FullName + " #username " + this.UserName + " #pass " + this.PasswordHash;
         }
     }
 }

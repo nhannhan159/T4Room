@@ -11,6 +11,10 @@ namespace RoomM.WebApp.App_Start
     using Ninject;
     using Ninject.Web.Common;
 
+    using RoomM.Domain;
+    using RoomM.Infrastructure.Data.UnitOfWork;
+    using RoomM.Application.UserModule.Services.AuthStores;
+
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -61,6 +65,8 @@ namespace RoomM.WebApp.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<IUnitOfWork>().To<EFContext>();
+            kernel.Bind<UserStore>().ToSelf();
         }        
     }
 }

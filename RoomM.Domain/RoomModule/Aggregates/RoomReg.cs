@@ -14,6 +14,16 @@ namespace RoomM.Domain.RoomModule.Aggregates
     [DataContract(IsReference = true)]
     public class RoomReg : EntityBase
     {
+        public static int REG_WAITING = 1;
+        public static int REG_COMFIRMED = 2;
+        public static int REG_CANCELED = 3;
+
+        public static Dictionary<int, string> GetRegType = new Dictionary<int, string>() {
+	        { REG_WAITING, "Chờ xác nhận" },
+            { REG_COMFIRMED, "Đã đăng ký" },
+            { REG_CANCELED, "Hủy đăng ký" }
+        };
+
         [DataMember]
         [DataType(DataType.Date)]
         [Display(Name = "Ngày đăng kí")]
@@ -41,18 +51,17 @@ namespace RoomM.Domain.RoomModule.Aggregates
         public virtual User User { get; set; }
 
         [DataMember]
-        public Int64 RoomRegTypeId { get; set; }
+        public int RoomRegTypeId { get; set; }
 
-        [DataMember]
         [Display(Name = "Trạng thái đăng kí")]
-        public virtual RoomRegType RoomRegType { get; set; }
+        public string RoomRegType { get { return RoomReg.GetRegType[this.RoomRegTypeId]; } }
 
         [DataMember]
         public bool IsWatched { get; set; }
 
         public override string ToString()
         {
-            return this.ID + " #room " + this.RoomId + " #user " + this.UserId + " #start " + this.Start + " #len " + this.Length;
+            return this.Id + " #room " + this.RoomId + " #user " + this.UserId + " #start " + this.Start + " #len " + this.Length;
         }
     }
 }

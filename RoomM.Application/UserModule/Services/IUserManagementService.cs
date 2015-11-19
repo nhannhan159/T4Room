@@ -11,11 +11,9 @@ namespace RoomM.Application.UserModule.Services
 {
     public interface IUserManagementService
     {
-        void EnableWSMode();
         IList<User> GetUserList();
-        IList<UserRole> GetUserRoleList();
+        IList<Role> GetRoleList();
         IList<RoomType> GetRoomTypeList();
-        IList<RoomRegType> GetRoomRegTypeList();
         IList<RoomReg> GetRoomRegList(Int64 userId);
         void AddUser(User user);
         void EditUser(User user);

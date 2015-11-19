@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WebMatrix.WebData;
+using Microsoft.AspNet.Identity;
 
 using RoomM.WebApp.Models.RoomM;
 using RoomM.Domain.AssetModule.Aggregates;
@@ -27,12 +27,12 @@ namespace RoomM.WebApp.Controllers
             IList<RoomType> allRoomType = this.roomManagementService.GetRoomTypeList();
             IList<Room> allRoom = this.roomManagementService.GetRoomList();
 
-            ViewBag.RoomTypeId = new SelectList(allRoomType, "ID", "Name", allRoomType.Count > 0 ? allRoomType[0].ID : 0);
-            ViewBag.RoomId = new SelectList(allRoom, "ID", "Name", allRoom.Count > 0 ? allRoom[0].ID : 0);
+            ViewBag.RoomTypeId = new SelectList(allRoomType, "ID", "Name", allRoomType.Count > 0 ? allRoomType[0].Id : 0);
+            ViewBag.RoomId = new SelectList(allRoom, "ID", "Name", allRoom.Count > 0 ? allRoom[0].Id : 0);
 
             // default day 1/5/2011
-            IList<RoomReg> calInDate = this.roomManagementService.GetRoomRegListByDate(DateTime.Now, allRoom.Count > 0 ? allRoom[0].ID : -1);
-            IList<RoomReg> calInWeek = this.roomManagementService.GetRoomRegListByWeek(DateTime.Now, allRoom.Count > 0 ? allRoom[0].ID : -1);
+            IList<RoomReg> calInDate = this.roomManagementService.GetRoomRegListByDate(DateTime.Now, allRoom.Count > 0 ? allRoom[0].Id : -1);
+            IList<RoomReg> calInWeek = this.roomManagementService.GetRoomRegListByWeek(DateTime.Now, allRoom.Count > 0 ? allRoom[0].Id : -1);
 
             DateTime currentDate = DateTime.Now;
             DateTime startDateOfWeek = getStartDayOfWeek(currentDate);
@@ -51,7 +51,7 @@ namespace RoomM.WebApp.Controllers
         [Authorize(Roles = "Teacher")]
         public ActionResult RoomRegistered(string messageConfirm)
         {
-            IList<RoomReg> calLst = this.roomManagementService.GetRoomRegListByWatchedState(false, this.uow.StaffRepository.GetUserId(User.Identity.Name));
+            IList<RoomReg> calLst = this.roomManagementService.GetRoomRegListByWatchedState(false, User.Identity.GetUserId<Int64>());
             ViewBag.MessageConfirm = messageConfirm;
             return View(calLst);
         }
@@ -59,10 +59,9 @@ namespace RoomM.WebApp.Controllers
         [Authorize(Roles = "Teacher")]
         public ActionResult RoomRegisteredAccept(int id)
         {
-            RoomReg rc = this.uow.RoomCalendarRepository.GetSingle(id);
+            RoomReg rc = this.roomManagementService.GetRoomReg(id);
             rc.IsWatched = true;
-            this.uow.RoomCalendarRepository.Edit(rc);
-            this.uow.Commit();
+            this.roomManagementService.EditRoomReg(rc);
 
             string message = "";
             if (rc.RoomRegTypeId == 3) // huy dk tu quan tri vien
@@ -78,46 +77,19 @@ namespace RoomM.WebApp.Controllers
         [Authorize(Roles = "Teacher")]
         public ActionResult RoomRegisteredReject(int id)
         {
-            RoomReg rc = this.uow.RoomCalendarRepository.GetSingle(id);
+            RoomReg rc = this.roomManagementService.GetRoomReg(id);
 
-            RoomReg rcInfo = new RoomReg
-            {
-                Room = rc.Room,
-                Start = rc.Start,
-                Length = rc.Length,
-                Date = rc.Date
-            };
+            string message = "Xác nhận hủy đăng kí phòng " + rc.Room.Name + " vào ngày "
+                + rc.Date.ToShortDateString() + " từ tiết " + rc.Start + " đến tiết " + (rc.Start + rc.Length - 1);
 
-            /*
-            // check mark register for room
-            Room room = roomRepo.GetSingle(rc.RoomId);
-            bool haveRegistered = true;
-
-            foreach (RoomCalendar rcal in room.RoomCalendars)
-            {
-                if (rcal.RoomCalendarStatusId == 1)
-                    haveRegistered = false;
-            }
-
-            room.IsHaveRegistered = haveRegistered;
-            roomRepo.Edit(room);
-            roomRepo.Save();
-             */
-
-            // rc.IsWatched = true;
-            // roomCalRepo.Edit(rc);
-            this.uow.RoomCalendarRepository.Delete(id);
-            this.uow.Commit();
-
-            string message = "Xác nhận hủy đăng kí phòng " + rcInfo.Room.Name + " vào ngày "
-                + rcInfo.Date.ToShortDateString() + " từ tiết " + rcInfo.Start + " đến tiết " + (rcInfo.Start + rcInfo.Length - 1);
+            this.roomManagementService.DeleteRoomReg(id);
             return RedirectToAction("RoomRegistered", new { messageConfirm = message });
         }
 
         [Authorize(Roles = "Teacher")]
         public ActionResult HistoryRegistered()
         {
-            IList<RoomReg> calLst = this.roomManagementService.GetRoomRegListByWatchedState(true, this.uow.StaffRepository.GetUserId(User.Identity.Name));
+            IList<RoomReg> calLst = this.roomManagementService.GetRoomRegListByWatchedState(true, User.Identity.GetUserId<Int64>());
             return View(calLst);
         }
 
@@ -144,9 +116,9 @@ namespace RoomM.WebApp.Controllers
             }
             else
             {
-                ViewBag.RoomId = new SelectList(allRoom, "ID", "Name", allRoom.Count > 0 ? allRoom[0].ID : 0);
-                calInDate = this.roomManagementService.GetRoomRegListByDate(DateTime.Now, allRoom.Count > 0 ? allRoom[0].ID : -1);
-                calInWeek = this.roomManagementService.GetRoomRegListByWeek(DateTime.Now, allRoom.Count > 0 ? allRoom[0].ID : -1);
+                ViewBag.RoomId = new SelectList(allRoom, "ID", "Name", allRoom.Count > 0 ? allRoom[0].Id : 0);
+                calInDate = this.roomManagementService.GetRoomRegListByDate(DateTime.Now, allRoom.Count > 0 ? allRoom[0].Id : -1);
+                calInWeek = this.roomManagementService.GetRoomRegListByWeek(DateTime.Now, allRoom.Count > 0 ? allRoom[0].Id : -1);
             }
 
             // default day 1/5/2011
@@ -188,7 +160,6 @@ namespace RoomM.WebApp.Controllers
         [Authorize(Roles = "Teacher")]
         public ActionResult Create(RoomReg roomCal)
         {
-
             if (ModelState.IsValid)
             {
                 if (roomCal.Date < DateTime.Now.Date)
@@ -198,22 +169,15 @@ namespace RoomM.WebApp.Controllers
                 }
                 else
                 {
-                    // roomCal.Room = roomRepo.GetSingle(roomCal.RoomId);
                     roomCal.RoomRegTypeId = 1; // wait
-                    roomCal.UserId = this.uow.StaffRepository.GetUserId(User.Identity.Name);
-
-
-                    Room room = this.uow.RoomRepository.GetSingle(roomCal.RoomId);
-                    //room.IsHaveRegistered = true;
-                    this.uow.RoomRepository.Edit(room);
+                    roomCal.UserId = User.Identity.GetUserId<Int64>();
 
                     // save
-                    this.uow.RoomCalendarRepository.Add(roomCal);
-                    this.uow.Commit();
+                    //this.uow.RoomCalendarRepository.Add(roomCal);
+                    //this.uow.Commit();
 
-
-                    string message = "Phòng " + this.uow.RoomRepository.GetSingle(roomCal.RoomId).Name + " đã được đăng kí từ tiết " + roomCal.Start + " đến tiết " + (roomCal.Start + roomCal.Length - 1);
-                    return RedirectToAction("Create", new { messageConfirm = message, isErrorMessage = false, roomIdBefore = roomCal.RoomId });
+                    //string message = "Phòng " + this.uow.RoomRepository.GetSingle(roomCal.RoomId).Name + " đã được đăng kí từ tiết " + roomCal.Start + " đến tiết " + (roomCal.Start + roomCal.Length - 1);
+                    //return RedirectToAction("Create", new { messageConfirm = message, isErrorMessage = false, roomIdBefore = roomCal.RoomId });
                 }
             }
 

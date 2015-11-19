@@ -4,6 +4,7 @@ using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 using RoomM.Domain.AssetModule.Aggregates;
 
@@ -14,9 +15,10 @@ namespace RoomM.Infrastructure.Data.UnitOfWork.Mapping
         public AssetDetailConfiguration() 
         {
             // key
-            this.HasKey(t => t.ID);
+            this.HasKey(t => t.Id);
 
             // property
+            this.Property(t => t.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             this.Property(t => t.RoomId).IsOptional();
             this.Property(t => t.AssetId).IsOptional();
             this.Property(t => t.Amount).IsRequired();

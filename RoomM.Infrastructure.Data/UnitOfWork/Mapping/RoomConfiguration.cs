@@ -15,10 +15,10 @@ namespace RoomM.Infrastructure.Data.UnitOfWork.Mapping
         public RoomConfiguration()
         { 
             // key
-            this.HasKey(t => t.ID);
+            this.HasKey(t => t.Id);
 
             // properties
-            this.Property(t => t.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            this.Property(t => t.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             this.Property(t => t.Name).IsRequired();
             this.Property(t => t.RoomTypeId).IsOptional();
             this.Property(t => t.DateCreate);

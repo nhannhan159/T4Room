@@ -28,13 +28,11 @@ namespace RoomM.Infrastructure.Data.UnitOfWork
             modelBuilder.Configurations.Add(new AssetConfiguration());
             modelBuilder.Configurations.Add(new AssetDetailConfiguration());
             modelBuilder.Configurations.Add(new AssetHistoryConfiguration());
-            modelBuilder.Configurations.Add(new AssetHistoryTypeConfiguration());
             modelBuilder.Configurations.Add(new RoomConfiguration());
             modelBuilder.Configurations.Add(new RoomTypeConfiguration());
             modelBuilder.Configurations.Add(new RoomRegConfiguration());
-            modelBuilder.Configurations.Add(new RoomRegTypeConfiguration());
             modelBuilder.Configurations.Add(new UserConfiguration());
-            modelBuilder.Configurations.Add(new UserRoleConfiguration());
+            modelBuilder.Configurations.Add(new RoleConfiguration());
         }
 
         #region IUnitOfWork implement 
@@ -42,15 +40,13 @@ namespace RoomM.Infrastructure.Data.UnitOfWork
         private IRoomRepository roomRep;
         private IRepository<RoomType> roomTypeRep;
         private IRoomRegRepository roomRegRep;
-        private IRepository<RoomRegType> roomRegTypeRep;
 
         private IAssetRepository assetRep;
         private IAssetDetailRepository assetDetailRep;
         private IAssetHistoryRepository assetHistoryRep;
-        private IRepository<AssetHistoryType> assetHistoryTypeRep;
 
         private IUserRepository userRep;
-        private IRepository<UserRole> userRoleRep;
+        private IRoleRepository roleRep;
 
         public void Commit() 
         { 
@@ -69,7 +65,7 @@ namespace RoomM.Infrastructure.Data.UnitOfWork
             {
                 if (this.roomRep == null)
                     this.roomRep = new RoomRepository(this);
-                return roomRep;
+                return this.roomRep;
             }
         }
 
@@ -79,7 +75,7 @@ namespace RoomM.Infrastructure.Data.UnitOfWork
             {
                 if (this.roomTypeRep == null)
                     this.roomTypeRep = new Repository<RoomType>(this);
-                return roomTypeRep;
+                return this.roomTypeRep;
             }
         }
 
@@ -89,17 +85,7 @@ namespace RoomM.Infrastructure.Data.UnitOfWork
             {
                 if (this.roomRegRep == null)
                     this.roomRegRep = new RoomRegRepository(this);
-                return roomRegRep;
-            }
-        }
-
-        public IRepository<RoomRegType> RoomRegTypeRep
-        {
-            get
-            {
-                if (this.roomRegTypeRep == null)
-                    this.roomRegTypeRep = new Repository<RoomRegType>(this);
-                return roomRegTypeRep;
+                return this.roomRegRep;
             }
         }
 
@@ -109,7 +95,7 @@ namespace RoomM.Infrastructure.Data.UnitOfWork
             {
                 if (this.assetRep == null)
                     this.assetRep = new AssetRepository(this);
-                return assetRep;
+                return this.assetRep;
             }
         }
 
@@ -119,7 +105,7 @@ namespace RoomM.Infrastructure.Data.UnitOfWork
             {
                 if (this.assetDetailRep == null)
                     this.assetDetailRep = new AssetDetailRepository(this);
-                return assetDetailRep;
+                return this.assetDetailRep;
             }
         }
 
@@ -129,17 +115,7 @@ namespace RoomM.Infrastructure.Data.UnitOfWork
             {
                 if (this.assetHistoryRep == null)
                     this.assetHistoryRep = new AssetHistoryRepository(this);
-                return assetHistoryRep;
-            }
-        }
-
-        public IRepository<AssetHistoryType> AssetHistoryTypeRep
-        {
-            get
-            {
-                if (this.assetHistoryTypeRep == null)
-                    this.assetHistoryTypeRep = new Repository<AssetHistoryType>(this);
-                return assetHistoryTypeRep;
+                return this.assetHistoryRep;
             }
         }
 
@@ -149,20 +125,26 @@ namespace RoomM.Infrastructure.Data.UnitOfWork
             {
                 if (this.userRep == null)
                     this.userRep = new UserRepository(this);
-                return userRep;
+                return this.userRep;
             }
         }
 
-        public IRepository<UserRole> UserRoleRep
+        public IRoleRepository RoleRep
         {
             get
             {
-                if (this.userRoleRep == null)
-                    this.userRoleRep = new Repository<UserRole>(this);
-                return userRoleRep;
+                if (this.roleRep == null)
+                    this.roleRep = new RoleRepository(this);
+                return this.roleRep;
             }
         }
 
         #endregion
+
+        public System.Data.Entity.DbSet<RoomM.Domain.AssetModule.Aggregates.AssetDetail> AssetDetails { get; set; }
+
+        public System.Data.Entity.DbSet<RoomM.Domain.AssetModule.Aggregates.Asset> Assets { get; set; }
+
+        public System.Data.Entity.DbSet<RoomM.Domain.RoomModule.Aggregates.Room> Rooms { get; set; }
     }
 }

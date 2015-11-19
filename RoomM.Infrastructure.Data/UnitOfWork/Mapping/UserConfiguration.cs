@@ -15,27 +15,34 @@ namespace RoomM.Infrastructure.Data.UnitOfWork.Mapping
         public UserConfiguration()
         { 
             // key
-            this.HasKey(t => t.ID);
+            this.HasKey(t => t.Id);
 
             // properties
-            this.Property(t => t.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            this.Property(t => t.UserRoleId).IsOptional();
-            this.Property(t => t.Name).IsRequired();
-            this.Property(t => t.Sex);
-            this.Property(t => t.Phone);
+            this.Property(t => t.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            this.Property(t => t.FullName).IsRequired();
             this.Property(t => t.UserName).IsRequired();
-            this.Property(t => t.PasswordStored).IsRequired();
+            this.Property(t => t.PasswordHash).IsRequired();
             this.Property(t => t.IsWorking).IsRequired();
+            this.Property(t => t.Sex).IsOptional();
+            this.Property(t => t.Phone).IsOptional();
             this.Property(t => t.Description).IsOptional();
+
+            this.Property(t => t.AccessFailedCount).IsOptional();
+            this.Property(t => t.LockoutEnabled).IsOptional();
+            this.Property(t => t.LockoutEndDateUtc).IsOptional();
+            this.Property(t => t.TwoFactorEnabled).IsOptional();
 
             // table
             this.ToTable("Users");
 
             // relationship
-            this.HasOptional(t => t.UserRole)
-                .WithMany(c => c.Users)
-                .HasForeignKey(t => t.UserRoleId)
-                .WillCascadeOnDelete(true);
+            this.HasMany(u => u.Roles).WithMany(r => r.Users).Map((config) =>
+            {
+                config
+                    .ToTable("UsersInRoles")
+                    .MapLeftKey("UserId")
+                    .MapRightKey("RoleId");
+            });
         }
     }
 }

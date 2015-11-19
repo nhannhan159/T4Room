@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RoomM.Models.RoomCalendar>
+﻿@model IEnumerable<RoomM.Domain.RoomModule.Aggregates.RoomReg>
 
 @{
     ViewBag.Title = "RoomRegistered";
@@ -27,7 +27,7 @@
             @Html.DisplayNameFor(model => model.RoomId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RoomCalendarStatus)
+            @Html.DisplayNameFor(model => model.RoomRegType)
         </th>
         <th></th>
     </tr>
@@ -49,14 +49,15 @@
             @Html.DisplayFor(modelItem => item.Room.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.RoomCalendarStatus.Name)
+            @Html.DisplayFor(modelItem => item.RoomRegType)
         </td>
         <td>
-            @if (item.RoomCalendarStatusId == 3 || item.RoomCalendarStatusId == 2 )
+            @if (item.RoomRegTypeId == RoomM.Domain.RoomModule.Aggregates.RoomReg.REG_CANCELED
+                || item.RoomRegTypeId == RoomM.Domain.RoomModule.Aggregates.RoomReg.REG_COMFIRMED)
             {
-                @Html.ActionLink("Đồng ý", "RoomRegisteredAccept", new { id = item.ID });
+                @Html.ActionLink("Đồng ý", "RoomRegisteredAccept", new { id = item.Id });
             } else {                                                               
-                @Html.ActionLink("Hủy", "RoomRegisteredReject", new { id = item.ID });
+                @Html.ActionLink("Hủy", "RoomRegisteredReject", new { id = item.Id });
             }
         </td>
     </tr>

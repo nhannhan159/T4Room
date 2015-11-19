@@ -19,13 +19,10 @@ namespace RoomM.WebService
         IList<User> GetUserList();
 
         [OperationContract]
-        IList<UserRole> GetUserRoleList();
+        IList<Role> GetRoleList();
 
         [OperationContract]
         IList<RoomType> GetRoomTypeList();
-
-        [OperationContract]
-        IList<RoomRegType> GetRoomRegTypeList();
 
         [OperationContract]
         IList<RoomReg> GetRoomRegList(Int64 userId);

@@ -12,12 +12,11 @@ namespace RoomM.Application.AssetModule.Services
 {
     public interface IAssetManagementService
     {
-        void EnableWSMode();
         IList<Asset> GetAssetList();
         IList<Room> GetRoomList();
         IList<RoomType> GetRoomTypeList();
         IList<AssetDetail> GetAssetDetailList();
-        IList<AssetDetail> GetAssetDetailList(Int64 assetId);
+        IList<AssetDetail> GetAssetDetailListByAssetId(Int64 assetId);
         void AddAsset(Asset asset);
         void EditAsset(Asset asset);
         void DeleteAsset(Asset asset);

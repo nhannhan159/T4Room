@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RoomM.Models.RoomCalendar>
+﻿@model IEnumerable<RoomM.Domain.RoomModule.Aggregates.RoomReg>
 
 @{
     ViewBag.Title = "HistoryRegistered";
@@ -24,7 +24,7 @@
             @Html.DisplayNameFor(model => model.RoomId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RoomCalendarStatus)
+            @Html.DisplayNameFor(model => model.RoomRegType)
         </th>
     </tr>
 
@@ -45,7 +45,7 @@
             @Html.DisplayFor(modelItem => item.Room.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.RoomCalendarStatus.Name)
+            @Html.DisplayFor(modelItem => item.RoomRegType)
         </td>
     </tr>
 }

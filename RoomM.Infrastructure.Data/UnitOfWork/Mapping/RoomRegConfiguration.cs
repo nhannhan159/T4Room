@@ -15,26 +15,22 @@ namespace RoomM.Infrastructure.Data.UnitOfWork.Mapping
         public RoomRegConfiguration()
         { 
             // key
-            this.HasKey(t => t.ID);
+            this.HasKey(t => t.Id);
 
             // properties
-            this.Property(t => t.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            this.Property(t => t.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             this.Property(t => t.Date);
             this.Property(t => t.Start).IsRequired();
             this.Property(t => t.Length).IsRequired();
             this.Property(t => t.RoomId).IsOptional();
             this.Property(t => t.UserId).IsOptional();
-            this.Property(t => t.RoomRegTypeId).IsOptional();
+            this.Property(t => t.RoomRegTypeId).IsRequired();
             this.Property(t => t.IsWatched).IsOptional();
             
             // table
             this.ToTable("RoomRegs");
 
             // relationship
-            this.HasOptional(t => t.RoomRegType)
-                .WithMany(c => c.RoomRegs)
-                .HasForeignKey(t => t.RoomRegTypeId)
-                .WillCascadeOnDelete(true);
             this.HasOptional(t => t.Room)
                 .WithMany(c => c.RoomRegs)
                 .HasForeignKey(t => t.RoomId)

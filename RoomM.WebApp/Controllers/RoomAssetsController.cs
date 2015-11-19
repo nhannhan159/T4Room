@@ -40,7 +40,7 @@ namespace RoomM.WebApp.Controllers
             // get all assets type
             IList<Asset> assetsTypeLst = this.assetManagementService.GetAssetList();
 
-            ViewBag.RoomList = new SelectList(roomLst, "ID", "Name", roomLst[0].ID);
+            ViewBag.RoomList = new SelectList(roomLst, "ID", "Name", roomLst[0].Id);
             ViewBag.RoomTypeList = new SelectList(roomTypeLst, "ID", "Name");
             ViewBag.AssetsTypeList = new SelectList(assetsTypeLst, "ID", "Name");
 
@@ -54,7 +54,7 @@ namespace RoomM.WebApp.Controllers
         {
             List<Room> roomLst;
             if (roomTypeId > 0)
-                roomLst = this.roomManagementService.GetRoomList(roomTypeId) as List<Room>;
+                roomLst = this.roomManagementService.GetRoomListByRoomId(roomTypeId) as List<Room>;
             else
                 roomLst = this.roomManagementService.GetRoomList() as List<Room>;
 
@@ -63,7 +63,7 @@ namespace RoomM.WebApp.Controllers
             {
                 roomVMList.Add(new RoomViewModel
                 {
-                    RoomId = r.ID,
+                    RoomId = r.Id,
                     RoomName = r.Name
                 });
             }
@@ -77,7 +77,7 @@ namespace RoomM.WebApp.Controllers
             var roomAssetsLst = this.roomManagementService.GetAssetDetailList(roomId);
             if (assetsTypeId > 0) {
                 List<AssetDetail> roomFilter = (from p in roomAssetsLst 
-                             where p.Asset.ID == assetsTypeId
+                             where p.AssetId == assetsTypeId
                              select p).ToList();
                 roomAssetsLst = roomFilter;
             }

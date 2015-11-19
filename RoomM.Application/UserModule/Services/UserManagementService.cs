@@ -79,19 +79,14 @@ namespace RoomM.Application.UserModule.Services
 
         #region Addition Lists
 
-        public IList<UserRole> GetUserRoleList()
+        public IList<Role> GetRoleList()
         {
-            return this.context.UserRoleRep.GetAll();
+            return this.context.RoleRep.GetAll();
         }
 
         public IList<RoomType> GetRoomTypeList()
         {
             return this.context.RoomTypeRep.GetAll();
-        }
-
-        public IList<RoomRegType> GetRoomRegTypeList()
-        {
-            return this.context.RoomRegTypeRep.GetAll();
         }
 
         public IList<RoomReg> GetRoomRegList(Int64 userId)

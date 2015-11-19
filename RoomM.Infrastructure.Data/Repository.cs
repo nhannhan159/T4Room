@@ -83,7 +83,7 @@ namespace RoomM.Infrastructure.Data
 
         public T GetSingle(Int64 id)
         {
-            return this.Get().SingleOrDefault(x => x.ID == id);
+            return this.Get().SingleOrDefault(x => x.Id == id);
         }
 
         public IList<T> GetAll()
@@ -112,7 +112,7 @@ namespace RoomM.Infrastructure.Data
             var entry = context.Entry<T>(entity);
             if (entry.State == EntityState.Detached)
             {
-                T attachedEntity = this.dbSet.Local.SingleOrDefault(e => e.ID == entity.ID);
+                T attachedEntity = this.dbSet.Local.SingleOrDefault(e => e.Id == entity.Id);
                 if (attachedEntity != null)
                 {
                     var attachedEntry = context.Entry(attachedEntity);

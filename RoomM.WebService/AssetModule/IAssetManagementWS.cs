@@ -24,7 +24,10 @@ namespace RoomM.WebService
         IList<RoomType> GetRoomTypeList();
 
         [OperationContract]
-        IList<AssetDetail> GetAssetDetailList(Int64 assetId);
+        IList<AssetDetail> GetAssetDetailList();
+
+        [OperationContract]
+        IList<AssetDetail> GetAssetDetailListByAssetId(Int64 assetId);
 
         [OperationContract]
         void AddAsset(Asset asset);

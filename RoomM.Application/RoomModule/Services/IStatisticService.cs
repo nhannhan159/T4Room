@@ -12,7 +12,6 @@ namespace RoomM.Application.RoomModule.Services
 {
     public interface IStatisticService
     {
-        void EnableWSMode();
         IList<KeyValuePair<Room, int>> GetRoomLimitByRegister(int limit, DateTime from, DateTime to);
         IList<KeyValuePair<User, int>> GetUserLimitByRegister(int limit, DateTime from, DateTime to);
     }

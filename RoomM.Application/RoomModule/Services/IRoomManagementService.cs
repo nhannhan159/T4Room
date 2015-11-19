@@ -11,12 +11,11 @@ namespace RoomM.Application.RoomModule.Services
 {
     public interface IRoomManagementService
     {
-        void EnableWSMode();
+        Room GetRoom(Int64 roomId);
         IList<Room> GetRoomList();
-        IList<Room> GetRoomList(Int64 roomTypeId);
+        IList<Room> GetRoomListByRoomId(Int64 roomTypeId);
         IList<RoomType> GetRoomTypeList();
-        IList<RoomRegType> GetRoomRegTypeList();
-        IList<AssetHistoryType> GetAssetHistoryTypeList();
+        RoomReg GetRoomReg(Int64 roomRegId);
         IList<RoomReg> GetRoomRegList(Int64 roomId);
         IList<RoomReg> GetRoomRegListByDate(DateTime date, Int64 roomId);
         IList<RoomReg> GetRoomRegListByWeek(DateTime date, Int64 roomId);
@@ -27,6 +26,7 @@ namespace RoomM.Application.RoomModule.Services
         void AddRoom(Room room);
         void EditRoom(Room room);
         void DeleteRoom(Room room);
-        void ChangeRoomRegType(RoomReg roomReg);
+        void EditRoomReg(RoomReg roomReg);
+        void DeleteRoomReg(Int64 roomRegId);
     }
 }

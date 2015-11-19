@@ -194,7 +194,7 @@
                                 <DataGridTextColumn Header="Ngày" Width="0.15*" Binding="{Binding Date, StringFormat=\{0:dd/MM/yyyy \}}" IsReadOnly="True"/>
                                 <DataGridTextColumn Header="Tiết đầu" Width="0.125*" IsReadOnly="True" Binding="{Binding Start}"/>
                                 <DataGridTextColumn Header="Số tiết" Width="0.125*" IsReadOnly="True" Binding="{Binding Length}"/>
-                                <DataGridTextColumn Header="Người đăng ký" Width="0.175*" IsReadOnly="True" Binding="{Binding Staff.Name}"/>
+                                <DataGridTextColumn Header="Người đăng ký" Width="0.175*" IsReadOnly="True" Binding="{Binding User.Name}"/>
                                 <DataGridTextColumn Header="Trạng thái" Width="0.15*" IsReadOnly="True" Binding="{Binding RoomCalendarStatus.Name}"/>
                                 <DataGridTemplateColumn Header="Đổi trạng thái" Width="0.3*">
                                     <DataGridTemplateColumn.CellTemplate>
@@ -204,7 +204,7 @@
                                                           ItemsSource="{Binding Path=DataContext.RoomCalendarStatusView,
                                                                                 RelativeSource={RelativeSource FindAncestor, 
                                                                                                                AncestorType={x:Type DataGrid}}}" 
-                                                          SelectedValue="{Binding Path=RoomCalendarStatusId, UpdateSourceTrigger=LostFocus}" SelectedValuePath="ID" DisplayMemberPath="Name" Padding="5,0,0,0"/>
+                                                          SelectedValue="{Binding Path=RoomCalendarStatusId, UpdateSourceTrigger=LostFocus}" SelectedValuePath="Key" DisplayMemberPath="Value" Padding="5,0,0,0"/>
                                                 <Button Height="20" Width="40" Content="Đổi"
                                                         Command="{Binding Path=DataContext.ChangeCalendarStatusCommand,
                                                                           RelativeSource={RelativeSource FindAncestor, 

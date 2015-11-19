@@ -110,7 +110,7 @@ namespace RoomM.Domain.RoomModule.Aggregates
 
         public override string ToString()
         {
-            return this.ID + "#" + this.Name + "#RoomType:" + this.RoomTypeId + "#Status: " + this.IsUsing;
+            return this.Id + "#" + this.Name + "#RoomType:" + this.RoomTypeId + "#Status: " + this.IsUsing;
         }
     }
 }

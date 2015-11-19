@@ -27,12 +27,17 @@ namespace RoomM.Application.RoomModule.Services
 
         #region Basic CRUD
 
+        public Room GetRoom(Int64 roomId)
+        {
+            return this.context.RoomRep.GetSingle(roomId);
+        }
+
         public IList<Room> GetRoomList()
         {
             return this.context.RoomRep.GetAll();
         }
 
-        public IList<Room> GetRoomList(Int64 roomTypeId)
+        public IList<Room> GetRoomListByRoomId(Int64 roomTypeId)
         {
             return this.context.RoomRep.GetByRoomTypeId(roomTypeId);
         }
@@ -89,14 +94,9 @@ namespace RoomM.Application.RoomModule.Services
             return this.context.RoomTypeRep.GetAll();
         }
 
-        public IList<RoomRegType> GetRoomRegTypeList()
+        public RoomReg GetRoomReg(Int64 roomRegId)
         {
-            return this.context.RoomRegTypeRep.GetAll();
-        }
-
-        public IList<AssetHistoryType> GetAssetHistoryTypeList()
-        {
-            return this.context.AssetHistoryTypeRep.GetAll();
+            return this.context.RoomRegRep.GetSingle(roomRegId);
         }
 
         public IList<RoomReg> GetRoomRegList(Int64 roomId)
@@ -138,7 +138,7 @@ namespace RoomM.Application.RoomModule.Services
 
         #region Addition Services
 
-        public void ChangeRoomRegType(RoomReg roomReg)
+        public void EditRoomReg(RoomReg roomReg)
         {
             try
             {
@@ -149,7 +149,21 @@ namespace RoomM.Application.RoomModule.Services
             {
                 var error = ex.EntityValidationErrors.First().ValidationErrors.First();
                 throw new ApplicationException(error.ErrorMessage);
-            } 
+            }
+        }
+
+        public void DeleteRoomReg(Int64 roomRegId)
+        {
+            try
+            {
+                this.context.RoomRegRep.Delete(roomRegId);
+                this.context.Commit();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                var error = ex.EntityValidationErrors.First().ValidationErrors.First();
+                throw new ApplicationException(error.ErrorMessage);
+            }
         }
 
         #endregion

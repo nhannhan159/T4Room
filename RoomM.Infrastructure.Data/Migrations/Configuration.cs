@@ -3,6 +3,7 @@
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.Collections.Generic;
     using System.Linq;
 
     using RoomM.Domain.AssetModule.Aggregates;
@@ -35,18 +36,9 @@
             RoomType roomCK = new RoomType { Name = "Thực hành cơ khí" };
             RoomType roomCD = new RoomType { Name = "Thực hành cơ điện" };
 
-            AssetHistoryType devicehistorytype1 = new AssetHistoryType { Name = "Chuyển thiết bị" };
-            AssetHistoryType devicehistorytype2 = new AssetHistoryType { Name = "Thanh lí thiết bị" };
-            AssetHistoryType devicehistorytype3 = new AssetHistoryType { Name = "Nhập thiết bị" };
-            AssetHistoryType devicehistorytype4 = new AssetHistoryType { Name = "Nhận thiết bị" };
-
-            UserRole usertype0 = new UserRole { Name = "Quản trị viên" };
-            UserRole usertype1 = new UserRole { Name = "Giảng viên" };
-            UserRole usertype2 = new UserRole { Name = "Nhân viên quản lý" };
-
-            RoomRegType roomcalendarstatus1 = new RoomRegType { Name = "Chờ xác nhận" };
-            RoomRegType roomcalendarstatus2 = new RoomRegType { Name = "Đã đăng ký" };
-            RoomRegType roomcalendarstatus3 = new RoomRegType { Name = "Hủy đăng ký" };
+            Role usertype0 = new Role { Name = "Quản trị viên" };
+            Role usertype1 = new Role { Name = "Giảng viên" };
+            Role usertype2 = new Role { Name = "Nhân viên quản lý" };
 
             #region room tin hoc
             Room room0 = new Room
@@ -341,21 +333,21 @@
             AssetHistory devicehistory1 = new AssetHistory
             {
                 Date = new DateTime(2011, 1, 1),
-                AssetHistoryType = devicehistorytype1,
+                AssetHistoryTypeId = AssetHistory.ASSETS_TRANSFER,
                 Asset = device3,
                 Room = room6,
             };
             AssetHistory devicehistory2 = new AssetHistory
             {
                 Date = new DateTime(2011, 1, 3),
-                AssetHistoryType = devicehistorytype1,
+                AssetHistoryTypeId = AssetHistory.ASSETS_TRANSFER,
                 Asset = device1,
                 Room = room1,
             };
             AssetHistory devicehistory3 = new AssetHistory
             {
                 Date = new DateTime(2011, 1, 5),
-                AssetHistoryType = devicehistorytype2,
+                AssetHistoryTypeId = AssetHistory.ASSETS_REMOVE,
                 Asset = device2,
                 Room = room2,
             };
@@ -364,112 +356,102 @@
 
             User user0 = new User
             {
-                Name = "Triệu Linh Nhi",
+                FullName = "Triệu Linh Nhi",
                 Sex = true,
                 Phone = "0123456789",
-                UserRole = usertype0,
+                Roles = new List<Role>() { usertype0 },
                 UserName = "admin",
-                PasswordStored = CryptorEngine.Encrypt("admin", true),
-                LastLogin = new DateTime(2011, 1, 5),
+                Password = "admin123"
             };
 
             User user1 = new User
             {
-                Name = "Lý Tiêu Diêu",
+                FullName = "Lý Tiêu Diêu",
                 Sex = false,
                 Phone = "0123456790",
-                UserRole = usertype1,
+                Roles = new List<Role>() { usertype1 },
                 UserName = "user1",
-                PasswordStored = CryptorEngine.Encrypt("user", true),
-                LastLogin = new DateTime(2011, 1, 7),
+                Password = "user123"
             };
 
             User user2 = new User
             {
-                Name = "Điền Bá Quang",
+                FullName = "Điền Bá Quang",
                 Sex = false,
                 Phone = "0123456790",
-                UserRole = usertype1,
+                Roles = new List<Role>() { usertype1 },
                 UserName = "user2",
-                PasswordStored = CryptorEngine.Encrypt("user", true),
-                LastLogin = new DateTime(2011, 1, 8),
+                Password = "user123"
             };
 
             User user3 = new User
             {
-                Name = "Đổng Lợi Văn",
+                FullName = "Đổng Lợi Văn",
                 Sex = true,
                 Phone = "0123456790",
-                UserRole = usertype1,
+                Roles = new List<Role>() { usertype1 },
                 UserName = "user3",
-                PasswordStored = CryptorEngine.Encrypt("user", true),
-                LastLogin = new DateTime(2011, 1, 9),
+                Password = "user123"
             };
 
             User user4 = new User
             {
-                Name = "Cao Long",
+                FullName = "Cao Long",
                 Sex = false,
                 Phone = "0123456790",
-                UserRole = usertype1,
+                Roles = new List<Role>() { usertype1 },
                 UserName = "user4",
-                PasswordStored = CryptorEngine.Encrypt("user", true),
-                LastLogin = new DateTime(2011, 1, 11),
+                Password = "user123"
             };
 
             User user5 = new User
             {
-                Name = "Bạch Ngọc Đường",
+                FullName = "Bạch Ngọc Đường",
                 Sex = false,
                 Phone = "0123456790",
-                UserRole = usertype1,
+                Roles = new List<Role>() { usertype1 },
                 UserName = "user5",
-                PasswordStored = CryptorEngine.Encrypt("user", true),
-                LastLogin = new DateTime(2011, 1, 12),
+                Password = "user123"
             };
 
             User user6 = new User
             {
-                Name = "Lý Mạc Sầu",
+                FullName = "Lý Mạc Sầu",
                 Sex = true,
                 Phone = "0123456790",
-                UserRole = usertype1,
+                Roles = new List<Role>() { usertype1 },
                 UserName = "user6",
-                PasswordStored = CryptorEngine.Encrypt("user", true),
-                LastLogin = new DateTime(2011, 1, 13),
+                Password = "user123"
             };
 
             User user7 = new User
             {
-                Name = "Đinh Tiểu Gia",
+                FullName = "Đinh Tiểu Gia",
                 Sex = true,
                 Phone = "0123456790",
-                UserRole = usertype2,
+                Roles = new List<Role>() { usertype2 },
                 UserName = "user7",
-                PasswordStored = CryptorEngine.Encrypt("user", true),
-                LastLogin = new DateTime(2011, 1, 17),
+                Password = "user123"
             };
 
             User user8 = new User
             {
-                Name = "Tiết Gia Cường",
+                FullName = "Tiết Gia Cường",
                 Sex = false,
                 Phone = "0123456790",
-                UserRole = usertype2,
+                Roles = new List<Role>() { usertype2 },
                 UserName = "user8",
-                PasswordStored = CryptorEngine.Encrypt("user", true),
-                LastLogin = new DateTime(2011, 1, 27),
+                Password = "user123"
             };
 
             User user9 = new User
             {
-                Name = "Lý Bạch",
+                FullName = "Lý Bạch",
                 Sex = false,
                 Phone = "0123456790",
-                UserRole = usertype2,
+                Roles = new List<Role>() { usertype2 },
                 UserName = "user9",
-                PasswordStored = CryptorEngine.Encrypt("user", true),
-                LastLogin = new DateTime(2011, 1, 6),
+                Password = "user123"
             };
 
             #endregion
@@ -479,7 +461,7 @@
                 Date = new DateTime(2011, 1, 5),
                 Start = 4,
                 Length = 2,
-                RoomRegType = roomcalendarstatus1,
+                RoomRegTypeId = RoomReg.REG_WAITING,
                 Room = room2,
                 User = user2
             };
@@ -489,7 +471,7 @@
                 Date = new DateTime(2011, 1, 5),
                 Start = 10,
                 Length = 2,
-                RoomRegType = roomcalendarstatus1,
+                RoomRegTypeId = RoomReg.REG_WAITING,
                 Room = room2,
                 User = user2
             };
@@ -499,7 +481,7 @@
                 Date = new DateTime(2011, 1, 7),
                 Start = 1,
                 Length = 3,
-                RoomRegType = roomcalendarstatus2,
+                RoomRegTypeId = RoomReg.REG_COMFIRMED,
                 Room = room1,
                 User = user1
             };
@@ -509,7 +491,7 @@
                 Date = new DateTime(2011, 1, 8),
                 Start = 8,
                 Length = 4,
-                RoomRegType = roomcalendarstatus1,
+                RoomRegTypeId = RoomReg.REG_WAITING,
                 Room = room6,
                 User = user2
             };
@@ -519,7 +501,7 @@
                 Date = new DateTime(2011, 1, 8),
                 Start = 4,
                 Length = 2,
-                RoomRegType = roomcalendarstatus3,
+                RoomRegTypeId = RoomReg.REG_CANCELED,
                 Room = room4,
                 User = user1
             };
@@ -528,15 +510,6 @@
             context.Entry(roomHO).State = EntityState.Added;
             context.Entry(roomLI).State = EntityState.Added;
             context.Entry(roomSI).State = EntityState.Added;
-
-            context.Entry(devicehistorytype1).State = EntityState.Added;
-            context.Entry(devicehistorytype2).State = EntityState.Added;
-            context.Entry(devicehistorytype3).State = EntityState.Added;
-            context.Entry(devicehistorytype4).State = EntityState.Added;
-
-            context.Entry(roomcalendarstatus1).State = EntityState.Added;
-            context.Entry(roomcalendarstatus2).State = EntityState.Added;
-            context.Entry(roomcalendarstatus3).State = EntityState.Added;
 
             #region add device
             context.Entry(device1).State = EntityState.Added;

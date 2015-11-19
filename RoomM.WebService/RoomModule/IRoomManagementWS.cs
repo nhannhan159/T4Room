@@ -15,19 +15,31 @@ namespace RoomM.WebService
     public interface IRoomManagementWS
     {
         [OperationContract]
+        Room GetRoom(Int64 roomId);
+
+        [OperationContract]
         IList<Room> GetRoomList();
+
+        [OperationContract]
+        IList<Room> GetRoomListByRoomId(Int64 roomTypeId);
 
         [OperationContract]
         IList<RoomType> GetRoomTypeList();
 
         [OperationContract]
-        IList<RoomRegType> GetRoomRegTypeList();
-
-        [OperationContract]
-        IList<AssetHistoryType> GetAssetHistoryTypeList();
+        RoomReg GetRoomReg(Int64 roomRegId);
 
         [OperationContract]
         IList<RoomReg> GetRoomRegList(Int64 roomId);
+
+        [OperationContract]
+        IList<RoomReg> GetRoomRegListByDate(DateTime date, Int64 roomId);
+
+        [OperationContract]
+        IList<RoomReg> GetRoomRegListByWeek(DateTime date, Int64 roomId);
+
+        [OperationContract]
+        IList<RoomReg> GetRoomRegListByWatchedState(bool isWatched, Int64 userId);
 
         [OperationContract]
         IList<AssetDetail> GetAssetDetailList(Int64 roomId);
@@ -48,6 +60,9 @@ namespace RoomM.WebService
         void DeleteRoom(Room room);
 
         [OperationContract]
-        void ChangeRoomRegType(RoomReg roomReg);
+        void EditRoomReg(RoomReg roomReg);
+
+        [OperationContract]
+        void DeleteRoomReg(Int64 roomRegId);
     }
 }

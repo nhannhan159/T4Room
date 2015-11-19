@@ -25,7 +25,7 @@ namespace RoomM.Infrastructure.Data.RoomModule.Repositories
 
         public IList<Room> GetByRoomTypeId(Int64 roomTypeId)
         {
-            return this.Get(filter: p => p.ID == roomTypeId).ToList();
+            return this.Get(filter: p => p.Id == roomTypeId).ToList();
         }
 
         public IList<KeyValuePair<Room, int>> GetRoomLimitByRegister(int limit, DateTime from, DateTime to)

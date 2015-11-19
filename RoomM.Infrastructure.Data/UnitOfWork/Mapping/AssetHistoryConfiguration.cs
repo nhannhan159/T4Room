@@ -15,12 +15,12 @@ namespace RoomM.Infrastructure.Data.UnitOfWork.Mapping
         public AssetHistoryConfiguration()
         { 
             // key
-            this.HasKey(t => t.ID);
+            this.HasKey(t => t.Id);
 
             // properties
-            this.Property(t => t.ID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            this.Property(t => t.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             this.Property(t => t.Date);
-            this.Property(t => t.AssetHistoryTypeId).IsOptional();
+            this.Property(t => t.AssetHistoryTypeId).IsRequired();
             this.Property(t => t.AssetId).IsOptional();
             this.Property(t => t.RoomId).IsOptional();
             this.Property(t => t.Room2).IsOptional();
@@ -30,10 +30,6 @@ namespace RoomM.Infrastructure.Data.UnitOfWork.Mapping
             this.ToTable("AssetHistorys");
 
             // relationship
-            this.HasOptional(t => t.AssetHistoryType)
-                .WithMany(c => c.AssetHistories)
-                .HasForeignKey(t => t.AssetHistoryTypeId)
-                .WillCascadeOnDelete(true);
             this.HasOptional(t => t.Asset)
                 .WithMany(c => c.AssetHistories)
                 .HasForeignKey(t => t.AssetId)

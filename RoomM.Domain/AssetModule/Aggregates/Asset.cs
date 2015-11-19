@@ -72,7 +72,7 @@ namespace RoomM.Domain.AssetModule.Aggregates
 
         public override string ToString()
         {
-            return this.ID + " # " + this.Name;
+            return this.Id + " # " + this.Name;
         }
     }
 }
