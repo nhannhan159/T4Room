@@ -19,7 +19,7 @@ namespace RoomM.Infrastructure.Data.AssetModule.Repositories
 
         protected override string IncludeProperties()
         {
-            return "AssetHistoryType,Asset,Room";
+            return "Asset,Room";
         }
 
         public IList<AssetHistory> GetByRoomId(Int64 id)

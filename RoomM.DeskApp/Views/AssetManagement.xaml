@@ -117,7 +117,7 @@
                 <TextBox Grid.Row="0" Grid.Column="2" Margin="3" Height="20" Text="{Binding NameFilter}"/>
                 <TextBox Grid.Row="1" Grid.Column="2" Margin="3" Height="20" Text="{Binding RoomFilter}"/>
                 <WrapPanel Grid.Row="2" Grid.ColumnSpan="4">
-                    <CheckBox Margin="10,5,5,5" Command="{Binding FilterAllPlusCommand}" IsChecked="{Binding AllPlusIsCheck}"/>
+                    <CheckBox Margin="10,5,5,5" Command="{Binding FilterAllPlusCommand}" IsChecked="{Binding IsIncludeAll}"/>
                     <TextBlock Margin="0,5,5,5" Text="Hiện thị các tài sản đã xóa" FontStyle="Italic"/>
                 </WrapPanel>
             </Grid>
@@ -259,8 +259,8 @@
                     </Grid>
                     <DataGrid Grid.Row="2" VerticalAlignment="Stretch" 
                               AutoGenerateColumns="False" CanUserAddRows="False"
-                              ItemsSource="{Binding Path=CurrentRoomAssetView}"
-                              SelectedItem="{Binding Path=CurrentRoomAsset}"
+                              ItemsSource="{Binding Path=CurrentAssetDetailView}"
+                              SelectedItem="{Binding Path=CurrentAssetDetail}"
                               SelectedIndex="0">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Tên phòng" Width="0.7*" Binding="{Binding Room.Name}" IsReadOnly="True"/>

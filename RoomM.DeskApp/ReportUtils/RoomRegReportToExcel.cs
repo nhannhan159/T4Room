@@ -46,8 +46,8 @@ namespace RoomM.DeskApp
                 row.CreateCell(2).SetCellValue(r.Date.ToShortDateString());
                 row.CreateCell(3).SetCellValue(r.Start);
                 row.CreateCell(4).SetCellValue(r.Length);
-                row.CreateCell(5).SetCellValue(r.User.Name);
-                row.CreateCell(6).SetCellValue(r.RoomRegType.Name);
+                row.CreateCell(5).SetCellValue(r.User.FullName);
+                row.CreateCell(6).SetCellValue(r.RoomRegType);
                 startRow++;
                 index++;
             }

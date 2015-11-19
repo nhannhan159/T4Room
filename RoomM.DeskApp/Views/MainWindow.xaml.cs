@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using RoomM.DeskApp.ViewModels;
+
 namespace RoomM.DeskApp.Views
 {
     /// <summary>
@@ -23,6 +25,7 @@ namespace RoomM.DeskApp.Views
         public MainWindow()
         {
             InitializeComponent();
+            Closing += (s, e) => ViewModelLocator.Cleanup();
         }
     }
 }

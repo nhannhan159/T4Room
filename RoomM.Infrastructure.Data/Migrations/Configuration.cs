@@ -9,7 +9,6 @@
     using RoomM.Domain.AssetModule.Aggregates;
     using RoomM.Domain.RoomModule.Aggregates;
     using RoomM.Domain.UserModule.Aggregates;
-    using RoomM.Domain.Utils;
 
     internal sealed class Configuration : DbMigrationsConfiguration<RoomM.Infrastructure.Data.UnitOfWork.EFContext>
     {

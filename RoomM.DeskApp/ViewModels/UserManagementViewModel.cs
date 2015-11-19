@@ -38,7 +38,7 @@ namespace RoomM.DeskApp.ViewModels
             this.rcvPeriodsFilter = 0;
             this.rcvBeginTimeFilter = 0;
 
-            this.RcvStatusFilters = RoomReg.GetRegType;
+            this.RcvStatusFilters = new Dictionary<int, string>(RoomReg.GetRegType);
             this.RcvStatusFilters.Add(0, "Tất cả");
             this.rcvStatusFilter = 0;
         }
@@ -68,10 +68,12 @@ namespace RoomM.DeskApp.ViewModels
             return new List<User>(this.service.GetUserList());
         }
 
+        /*
         public ICollectionView UserRoleView
         {
             get { return CollectionViewSource.GetDefaultView(this.service.GetUserRoleList()); }
         }
+        */
 
         protected override void AddCurrentEntity()
         {
@@ -117,7 +119,7 @@ namespace RoomM.DeskApp.ViewModels
         protected override bool GeneralFilter(User entity)
         {
             bool filter = true;
-            filter = filter && (entity.Name.Contains(this.NameFilter));
+            filter = filter && (entity.FullName.Contains(this.NameFilter));
             if (this.SexFilter != 0)
                 filter = filter && (this.SexFilter == 1 ? (entity.Sex == true) : (entity.Sex == false));
             return filter;
@@ -139,7 +141,7 @@ namespace RoomM.DeskApp.ViewModels
             this.newEntityViewModel = new NewEntityViewModel<User>();
             this.newEntityViewModel.NewCommand = this.NewCommand;
             this.newUserDialog = new NewUser(this.newEntityViewModel);
-            this.newUserDialog.userRoleCB.ItemsSource = this.UserRoleView;
+            //this.newUserDialog.userRoleCB.ItemsSource = this.UserRoleView;
             this.newUserDialog.ShowDialog();
         }
 

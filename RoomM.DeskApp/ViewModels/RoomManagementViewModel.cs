@@ -45,16 +45,17 @@ namespace RoomM.DeskApp.ViewModels
             this.rcvBeginTimeFilter = 0;
             this.rcvRegistrantFilter = "";
 
-            this.RoomRegTypeView = RoomReg.GetRegType;
+            this.RoomRegTypeView = new Dictionary<int, string>(RoomReg.GetRegType);
             this.RoomRegTypeView.Add(0, "Tất cả");
-            this.RcvStatusFilters = this.RoomRegTypeView;
+            this.RcvStatusFilters = new Dictionary<int, string>(RoomReg.GetRegType);
+            this.RcvStatusFilters.Add(0, "Tất cả");
             this.rcvStatusFilter = 0;
             this.ravAssetNameFilter = "";
             this.rhvDateFromFilter = new DateTime(2000, 1, 1);
             this.rhvDateToFilter = DateTime.Now;
             this.rhvAssetNameFilter = "";
 
-            this.RhvTypeFilters = AssetHistory.GetHistoryType;
+            this.RhvTypeFilters = new Dictionary<int, string>(AssetHistory.GetHistoryType);
             this.RhvTypeFilters.Add(0, "Tất cả");
             this.rhvTypeFilter = 0;
             this.currentRoomReg = default(RoomReg);
@@ -264,7 +265,7 @@ namespace RoomM.DeskApp.ViewModels
             {
                 filter = filter && (entity.Date >= this.RcvDateFromFilter);
                 filter = filter && (entity.Date <= this.RcvDateToFilter);
-                filter = filter && entity.User.Name.Contains(this.RcvRegistrantFilter); 
+                filter = filter && entity.User.FullName.Contains(this.RcvRegistrantFilter); 
                 if (this.RcvPeriodsFilter > 0)
                     filter = filter && (entity.Length == this.RcvPeriodsFilter);
                 if (this.RcvBeginTimeFilter > 0)
@@ -515,17 +516,17 @@ namespace RoomM.DeskApp.ViewModels
                             Amount = 0, AmountImport = 0, AmountRemove = 0
                         };
 
-                    if (his.AssetHistoryTypeId == Contants.ASSETS_IMPORT)
+                    if (his.AssetHistoryTypeId == AssetHistory.ASSETS_IMPORT)
                     {
                         (hm[his.Asset.Name] as HistoryRecord).Amount = (hm[his.Asset.Name] as HistoryRecord).Amount + his.Amount;
                         (hm[his.Asset.Name] as HistoryRecord).AmountImport = (hm[his.Asset.Name] as HistoryRecord).AmountImport + his.Amount;
                     }
-                    else if (his.AssetHistoryTypeId == Contants.ASSETS_REMOVE)
+                    else if (his.AssetHistoryTypeId == AssetHistory.ASSETS_REMOVE)
                     {
                         (hm[his.Asset.Name] as HistoryRecord).Amount = (hm[his.Asset.Name] as HistoryRecord).Amount - his.Amount;
                         (hm[his.Asset.Name] as HistoryRecord).AmountRemove = (hm[his.Asset.Name] as HistoryRecord).AmountRemove + his.Amount;
                     }
-                    else if (his.AssetHistoryTypeId == Contants.ASSETS_TRANSFER)
+                    else if (his.AssetHistoryTypeId == AssetHistory.ASSETS_TRANSFER)
                     {
                         if (his.Room.Id == CurrentEntity.Id)
                         {

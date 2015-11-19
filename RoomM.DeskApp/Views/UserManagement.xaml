@@ -46,7 +46,7 @@
                     <ComboBoxItem>Nam</ComboBoxItem>          
                 </ComboBox>
                 <WrapPanel Grid.Row="2" Grid.ColumnSpan="4">
-                    <CheckBox Margin="10,5,5,5" Command="{Binding FilterAllPlusCommand}" IsChecked="{Binding AllPlusIsCheck}"/>
+                    <CheckBox Margin="10,5,5,5" Command="{Binding FilterAllPlusCommand}" IsChecked="{Binding IsIncludeAll}"/>
                     <TextBlock Margin="0,5,5,5" Text="Hiện thị các nhân viên đã xóa" FontStyle="Italic"/>
                 </WrapPanel>
             </Grid>
@@ -58,7 +58,7 @@
                       ItemsSource="{Binding Path=EntitiesView}"
                       SelectedIndex="0">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Tên" Width="*" Binding="{Binding Name}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Tên" Width="*" Binding="{Binding FullName}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Giới tính" Width="Auto" Binding="{Binding SexName}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Lần đăng nhập cuối" Width="Auto" Binding="{Binding LastLogin, StringFormat=\{0:dd/MM/yyyy hh:mm\}}" IsReadOnly="True"/>
                     <DataGridTemplateColumn Header="Hành động" Width="Auto">

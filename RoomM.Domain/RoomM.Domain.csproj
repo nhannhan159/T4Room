@@ -78,7 +78,6 @@
     <Compile Include="UserModule\Aggregates\IRoleRepository.cs" />
     <Compile Include="UserModule\Aggregates\IUserRepository.cs" />
     <Compile Include="UserModule\Aggregates\Role.cs" />
-    <Compile Include="Utils\CryptorEngine.cs" />
     <Compile Include="UserModule\Aggregates\User.cs" />
   </ItemGroup>
   <ItemGroup />

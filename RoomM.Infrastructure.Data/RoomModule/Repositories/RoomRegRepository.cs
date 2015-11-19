@@ -18,7 +18,7 @@ namespace RoomM.Infrastructure.Data.RoomModule.Repositories
 
         protected override string IncludeProperties()
         {
-            return "Room,User,RoomRegType";
+            return "Room,User";
         }
 
         public IList<RoomReg> GetByRoomId(Int64 roomId)

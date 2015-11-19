@@ -10,7 +10,6 @@ using System.Runtime.Serialization;
 using Microsoft.AspNet.Identity;
 
 using RoomM.Domain.RoomModule.Aggregates;
-using RoomM.Domain.Utils;
 
 namespace RoomM.Domain.UserModule.Aggregates
 {

@@ -102,7 +102,7 @@ namespace RoomM.DeskApp.ViewModels
             {
                 this.chartStaffItems.Add(new ChartElement
                 {
-                    Name = d.Key.Name,
+                    Name = d.Key.FullName,
                     Value = d.Value
                 });
             }

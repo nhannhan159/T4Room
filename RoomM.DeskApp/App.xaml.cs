@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using GalaSoft.MvvmLight.Threading;
 
 namespace RoomM.DeskApp
 {
@@ -15,7 +16,8 @@ namespace RoomM.DeskApp
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            IocKernel.Initialize(new DeskAppModule());
+            //IocKernel.Initialize(new DeskAppModule());
+            DispatcherHelper.Initialize();
             base.OnStartup(e);
         }
     }

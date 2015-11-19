@@ -42,7 +42,7 @@
                 <TextBox Grid.Row="0" Grid.Column="2" Margin="3" Height="20" Text="{Binding NameFilter}"/>
                 <ComboBox Grid.Row="1" Grid.Column="2" Margin="3" Height="20" ItemsSource="{Binding RoomTypeFilters}" SelectedItem="{Binding RoomTypeFilter}" DisplayMemberPath="Name"/>
                 <WrapPanel Grid.Row="2" Grid.ColumnSpan="4">
-                    <CheckBox Margin="10,5,5,5" Command="{Binding FilterAllPlusCommand}" IsChecked="{Binding AllPlusIsCheck}"/>
+                    <CheckBox Margin="10,5,5,5" Command="{Binding FilterAllPlusCommand}" IsChecked="{Binding IsIncludeAll}"/>
                     <TextBlock Margin="0,5,5,5" Text="Hiện thị các phòng đã xoá" FontStyle="Italic"/>
                 </WrapPanel>
                 <Button Grid.Row="2" Grid.Column="3" Content="Làm mới" Width="80" Height="20" Command="{Binding RefreshCommand}"/>
@@ -142,7 +142,7 @@
                         <Label Grid.Row="3" Grid.Column="0" Content="Mô tả:" HorizontalAlignment="Left"/>
                         <TextBox Grid.Row="0" Grid.Column="1" Margin="0,0,0,5" Padding="3" HorizontalAlignment="Stretch" Text="{Binding CurrentEntity.Name}" IsEnabled="{Binding CanModify}"/>
                         <DatePicker Grid.Row="1" Grid.Column="1" Margin="0,0,0,5" HorizontalAlignment="Stretch" SelectedDate="{Binding CurrentEntity.DateCreate,StringFormat='dd/MM/yyy'}" IsEnabled="{Binding CanModify}"/>
-                        <ComboBox Grid.Row="2" Grid.Column="1" Margin="0,0,0,5" HorizontalAlignment="Stretch" ItemsSource="{Binding Path=RoomTypesView}" SelectedValue="{Binding Path=CurrentEntity.RoomTypeId}" DisplayMemberPath="Name" SelectedValuePath="ID" IsEnabled="{Binding CanModify}"/>
+                        <ComboBox Grid.Row="2" Grid.Column="1" Margin="0,0,0,5" HorizontalAlignment="Stretch" ItemsSource="{Binding Path=RoomTypesView}" SelectedValue="{Binding Path=CurrentEntity.RoomTypeId}" DisplayMemberPath="Name" SelectedValuePath="Id" IsEnabled="{Binding CanModify}"/>
                         <TextBox Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" IsEnabled="{Binding CanModify}" Text="{Binding CurrentEntity.Description}" AcceptsReturn="True" AcceptsTab="True"/>
                         <Button Grid.Row="4" Grid.ColumnSpan="4" Content="Lưu thay đổi" Height="25" Width="120" Margin="0,6,0,0" Command="{Binding SaveCommand}" IsEnabled="{Binding CurrentEntity.IsUsing}"/>
                     </Grid>
@@ -183,28 +183,31 @@
                             <TextBox Grid.Row="2" Grid.Column="1" Margin="3" Height="20" Text="{Binding RcvPeriodsFilter}"/>
                             <TextBox Grid.Row="2" Grid.Column="4" Margin="3" Height="20" Text="{Binding RcvRegistrantFilter}"/>
                             <TextBox Grid.Row="3" Grid.Column="1" Margin="3" Height="20" Text="{Binding RcvBeginTimeFilter}"/>
-                            <ComboBox Grid.Row="3" Grid.Column="4" Margin="3" Height="20" ItemsSource="{Binding RcvStatusFilters}" SelectedItem="{Binding RcvStatusFilter}" DisplayMemberPath="Name"/>
+                            <ComboBox Grid.Row="3" Grid.Column="4" Margin="3" Height="20" 
+                                      ItemsSource="{Binding RcvStatusFilters}" 
+                                      SelectedValue="{Binding Path=RcvStatusFilter, UpdateSourceTrigger=LostFocus}"
+                                      SelectedValuePath="Key" DisplayMemberPath="Value"/>
                         </Grid>
                         <DataGrid Grid.Row="1" VerticalAlignment="Stretch" Margin="0,7,0,0" 
                                   AutoGenerateColumns="False" CanUserAddRows="False"
-                                  ItemsSource="{Binding Path=CurrentRoomCalendarView}"
-                                  SelectedItem="{Binding Path=CurrentRoomCalendar}"
+                                  ItemsSource="{Binding Path=CurrentRoomRegView}"
+                                  SelectedItem="{Binding Path=CurrentRoomReg}"
                                   SelectedIndex="0">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Ngày" Width="0.15*" Binding="{Binding Date, StringFormat=\{0:dd/MM/yyyy \}}" IsReadOnly="True"/>
                                 <DataGridTextColumn Header="Tiết đầu" Width="0.125*" IsReadOnly="True" Binding="{Binding Start}"/>
                                 <DataGridTextColumn Header="Số tiết" Width="0.125*" IsReadOnly="True" Binding="{Binding Length}"/>
-                                <DataGridTextColumn Header="Người đăng ký" Width="0.175*" IsReadOnly="True" Binding="{Binding User.Name}"/>
-                                <DataGridTextColumn Header="Trạng thái" Width="0.15*" IsReadOnly="True" Binding="{Binding RoomCalendarStatus.Name}"/>
+                                <DataGridTextColumn Header="Người đăng ký" Width="0.175*" IsReadOnly="True" Binding="{Binding User.FullName}"/>
+                                <DataGridTextColumn Header="Trạng thái" Width="0.15*" IsReadOnly="True" Binding="{Binding RoomRegType}"/>
                                 <DataGridTemplateColumn Header="Đổi trạng thái" Width="0.3*">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <WrapPanel>
                                                 <ComboBox Height="20" Width="100" Margin="3,0,3,0" 
-                                                          ItemsSource="{Binding Path=DataContext.RoomCalendarStatusView,
+                                                          ItemsSource="{Binding Path=DataContext.RoomRegTypeView,
                                                                                 RelativeSource={RelativeSource FindAncestor, 
                                                                                                                AncestorType={x:Type DataGrid}}}" 
-                                                          SelectedValue="{Binding Path=RoomCalendarStatusId, UpdateSourceTrigger=LostFocus}" SelectedValuePath="Key" DisplayMemberPath="Value" Padding="5,0,0,0"/>
+                                                          SelectedValue="{Binding Path=RoomRegTypeId, UpdateSourceTrigger=LostFocus}" SelectedValuePath="Key" DisplayMemberPath="Value" Padding="5,0,0,0"/>
                                                 <Button Height="20" Width="40" Content="Đổi"
                                                         Command="{Binding Path=DataContext.ChangeCalendarStatusCommand,
                                                                           RelativeSource={RelativeSource FindAncestor, 
@@ -316,7 +319,10 @@
                             <DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding RhvDateFromFilter,StringFormat='dd/MM/yyy'}"/>
                             <DatePicker Grid.Row="1" Grid.Column="4" SelectedDate="{Binding RhvDateToFilter,StringFormat='dd/MM/yyy'}"/>
                             <TextBox Grid.Row="2" Grid.Column="1" Margin="3" Height="20" Text="{Binding RhvAssetNameFilter}"/>
-                            <ComboBox Grid.Row="2" Grid.Column="4" Margin="3" Height="20" ItemsSource="{Binding RhvTypeFilters}" SelectedItem="{Binding RhvTypeFilter}" DisplayMemberPath="Name"/>
+                            <ComboBox Grid.Row="2" Grid.Column="4" Margin="3" Height="20" 
+                                      ItemsSource="{Binding RhvTypeFilters}" 
+                                      SelectedValue="{Binding Path=RhvTypeFilter, UpdateSourceTrigger=LostFocus}"
+                                      SelectedValuePath="Key" DisplayMemberPath="Value"/>
                         </Grid>
                         <DataGrid Grid.Row="1" VerticalAlignment="Stretch" Margin="0,7,0,0" 
                                   AutoGenerateColumns="False" CanUserAddRows="False"

@@ -44,7 +44,7 @@ namespace RoomM.DeskApp
             {
                 IRow row = activeSheet.CreateRow(startRow);
                 row.CreateCell(1).SetCellValue(index);
-                row.CreateCell(2).SetCellValue(rAsset.ID);
+                row.CreateCell(2).SetCellValue(rAsset.Id);
                 row.CreateCell(3).SetCellValue(rAsset.Asset.Name);
                 row.CreateCell(4).SetCellValue(rAsset.Amount);
 
