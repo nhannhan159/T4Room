@@ -32,6 +32,8 @@ namespace RoomM.Infrastructure.Data.UnitOfWork
             modelBuilder.Configurations.Add(new RoomTypeConfiguration());
             modelBuilder.Configurations.Add(new RoomRegConfiguration());
             modelBuilder.Configurations.Add(new UserConfiguration());
+            modelBuilder.Configurations.Add(new UserClaimConfiguration());
+            modelBuilder.Configurations.Add(new UserLoginConfiguration());
             modelBuilder.Configurations.Add(new RoleConfiguration());
         }
 
@@ -46,6 +48,8 @@ namespace RoomM.Infrastructure.Data.UnitOfWork
         private IAssetHistoryRepository assetHistoryRep;
 
         private IUserRepository userRep;
+        private IUserClaimRepository userClaimRep;
+        private IUserLoginRepository userLoginRep;
         private IRoleRepository roleRep;
 
         public void Commit() 
@@ -129,6 +133,26 @@ namespace RoomM.Infrastructure.Data.UnitOfWork
             }
         }
 
+        public IUserClaimRepository UserClaimRep
+        {
+            get
+            {
+                if (this.userClaimRep == null)
+                    this.userClaimRep = new UserClaimRepository(this);
+                return this.userClaimRep;
+            }
+        }
+
+        public IUserLoginRepository UserLoginRep
+        {
+            get
+            {
+                if (this.userLoginRep == null)
+                    this.userLoginRep = new UserLoginRepository(this);
+                return this.userLoginRep;
+            }
+        }
+
         public IRoleRepository RoleRep
         {
             get
@@ -140,11 +164,5 @@ namespace RoomM.Infrastructure.Data.UnitOfWork
         }
 
         #endregion
-
-        public System.Data.Entity.DbSet<RoomM.Domain.AssetModule.Aggregates.AssetDetail> AssetDetails { get; set; }
-
-        public System.Data.Entity.DbSet<RoomM.Domain.AssetModule.Aggregates.Asset> Assets { get; set; }
-
-        public System.Data.Entity.DbSet<RoomM.Domain.RoomModule.Aggregates.Room> Rooms { get; set; }
     }
 }

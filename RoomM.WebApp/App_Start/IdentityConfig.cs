@@ -103,7 +103,7 @@ namespace RoomM.WebApp
 
         public override Task<ClaimsIdentity> CreateUserIdentityAsync(User user)
         {
-            return ApplicationUser.GenerateUserIdentityAsync(user, UserManager);
+            return ApplicationUser.GenerateUserIdentityAsync(user, (ApplicationUserManager)UserManager);
         }
 
         public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)

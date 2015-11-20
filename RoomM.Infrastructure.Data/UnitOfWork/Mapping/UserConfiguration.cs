@@ -31,6 +31,7 @@ namespace RoomM.Infrastructure.Data.UnitOfWork.Mapping
             this.Property(t => t.LockoutEnabled).IsOptional();
             this.Property(t => t.LockoutEndDateUtc).IsOptional();
             this.Property(t => t.TwoFactorEnabled).IsOptional();
+            this.Property(t => t.SecurityStamp).IsOptional();
 
             // table
             this.ToTable("Users");

@@ -20,6 +20,15 @@ namespace RoomM.Application.UserModule.Services
         void AddUser(User user);
         void EditUser(User user);
         void DeleteUser(User user);
-        void AddUserToRole(User user, string roleName);
+        IList<string> GetUserRoles(Int64 userId);
+        bool IsUserInRole(Int64 userId, string roleName);
+        void AddUserToRole(Int64 userId, string roleName);
+        IList<UserClaim> GetUserClaimList(Int64 userId);
+        void AddUserClaim(Int64 userId, string claimType, string claimValue);
+        void DeleteUserClaim(Int64 userId, string claimType, string claimValue);
+        IList<UserLogin> GetUserLoginList(Int64 userId);
+        User FindUserByLogin(string loginProvider, string providerKey);
+        void AddUserLogin(Int64 userId, string loginProvider, string providerKey);
+        void DeleteUserLogin(Int64 userId, string loginProvider, string providerKey);
     }
 }

@@ -49,6 +49,10 @@
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -76,8 +80,12 @@
     <Compile Include="AssetModule\Aggregates\AssetDetail.cs" />
     <Compile Include="RoomModule\Aggregates\RoomType.cs" />
     <Compile Include="UserModule\Aggregates\IRoleRepository.cs" />
+    <Compile Include="UserModule\Aggregates\IUserLoginRepository.cs" />
+    <Compile Include="UserModule\Aggregates\IUserClaimRepository.cs" />
     <Compile Include="UserModule\Aggregates\IUserRepository.cs" />
     <Compile Include="UserModule\Aggregates\Role.cs" />
+    <Compile Include="UserModule\Aggregates\UserLogin.cs" />
+    <Compile Include="UserModule\Aggregates\UserClaim.cs" />
     <Compile Include="UserModule\Aggregates\User.cs" />
   </ItemGroup>
   <ItemGroup />

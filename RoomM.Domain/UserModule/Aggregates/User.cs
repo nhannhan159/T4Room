@@ -63,6 +63,37 @@ namespace RoomM.Domain.UserModule.Aggregates
         [DataMember]
         public bool TwoFactorEnabled { get; set; }
 
+        [DataMember]
+        public string SecurityStamp { get; set; }
+
+        public virtual ICollection<UserClaim> UserClaims
+        {
+            get
+            {
+                if (this.userClaims == null)
+                    this.userClaims = new List<UserClaim>();
+                return this.userClaims;
+            }
+            set
+            {
+                this.userClaims = new List<UserClaim>(value);
+            }
+        }
+
+        public virtual ICollection<UserLogin> UserLogins
+        {
+            get
+            {
+                if (this.userLogins == null)
+                    this.userLogins = new List<UserLogin>();
+                return this.userLogins;
+            }
+            set
+            {
+                this.userLogins = new List<UserLogin>(value);
+            }
+        }
+
         public virtual ICollection<Role> Roles
         {
             get
@@ -91,12 +122,13 @@ namespace RoomM.Domain.UserModule.Aggregates
             }
         }
 
+        private IList<UserClaim> userClaims;
+        private IList<UserLogin> userLogins;
         private IList<Role> roles;
         private IList<RoomReg> roomRegs;
 
         public User()
         {
-            this.roles = new List<Role>();
             this.IsWorking = true;
         }
 

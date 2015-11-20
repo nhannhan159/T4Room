@@ -72,7 +72,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RoomM.Models\RoomM.Domain.csproj">
+    <ProjectReference Include="..\RoomM.Domain\RoomM.Domain.csproj">
       <Project>{a2cd9ea0-9e0c-4b0a-87f5-9baddc4f9422}</Project>
       <Name>RoomM.Domain</Name>
     </ProjectReference>

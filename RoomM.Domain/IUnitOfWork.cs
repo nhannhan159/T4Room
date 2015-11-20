@@ -25,6 +25,8 @@ namespace RoomM.Domain
         IAssetHistoryRepository AssetHistoryRep { get; }
 
         IUserRepository UserRep { get; }
+        IUserClaimRepository UserClaimRep { get; }
+        IUserLoginRepository UserLoginRep { get; }
         IRoleRepository RoleRep { get; }
     }
 }

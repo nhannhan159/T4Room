@@ -51,6 +51,10 @@
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -63,9 +67,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201511190718447_InitialCreate.cs" />
-    <Compile Include="Migrations\201511190718447_InitialCreate.Designer.cs">
-      <DependentUpon>201511190718447_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201511200421431_InitialCreate.cs" />
+    <Compile Include="Migrations\201511200421431_InitialCreate.Designer.cs">
+      <DependentUpon>201511200421431_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UnitOfWork\EFContext.cs" />
@@ -73,6 +77,8 @@
     <Compile Include="UnitOfWork\Mapping\RoomRegConfiguration.cs" />
     <Compile Include="UnitOfWork\Mapping\AssetDetailConfiguration.cs" />
     <Compile Include="UnitOfWork\Mapping\RoleConfiguration.cs" />
+    <Compile Include="UnitOfWork\Mapping\UserLoginConfiguration.cs" />
+    <Compile Include="UnitOfWork\Mapping\UserClaimConfiguration.cs" />
     <Compile Include="UnitOfWork\Mapping\UserConfiguration.cs" />
     <Compile Include="UnitOfWork\Mapping\AssetHistoryConfiguration.cs" />
     <Compile Include="UnitOfWork\Mapping\AssetConfiguration.cs" />
@@ -85,6 +91,8 @@
     <Compile Include="AssetModule\Repositories\AssetDetailRepository.cs" />
     <Compile Include="RoomModule\Repositories\RoomRepository.cs" />
     <Compile Include="UserModule\Repositories\RoleRepository.cs" />
+    <Compile Include="UserModule\Repositories\UserLoginRepository.cs" />
+    <Compile Include="UserModule\Repositories\UserClaimRepository.cs" />
     <Compile Include="UserModule\Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -98,8 +106,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201511190718447_InitialCreate.resx">
-      <DependentUpon>201511190718447_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201511200421431_InitialCreate.resx">
+      <DependentUpon>201511200421431_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

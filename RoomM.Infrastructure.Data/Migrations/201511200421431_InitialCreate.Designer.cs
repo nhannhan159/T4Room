@@ -13,7 +13,7 @@ namespace RoomM.Infrastructure.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201511190718447_InitialCreate"; }
+            get { return "201511200421431_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

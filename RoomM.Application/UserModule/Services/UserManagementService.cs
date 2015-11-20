@@ -108,15 +108,89 @@ namespace RoomM.Application.UserModule.Services
 
         #region Addition Services
 
-        public void AddUserToRole(User user, string roleName)
+        public IList<string> GetUserRoles(Int64 userId)
+        {
+            User user = this.context.UserRep.GetSingle(userId);
+            IList<string> roles = new List<string>();
+            foreach (Role role in user.Roles)
+            {
+                roles.Add(role.Name);
+            }
+            return roles.Count > 0 ? roles : null;
+        }
+
+        public bool IsUserInRole(Int64 userId, string roleName)
+        {
+            User user = this.context.UserRep.GetSingle(userId);
+            return user.Roles.Count(p => p.Name.Equals(roleName)) > 0;
+        }
+
+        public void AddUserToRole(Int64 userId, string roleName)
         {
             Role role = this.context.RoleRep.GetByName(roleName);
-            if (role != null)
+            User user = this.context.UserRep.GetSingle(userId);
+            if (role != null && user != null)
             {
-                var _user = this.context.UserRep.GetSingle(user.Id);
-                _user.Roles.Add(role);
-                this.context.UserRep.Edit(_user);
+                user.Roles.Add(role);
+                this.context.UserRep.Edit(user);
+                this.context.Commit();
             }
+        }
+
+        public IList<UserClaim> GetUserClaimList(Int64 userId)
+        {
+            return this.context.UserClaimRep.GetByUserId(userId);
+        }
+
+        public void AddUserClaim(Int64 userId, string claimType, string claimValue)
+        {
+            UserClaim userClaim = new UserClaim()
+            {
+                UserId = userId,
+                ClaimType = claimType,
+                ClaimValue = claimValue
+            };
+            this.context.UserClaimRep.Add(userClaim);
+            this.context.Commit();
+        }
+
+        public void DeleteUserClaim(Int64 userId, string claimType, string claimValue)
+        {
+            this.context.UserClaimRep.Delete(userId, claimType, claimValue);
+            this.context.Commit();
+        }
+
+        public IList<UserLogin> GetUserLoginList(Int64 userId)
+        {
+            return this.context.UserLoginRep.GetByUserId(userId);
+        }
+
+        public User FindUserByLogin(string loginProvider, string providerKey)
+        {
+            Int64 userId = this.context.UserLoginRep.GetUserId(loginProvider, providerKey);
+            if (userId != 0)
+            {
+                return this.context.UserRep.GetSingle(userId);
+            }
+            return null;
+        }
+
+        public void AddUserLogin(Int64 userId, string loginProvider, string providerKey)
+        {
+            UserLogin userLogin = new UserLogin()
+            {
+                UserId = userId,
+                LoginProvider = loginProvider,
+                ProviderKey = providerKey
+            };
+            this.context.UserLoginRep.Add(userLogin);
+            this.context.Commit();
+        }
+
+        public void DeleteUserLogin(Int64 userId, string loginProvider, string providerKey)
+        {
+            this.context.UserLoginRep.Delete(userId, loginProvider, providerKey);
+            this.context.Commit();
         }
 
         #endregion

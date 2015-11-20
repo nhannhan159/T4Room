@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity.Validation;
+using System.Security.Claims;
 using Microsoft.AspNet.Identity;
 
 using RoomM.WebApp.Models;
@@ -19,7 +20,10 @@ namespace RoomM.WebApp.AuthStores
         IUserPasswordStore<TUser, Int64>,
         IUserEmailStore<TUser, Int64>,
         IUserLockoutStore<TUser, Int64>,
-        IUserTwoFactorStore<TUser, Int64>
+        IUserTwoFactorStore<TUser, Int64>,
+        IUserClaimStore<TUser, Int64>,
+        IUserSecurityStampStore<TUser, Int64>,
+        IUserLoginStore<TUser, Int64>
         where TUser : User
     {
         private IUserManagementService service;
@@ -79,7 +83,7 @@ namespace RoomM.WebApp.AuthStores
                 throw new ArgumentException("Argument cannot be null or empty: roleName.");
             }
 
-            this.service.AddUserToRole(user, roleName);
+            this.service.AddUserToRole(user.Id, roleName);
             return Task.FromResult<object>(null);
         }
 
@@ -90,18 +94,8 @@ namespace RoomM.WebApp.AuthStores
                 throw new ArgumentNullException("user");
             }
 
-            List<string> roles = new List<string>();
-            foreach (Role role in user.Roles)
-            {
-                roles.Add(role.Name);
-            }
-
-            if (roles.Count > 0)
-            {
-                return Task.FromResult<IList<string>>(roles);
-            }
-
-            return Task.FromResult<IList<string>>(null);
+            IList<string> roles = this.service.GetUserRoles(user.Id);
+            return Task.FromResult<IList<string>>(roles);
         }
 
         public Task<bool> IsInRoleAsync(TUser user, string roleName)
@@ -116,7 +110,7 @@ namespace RoomM.WebApp.AuthStores
                 throw new ArgumentNullException("roleName");
             }
 
-            bool result = user.Roles.Count(p => p.Name.Equals(roleName)) > 0;
+            bool result = this.service.IsUserInRole(user.Id, roleName);
             return Task.FromResult<bool>(result);
         }
 
@@ -224,7 +218,6 @@ namespace RoomM.WebApp.AuthStores
         public Task SetLockoutEnabledAsync(TUser user, bool enabled)
         {
             user.LockoutEnabled = enabled;
-            this.service.EditUser(user);
             return Task.FromResult(0);
         }
 
@@ -249,6 +242,133 @@ namespace RoomM.WebApp.AuthStores
             user.TwoFactorEnabled = enabled;
             this.service.EditUser(user);
             return Task.FromResult(0);
+        }
+
+        #endregion
+
+        #region Implement "IUserClaimStore"
+
+        public Task AddClaimAsync(TUser user, Claim claim)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            if (claim == null)
+            {
+                throw new ArgumentNullException("claim");
+            }
+
+            this.service.AddUserClaim(user.Id, claim.Type, claim.Value);
+            return Task.FromResult<object>(null);
+        }
+
+        public Task<IList<Claim>> GetClaimsAsync(TUser user)
+        {
+            ClaimsIdentity identity = new ClaimsIdentity();
+            IList<UserClaim> userClaims = this.service.GetUserClaimList(user.Id);
+            foreach (UserClaim userClaim in userClaims)
+            {
+                Claim claim = new Claim(userClaim.ClaimType, userClaim.ClaimValue);
+                identity.AddClaim(claim);
+            }
+            return Task.FromResult<IList<Claim>>(identity.Claims.ToList());
+        }
+
+        public Task RemoveClaimAsync(TUser user, Claim claim)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            if (claim == null)
+            {
+                throw new ArgumentNullException("claim");
+            }
+
+            this.service.DeleteUserClaim(user.Id, claim.Type, claim.Value);
+            return Task.FromResult<object>(null);
+        }
+
+        #endregion
+
+        #region Implement "IUserSecurityStampStore"
+
+        public Task<string> GetSecurityStampAsync(TUser user)
+        {
+            return Task.FromResult(user.SecurityStamp);
+        }
+
+        public Task SetSecurityStampAsync(TUser user, string stamp)
+        {
+            user.SecurityStamp = stamp;
+            return Task.FromResult(0);
+        }
+
+        #endregion
+
+        #region Implement "IUserLoginStore"
+
+        public Task AddLoginAsync(TUser user, UserLoginInfo login)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            if (login == null)
+            {
+                throw new ArgumentNullException("login");
+            }
+
+            this.service.AddUserLogin(user.Id, login.LoginProvider, login.ProviderKey);
+            return Task.FromResult<object>(null);
+        }
+
+        public Task<TUser> FindAsync(UserLoginInfo login)
+        {
+            if (login == null)
+            {
+                throw new ArgumentNullException("login");
+            }
+
+            User user = this.service.FindUserByLogin(login.LoginProvider, login.ProviderKey);
+            return Task.FromResult<TUser>(user as TUser);
+        }
+
+        public Task<IList<UserLoginInfo>> GetLoginsAsync(TUser user)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            IList<UserLoginInfo> userLoginInfos = new List<UserLoginInfo>();
+            IList<UserLogin> userLogins = this.service.GetUserLoginList(user.Id);
+            foreach (UserLogin userLogin in userLogins)
+            {
+                UserLoginInfo userLoginInfo = new UserLoginInfo(userLogin.LoginProvider, userLogin.ProviderKey);
+                userLoginInfos.Add(userLoginInfo);
+            }
+            return Task.FromResult<IList<UserLoginInfo>>(userLoginInfos);
+        }
+
+        public Task RemoveLoginAsync(TUser user, UserLoginInfo login)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            if (login == null)
+            {
+                throw new ArgumentNullException("login");
+            }
+
+            this.service.DeleteUserLogin(user.Id, login.LoginProvider, login.ProviderKey);
+            return Task.FromResult<Object>(null);
         }
 
         #endregion
