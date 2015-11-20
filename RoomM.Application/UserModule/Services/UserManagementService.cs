@@ -94,14 +94,9 @@ namespace RoomM.Application.UserModule.Services
             return this.context.RoleRep.GetAll();
         }
 
-        public IList<RoomType> GetRoomTypeList()
+        public IList<KeyValuePair<User, int>> GetUserLimitByRegister(int limit, DateTime from, DateTime to)
         {
-            return this.context.RoomTypeRep.GetAll();
-        }
-
-        public IList<RoomReg> GetRoomRegList(Int64 userId)
-        {
-            return this.context.RoomRegRep.GetByUserId(userId);
+            return this.context.UserRep.GetUserLimitByRegister(limit, from, to);
         }
 
         #endregion

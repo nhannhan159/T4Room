@@ -99,9 +99,14 @@ namespace RoomM.Application.RoomModule.Services
             return this.context.RoomRegRep.GetSingle(roomRegId);
         }
 
-        public IList<RoomReg> GetRoomRegList(Int64 roomId)
+        public IList<RoomReg> GetRoomRegListByRoomId(Int64 roomId)
         {
             return this.context.RoomRegRep.GetByRoomId(roomId);
+        }
+
+        public IList<RoomReg> GetRoomRegListByUserId(Int64 userId)
+        {
+            return this.context.RoomRegRep.GetByUserId(userId);
         }
 
         public IList<RoomReg> GetRoomRegListByDate(DateTime date, Int64 roomId)
@@ -119,19 +124,9 @@ namespace RoomM.Application.RoomModule.Services
             return this.context.RoomRegRep.GetByWatchedState(isWatched, userId);
         }
 
-        public IList<AssetDetail> GetAssetDetailList(Int64 roomId)
+        public IList<KeyValuePair<Room, int>> GetRoomLimitByRegister(int limit, DateTime from, DateTime to)
         {
-            return this.context.AssetDetailRep.GetByRoomId(roomId);
-        }
-
-        public IList<AssetHistory> GetAssetHistoryList(Int64 roomId)
-        {
-            return this.context.AssetHistoryRep.GetByRoomId(roomId);
-        }
-
-        public IList<AssetHistory> GetByRoom2RoomId(Room room, DateTime timeForBacktrace)
-        {
-            return this.context.AssetHistoryRep.GetByRoom2RoomId(room, timeForBacktrace);
+            return this.context.RoomRep.GetRoomLimitByRegister(limit, from, to);
         }
 
         #endregion

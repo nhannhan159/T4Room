@@ -99,6 +99,21 @@ namespace RoomM.Application.AssetModule.Services
             return this.context.AssetDetailRep.GetByAssetId(assetId);
         }
 
+        public IList<AssetDetail> GetAssetDetailListByRoomId(Int64 roomId)
+        {
+            return this.context.AssetDetailRep.GetByRoomId(roomId);
+        }
+
+        public IList<AssetHistory> GetAssetHisListByRoomId(Int64 roomId)
+        {
+            return this.context.AssetHistoryRep.GetByRoomId(roomId);
+        }
+
+        public IList<AssetHistory> GetAssetHisListByBacktrace(Room room, DateTime timeForBacktrace)
+        {
+            return this.context.AssetHistoryRep.GetByRoom2RoomId(room, timeForBacktrace);
+        }
+
         #endregion
 
         #region Addition Services

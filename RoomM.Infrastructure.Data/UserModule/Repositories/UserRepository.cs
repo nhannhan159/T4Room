@@ -23,9 +23,14 @@ namespace RoomM.Infrastructure.Data.UserModule.Repositories
             return "";
         }
 
-        public bool CheckUserExists(string username)
+        public Int64 GetUserId(string username)
         {
-            return this.Get(filter: p => p.UserName.Equals(username)).Count() != 0;
+            return this.Get(filter: p => p.UserName.Equals(username)).First().Id;
+        }
+
+        public User GetSingleByUsername(string username)
+        {
+            return this.Get().SingleOrDefault(x => x.UserName.Equals(username));
         }
 
         public IList<KeyValuePair<User, int>> GetUserLimitByRegister(int limit, DateTime from, DateTime to)
@@ -40,26 +45,6 @@ namespace RoomM.Infrastructure.Data.UserModule.Repositories
             }
 
             return list.OrderByDescending(p => p.Value).Take(limit).ToList();
-        }
-
-        public bool IsExists(string username)
-        {
-            return this.Get(filter: p => p.UserName.Equals(username)).Count() > 0;
-        }
-
-        public Int64 GetUserId(string username)
-        {
-            return this.Get(filter: p => p.UserName.Equals(username)).First().Id;
-        }
-
-        public bool UserNameIsWorking(string username)
-        {
-            return this.Get(filter: p => p.UserName.Equals(username) && p.IsWorking).Count() > 0;
-        }
-
-        public User GetSingleByUsername(string username)
-        {
-            return this.Get().SingleOrDefault(x => x.UserName.Equals(username));
-        }
+        } 
     }
 }

@@ -13,10 +13,11 @@ namespace RoomM.Application.AssetModule.Services
     public interface IAssetManagementService
     {
         IList<Asset> GetAssetList();
-        IList<Room> GetRoomList();
-        IList<RoomType> GetRoomTypeList();
         IList<AssetDetail> GetAssetDetailList();
         IList<AssetDetail> GetAssetDetailListByAssetId(Int64 assetId);
+        IList<AssetDetail> GetAssetDetailListByRoomId(Int64 roomId);
+        IList<AssetHistory> GetAssetHisListByRoomId(Int64 roomId);
+        IList<AssetHistory> GetAssetHisListByBacktrace(Room room, DateTime timeForBacktrace);
         void AddAsset(Asset asset);
         void EditAsset(Asset asset);
         void DeleteAsset(Asset asset);

@@ -15,8 +15,7 @@ namespace RoomM.Application.UserModule.Services
         User GetSingleByUsername(string username);
         IList<User> GetUserList();
         IList<Role> GetRoleList();
-        IList<RoomType> GetRoomTypeList();
-        IList<RoomReg> GetRoomRegList(Int64 userId);
+        IList<KeyValuePair<User, int>> GetUserLimitByRegister(int limit, DateTime from, DateTime to);
         void AddUser(User user);
         void EditUser(User user);
         void DeleteUser(User user);

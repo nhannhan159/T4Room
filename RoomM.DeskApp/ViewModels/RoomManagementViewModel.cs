@@ -17,6 +17,7 @@ using RoomM.DeskApp.UIHelper;
 using RoomM.DeskApp.Views;
 using RoomM.Domain.AssetModule.Aggregates;
 using RoomM.Domain.RoomModule.Aggregates;
+using RoomM.Application.AssetModule.Services;
 using RoomM.Application.RoomModule.Services;
 
 namespace RoomM.DeskApp.ViewModels
@@ -26,13 +27,14 @@ namespace RoomM.DeskApp.ViewModels
 
         #region Contruction
 
-        public RoomManagementViewModel(IRoomManagementService service)
+        public RoomManagementViewModel(IAssetManagementService assetManagementService, IRoomManagementService roomManagementService)
             : base()
         {
-            this.service = service;
+            this.assetManagementService = assetManagementService;
+            this.roomManagementService = roomManagementService;
             this.BaseInit();
 
-            List<RoomType> roomTypeList = new List<RoomType>(this.service.GetRoomTypeList());
+            List<RoomType> roomTypeList = new List<RoomType>(this.roomManagementService.GetRoomTypeList());
             roomTypeList.Add(new RoomType("Tất cả"));
             this.roomTypeFilters = new CollectionView(roomTypeList);
             this.roomTypeFilter = roomTypeList[roomTypeList.Count - 1];
@@ -69,7 +71,8 @@ namespace RoomM.DeskApp.ViewModels
 
         #region PrivateField
 
-        private IRoomManagementService service;
+        private IAssetManagementService assetManagementService;
+        private IRoomManagementService roomManagementService;
 
         private NewRoom newRoomDialog;
         private RoomType roomTypeFilter;
@@ -122,14 +125,14 @@ namespace RoomM.DeskApp.ViewModels
 
         protected override List<Room> GetEntitiesList()
         {
-            return new List<Room>(this.service.GetRoomList());
+            return new List<Room>(this.roomManagementService.GetRoomList());
         }
 
         protected override void AddCurrentEntity()
         {
             try
             {
-                this.service.AddRoom(this.CurrentEntity);
+                this.roomManagementService.AddRoom(this.CurrentEntity);
             }
             catch (Exception ex)
             {
@@ -141,7 +144,7 @@ namespace RoomM.DeskApp.ViewModels
         {
             try
             {
-                this.service.EditRoom(this.CurrentEntity);
+                this.roomManagementService.EditRoom(this.CurrentEntity);
             }
             catch (Exception ex)
             {
@@ -153,7 +156,7 @@ namespace RoomM.DeskApp.ViewModels
         {
             try
             {
-                this.service.DeleteRoom(this.CurrentEntity);
+                this.roomManagementService.DeleteRoom(this.CurrentEntity);
             }
             catch (Exception ex)
             {
@@ -206,11 +209,11 @@ namespace RoomM.DeskApp.ViewModels
             else
             {
                 this.currentRoomRegView = CollectionViewSource.GetDefaultView(
-                    this.service.GetRoomRegList(this.CurrentEntity.Id));
+                    this.roomManagementService.GetRoomRegListByRoomId(this.CurrentEntity.Id));
                 this.currentRoomAssetView = CollectionViewSource.GetDefaultView(
-                    this.service.GetAssetDetailList(this.CurrentEntity.Id));
+                    this.assetManagementService.GetAssetDetailListByRoomId(this.CurrentEntity.Id));
                 this.currentRoomHistoryView = CollectionViewSource.GetDefaultView(
-                    this.service.GetAssetHistoryList(this.CurrentEntity.Id));
+                    this.assetManagementService.GetAssetHisListByRoomId(this.CurrentEntity.Id));
             }
             this.currentRoomRegView.Filter += RoomRegViewFilter;
             this.currentRoomAssetView.Filter += RoomAssetViewFilter;
@@ -222,7 +225,7 @@ namespace RoomM.DeskApp.ViewModels
 
         public ICollectionView RoomTypesView
         {
-            get { return CollectionViewSource.GetDefaultView(this.service.GetRoomTypeList()); }
+            get { return CollectionViewSource.GetDefaultView(this.roomManagementService.GetRoomTypeList()); }
         }
 
         #endregion
@@ -354,7 +357,7 @@ namespace RoomM.DeskApp.ViewModels
             {
                 try
                 {
-                    this.service.EditRoomReg(this.CurrentRoomReg);
+                    this.roomManagementService.EditRoomReg(this.CurrentRoomReg);
                     this.EntitiesView.Refresh();
                     System.Windows.Forms.MessageBox.Show("Cập nhật dữ liệu thành công!");
                 }
@@ -502,8 +505,8 @@ namespace RoomM.DeskApp.ViewModels
             // proc amount
             // Dictionary<String, int> dic = new Dictionary<string,int>();
             Hashtable hm = new Hashtable();
-            
-            IList<AssetHistory> hisList = this.service.GetByRoom2RoomId(CurrentEntity, timeForBacktrace);
+
+            IList<AssetHistory> hisList = this.assetManagementService.GetAssetHisListByBacktrace(CurrentEntity, timeForBacktrace);
             foreach (AssetHistory his in hisList)
             {
                 if (his.Date.Date <= timeForBacktrace)

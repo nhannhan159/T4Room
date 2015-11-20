@@ -15,6 +15,7 @@ using RoomM.DeskApp.UIHelper;
 using RoomM.DeskApp.Views;
 using RoomM.Domain.RoomModule.Aggregates;
 using RoomM.Domain.UserModule.Aggregates;
+using RoomM.Application.RoomModule.Services;
 using RoomM.Application.UserModule.Services;
 
 namespace RoomM.DeskApp.ViewModels
@@ -24,10 +25,11 @@ namespace RoomM.DeskApp.ViewModels
 
         #region Construction
 
-        public UserManagementViewModel(IUserManagementService service)
+        public UserManagementViewModel(IUserManagementService userManagementService, IRoomManagementService roomManagementService)
             : base() 
         {
-            this.service = service;
+            this.userManagementService = userManagementService;
+            this.roomManagementService = roomManagementService;
             this.BaseInit();
 
             this.sexFilter = 0;
@@ -47,7 +49,9 @@ namespace RoomM.DeskApp.ViewModels
 
         #region PrivateField
 
-        private IUserManagementService service;
+        private IUserManagementService userManagementService;
+        private IRoomManagementService roomManagementService;
+
         private NewUser newUserDialog;
         private int sexFilter;
         private ICollectionView currentRoomCalendarView;
@@ -65,7 +69,7 @@ namespace RoomM.DeskApp.ViewModels
 
         protected override List<User> GetEntitiesList()
         {
-            return new List<User>(this.service.GetUserList());
+            return new List<User>(this.userManagementService.GetUserList());
         }
 
         /*
@@ -79,7 +83,7 @@ namespace RoomM.DeskApp.ViewModels
         {
             try
             {
-                this.service.AddUser(this.CurrentEntity);
+                this.userManagementService.AddUser(this.CurrentEntity);
             }
             catch (Exception ex)
             {
@@ -91,7 +95,7 @@ namespace RoomM.DeskApp.ViewModels
         {
             try
             {
-                this.service.EditUser(this.CurrentEntity);
+                this.userManagementService.EditUser(this.CurrentEntity);
             }
             catch (Exception ex)
             {
@@ -103,7 +107,7 @@ namespace RoomM.DeskApp.ViewModels
         {
             try
             {
-                this.service.DeleteUser(this.CurrentEntity);
+                this.userManagementService.DeleteUser(this.CurrentEntity);
             }
             catch (Exception ex)
             {
@@ -155,7 +159,8 @@ namespace RoomM.DeskApp.ViewModels
             if (this.CurrentEntity == null)
                 this.currentRoomCalendarView = CollectionViewSource.GetDefaultView(new List<RoomReg>());
             else
-                this.currentRoomCalendarView = CollectionViewSource.GetDefaultView(this.service.GetRoomRegList(this.CurrentEntity.Id));
+                this.currentRoomCalendarView = CollectionViewSource.GetDefaultView(
+                    this.roomManagementService.GetRoomRegListByUserId(this.CurrentEntity.Id));
             this.currentRoomCalendarView.Filter += RoomCalendarViewFilter;
             this.RaisePropertyChanged(() => this.CurrentRoomCalendarView);
         }

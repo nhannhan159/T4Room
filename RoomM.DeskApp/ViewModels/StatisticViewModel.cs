@@ -12,12 +12,14 @@ using RoomM.DeskApp.UIHelper;
 using RoomM.Domain.RoomModule.Aggregates;
 using RoomM.Domain.UserModule.Aggregates;
 using RoomM.Application.RoomModule.Services;
+using RoomM.Application.UserModule.Services;
 
 namespace RoomM.DeskApp.ViewModels
 {
     public class StatisticViewModel : ViewModelBase
     {
-        private IStatisticService service;
+        private IRoomManagementService roomManagementService;
+        private IUserManagementService userManagementService;
         private ObservableCollection<ChartElement> chartStaffItems;
         private ObservableCollection<ChartElement> chartRegisterItems;
         private DateTime fromTimeStaff;
@@ -25,9 +27,10 @@ namespace RoomM.DeskApp.ViewModels
         private DateTime fromTimeRegister;
         private DateTime toTimeRegister;
 
-        public StatisticViewModel(IStatisticService service)
+        public StatisticViewModel(IRoomManagementService roomManagementService, IUserManagementService userManagementService)
         {
-            this.service = service;
+            this.roomManagementService = roomManagementService;
+            this.userManagementService = userManagementService;
 
             this.fromTimeStaff = new DateTime(DateTime.Now.Year - 1, 1, 1);
             this.toTimeStaff = DateTime.Now;
@@ -91,7 +94,7 @@ namespace RoomM.DeskApp.ViewModels
 
         private void rebuildUserData(DateTime from, DateTime to)
         {
-            IList<KeyValuePair<User, int>> userDics = this.service.GetUserLimitByRegister(10, from, to);
+            IList<KeyValuePair<User, int>> userDics = this.userManagementService.GetUserLimitByRegister(10, from, to);
 
             if (null == this.chartStaffItems)
                 this.chartStaffItems = new ObservableCollection<ChartElement>();
@@ -110,7 +113,7 @@ namespace RoomM.DeskApp.ViewModels
 
         private void rebuildRegisterData(DateTime from, DateTime to)
         {
-            IList<KeyValuePair<Room, int>> roomDics = this.service.GetRoomLimitByRegister(10, from, to);
+            IList<KeyValuePair<Room, int>> roomDics = this.roomManagementService.GetRoomLimitByRegister(10, from, to);
 
             if (null == this.chartRegisterItems)
                 this.chartRegisterItems = new ObservableCollection<ChartElement>();

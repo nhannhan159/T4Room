@@ -34,7 +34,6 @@ namespace RoomM.DeskApp.ViewModels
             SimpleIoc.Default.Register<IAssetManagementService, AssetManagementService>();
             SimpleIoc.Default.Register<IRoomManagementService, RoomManagementService>();
             SimpleIoc.Default.Register<IUserManagementService, UserManagementService>();
-            SimpleIoc.Default.Register<IStatisticService, StatisticService>();
 
             SimpleIoc.Default.Register<RoomManagementViewModel>();
             SimpleIoc.Default.Register<AssetManagementViewModel>();

@@ -50,12 +50,16 @@ namespace RoomM.WebApp.AuthStores
         public Task<TUser> FindByIdAsync(Int64 userId)
         {
             var user = this.service.GetSingle(userId);
+            if (!user.IsWorking)
+                user = null;
             return Task.FromResult<TUser>(user as TUser);
         }
 
         public Task<TUser> FindByNameAsync(string userName)
         {
             var user = this.service.GetSingleByUsername(userName);
+            if (!user.IsWorking)
+                user = null;
             return Task.FromResult<TUser>(user as TUser);
         }
 
