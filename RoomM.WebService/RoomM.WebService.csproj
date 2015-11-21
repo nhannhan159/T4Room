@@ -112,7 +112,6 @@
     <Content Include="AssetModule\Implement\AssetManagementWS.svc" />
     <Content Include="Global.asax" />
     <Content Include="RoomModule\Implement\RoomManagementWS.svc" />
-    <Content Include="RoomModule\Implement\StatisticWS.svc" />
     <Content Include="UserModule\Implement\UserManagementWS.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -127,13 +126,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="RoomModule\IStatisticWS.cs" />
     <Compile Include="RoomModule\IRoomManagementWS.cs" />
     <Compile Include="RoomModule\Implement\RoomManagementWS.svc.cs">
       <DependentUpon>RoomManagementWS.svc</DependentUpon>
-    </Compile>
-    <Compile Include="RoomModule\Implement\StatisticWS.svc.cs">
-      <DependentUpon>StatisticWS.svc</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceModule.cs" />

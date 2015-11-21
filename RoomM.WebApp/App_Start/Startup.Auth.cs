@@ -21,6 +21,7 @@ namespace RoomM.WebApp
             //app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<IUnitOfWork>(() => { return new EFContext(); });
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
+            app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 
             // Enable the application to use a cookie to store information for the signed in user

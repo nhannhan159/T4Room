@@ -23,13 +23,11 @@ namespace RoomM.WebService
             NinjectWcfConfiguration assetManagementWSConfig = NinjectWcfConfiguration.Create<AssetManagementWS, NinjectServiceSelfHostFactory>();
             NinjectWcfConfiguration roomManagementWSConfig = NinjectWcfConfiguration.Create<RoomManagementWS, NinjectServiceSelfHostFactory>();
             NinjectWcfConfiguration userManagementWSConfig = NinjectWcfConfiguration.Create<UserManagementWS, NinjectServiceSelfHostFactory>();
-            NinjectWcfConfiguration statisticWSConfig = NinjectWcfConfiguration.Create<StatisticWS, NinjectServiceSelfHostFactory>();
 
             using (var selfHost = new NinjectSelfHostBootstrapper(() => kernel,
                 assetManagementWSConfig,
                 roomManagementWSConfig,
-                userManagementWSConfig,
-                statisticWSConfig))
+                userManagementWSConfig))
             {
                 selfHost.Start();
                 Console.Write("All Services Started. Press \"Enter\" to stop thems...");

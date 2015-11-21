@@ -30,7 +30,10 @@ namespace RoomM.WebService
         RoomReg GetRoomReg(Int64 roomRegId);
 
         [OperationContract]
-        IList<RoomReg> GetRoomRegList(Int64 roomId);
+        IList<RoomReg> GetRoomRegListByRoomId(Int64 roomId);
+
+        [OperationContract]
+        IList<RoomReg> GetRoomRegListByUserId(Int64 userId);
 
         [OperationContract]
         IList<RoomReg> GetRoomRegListByDate(DateTime date, Int64 roomId);
@@ -42,13 +45,7 @@ namespace RoomM.WebService
         IList<RoomReg> GetRoomRegListByWatchedState(bool isWatched, Int64 userId);
 
         [OperationContract]
-        IList<AssetDetail> GetAssetDetailList(Int64 roomId);
-
-        [OperationContract]
-        IList<AssetHistory> GetAssetHistoryList(Int64 roomId);
-
-        [OperationContract]
-        IList<AssetHistory> GetByRoom2RoomId(Room room, DateTime timeForBacktrace);
+        IList<KeyValuePair<Room, int>> GetRoomLimitByRegister(int limit, DateTime from, DateTime to);
 
         [OperationContract]
         void AddRoom(Room room);

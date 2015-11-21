@@ -13,6 +13,9 @@ namespace RoomM.WebApp.App_Start
 
     using RoomM.Domain;
     using RoomM.Infrastructure.Data.UnitOfWork;
+    using RoomM.Application.AssetModule.Services;
+    using RoomM.Application.RoomModule.Services;
+    using RoomM.Application.UserModule.Services;
 
     public static class NinjectWebCommon 
     {
@@ -65,6 +68,9 @@ namespace RoomM.WebApp.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IUnitOfWork>().To<EFContext>();
+            kernel.Bind<IAssetManagementService>().To<AssetManagementService>();
+            kernel.Bind<IRoomManagementService>().To<RoomManagementService>();
+            kernel.Bind<IUserManagementService>().To<UserManagementService>();
         }        
     }
 }

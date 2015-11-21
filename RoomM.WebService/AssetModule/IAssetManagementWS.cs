@@ -18,16 +18,19 @@ namespace RoomM.WebService
         IList<Asset> GetAssetList();
 
         [OperationContract]
-        IList<Room> GetRoomList();
-
-        [OperationContract]
-        IList<RoomType> GetRoomTypeList();
-
-        [OperationContract]
         IList<AssetDetail> GetAssetDetailList();
 
         [OperationContract]
         IList<AssetDetail> GetAssetDetailListByAssetId(Int64 assetId);
+
+        [OperationContract]
+        IList<AssetDetail> GetAssetDetailListByRoomId(Int64 roomId);
+
+        [OperationContract]
+        IList<AssetHistory> GetAssetHisListByRoomId(Int64 roomId);
+
+        [OperationContract]
+        IList<AssetHistory> GetAssetHisListByBacktrace(Room room, DateTime timeForBacktrace);
 
         [OperationContract]
         void AddAsset(Asset asset);

@@ -41,10 +41,5 @@ namespace RoomM.Infrastructure.Data.RoomModule.Repositories
 
             return list.OrderByDescending(p => p.Value).Take(limit).ToList();
         }
-
-        public bool isUniqueName(string name)
-        {
-            return this.Get(filter: p => p.Name.Equals(name)).Count() == 0;
-        }
     }
 }

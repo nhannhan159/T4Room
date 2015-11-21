@@ -50,7 +50,7 @@ namespace RoomM.WebApp.AuthStores
         public Task<TUser> FindByIdAsync(Int64 userId)
         {
             var user = this.service.GetSingle(userId);
-            if (!user.IsWorking)
+            if (user != null && !user.IsWorking)
                 user = null;
             return Task.FromResult<TUser>(user as TUser);
         }
@@ -58,7 +58,7 @@ namespace RoomM.WebApp.AuthStores
         public Task<TUser> FindByNameAsync(string userName)
         {
             var user = this.service.GetSingleByUsername(userName);
-            if (!user.IsWorking)
+            if (user != null && !user.IsWorking)
                 user = null;
             return Task.FromResult<TUser>(user as TUser);
         }
@@ -70,58 +70,6 @@ namespace RoomM.WebApp.AuthStores
         }
 
         public void Dispose() { }
-
-        #endregion
-
-        #region Implement "IUserRoleStore"
-
-        public Task AddToRoleAsync(TUser user, string roleName)
-        {
-            if (user == null)
-            {
-                throw new ArgumentNullException("user");
-            }
-
-            if (string.IsNullOrEmpty(roleName))
-            {
-                throw new ArgumentException("Argument cannot be null or empty: roleName.");
-            }
-
-            this.service.AddUserToRole(user.Id, roleName);
-            return Task.FromResult<object>(null);
-        }
-
-        public Task<IList<string>> GetRolesAsync(TUser user)
-        {
-            if (user == null)
-            {
-                throw new ArgumentNullException("user");
-            }
-
-            IList<string> roles = this.service.GetUserRoles(user.Id);
-            return Task.FromResult<IList<string>>(roles);
-        }
-
-        public Task<bool> IsInRoleAsync(TUser user, string roleName)
-        {
-            if (user == null)
-            {
-                throw new ArgumentNullException("user");
-            }
-
-            if (string.IsNullOrEmpty(roleName))
-            {
-                throw new ArgumentNullException("roleName");
-            }
-
-            bool result = this.service.IsUserInRole(user.Id, roleName);
-            return Task.FromResult<bool>(result);
-        }
-
-        public Task RemoveFromRoleAsync(TUser user, string roleName)
-        {
-            throw new NotImplementedException();
-        }
 
         #endregion
 
@@ -174,7 +122,7 @@ namespace RoomM.WebApp.AuthStores
         {
             user.UserName = email;
             user.FullName = email;
-            this.service.EditUser(user);
+            //this.service.EditUser(user);
             return Task.FromResult(0);
         }
 
@@ -208,27 +156,28 @@ namespace RoomM.WebApp.AuthStores
         public Task<int> IncrementAccessFailedCountAsync(TUser user)
         {
             user.AccessFailedCount++;
-            this.service.EditUser(user);
+            //this.service.EditUser(user);
             return Task.FromResult(user.AccessFailedCount);
         }
 
         public Task ResetAccessFailedCountAsync(TUser user)
         {
             user.AccessFailedCount = 0;
-            this.service.EditUser(user);
+            //this.service.EditUser(user);
             return Task.FromResult(0);
         }
 
         public Task SetLockoutEnabledAsync(TUser user, bool enabled)
         {
             user.LockoutEnabled = enabled;
+            //this.service.EditUser(user);
             return Task.FromResult(0);
         }
 
         public Task SetLockoutEndDateAsync(TUser user, DateTimeOffset lockoutEnd)
         {
             user.LockoutEndDateUtc = lockoutEnd.UtcDateTime;
-            this.service.EditUser(user);
+            //this.service.EditUser(user);
             return Task.FromResult(0);
         }
 
@@ -244,7 +193,23 @@ namespace RoomM.WebApp.AuthStores
         public Task SetTwoFactorEnabledAsync(TUser user, bool enabled)
         {
             user.TwoFactorEnabled = enabled;
-            this.service.EditUser(user);
+            //this.service.EditUser(user);
+            return Task.FromResult(0);
+        }
+
+        #endregion 
+
+        #region Implement "IUserSecurityStampStore"
+
+        public Task<string> GetSecurityStampAsync(TUser user)
+        {
+            return Task.FromResult(user.SecurityStamp);
+        }
+
+        public Task SetSecurityStampAsync(TUser user, string stamp)
+        {
+            user.SecurityStamp = stamp;
+            //this.service.EditUser(user);
             return Task.FromResult(0);
         }
 
@@ -294,21 +259,6 @@ namespace RoomM.WebApp.AuthStores
 
             this.service.DeleteUserClaim(user.Id, claim.Type, claim.Value);
             return Task.FromResult<object>(null);
-        }
-
-        #endregion
-
-        #region Implement "IUserSecurityStampStore"
-
-        public Task<string> GetSecurityStampAsync(TUser user)
-        {
-            return Task.FromResult(user.SecurityStamp);
-        }
-
-        public Task SetSecurityStampAsync(TUser user, string stamp)
-        {
-            user.SecurityStamp = stamp;
-            return Task.FromResult(0);
         }
 
         #endregion
@@ -373,6 +323,58 @@ namespace RoomM.WebApp.AuthStores
 
             this.service.DeleteUserLogin(user.Id, login.LoginProvider, login.ProviderKey);
             return Task.FromResult<Object>(null);
+        }
+
+        #endregion
+
+        #region Implement "IUserRoleStore"
+
+        public Task AddToRoleAsync(TUser user, string roleName)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            if (string.IsNullOrEmpty(roleName))
+            {
+                throw new ArgumentException("Argument cannot be null or empty: roleName.");
+            }
+
+            this.service.AddUserToRole(user.Id, roleName);
+            return Task.FromResult<object>(null);
+        }
+
+        public Task<IList<string>> GetRolesAsync(TUser user)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            IList<string> roles = this.service.GetUserRoles(user.Id);
+            return Task.FromResult<IList<string>>(roles);
+        }
+
+        public Task<bool> IsInRoleAsync(TUser user, string roleName)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            if (string.IsNullOrEmpty(roleName))
+            {
+                throw new ArgumentNullException("roleName");
+            }
+
+            bool result = this.service.IsUserInRole(user.Id, roleName);
+            return Task.FromResult<bool>(result);
+        }
+
+        public Task RemoveFromRoleAsync(TUser user, string roleName)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

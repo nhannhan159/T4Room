@@ -23,7 +23,7 @@ namespace RoomM.Infrastructure.Data.UserModule.Repositories
             return "";
         }
 
-        public Role GetByName(string roleName)
+        public Role GetSingleByName(string roleName)
         {
             return this.Get().SingleOrDefault(p => p.Name.Equals(roleName));
         }

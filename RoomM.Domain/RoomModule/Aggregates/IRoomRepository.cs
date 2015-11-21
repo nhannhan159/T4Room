@@ -11,6 +11,5 @@ namespace RoomM.Domain.RoomModule.Aggregates
     {
         IList<Room> GetByRoomTypeId(Int64 roomTypeId);
         IList<KeyValuePair<Room, int>> GetRoomLimitByRegister(int limit, DateTime from, DateTime to);
-        bool isUniqueName(string name);
     }
 }

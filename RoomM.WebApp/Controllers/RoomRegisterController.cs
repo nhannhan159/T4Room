@@ -121,10 +121,6 @@ namespace RoomM.WebApp.Controllers
                 calInWeek = this.roomManagementService.GetRoomRegListByWeek(DateTime.Now, allRoom.Count > 0 ? allRoom[0].Id : -1);
             }
 
-            // default day 1/5/2011
-            // IList<RoomCalendar> calInDate = roomCalRepo.GetByDateAndRoomId(DateTime.Now, allRoom.Count > 0 ? allRoom[0].ID : -1);
-            // IList<RoomCalendar> calInWeek = roomCalRepo.GetByWeekAndRoomId(DateTime.Now, allRoom.Count > 0 ? allRoom[0].ID : -1);
-
             DateTime currentDate = DateTime.Now;
             DateTime startDateOfWeek = getStartDayOfWeek(currentDate);
             DateTime endDateOfWeek = getEndDayOfWeek(currentDate);

@@ -103,6 +103,50 @@ namespace RoomM.Application.UserModule.Services
 
         #region Addition Services
 
+        public Role GetRoleById(Int64 roleId)
+        {
+            return this.context.RoleRep.GetSingle(roleId);
+        }
+
+        public Role GetRoleByName(string roleName)
+        {
+            return this.context.RoleRep.GetSingleByName(roleName);
+        }
+
+        public void AddRole(Role role)
+        {
+            try
+            {
+                this.context.RoleRep.Add(role);
+                this.context.Commit();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                var error = ex.EntityValidationErrors.First().ValidationErrors.First();
+                throw new ApplicationException(error.ErrorMessage);
+            } 
+        }
+
+        public void EditRole(Role role)
+        {
+            try
+            {
+                this.context.RoleRep.Add(role);
+                this.context.Commit();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                var error = ex.EntityValidationErrors.First().ValidationErrors.First();
+                throw new ApplicationException(error.ErrorMessage);
+            } 
+        }
+
+        public void DeleteRole(Int64 roleId)
+        {
+            this.context.RoleRep.Delete(roleId);
+            this.context.Commit();
+        }
+
         public IList<string> GetUserRoles(Int64 userId)
         {
             User user = this.context.UserRep.GetSingle(userId);
@@ -111,7 +155,7 @@ namespace RoomM.Application.UserModule.Services
             {
                 roles.Add(role.Name);
             }
-            return roles.Count > 0 ? roles : null;
+            return roles;
         }
 
         public bool IsUserInRole(Int64 userId, string roleName)
@@ -122,7 +166,7 @@ namespace RoomM.Application.UserModule.Services
 
         public void AddUserToRole(Int64 userId, string roleName)
         {
-            Role role = this.context.RoleRep.GetByName(roleName);
+            Role role = this.context.RoleRep.GetSingleByName(roleName);
             User user = this.context.UserRep.GetSingle(userId);
             if (role != null && user != null)
             {

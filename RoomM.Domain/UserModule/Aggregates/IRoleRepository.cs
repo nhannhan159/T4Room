@@ -9,6 +9,6 @@ namespace RoomM.Domain.UserModule.Aggregates
 {
     public interface IRoleRepository : IRepository<Role>
     {
-        Role GetByName(string roleName);
+        Role GetSingleByName(string roleName);
     }
 }

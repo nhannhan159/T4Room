@@ -74,7 +74,7 @@ namespace RoomM.WebApp.Controllers
         [Authorize(Roles = "Manager")]
         public ActionResult ChangeOptions(int roomId, int assetsTypeId)
         {
-            var roomAssetsLst = this.roomManagementService.GetAssetDetailList(roomId);
+            var roomAssetsLst = this.assetManagementService.GetAssetDetailListByRoomId(roomId);
             if (assetsTypeId > 0) {
                 List<AssetDetail> roomFilter = (from p in roomAssetsLst 
                              where p.AssetId == assetsTypeId

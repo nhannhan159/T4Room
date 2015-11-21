@@ -19,32 +19,54 @@ namespace RoomM.WebApp.AuthStores
             this.service = service;
         }
 
-        #region Implement "IUserStore"
+        #region Implement "IRoleStore"
 
         public Task CreateAsync(TRole role)
         {
+            if (role == null)
+            {
+                throw new ArgumentNullException("role");
+            }
 
+            this.service.AddRole(role);
+            return Task.FromResult<object>(null);
         }
 
         public Task DeleteAsync(TRole role)
         {
+            if (role == null)
+            {
+                throw new ArgumentNullException("user");
+            }
 
+            this.service.DeleteRole(role.Id);
+            return Task.FromResult<Object>(null);
         }
 
         public Task<TRole> FindByIdAsync(Int64 roleId)
         {
-
+            TRole result = this.service.GetRoleById(roleId) as TRole;
+            return Task.FromResult<TRole>(result);
         }
 
         public Task<TRole> FindByNameAsync(string roleName)
         {
-
+            TRole result = this.service.GetRoleByName(roleName) as TRole;
+            return Task.FromResult<TRole>(result);
         }
 
         public Task UpdateAsync(TRole role)
         {
+            if (role == null)
+            {
+                throw new ArgumentNullException("user");
+            }
 
+            this.service.EditRole(role);
+            return Task.FromResult<Object>(null);
         }
+
+        public void Dispose() { }
 
         #endregion
     }

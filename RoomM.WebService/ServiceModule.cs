@@ -21,11 +21,9 @@ namespace RoomM.WebService
         public override void Load()
         {
             Bind<IUnitOfWork>().To<EFContext>().InTransientScope();
-
             Bind<IAssetManagementService>().To<AssetManagementService>().InTransientScope();
             Bind<IRoomManagementService>().To<RoomManagementService>().InTransientScope();
             Bind<IUserManagementService>().To<UserManagementService>().InTransientScope();
-            Bind<IStatisticService>().To<StatisticService>().InTransientScope();
         }
     }
 }

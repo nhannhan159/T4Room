@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - rOOm</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("styles", false)
 
 </head>
 <body>
@@ -24,7 +25,7 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    @if (Request.IsAuthenticated && User.IsInRole("Admin")) {
+                    @if (Request.IsAuthenticated) {
                         <li>@Html.ActionLink("Lịch phòng", "Index", "RoomRegister")</li>
                         <li>@Html.ActionLink("Thiết bị phòng", "Index", "RoomAssets")</li>
                         <li>@Html.ActionLink("Đăng kí phòng", "Create", "RoomRegister")</li>
@@ -36,6 +37,7 @@
             </div>
         </div>
     </div>
+    @RenderSection("featured", required: false)
     <div class="container body-content">
         @RenderBody()
         <hr />
