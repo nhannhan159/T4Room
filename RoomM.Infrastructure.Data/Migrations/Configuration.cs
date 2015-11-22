@@ -35,6 +35,10 @@
             RoomType roomCK = new RoomType { Name = "Thực hành cơ khí" };
             RoomType roomCD = new RoomType { Name = "Thực hành cơ điện" };
 
+            Role roleAdmin = new Role { Name = "Admin" };
+            Role roleTeacher = new Role { Name = "Teacher" };
+            Role roleManager = new Role { Name = "Manager" };
+
             Role usertype0 = new Role { Name = "Quản trị viên" };
             Role usertype1 = new Role { Name = "Giảng viên" };
             Role usertype2 = new Role { Name = "Nhân viên quản lý" };
@@ -353,6 +357,16 @@
 
             #region staff
 
+            User admin = new User
+            {
+                FullName = "Admin",
+                Sex = true,
+                Phone = "0123456789",
+                Roles = new List<Role>() { roleAdmin, roleManager, roleTeacher },
+                UserName = "admin@gmail.com",
+                Password = "Nhannhan159~"
+            };
+
             User user0 = new User
             {
                 FullName = "Triệu Linh Nhi",
@@ -571,12 +585,17 @@
             context.Entry(devicehistory2).State = EntityState.Added;
             context.Entry(devicehistory3).State = EntityState.Added;
 
+            context.Entry(roleAdmin).State = EntityState.Added;
+            context.Entry(roleTeacher).State = EntityState.Added;
+            context.Entry(roleManager).State = EntityState.Added;
+
             context.Entry(usertype0).State = EntityState.Added;
             context.Entry(usertype1).State = EntityState.Added;
             context.Entry(usertype2).State = EntityState.Added;
 
             #region add staff
 
+            context.Entry(admin).State = EntityState.Added;
             context.Entry(user0).State = EntityState.Added;
             context.Entry(user1).State = EntityState.Added;
             context.Entry(user2).State = EntityState.Added;
