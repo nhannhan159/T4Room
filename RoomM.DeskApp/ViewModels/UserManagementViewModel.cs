@@ -72,12 +72,10 @@ namespace RoomM.DeskApp.ViewModels
             return new List<User>(this.userManagementService.GetUserList());
         }
 
-        /*
         public ICollectionView UserRoleView
         {
-            get { return CollectionViewSource.GetDefaultView(this.service.GetUserRoleList()); }
+            get { return CollectionViewSource.GetDefaultView(this.userManagementService.GetRoleList()); }
         }
-        */
 
         protected override void AddCurrentEntity()
         {
@@ -137,7 +135,7 @@ namespace RoomM.DeskApp.ViewModels
 
         protected override PropertyGroupDescription Grouping()
         {
-            return new PropertyGroupDescription("UserType");
+            return new PropertyGroupDescription("Role");
         }
 
         protected override void NewDialogCommandHandler()
@@ -145,7 +143,7 @@ namespace RoomM.DeskApp.ViewModels
             this.newEntityViewModel = new NewEntityViewModel<User>();
             this.newEntityViewModel.NewCommand = this.NewCommand;
             this.newUserDialog = new NewUser(this.newEntityViewModel);
-            //this.newUserDialog.userRoleCB.ItemsSource = this.UserRoleView;
+            this.newUserDialog.userRoleCB.ItemsSource = this.UserRoleView;
             this.newUserDialog.ShowDialog();
         }
 

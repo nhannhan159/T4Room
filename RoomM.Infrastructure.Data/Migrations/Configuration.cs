@@ -35,13 +35,9 @@
             RoomType roomCK = new RoomType { Name = "Thực hành cơ khí" };
             RoomType roomCD = new RoomType { Name = "Thực hành cơ điện" };
 
-            Role roleAdmin = new Role { Name = "Admin" };
-            Role roleTeacher = new Role { Name = "Teacher" };
-            Role roleManager = new Role { Name = "Manager" };
-
-            Role usertype0 = new Role { Name = "Quản trị viên" };
-            Role usertype1 = new Role { Name = "Giảng viên" };
-            Role usertype2 = new Role { Name = "Nhân viên quản lý" };
+            Role usertype0 = new Role { Name = "Admin", FullName = "Quản trị viên" };
+            Role usertype1 = new Role { Name = "Teacher", FullName = "Giảng viên" };
+            Role usertype2 = new Role { Name = "Manager", FullName = "Nhân viên quản lý" };
 
             #region room tin hoc
             Room room0 = new Room
@@ -362,8 +358,9 @@
                 FullName = "Admin",
                 Sex = true,
                 Phone = "0123456789",
-                Roles = new List<Role>() { roleAdmin, roleManager, roleTeacher },
+                Role = usertype0,
                 UserName = "admin@gmail.com",
+                LastLogin = new DateTime(2011, 1, 5),
                 Password = "Nhannhan159~"
             };
 
@@ -372,8 +369,9 @@
                 FullName = "Triệu Linh Nhi",
                 Sex = true,
                 Phone = "0123456789",
-                Roles = new List<Role>() { usertype0 },
+                Role = usertype1,
                 UserName = "admin",
+                LastLogin = new DateTime(2011, 1, 5),
                 Password = "admin123"
             };
 
@@ -382,8 +380,9 @@
                 FullName = "Lý Tiêu Diêu",
                 Sex = false,
                 Phone = "0123456790",
-                Roles = new List<Role>() { usertype1 },
+                Role = usertype1,
                 UserName = "user1",
+                LastLogin = new DateTime(2011, 1, 5),
                 Password = "user123"
             };
 
@@ -392,8 +391,9 @@
                 FullName = "Điền Bá Quang",
                 Sex = false,
                 Phone = "0123456790",
-                Roles = new List<Role>() { usertype1 },
+                Role = usertype1,
                 UserName = "user2",
+                LastLogin = new DateTime(2011, 1, 5),
                 Password = "user123"
             };
 
@@ -402,8 +402,9 @@
                 FullName = "Đổng Lợi Văn",
                 Sex = true,
                 Phone = "0123456790",
-                Roles = new List<Role>() { usertype1 },
+                Role = usertype1,
                 UserName = "user3",
+                LastLogin = new DateTime(2011, 1, 5),
                 Password = "user123"
             };
 
@@ -412,8 +413,9 @@
                 FullName = "Cao Long",
                 Sex = false,
                 Phone = "0123456790",
-                Roles = new List<Role>() { usertype1 },
+                Role = usertype1,
                 UserName = "user4",
+                LastLogin = new DateTime(2011, 1, 5),
                 Password = "user123"
             };
 
@@ -422,8 +424,9 @@
                 FullName = "Bạch Ngọc Đường",
                 Sex = false,
                 Phone = "0123456790",
-                Roles = new List<Role>() { usertype1 },
+                Role = usertype1,
                 UserName = "user5",
+                LastLogin = new DateTime(2011, 1, 5),
                 Password = "user123"
             };
 
@@ -432,8 +435,9 @@
                 FullName = "Lý Mạc Sầu",
                 Sex = true,
                 Phone = "0123456790",
-                Roles = new List<Role>() { usertype1 },
+                Role = usertype1,
                 UserName = "user6",
+                LastLogin = new DateTime(2011, 1, 5),
                 Password = "user123"
             };
 
@@ -442,8 +446,9 @@
                 FullName = "Đinh Tiểu Gia",
                 Sex = true,
                 Phone = "0123456790",
-                Roles = new List<Role>() { usertype2 },
+                Role = usertype2,
                 UserName = "user7",
+                LastLogin = new DateTime(2011, 1, 5),
                 Password = "user123"
             };
 
@@ -452,8 +457,9 @@
                 FullName = "Tiết Gia Cường",
                 Sex = false,
                 Phone = "0123456790",
-                Roles = new List<Role>() { usertype2 },
+                Role = usertype2,
                 UserName = "user8",
+                LastLogin = new DateTime(2011, 1, 5),
                 Password = "user123"
             };
 
@@ -462,8 +468,9 @@
                 FullName = "Lý Bạch",
                 Sex = false,
                 Phone = "0123456790",
-                Roles = new List<Role>() { usertype2 },
+                Role = usertype2,
                 UserName = "user9",
+                LastLogin = new DateTime(2011, 1, 5),
                 Password = "user123"
             };
 
@@ -584,10 +591,6 @@
             context.Entry(devicehistory1).State = EntityState.Added;
             context.Entry(devicehistory2).State = EntityState.Added;
             context.Entry(devicehistory3).State = EntityState.Added;
-
-            context.Entry(roleAdmin).State = EntityState.Added;
-            context.Entry(roleTeacher).State = EntityState.Added;
-            context.Entry(roleManager).State = EntityState.Added;
 
             context.Entry(usertype0).State = EntityState.Added;
             context.Entry(usertype1).State = EntityState.Added;

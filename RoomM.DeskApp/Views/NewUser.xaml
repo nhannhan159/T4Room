@@ -117,7 +117,7 @@
                 <TextBlock Text="Là nữ: " FontStyle="Italic" Margin="5,9,5,0"/>
                 <CheckBox IsChecked="{Binding NewEntity.Sex}" Margin="0,9,5,0"/>
             </WrapPanel>
-            <ComboBox Name="userRoleCB" Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Path=UserRoleView}" SelectedValue="{Binding Path=NewEntity.UserRoleId}" DisplayMemberPath="Name" SelectedValuePath="ID"
+            <ComboBox Name="userRoleCB" Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Path=UserRoleView}" SelectedValue="{Binding Path=NewEntity.RoleId}" DisplayMemberPath="FullName" SelectedValuePath="Id"
                      Margin="3"/>
             <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding NewEntity.Phone}"
                      Margin="3"/>

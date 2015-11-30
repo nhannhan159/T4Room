@@ -12,12 +12,17 @@ using Microsoft.AspNet.Identity;
 namespace RoomM.Domain.UserModule.Aggregates
 {
     [DataContract(IsReference = true)]
-    public class Role : EntityBase, IRole<Int64>
+    public class Role : EntityBase
     {
         [DataMember]
         [StringLength(50)]
         [Index(IsUnique = true)]
         public string Name { get; set; }
+
+        [DataMember]
+        [StringLength(50)]
+        [Index(IsUnique = true)]
+        public string FullName { get; set; }
 
         public virtual ICollection<User> Users
         {
@@ -37,9 +42,10 @@ namespace RoomM.Domain.UserModule.Aggregates
 
         public Role() { }
 
-        public Role(string name)
+        public Role(string name, string fullName)
         {
             this.Name = name;
+            this.FullName = fullName;
         }
     }
 }

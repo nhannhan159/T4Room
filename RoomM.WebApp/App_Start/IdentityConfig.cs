@@ -93,21 +93,6 @@ namespace RoomM.WebApp
         }
     }
 
-    // Configure the RoleManager used in the application. RoleManager is defined in the ASP.NET Identity core assembly
-    public class ApplicationRoleManager : RoleManager<Role, Int64>
-    {
-        public ApplicationRoleManager(RoleStore<Role> roleStore)
-            : base(roleStore)
-        {
-        }
-
-        public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
-        {
-            return new ApplicationRoleManager(new RoleStore<Role>(
-                new UserManagementService(context.Get<IUnitOfWork>())));
-        }
-    }
-
     // Configure the application sign-in manager which is used in this application.
     public class ApplicationSignInManager : SignInManager<User, Int64>
     {

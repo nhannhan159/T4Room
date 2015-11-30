@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 
 using RoomM.WebApp.Models;
 using RoomM.Domain.UserModule.Aggregates;
+using RoomM.Application.UserModule.Services;
 
 namespace RoomM.WebApp.Controllers
 {
@@ -19,15 +20,21 @@ namespace RoomM.WebApp.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IUserManagementService userManagementService;
 
-        public AccountController()
+        public AccountController(IUserManagementService userManagementService)
         {
+            this.userManagementService = userManagementService;
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(
+            ApplicationUserManager userManager, 
+            ApplicationSignInManager signInManager, 
+            IUserManagementService userManagementService)
         {
-            UserManager = userManager;
-            SignInManager = signInManager;
+            this.UserManager = userManager;
+            this.SignInManager = signInManager;
+            this.userManagementService = userManagementService;
         }
 
         public ApplicationSignInManager SignInManager
@@ -141,6 +148,7 @@ namespace RoomM.WebApp.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.Roles = new SelectList(this.userManagementService.GetRoleList(), "Id", "FullName");
             return View();
         }
 

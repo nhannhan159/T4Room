@@ -26,6 +26,8 @@ namespace RoomM.Infrastructure.Data.UnitOfWork.Mapping
             this.Property(t => t.Sex).IsOptional();
             this.Property(t => t.Phone).IsOptional();
             this.Property(t => t.Description).IsOptional();
+            this.Property(t => t.LastLogin).IsOptional();
+            this.Property(t => t.RoleId).IsOptional();
 
             this.Property(t => t.AccessFailedCount).IsOptional();
             this.Property(t => t.LockoutEnabled).IsOptional();
@@ -37,13 +39,10 @@ namespace RoomM.Infrastructure.Data.UnitOfWork.Mapping
             this.ToTable("Users");
 
             // relationship
-            this.HasMany(u => u.Roles).WithMany(r => r.Users).Map((config) =>
-            {
-                config
-                    .ToTable("UsersInRoles")
-                    .MapLeftKey("UserId")
-                    .MapRightKey("RoleId");
-            });
+            this.HasOptional(t => t.Role)
+                .WithMany(c => c.Users)
+                .HasForeignKey(t => t.RoleId)
+                .WillCascadeOnDelete(true);
         }
     }
 }

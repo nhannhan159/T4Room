@@ -109,15 +109,15 @@
                                                     <Grid>
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="80"/>
-                                                            <ColumnDefinition Width="130"/>
+                                                            <ColumnDefinition Width="240"/>
                                                             <ColumnDefinition Width="55"/>
-                                                            <ColumnDefinition/>
-                                                            <ColumnDefinition/>
+                                                            <ColumnDefinition Width="0.3*"/>
+                                                            <ColumnDefinition Width="0.7*"/>
                                                         </Grid.ColumnDefinitions>
                                                         <TextBlock Grid.Column="0" Text="Chức quyền:" />
-                                                        <TextBlock Grid.Column="1" Text="{Binding Path=Name.Name}" Margin="0,0,10,0" FontWeight="Bold"/>
+                                                        <TextBlock Grid.Column="1" Text="{Binding Path=Name.FullName}" Margin="0,0,10,0" FontWeight="Bold"/>
                                                         <TextBlock Grid.Column="2" Text="Số lượng:" />
-                                                        <TextBlock Grid.Column="3" Text="{Binding Path=ItemCount}" Margin="0,0,3,0"/>
+                                                        <TextBlock Grid.Column="3" Text="{Binding Path=ItemCount}" Margin="0,0,3,0" HorizontalAlignment="Right"/>
                                                         <TextBlock Grid.Column="4" Text="người" />
                                                     </Grid>
                                                 </Expander.Header>
@@ -199,7 +199,7 @@
             </Grid.RowDefinitions>
             <WrapPanel Grid.Row="0"  VerticalAlignment="Top" Background="LightGray">
                 <TextBlock Text="NHÂN VIÊN " Padding="5"  TextWrapping="Wrap" VerticalAlignment="Center" FontSize="15" Background="#FF5BB0DF" Foreground="White"/>
-                <TextBlock Text="{Binding CurrentEntity.Name}" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="20" Margin="10,0"/>
+                <TextBlock Text="{Binding CurrentEntity.FullName}" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="20" Margin="10,0"/>
             </WrapPanel>
             <TabControl Grid.Row="1" Margin="0,10,0,5">
                 <TabItem Header="Thông tin nhân viên">
@@ -299,7 +299,7 @@
                                        VerticalAlignment="Center"/>
                                 <Label Grid.Row="5" Grid.Column="0" Content="Mô tả:"
                                        VerticalAlignment="Center"/>
-                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CurrentEntity.Name}" 
+                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding CurrentEntity.FullName}" 
                                          Margin="3" Controls:TextBoxHelper.ClearTextButton="True" />
                                 <WrapPanel Grid.Row="2" Grid.Column="1">
                                     <TextBlock Margin="5,9,5,0" Text="Là nữ: " FontStyle="Italic"/>
@@ -311,7 +311,7 @@
                                     <CheckBox IsChecked="{Binding CurrentEntity.Sex}" Margin="0,5,5,5"/>
                                 </WrapPanel>
                                 -->
-                                <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Path=StaffTypesView}" SelectedValue="{Binding Path=CurrentEntity.StaffTypeId}" DisplayMemberPath="Name" SelectedValuePath="ID"
+                                <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Path=UserRoleView}" SelectedValue="{Binding Path=CurrentEntity.RoleId}" DisplayMemberPath="FullName" SelectedValuePath="Id"
                                          Margin="3"/>
                                 <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding CurrentEntity.Phone}"
                                          Margin="3" Controls:TextBoxHelper.ClearTextButton="True" />

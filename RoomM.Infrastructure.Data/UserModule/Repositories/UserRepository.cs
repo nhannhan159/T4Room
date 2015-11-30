@@ -20,7 +20,7 @@ namespace RoomM.Infrastructure.Data.UserModule.Repositories
 
         protected override string IncludeProperties()
         {
-            return "";
+            return "Role";
         }
 
         public Int64 GetUserId(string username)

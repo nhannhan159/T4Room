@@ -27,10 +27,6 @@ namespace RoomM.Application.UserModule.Services
         void EditRole(Role role);
         void DeleteRole(Int64 roleId);
 
-        IList<string> GetUserRoles(Int64 userId);
-        bool IsUserInRole(Int64 userId, string roleName);
-        void AddUserToRole(Int64 userId, string roleName);
-
         IList<UserClaim> GetUserClaimList(Int64 userId);
         void AddUserClaim(Int64 userId, string claimType, string claimValue);
         void DeleteUserClaim(Int64 userId, string claimType, string claimValue);

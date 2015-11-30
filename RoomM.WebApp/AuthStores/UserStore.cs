@@ -331,18 +331,7 @@ namespace RoomM.WebApp.AuthStores
 
         public Task AddToRoleAsync(TUser user, string roleName)
         {
-            if (user == null)
-            {
-                throw new ArgumentNullException("user");
-            }
-
-            if (string.IsNullOrEmpty(roleName))
-            {
-                throw new ArgumentException("Argument cannot be null or empty: roleName.");
-            }
-
-            this.service.AddUserToRole(user.Id, roleName);
-            return Task.FromResult<object>(null);
+            throw new NotImplementedException();
         }
 
         public Task<IList<string>> GetRolesAsync(TUser user)
@@ -352,7 +341,7 @@ namespace RoomM.WebApp.AuthStores
                 throw new ArgumentNullException("user");
             }
 
-            IList<string> roles = this.service.GetUserRoles(user.Id);
+            IList<string> roles = new List<string>() { user.Role.Name };
             return Task.FromResult<IList<string>>(roles);
         }
 
@@ -368,7 +357,7 @@ namespace RoomM.WebApp.AuthStores
                 throw new ArgumentNullException("roleName");
             }
 
-            bool result = this.service.IsUserInRole(user.Id, roleName);
+            bool result = user.Role.Name.Equals(roleName);
             return Task.FromResult<bool>(result);
         }
 

@@ -49,6 +49,10 @@ namespace RoomM.Domain.UserModule.Aggregates
         public string Phone { get; set; }
 
         [DataMember]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime LastLogin { get; set; }
+
+        [DataMember]
         public string Description { get; set; }
 
         [DataMember]
@@ -65,6 +69,12 @@ namespace RoomM.Domain.UserModule.Aggregates
 
         [DataMember]
         public string SecurityStamp { get; set; }
+
+        [DataMember]
+        public Int64 RoleId { get; set; }
+
+        [DataMember]
+        public virtual Role Role { get; set; }
 
         public virtual ICollection<UserClaim> UserClaims
         {
@@ -94,20 +104,6 @@ namespace RoomM.Domain.UserModule.Aggregates
             }
         }
 
-        public virtual ICollection<Role> Roles
-        {
-            get
-            {
-                if (this.roles == null)
-                    this.roles = new List<Role>();
-                return this.roles;
-            }
-            set
-            {
-                this.roles = new List<Role>(value);
-            }
-        }
-
         public virtual ICollection<RoomReg> RoomRegs
         {
             get
@@ -124,7 +120,6 @@ namespace RoomM.Domain.UserModule.Aggregates
 
         private IList<UserClaim> userClaims;
         private IList<UserLogin> userLogins;
-        private IList<Role> roles;
         private IList<RoomReg> roomRegs;
 
         public User()

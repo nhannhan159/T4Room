@@ -147,35 +147,6 @@ namespace RoomM.Application.UserModule.Services
             this.context.Commit();
         }
 
-        public IList<string> GetUserRoles(Int64 userId)
-        {
-            User user = this.context.UserRep.GetSingle(userId);
-            IList<string> roles = new List<string>();
-            foreach (Role role in user.Roles)
-            {
-                roles.Add(role.Name);
-            }
-            return roles;
-        }
-
-        public bool IsUserInRole(Int64 userId, string roleName)
-        {
-            User user = this.context.UserRep.GetSingle(userId);
-            return user.Roles.Count(p => p.Name.Equals(roleName)) > 0;
-        }
-
-        public void AddUserToRole(Int64 userId, string roleName)
-        {
-            Role role = this.context.RoleRep.GetSingleByName(roleName);
-            User user = this.context.UserRep.GetSingle(userId);
-            if (role != null && user != null)
-            {
-                user.Roles.Add(role);
-                this.context.UserRep.Edit(user);
-                this.context.Commit();
-            }
-        }
-
         public IList<UserClaim> GetUserClaimList(Int64 userId)
         {
             return this.context.UserClaimRep.GetByUserId(userId);
