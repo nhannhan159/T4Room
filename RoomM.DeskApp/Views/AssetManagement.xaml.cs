@@ -42,7 +42,7 @@ namespace RoomM.DeskApp.Views
                 }
             }
         }
-
+        
         private void dataGrid1_RowDetailsVisibilityChanged(object sender, DataGridRowDetailsEventArgs e)
         {
             DataGridRow row = e.Row as DataGridRow;
@@ -58,7 +58,6 @@ namespace RoomM.DeskApp.Views
                     (tb as ToggleButton).IsChecked = false;
                 }
             }
-
         }
 
         public static FrameworkElement GetTemplateChildByName(DependencyObject parent, string name)

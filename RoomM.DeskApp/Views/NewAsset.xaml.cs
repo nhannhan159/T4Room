@@ -15,13 +15,14 @@ using System.Windows.Shapes;
 
 using RoomM.DeskApp.UIHelper;
 using RoomM.Domain.AssetModule.Aggregates;
+using MahApps.Metro.Controls;
 
 namespace RoomM.DeskApp.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class NewAsset : Window
+    public partial class NewAsset : MetroWindow
     {
         public NewAsset()
         {

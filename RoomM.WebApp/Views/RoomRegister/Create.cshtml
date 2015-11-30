@@ -15,13 +15,14 @@
     <link href="@Url.Content("~/Content/css/timetable.css")" rel="stylesheet"/>
 }
 
+<h1 class="id-feature" name="DKP"></h1>
 <h2 id="title"></h2>
 
 <div class="float-right">
     <p class="float-left timeline" >Từ ngày <b id="startDay">@ViewBag.StartDay</b> đến ngày <b  id="endDay">@ViewBag.EndDay</b></p>
-    <input type="button" id="btnPrev" value="Trước" class="float-left asbestos-flat-button"/>
+    <input type="button" id="btnPrev" value="Trước" class="btn btn-primary"/>
     
-    <input type="button" id="btnNext" value="Tiếp" class="float-left asbestos-flat-button"/>
+    <input type="button" id="btnNext" value="Tiếp" class="btn btn-primary"/>
 </div>
 <table width="90%" align="center" id="timetable" >
     <div id="head_nav">
@@ -116,11 +117,11 @@ else
             @Html.DropDownList("Length")
             @Html.ValidationMessageFor(model => model.Length)
         </div>
-
         <div class="both"></div>
-        <p class="form-submit">
-            <input id="submit-button" type="submit" value="Lưu đăng kí" class="carrot-flat-button" />
-        </p>
+        <div class="col-md-2 col-md-offset-2" style="padding: 5px 20px;">
+            <input id="submit-button" type="submit" value="Lưu đăng kí" class="btn btn-primary" />
+        </div>
+        <div class="both"></div>
 
     </div>
 }
@@ -209,9 +210,9 @@ else
                 $('#submit-button').attr('disabled', isDisabled);
 
                 if (isDisabled)
-                    $("#submit-button").attr('class', 'asbestos-flat-button');
+                    $("#submit-button").attr('class', 'btn btn-default');
                 else
-                    $("#submit-button").attr('class', 'carrot-flat-button');
+                    $("#submit-button").attr('class', 'btn btn-primary');
             }
 
             function updatePage(date, roomId) {

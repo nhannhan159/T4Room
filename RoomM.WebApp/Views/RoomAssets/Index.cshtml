@@ -5,82 +5,83 @@
     int counter = 0;
 }
 
+<h1 class="id-feature" name="TBP"></h1>
 <h2>Danh sách tài sản phòng</h2>
+<div class="row">
 
+    <div class="col-md-5">
+        <br />
+        <table align="center" id="room_assets_table">
+            <col width="130" />
+            <col width="130" />
+            <col width="130" />
+            <col width="130" />
 
-<div style="float: left" width="40%">
-    <br/>
-    <table  align="center" id="room_assets_table">
-        <col width="130" />
-        <col width="130" />
-        <col width="130" />
-        <col width="130" />
+            <tr">
+                <th>STT</th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RoomId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Asset)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Amount)
+                </th>
 
-        <tr>
-            <th>STT</th>
-            <th>
-                @Html.DisplayNameFor(model => model.RoomId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Asset)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Amount)
-            </th>
+            </tr>
 
-        </tr>
-
-        @foreach (var item in Model)
+            @foreach (var item in Model)
         {
             counter++;
-        
-            <tr>
-                <th>@counter</th>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Room.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Asset.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Amount)
-                </td>
-            </tr>
+
+                <tr>
+                    <th>@counter</th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Room.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Asset.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amount)
+                    </td>
+                </tr>
         }
 
-    </table>
-    <div class="notify" id="notify" style="text-align:center">@ViewBag.Message</div>
+        </table>
+        <div class=" alert alert-warning" id="notify" style="text-align:center">@ViewBag.Message</div>
+    </div>
+
+
+    <div class="col-md-7">
+        <br />
+        <div class="editor-label">
+            @Html.Label("Loại phòng")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("RoomTypeList", "- tất cả -")
+        </div>
+        <div class="both"></div>
+
+        <div class="editor-label">
+            @Html.Label("Mã phòng")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("RoomList")
+        </div>
+        <div class="both"></div>
+
+        <div class="editor-label">
+            @Html.Label("Loại tài sản")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("AssetsTypeList", "- tất cả -")
+        </div>
+        <div class="both"></div>
+    </div>
+
 </div>
-
-
-<div style="float: right; width: 40%">
-
-    <div class="editor-label">
-        @Html.Label("Loại phòng")
-    </div>
-    <div class="editor-field">
-        @Html.DropDownList("RoomTypeList", "- tất cả -")
-    </div>
-    <div class="both"></div>
-
-    <div class="editor-label">
-        @Html.Label("Mã phòng")
-    </div>
-    <div class="editor-field">
-        @Html.DropDownList("RoomList")
-    </div>
-    <div class="both"></div>
-
-    <div class="editor-label">
-        @Html.Label("Loại tài sản")
-    </div>
-    <div class="editor-field">
-        @Html.DropDownList("AssetsTypeList", "- tất cả -")
-    </div>
-    <div class="both"></div>
-</div>
-
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -112,9 +113,9 @@
 
                 if (dataTbl.length == 0) {
                     $('#notify').html("Dữ liệu rỗng");
-                    $('.notify').show();
+                    $('#notify').show();
                 } else {
-                    $('.notify').hide();
+                    $('#notify').hide();
                 }
 
 

@@ -14,10 +14,10 @@
 @section styles {
     <link href="@Url.Content("~/Content/css/timetable.css")" rel="stylesheet"/>
 }
-
+<h1 class="id-feature" name="LP"></h1>
 <h2 id="title"></h2>
 
-<fieldset>
+<fieldset class="float-left">
     <legend>RoomCalendar</legend>
 
     <div class="editor-label">
@@ -33,9 +33,9 @@
 
 <div class="float-right">
     <p class="float-left timeline">Từ ngày <b id="startDay">@ViewBag.StartDay</b> đến ngày <b id="endDay">@ViewBag.EndDay</b></p>
-    <input type="button" id="btnPrev" value="Trước" class="float-left asbestos-flat-button" />
+    <input type="button" id="btnPrev" value="Trước" class="btn btn-primary" />
 
-    <input type="button" id="btnNext" value="Tiếp" class="float-left asbestos-flat-button" />
+    <input type="button" id="btnNext" value="Tiếp" class="btn btn-primary" />
 </div>
 <table width="90%" align="center" id="timetable">
     <div id="head_nav">
