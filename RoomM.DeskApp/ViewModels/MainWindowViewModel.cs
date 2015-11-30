@@ -22,9 +22,9 @@ namespace RoomM.DeskApp.ViewModels
     public class MainWindowViewModel : ViewModelBase
     {
         public static MainWindowViewModel instance;
-        public const string READY = "sẵn sàng";
-        public const string WAIT = "xin đợi...";
-        public const string COMPLETE = "hoàn thành";
+        public const string READY = "Sẵn sàng";
+        public const string WAIT = "Xin đợi...";
+        public const string COMPLETE = "Hoàn thành";
 
         public const int DARKSLATEGRAY = 0;
         public const int BLUE = 1;

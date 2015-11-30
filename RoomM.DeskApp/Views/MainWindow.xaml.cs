@@ -14,17 +14,21 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using RoomM.DeskApp.ViewModels;
+using MahApps.Metro.Controls;
+using System.Collections.ObjectModel;
 
 namespace RoomM.DeskApp.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : MetroWindow
     {
         public MainWindow()
         {
+
             InitializeComponent();
+
             Closing += (s, e) => ViewModelLocator.Cleanup();
         }
     }

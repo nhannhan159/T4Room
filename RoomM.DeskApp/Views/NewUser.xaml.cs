@@ -16,13 +16,14 @@ using System.Windows.Shapes;
 using RoomM.DeskApp.UIHelper;
 using RoomM.DeskApp.ViewModels;
 using RoomM.Domain.UserModule.Aggregates;
+using MahApps.Metro.Controls;
 
 namespace RoomM.DeskApp.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class NewUser : Window
+    public partial class NewUser : MetroWindow
     {
         public NewUser()
         {
