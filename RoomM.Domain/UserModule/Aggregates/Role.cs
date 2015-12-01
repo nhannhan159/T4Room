@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity.Infrastructure.Annotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Microsoft.AspNet.Identity;
 
 namespace RoomM.Domain.UserModule.Aggregates
 {
@@ -40,7 +34,9 @@ namespace RoomM.Domain.UserModule.Aggregates
 
         private IList<User> users;
 
-        public Role() { }
+        public Role()
+        {
+        }
 
         public Role(string name, string fullName)
         {

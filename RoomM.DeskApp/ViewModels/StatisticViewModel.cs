@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using GalaSoft.MvvmLight;
-
-using RoomM.DeskApp.UIHelper;
-using RoomM.Domain.RoomModule.Aggregates;
-using RoomM.Domain.UserModule.Aggregates;
+﻿using GalaSoft.MvvmLight;
 using RoomM.Application.RoomModule.Services;
 using RoomM.Application.UserModule.Services;
+using RoomM.Domain.RoomModule.Aggregates;
+using RoomM.Domain.UserModule.Aggregates;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace RoomM.DeskApp.ViewModels
 {
@@ -52,10 +45,10 @@ namespace RoomM.DeskApp.ViewModels
             get { return this.chartRegisterItems; }
         }
 
-        public DateTime FromTimeStaff 
+        public DateTime FromTimeStaff
         {
             get { return this.fromTimeStaff; }
-            set 
+            set
             {
                 this.fromTimeStaff = value;
                 this.rebuildUserData(value, ToTimeStaff);
@@ -65,10 +58,10 @@ namespace RoomM.DeskApp.ViewModels
         public DateTime ToTimeStaff
         {
             get { return this.toTimeStaff; }
-            set 
+            set
             {
                 this.toTimeStaff = value;
-                this.rebuildUserData(FromTimeStaff, value);   
+                this.rebuildUserData(FromTimeStaff, value);
             }
         }
 
@@ -131,7 +124,6 @@ namespace RoomM.DeskApp.ViewModels
         }
     }
 
-
     public class ChartElement
     {
         private string name;
@@ -147,7 +139,6 @@ namespace RoomM.DeskApp.ViewModels
         {
             // TODO: Complete member initialization
         }
-
 
         public string Name { get { return this.name; } set { this.name = value; } }
         public int Value { get { return this.value; } set { this.value = value; } }

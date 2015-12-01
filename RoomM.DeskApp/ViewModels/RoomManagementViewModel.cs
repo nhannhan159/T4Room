@@ -1,30 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-using System.Windows.Data;
-using System.ComponentModel;
-using System.Windows.Forms;
-using System.Collections;
-
-using GalaSoft.MvvmLight.Command;
-
+﻿using GalaSoft.MvvmLight.Command;
+using RoomM.Application.AssetModule.Services;
+using RoomM.Application.RoomModule.Services;
 using RoomM.DeskApp.UIHelper;
 using RoomM.DeskApp.Views;
 using RoomM.Domain.AssetModule.Aggregates;
 using RoomM.Domain.RoomModule.Aggregates;
-using RoomM.Application.AssetModule.Services;
-using RoomM.Application.RoomModule.Services;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Data;
+using System.Windows.Input;
 
 namespace RoomM.DeskApp.ViewModels
 {
     public class RoomManagementViewModel : EditableViewModel<Room>
     {
-
         #region Contruction
 
         public RoomManagementViewModel(IAssetManagementService assetManagementService, IRoomManagementService roomManagementService)
@@ -67,7 +60,7 @@ namespace RoomM.DeskApp.ViewModels
             this.historiesView = new CollectionView(historiesList);
         }
 
-        #endregion
+        #endregion Contruction
 
         #region PrivateField
 
@@ -164,7 +157,7 @@ namespace RoomM.DeskApp.ViewModels
             }
         }
 
-        protected override bool IsUsing(Room entity) 
+        protected override bool IsUsing(Room entity)
         {
             return entity.IsUsing;
         }
@@ -228,7 +221,7 @@ namespace RoomM.DeskApp.ViewModels
             get { return CollectionViewSource.GetDefaultView(this.roomManagementService.GetRoomTypeList()); }
         }
 
-        #endregion
+        #endregion PrivateField
 
         public Dictionary<int, string> RoomRegTypeView { get; set; }
 
@@ -268,7 +261,7 @@ namespace RoomM.DeskApp.ViewModels
             {
                 filter = filter && (entity.Date >= this.RcvDateFromFilter);
                 filter = filter && (entity.Date <= this.RcvDateToFilter);
-                filter = filter && entity.User.FullName.Contains(this.RcvRegistrantFilter); 
+                filter = filter && entity.User.FullName.Contains(this.RcvRegistrantFilter);
                 if (this.RcvPeriodsFilter > 0)
                     filter = filter && (entity.Length == this.RcvPeriodsFilter);
                 if (this.RcvBeginTimeFilter > 0)
@@ -318,7 +311,6 @@ namespace RoomM.DeskApp.ViewModels
             this.roomCalendarViewFilterIsCheck = true;
             this.currentRoomRegView.Refresh();
         }
-
 
         private void RoomAssetViewFilterCommandHandler()
         {
@@ -420,7 +412,7 @@ namespace RoomM.DeskApp.ViewModels
         public DateTime RhvDateFromFilter
         {
             get { return this.rhvDateFromFilter; }
-            set { this.rhvDateFromFilter= value; }
+            set { this.rhvDateFromFilter = value; }
         }
 
         public DateTime RhvDateToFilter
@@ -441,6 +433,7 @@ namespace RoomM.DeskApp.ViewModels
 
         // commands
         public ICommand ExportToExcelCommand { get { return new RelayCommand(ExportToExcelCommandHandler); } }
+
         public ICommand ExportCalRegisterToExcelCommand { get { return new RelayCommand(ExportCalRegisterToExcelCommandHandler); } }
         public ICommand ExportAssetsToExcelCommand { get { return new RelayCommand(ExportAssetsToExcelCommandHandler); } }
         public ICommand ExportHistoriesToExcelCommand { get { return new RelayCommand(ExportHistoriesToExcelCommandHandler); } }
@@ -483,7 +476,7 @@ namespace RoomM.DeskApp.ViewModels
 
             report.setupExport(dataList, CurrentEntity);
             report.save();
-        }     
+        }
 
         private void ExportHistoriesToExcelCommandHandler()
         {
@@ -495,7 +488,6 @@ namespace RoomM.DeskApp.ViewModels
             report.setupExport(dataList, CurrentEntity);
             report.save();
         }
-
 
         // backtrace button
         public ICommand BacktraceCommand { get { return new RelayCommand(BacktraceCommandHandler); } }
@@ -511,12 +503,13 @@ namespace RoomM.DeskApp.ViewModels
             {
                 if (his.Date.Date <= timeForBacktrace)
                 {
-
                     if (!hm.ContainsKey(his.Asset.Name))
-                        hm[his.Asset.Name] = new HistoryRecord 
+                        hm[his.Asset.Name] = new HistoryRecord
                         {
                             AssetName = his.Asset.Name,
-                            Amount = 0, AmountImport = 0, AmountRemove = 0
+                            Amount = 0,
+                            AmountImport = 0,
+                            AmountRemove = 0
                         };
 
                     if (his.AssetHistoryTypeId == AssetHistory.ASSETS_IMPORT)
@@ -563,7 +556,6 @@ namespace RoomM.DeskApp.ViewModels
 
         private void RefreshCommandHandler()
         {
-
             // init data context;
             // EFDataContext.instance = new EFDataContext();
 
@@ -579,17 +571,16 @@ namespace RoomM.DeskApp.ViewModels
             this.currentRoomHistoryView.Refresh();
         }
 
-        public class HistoryRecord {
+        public class HistoryRecord
+        {
             public String AssetName { get; set; }
             public int Amount { get; set; }
             public int AmountRemove { get; set; }
             public int AmountImport { get; set; }
 
-            public HistoryRecord() { }
-
+            public HistoryRecord()
+            {
+            }
         }
-            
     }
-
 }
-

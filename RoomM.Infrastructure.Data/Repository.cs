@@ -1,15 +1,12 @@
-﻿using System;
+﻿using RoomM.Domain;
+using RoomM.Infrastructure.Data.UnitOfWork;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-
-using RoomM.Domain;
-using RoomM.Infrastructure.Data.UnitOfWork;
 
 namespace RoomM.Infrastructure.Data
 {
@@ -24,7 +21,8 @@ namespace RoomM.Infrastructure.Data
             this.dbSet = context.Set<T>();
         }
 
-        protected virtual string IncludeProperties() {
+        protected virtual string IncludeProperties()
+        {
             return "";
         }
 
@@ -127,7 +125,6 @@ namespace RoomM.Infrastructure.Data
             {
                 entry.State = EntityState.Modified;
             }
-            
         }
     }
 }

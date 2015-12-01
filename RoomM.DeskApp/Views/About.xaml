@@ -9,11 +9,11 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Margin="5,5" Orientation="Horizontal" HorizontalAlignment="Stretch" Background="White">
             <TextBlock Text="rOOm" FontSize="50" FontWeight="Bold" TextBlock.Foreground="DarkSlateGray" />
-            <TextBox Text="© 2014 - SGU group" VerticalAlignment="Bottom" Height="25" Margin="10,0,0,0" BorderThickness="0"/>
+            <TextBox Text="© 2014 - SGU group" VerticalAlignment="Bottom" Height="25" Margin="10,0,0,0" BorderThickness="0" />
         </StackPanel>
 
         <StackPanel Grid.Row="1" Margin="5,5">
@@ -23,6 +23,5 @@
         </StackPanel>
 
         <TextBlock Margin="5,5" Grid.Row="2" Text="Cảnh báo: Chương trình này được bảo vệ dựa trên luật bản quyền tại Việt Nam. Phiên bản không cho phép tái sử dụng mã nguồn và tái phân phối lại. Mọi hành vi sử dụng nhằm gây hại cho nhóm tác giả đều được luật bản quyền bảo vệ." TextWrapping="Wrap" Background="LightGray" />
-
     </Grid>
 </Window>

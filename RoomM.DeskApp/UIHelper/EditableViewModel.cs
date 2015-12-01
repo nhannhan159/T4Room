@@ -1,19 +1,12 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using RoomM.DeskApp.ViewModels;
+using RoomM.Domain;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
-
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-
-using RoomM.DeskApp.ViewModels;
-using RoomM.Domain;
 
 namespace RoomM.DeskApp.UIHelper
 {
@@ -34,7 +27,7 @@ namespace RoomM.DeskApp.UIHelper
             this.NameFilter = "";
             this.isIncludeAll = false;
             this.filterIsCheck = false;
-            
+
             this.SaveCommand = new RelayCommand(this.SaveCommandHandler, () => { return this.currentEntity != null; });
             this.NewCommand = new RelayCommand(this.NewCommandHandler);
             this.NewDialogCommand = new RelayCommand(this.NewDialogCommandHandler);
@@ -55,9 +48,13 @@ namespace RoomM.DeskApp.UIHelper
         }
 
         protected abstract List<T> GetEntitiesList();
+
         protected abstract void AddCurrentEntity();
+
         protected abstract void EditCurrentEntity();
+
         protected abstract void DeleteCurrentEntity();
+
         protected abstract void CloseNewEntityDialog();
 
         public T CurrentEntity
@@ -79,9 +76,19 @@ namespace RoomM.DeskApp.UIHelper
             return new PropertyGroupDescription("");
         }
 
-        protected virtual bool IsUsing(T entity) { return true; }
-        protected virtual bool GeneralFilter(T entity) { return true; }
-        protected virtual void SetAdditionViewChange() { }
+        protected virtual bool IsUsing(T entity)
+        {
+            return true;
+        }
+
+        protected virtual bool GeneralFilter(T entity)
+        {
+            return true;
+        }
+
+        protected virtual void SetAdditionViewChange()
+        {
+        }
 
         private bool EntityFilter(object obj)
         {
@@ -142,7 +149,7 @@ namespace RoomM.DeskApp.UIHelper
         public ICommand FilterCommand { get; private set; }
         public ICommand FilterAllCommand { get; private set; }
         public ICommand FilterAllPlusCommand { get; private set; }
-       
+
         private void SaveCommandHandler()
         {
             MainWindowViewModel.instance.ChangeStateToReady();
@@ -183,7 +190,9 @@ namespace RoomM.DeskApp.UIHelper
             this.entitiesView.Refresh();
         }
 
-        protected virtual void NewDialogCommandHandler() { }
+        protected virtual void NewDialogCommandHandler()
+        {
+        }
 
         private void FilterCommandHandler()
         {
@@ -201,6 +210,5 @@ namespace RoomM.DeskApp.UIHelper
         {
             this.entitiesView.Refresh();
         }
-
     }
 }

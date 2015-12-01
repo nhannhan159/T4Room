@@ -1,10 +1,8 @@
-﻿using System;
-using System.Data.Entity;
+﻿using Microsoft.AspNet.Identity;
+using RoomM.Domain.UserModule.Aggregates;
+using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-
-using RoomM.Domain.UserModule.Aggregates;
 
 namespace RoomM.WebApp.Models
 {

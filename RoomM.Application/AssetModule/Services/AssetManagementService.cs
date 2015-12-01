@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity.Validation;
-
-using RoomM.Domain;
+﻿using RoomM.Domain;
 using RoomM.Domain.AssetModule.Aggregates;
 using RoomM.Domain.RoomModule.Aggregates;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity.Validation;
+using System.Linq;
 
 namespace RoomM.Application.AssetModule.Services
 {
-    public class AssetManagementService : IAssetManagementService 
+    public class AssetManagementService : IAssetManagementService
     {
         private IUnitOfWork context;
 
@@ -43,7 +40,7 @@ namespace RoomM.Application.AssetModule.Services
             {
                 var error = ex.EntityValidationErrors.First().ValidationErrors.First();
                 throw new ApplicationException(error.ErrorMessage);
-            } 
+            }
         }
 
         public void EditAsset(Asset asset)
@@ -57,7 +54,7 @@ namespace RoomM.Application.AssetModule.Services
             {
                 var error = ex.EntityValidationErrors.First().ValidationErrors.First();
                 throw new ApplicationException(error.ErrorMessage);
-            } 
+            }
         }
 
         public void DeleteAsset(Asset asset)
@@ -75,7 +72,7 @@ namespace RoomM.Application.AssetModule.Services
             }
         }
 
-        #endregion
+        #endregion Basic CRUD
 
         #region Addition Lists
 
@@ -114,7 +111,7 @@ namespace RoomM.Application.AssetModule.Services
             return this.context.AssetHistoryRep.GetByRoom2RoomId(room, timeForBacktrace);
         }
 
-        #endregion
+        #endregion Addition Lists
 
         #region Addition Services
 
@@ -133,7 +130,7 @@ namespace RoomM.Application.AssetModule.Services
             {
                 var error = ex.EntityValidationErrors.First().ValidationErrors.First();
                 throw new ApplicationException(error.ErrorMessage);
-            } 
+            }
         }
 
         public void DropAsset(AssetDetail assetDetail, int amount)
@@ -200,6 +197,6 @@ namespace RoomM.Application.AssetModule.Services
             }
         }
 
-        #endregion
+        #endregion Addition Services
     }
 }

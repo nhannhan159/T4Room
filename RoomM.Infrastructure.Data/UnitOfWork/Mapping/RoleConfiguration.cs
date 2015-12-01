@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity.ModelConfiguration;
+﻿using RoomM.Domain.UserModule.Aggregates;
 using System.ComponentModel.DataAnnotations.Schema;
-
-using RoomM.Domain.UserModule.Aggregates;
+using System.Data.Entity.ModelConfiguration;
 
 namespace RoomM.Infrastructure.Data.UnitOfWork.Mapping
 {
     public class RoleConfiguration : EntityTypeConfiguration<Role>
     {
         public RoleConfiguration()
-        { 
-            // key 
+        {
+            // key
             this.HasKey(t => t.Id);
 
             // properties

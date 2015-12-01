@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-using RoomM.WebApp.Models.RoomM;
+﻿using RoomM.Application.AssetModule.Services;
+using RoomM.Application.RoomModule.Services;
 using RoomM.Domain.AssetModule.Aggregates;
 using RoomM.Domain.RoomModule.Aggregates;
-using RoomM.Application.AssetModule.Services;
-using RoomM.Application.RoomModule.Services;
+using RoomM.WebApp.Models.RoomM;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace RoomM.WebApp.Controllers
 {
@@ -34,7 +31,7 @@ namespace RoomM.WebApp.Controllers
             // get room tyle
             IList<RoomType> roomTypeLst = this.roomManagementService.GetRoomTypeList();
 
-            // get all room assets 
+            // get all room assets
             IList<AssetDetail> roomAssetsLst = this.assetManagementService.GetAssetDetailList();
 
             // get all assets type
@@ -69,16 +66,17 @@ namespace RoomM.WebApp.Controllers
             }
             return Json(roomVMList);
         }
-        
+
         [HttpPost]
         [Authorize(Roles = "Manager")]
         public ActionResult ChangeOptions(int roomId, int assetsTypeId)
         {
             var roomAssetsLst = this.assetManagementService.GetAssetDetailListByRoomId(roomId);
-            if (assetsTypeId > 0) {
-                List<AssetDetail> roomFilter = (from p in roomAssetsLst 
-                             where p.AssetId == assetsTypeId
-                             select p).ToList();
+            if (assetsTypeId > 0)
+            {
+                List<AssetDetail> roomFilter = (from p in roomAssetsLst
+                                                where p.AssetId == assetsTypeId
+                                                select p).ToList();
                 roomAssetsLst = roomFilter;
             }
 
@@ -94,6 +92,5 @@ namespace RoomM.WebApp.Controllers
             }
             return Json(result);
         }
-
     }
 }

@@ -1,14 +1,11 @@
 ﻿namespace RoomM.Infrastructure.Data.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Collections.Generic;
-    using System.Linq;
-
     using RoomM.Domain.AssetModule.Aggregates;
     using RoomM.Domain.RoomModule.Aggregates;
     using RoomM.Domain.UserModule.Aggregates;
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Migrations;
 
     internal sealed class Configuration : DbMigrationsConfiguration<RoomM.Infrastructure.Data.UnitOfWork.EFContext>
     {
@@ -20,7 +17,7 @@
 
         protected override void Seed(RoomM.Infrastructure.Data.UnitOfWork.EFContext context)
         {
-            /* 
+            /*
             1	Chuyển thiết bị
             2	Thanh lí thiết bị
             3	Nhập thiết bị
@@ -40,6 +37,7 @@
             Role usertype2 = new Role { Name = "Manager", FullName = "Nhân viên quản lý" };
 
             #region room tin hoc
+
             Room room0 = new Room
             {
                 Name = "A100",
@@ -110,9 +108,10 @@
                 RoomType = roomTH
             };
 
-            #endregion
+            #endregion room tin hoc
 
             #region vat li
+
             Room room10 = new Room
             {
                 Name = "B000",
@@ -155,9 +154,10 @@
                 RoomType = roomLI,
             };
 
-            #endregion
+            #endregion vat li
 
             #region mix room
+
             Room room16 = new Room
             {
                 Name = "A112",
@@ -183,9 +183,10 @@
                 RoomType = roomCK,
             };
 
-            #endregion
+            #endregion mix room
 
             #region init asset
+
             Asset device1 = new Asset
             {
                 Name = "Quạt trần 4M",
@@ -273,9 +274,10 @@
                 Name = "Cáp nối mạng 4M",
             };
 
-            #endregion
+            #endregion init asset
 
             #region room A100
+
             AssetDetail roomD1 = new AssetDetail
             {
                 Asset = device17,
@@ -311,9 +313,10 @@
                 Room = room1
             };
 
-            #endregion
+            #endregion room A100
 
             #region mix
+
             AssetDetail roomD6 = new AssetDetail
             {
                 Asset = device3,
@@ -327,7 +330,8 @@
                 Amount = 100,
                 Room = room2
             };
-            #endregion
+
+            #endregion mix
 
             AssetHistory devicehistory1 = new AssetHistory
             {
@@ -473,7 +477,7 @@
                 Password = "user123"
             };
 
-            #endregion
+            #endregion staff
 
             RoomReg roomcalendar1 = new RoomReg
             {
@@ -531,6 +535,7 @@
             context.Entry(roomSI).State = EntityState.Added;
 
             #region add device
+
             context.Entry(device1).State = EntityState.Added;
             context.Entry(device2).State = EntityState.Added;
             context.Entry(device3).State = EntityState.Added;
@@ -552,9 +557,10 @@
             context.Entry(device19).State = EntityState.Added;
             context.Entry(device20).State = EntityState.Added;
 
-            #endregion
+            #endregion add device
 
             #region addroom
+
             context.Entry(room0).State = EntityState.Added;
             context.Entry(room1).State = EntityState.Added;
             context.Entry(room2).State = EntityState.Added;
@@ -575,9 +581,11 @@
             context.Entry(room17).State = EntityState.Added;
             context.Entry(room18).State = EntityState.Added;
             context.Entry(room19).State = EntityState.Added;
-            #endregion
+
+            #endregion addroom
 
             #region add room assets
+
             context.Entry(roomD1).State = EntityState.Added;
             context.Entry(roomD2).State = EntityState.Added;
             context.Entry(roomD3).State = EntityState.Added;
@@ -585,7 +593,8 @@
             context.Entry(roomD5).State = EntityState.Added;
             context.Entry(roomD6).State = EntityState.Added;
             context.Entry(roomD7).State = EntityState.Added;
-            #endregion
+
+            #endregion add room assets
 
             context.Entry(devicehistory1).State = EntityState.Added;
             context.Entry(devicehistory2).State = EntityState.Added;
@@ -608,7 +617,7 @@
             context.Entry(user8).State = EntityState.Added;
             context.Entry(user9).State = EntityState.Added;
 
-            #endregion
+            #endregion add staff
 
             context.Entry(roomcalendar1).State = EntityState.Added;
             context.Entry(roomcalendar2).State = EntityState.Added;

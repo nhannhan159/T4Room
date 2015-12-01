@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-
-using RoomM.WebApp.Models.RoomM;
-using RoomM.Domain.AssetModule.Aggregates;
-using RoomM.Domain.RoomModule.Aggregates;
+﻿using Microsoft.AspNet.Identity;
 using RoomM.Application.RoomModule.Services;
+using RoomM.Domain.RoomModule.Aggregates;
+using RoomM.WebApp.Models.RoomM;
+using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace RoomM.WebApp.Controllers
 {
@@ -65,11 +61,11 @@ namespace RoomM.WebApp.Controllers
 
             string message = "";
             if (rc.RoomRegTypeId == 3) // huy dk tu quan tri vien
-                message = "Xác nhận hủy đăng kí phòng " + rc.Room.Name + " vào ngày " 
-                + rc.Date.ToShortDateString() + " từ tiết " + rc.Start + " đến tiết " + (rc.Start + rc.Length - 1); 
+                message = "Xác nhận hủy đăng kí phòng " + rc.Room.Name + " vào ngày "
+                + rc.Date.ToShortDateString() + " từ tiết " + rc.Start + " đến tiết " + (rc.Start + rc.Length - 1);
             else // dk thanh cong
                 message = "Xác nhận đăng kí phòng " + rc.Room.Name + " vào ngày "
-                + rc.Date.ToShortDateString() + " từ tiết " + rc.Start + " đến tiết " + (rc.Start + rc.Length - 1); 
+                + rc.Date.ToShortDateString() + " từ tiết " + rc.Start + " đến tiết " + (rc.Start + rc.Length - 1);
 
             return RedirectToAction("RoomRegistered", new { messageConfirm = message });
         }
@@ -132,13 +128,13 @@ namespace RoomM.WebApp.Controllers
             var startLst = buildStartList(calInDate);
 
             if (startLst.Count == 0)
-                startLst.Add(new ItemList{
+                startLst.Add(new ItemList
+                {
                     ID = "0_0",
                     Value = "bận"
                 });
 
-           ViewBag.StartDump = new SelectList(startLst, "ID", "Value", startLst[0].ID);
-           
+            ViewBag.StartDump = new SelectList(startLst, "ID", "Value", startLst[0].ID);
 
             ViewBag.Length = new SelectList(startLst);
             ViewBag.TimeTbl = buildTimeTableList(calInWeek);
@@ -186,7 +182,7 @@ namespace RoomM.WebApp.Controllers
             DateTime currentDate = new DateTime(year, month, day);
             IList<RoomReg> calInDate = this.roomManagementService.GetRoomRegListByDate(currentDate, roomId);
             IList<RoomReg> calInWeek = this.roomManagementService.GetRoomRegListByWeek(currentDate, roomId);
-            
+
             DateTime startDateOfWeek = getStartDayOfWeek(currentDate);
             DateTime endDateOfWeek = getEndDayOfWeek(currentDate);
 
@@ -197,7 +193,6 @@ namespace RoomM.WebApp.Controllers
                 TimeTableChange = true,
                 StartDay = startDateOfWeek.ToShortDateString(),
                 EndDay = endDateOfWeek.ToShortDateString()
-
             };
 
             return Json(result);
@@ -205,7 +200,6 @@ namespace RoomM.WebApp.Controllers
 
         private List<ItemList> buildStartList(IList<RoomReg> calInDate)
         {
-
             bool[] offsetday = new Boolean[15]; // false is free
             for (int i = 1; i <= 13; ++i)
             {
@@ -249,7 +243,6 @@ namespace RoomM.WebApp.Controllers
             List<List<int>> timeTblList = new List<List<int>>();
             timeTblList.Add(new List<int>());
 
-
             // init slot
             for (int i = 1; i <= 13; ++i)
             {
@@ -269,7 +262,7 @@ namespace RoomM.WebApp.Controllers
 
                 for (int i = rc.Start; i <= rc.Start + rc.Length - 1; ++i)
                 {
-                    timeTblList[i][dayOfWeek] = (int) rc.RoomRegTypeId;
+                    timeTblList[i][dayOfWeek] = (int)rc.RoomRegTypeId;
                 }
             }
 

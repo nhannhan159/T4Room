@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity.ModelConfiguration;
+﻿using RoomM.Domain.RoomModule.Aggregates;
 using System.ComponentModel.DataAnnotations.Schema;
-
-using RoomM.Domain.RoomModule.Aggregates;
+using System.Data.Entity.ModelConfiguration;
 
 namespace RoomM.Infrastructure.Data.UnitOfWork.Mapping
 {
     public class RoomRegConfiguration : EntityTypeConfiguration<RoomReg>
     {
         public RoomRegConfiguration()
-        { 
+        {
             // key
             this.HasKey(t => t.Id);
 
@@ -26,7 +20,7 @@ namespace RoomM.Infrastructure.Data.UnitOfWork.Mapping
             this.Property(t => t.UserId).IsOptional();
             this.Property(t => t.RoomRegTypeId).IsRequired();
             this.Property(t => t.IsWatched).IsOptional();
-            
+
             // table
             this.ToTable("RoomRegs");
 

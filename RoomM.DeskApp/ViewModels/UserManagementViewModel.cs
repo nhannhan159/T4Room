@@ -1,32 +1,24 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Data;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Input;
-using System.Windows.Forms;
-using System.Threading.Tasks;
-using System.ComponentModel;
-
-using GalaSoft.MvvmLight.Command;
-
+﻿using GalaSoft.MvvmLight.Command;
+using RoomM.Application.RoomModule.Services;
+using RoomM.Application.UserModule.Services;
 using RoomM.DeskApp.UIHelper;
 using RoomM.DeskApp.Views;
 using RoomM.Domain.RoomModule.Aggregates;
 using RoomM.Domain.UserModule.Aggregates;
-using RoomM.Application.RoomModule.Services;
-using RoomM.Application.UserModule.Services;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Data;
+using System.Windows.Input;
 
 namespace RoomM.DeskApp.ViewModels
 {
     public class UserManagementViewModel : EditableViewModel<User>
     {
-
         #region Construction
 
         public UserManagementViewModel(IUserManagementService userManagementService, IRoomManagementService roomManagementService)
-            : base() 
+            : base()
         {
             this.userManagementService = userManagementService;
             this.roomManagementService = roomManagementService;
@@ -45,7 +37,7 @@ namespace RoomM.DeskApp.ViewModels
             this.rcvStatusFilter = 0;
         }
 
-        #endregion
+        #endregion Construction
 
         #region PrivateField
 
@@ -63,7 +55,7 @@ namespace RoomM.DeskApp.ViewModels
         private int rcvBeginTimeFilter;
         private int rcvStatusFilter;
 
-        #endregion
+        #endregion PrivateField
 
         #region General
 
@@ -163,7 +155,7 @@ namespace RoomM.DeskApp.ViewModels
             this.RaisePropertyChanged(() => this.CurrentRoomCalendarView);
         }
 
-        #endregion
+        #endregion General
 
         public ICollectionView CurrentRoomCalendarView
         {

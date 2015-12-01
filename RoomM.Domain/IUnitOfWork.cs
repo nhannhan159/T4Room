@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-
-using RoomM.Domain.AssetModule.Aggregates;
+﻿using RoomM.Domain.AssetModule.Aggregates;
 using RoomM.Domain.RoomModule.Aggregates;
 using RoomM.Domain.UserModule.Aggregates;
+using System;
 
 namespace RoomM.Domain
 {
     public interface IUnitOfWork : IDisposable
     {
         void Commit();
+
         void EnableWSMode();
 
         IRoomRepository RoomRep { get; }

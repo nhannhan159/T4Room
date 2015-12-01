@@ -1,30 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-using System.Windows.Data;
-using System.Windows.Forms;
-using System.ComponentModel;
-using System.Collections.ObjectModel;
-
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-
+﻿using GalaSoft.MvvmLight.Command;
+using RoomM.Application.AssetModule.Services;
+using RoomM.Application.RoomModule.Services;
 using RoomM.DeskApp.UIHelper;
 using RoomM.DeskApp.Views;
 using RoomM.Domain.AssetModule.Aggregates;
 using RoomM.Domain.RoomModule.Aggregates;
-using RoomM.Application.AssetModule.Services;
-using RoomM.Application.RoomModule.Services;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows;
+using System.Windows.Data;
+using System.Windows.Input;
 
 namespace RoomM.DeskApp.ViewModels
 {
     public class AssetManagementViewModel : EditableViewModel<Asset>
     {
-
         #region Contruction
 
         public AssetManagementViewModel(IAssetManagementService assetManagementService, IRoomManagementService roomManagementService)
@@ -54,7 +46,7 @@ namespace RoomM.DeskApp.ViewModels
             this.amount3 = 0;
         }
 
-        #endregion
+        #endregion Contruction
 
         #region PrivateField
 
@@ -80,7 +72,7 @@ namespace RoomM.DeskApp.ViewModels
         private int amount2;
         private int amount3;
 
-        #endregion
+        #endregion PrivateField
 
         #region General
 
@@ -170,7 +162,7 @@ namespace RoomM.DeskApp.ViewModels
             this.RaisePropertyChanged(() => this.AssFuncEnabled);
         }
 
-        #endregion
+        #endregion General
 
         #region AdditionView
 
@@ -230,7 +222,7 @@ namespace RoomM.DeskApp.ViewModels
             set { this.ravRoomNameFilter = value; }
         }
 
-        #endregion
+        #endregion AdditionView
 
         #region AssFunctions
 
@@ -367,7 +359,8 @@ namespace RoomM.DeskApp.ViewModels
         public Room Room1
         {
             get { return this.room1; }
-            set { 
+            set
+            {
                 this.room1 = value;
                 this.RaisePropertyChanged(() => this.Room1);
             }
@@ -411,8 +404,7 @@ namespace RoomM.DeskApp.ViewModels
             set { this.amount3 = value; }
         }
 
-        #endregion
-
+        #endregion AssFunctions
 
         // command handler
         public ICommand AssetsToExcelCommand { get { return new RelayCommand(AssetsToExcelCommandHandler); } }

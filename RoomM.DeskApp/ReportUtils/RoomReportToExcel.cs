@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using NPOI.SS.UserModel;
-
+﻿using NPOI.SS.UserModel;
 using RoomM.Domain.RoomModule.Aggregates;
+using System;
+using System.Collections.Generic;
 
 namespace RoomM.DeskApp
 {
@@ -16,13 +11,11 @@ namespace RoomM.DeskApp
             : base(companyName, subject, template)
         { }
 
-
         public override void setupExport(List<Room> roomList, Room room = null)
         {
             // IList<Room> roomList = roomsRepo.GetAll();
 
             activeSheet = hssfworkbook.GetSheet("Sheet1");
-
 
             // set profile
             IRow r0 = activeSheet.GetRow(2);

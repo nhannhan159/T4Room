@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RoomM.Domain;
 using System.Windows.Input;
-using System.Windows.Data;
-using System.ComponentModel;
-
-using RoomM.DeskApp.UIHelper;
-using RoomM.DeskApp.Views;
-using RoomM.Domain;
 
 namespace RoomM.DeskApp.UIHelper
 {
@@ -30,6 +19,5 @@ namespace RoomM.DeskApp.UIHelper
         }
 
         public ICommand NewCommand { get; set; }
-
     }
 }

@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections;
-using System.Linq.Expressions;
-using System.Data.Entity;
-
-using RoomM.Domain.UserModule.Aggregates;
+﻿using RoomM.Domain.UserModule.Aggregates;
 using RoomM.Infrastructure.Data.UnitOfWork;
+using System.Linq;
 
 namespace RoomM.Infrastructure.Data.UserModule.Repositories
 {

@@ -3,16 +3,16 @@
 @{
     ViewBag.Title = "Create";
 
-    ViewBag.TimeLine = new String[] 
-        { "", "Tiết 1: 7h - 7h50", "Tiết 2: 7h50 - 8h40", "Tiết 3: 9h - 9h50", 
-            "Tiết 4: 9h50 - 10h40", "Tiết 5: 10h40 - 11h30", "Tiết 6: 12h - 12h50", 
-            "Tiết 7: 12h50 - 1h40", "Tiết 8: 2h - 2h50", "Tiết 9: 2h50 - 3h40", 
-            "Tiết 10: 3h40 - 4h30", "Tiết 11: 5h - 5h50", "Tiết 12: 5h50 - 6h40", 
+    ViewBag.TimeLine = new String[]
+        { "", "Tiết 1: 7h - 7h50", "Tiết 2: 7h50 - 8h40", "Tiết 3: 9h - 9h50",
+            "Tiết 4: 9h50 - 10h40", "Tiết 5: 10h40 - 11h30", "Tiết 6: 12h - 12h50",
+            "Tiết 7: 12h50 - 1h40", "Tiết 8: 2h - 2h50", "Tiết 9: 2h50 - 3h40",
+            "Tiết 10: 3h40 - 4h30", "Tiết 11: 5h - 5h50", "Tiết 12: 5h50 - 6h40",
             "Tiết 13: 6h40 - 7h30" };
 }
 
 @section styles {
-    <link href="@Url.Content("~/Content/css/timetable.css")" rel="stylesheet"/>
+    <link href="@Url.Content("~/Content/css/timetable.css")" rel="stylesheet" />
 }
 
 <h1 class="id-feature" name="DKP"></h1>
@@ -20,11 +20,11 @@
 
 <div class="float-right">
     <p class="float-left timeline" >Từ ngày <b id="startDay">@ViewBag.StartDay</b> đến ngày <b  id="endDay">@ViewBag.EndDay</b></p>
-    <input type="button" id="btnPrev" value="Trước" class="btn btn-primary"/>
-    
-    <input type="button" id="btnNext" value="Tiếp" class="btn btn-primary"/>
+    <input type="button" id="btnPrev" value="Trước" class="btn btn-primary" />
+
+    <input type="button" id="btnNext" value="Tiếp" class="btn btn-primary" />
 </div>
-<table width="90%" align="center" id="timetable" >
+<table width="90%" align="center" id="timetable">
     <div id="head_nav">
         <tr>
             <th class="wide">Tiết/ Thời gian</t>
@@ -36,20 +36,20 @@
             <th>Thứ 7</th>
             <th>Chủ nhật</th>
         </tr>
-    </div>  
+    </div>
 
     @for (int i = 1; i <= 13; ++i)
     {
         <tr>
             <th class="wide">@ViewBag.TimeLine[i]</th>
         @for (int j = 1; j <= 7; ++j)
-        { 
+        {
             if (ViewBag.TimeTbl[i][j] == 0)
             {
                 <td class="free" title="Có thể đăng kí"></td>
             }
             else if (ViewBag.TimeTbl[i][j] == 1)
-            { 
+            {
                 <td class="wait" title="Đợi xác nhận"></td>
             }
             else
@@ -59,21 +59,18 @@
         }
         </tr>
     }
-
 </table>
 
 <h2>Tạo đăng kí mới</h2>
 
-@if (@ViewBag.IsErrorMessage) 
+@if (@ViewBag.IsErrorMessage)
 {
     <div class="notify error">@ViewBag.MessageConfirm</div>
-} 
-else 
+}
+else
 {
     <div class="notify confirm">@ViewBag.MessageConfirm</div>
 }
-
-
 
 @using (Html.BeginForm())
 {
@@ -89,7 +86,6 @@ else
             @Html.ValidationMessageFor(model => model.RoomId)
         </div>
 
-        
         <div class="form-title">
             @Html.LabelFor(model => model.Date)
         </div>
@@ -99,7 +95,6 @@ else
         </div>
 
         <div class="both"></div>
-
 
         <div class="form-title">
             @Html.LabelFor(model => model.Start)
@@ -122,7 +117,6 @@ else
             <input id="submit-button" type="submit" value="Lưu đăng kí" class="btn btn-primary" />
         </div>
         <div class="both"></div>
-
     </div>
 }
 
@@ -134,15 +128,13 @@ else
 
             // const define
             var TIME_LINE = [
-                    "", "Tiết 1: 7h - 7h50", "Tiết 2: 7h50 - 8h40", "Tiết 3: 9h - 9h50", 
-                    "Tiết 4: 9h50 - 10h40", "Tiết 5: 10h40 - 11h30", "Tiết 6: 12h - 12h50", 
-                    "Tiết 7: 12h50 - 1h40", "Tiết 8: 2h - 2h50", "Tiết 9: 2h50 - 3h40", 
-                    "Tiết 10: 3h40 - 4h30", "Tiết 11: 5h - 5h50", "Tiết 12: 5h50 - 6h40", 
+                    "", "Tiết 1: 7h - 7h50", "Tiết 2: 7h50 - 8h40", "Tiết 3: 9h - 9h50",
+                    "Tiết 4: 9h50 - 10h40", "Tiết 5: 10h40 - 11h30", "Tiết 6: 12h - 12h50",
+                    "Tiết 7: 12h50 - 1h40", "Tiết 8: 2h - 2h50", "Tiết 9: 2h50 - 3h40",
+                    "Tiết 10: 3h40 - 4h30", "Tiết 11: 5h - 5h50", "Tiết 12: 5h50 - 6h40",
                     "Tiết 13: 6h40 - 7h30" ];
 
-
             function buildLenghSelector(maxFree) {
-                
 
                 console.log("Goo: " + maxFree);
                 var opsForLength = "";
@@ -159,7 +151,7 @@ else
             }
 
             function buildTimeTable(timeTbl) {
-                var contentTbl = 
+                var contentTbl =
                     "<div id='head_nav'><tr>"
                     + "<th class='wide'>Tiết/ Thời gian</th>"
                     + "<th>Thứ 2</th>"
@@ -178,7 +170,7 @@ else
                         if (timeTbl[i][j] == 0)
                             row += "<td class='free' title='Có thể đăng kí'></td>";
                         else if (timeTbl[i][j] == 1)
-                            row += "<td class='wait' title='Đợi xác nhận'></td>";                            
+                            row += "<td class='wait' title='Đợi xác nhận'></td>";
                         else
                             row += "<td class='setup' title='Không thể đăng kí'></td>";
                     }
@@ -187,11 +179,8 @@ else
                     contentTbl += row;
                 }
 
-
-
                 $('#timetable').html(contentTbl);
             }
-
 
             // get day from dd/mm/yyyy format
             function getDateFormat(day) {
@@ -204,7 +193,6 @@ else
                 var month = ("0" + (now.getMonth() + 1)).slice(-2);
                 return now.getFullYear() + "-" + (month) + "-" + (day);
             }
-
 
             function disableSubmitButton(isDisabled) {
                 $('#submit-button').attr('disabled', isDisabled);
@@ -244,9 +232,7 @@ else
                             $('#StartDump').val("0_0");
                         }
 
-                        
-
-                        // set value for start 
+                        // set value for start
                         $('#Start').val($('#StartDump').val().split("_", 2)[0]);
 
                         // build Length
@@ -258,11 +244,8 @@ else
                         // build time table
                         buildTimeTable(data.TimeTableList);
 
-
                         // disable submit button
                         disableSubmitButton(data.StartList.length == 0);
-
-
 
                         // update start and end day
                         $('#startDay').html(data.StartDay);
@@ -270,8 +253,6 @@ else
 
                     });
             }
-
-          
 
             $("#StartDump").change(function () {
                 var maxFree = $(this).val().split("_", 2)[1];
@@ -283,7 +264,6 @@ else
                 console.log( "value slipted: " + $(this).val().split("_", 2)[0]);
                 $('#Start').val($(this).val().split("_", 2)[0]);
             });
-
 
             $('#RoomId').change(function () {
                 var date = new Date($('#Date').val());
@@ -311,8 +291,6 @@ else
 
                 updatePage(prevDay, roomId);
 
-
-
                 // update value of date time
                 $('#Date').val(getDateValueForDataComponent(prevDay));
             });
@@ -332,14 +310,12 @@ else
                 $('#Date').val(getDateValueForDataComponent(nextDay));
             });
 
-
             // set startup
             buildLenghSelector($('#StartDump').val().split("_", 2)[1] != '' ?
                 $('#StartDump').val().split("_", 2)[1] : 0);
 
-            // set value for start 
+            // set value for start
             $('#Start').val($('#StartDump').val().split("_", 2)[0]);
-
 
             // set submit button state
             disableSubmitButton($('#StartDump').val().split("_", 2)[0] == 0);
@@ -361,6 +337,3 @@ else
         });
     </script>
 }
-
-
-

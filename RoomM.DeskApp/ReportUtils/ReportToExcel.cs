@@ -1,30 +1,24 @@
-﻿using System;
+﻿using NPOI.HPSF;
+using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
+using RoomM.DeskApp.ViewModels;
+using RoomM.Domain.RoomModule.Aggregates;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using NPOI.HPSF;
-using NPOI.HSSF.UserModel;
-using NPOI.SS.UserModel;
-
-using RoomM.DeskApp.ViewModels;
-using RoomM.Domain.RoomModule.Aggregates;
 
 namespace RoomM.DeskApp
 {
     public abstract class ReportToExcel<T>
     {
-        SaveFileDialog saveFileDialog = new SaveFileDialog();
+        private SaveFileDialog saveFileDialog = new SaveFileDialog();
         protected HSSFWorkbook hssfworkbook;
         protected ISheet activeSheet;
 
         public ReportToExcel(String comanyName, String subject, String templateFileName)
         {
-
             if (null != templateFileName)
             {
                 FileStream file = new FileStream(@templateFileName, FileMode.Open, FileAccess.Read);
@@ -53,7 +47,6 @@ namespace RoomM.DeskApp
             saveFileDialog.InitialDirectory = Convert.ToString(Environment.SpecialFolder.MyDocuments);
             saveFileDialog.Filter = "Phần mở rộng (*.xls)|*.xls|Tất cả files (*.*)|*.*";
             saveFileDialog.FilterIndex = 1;
-
 
             if (saveFileDialog.ShowDialog().Equals(DialogResult.OK))
             {

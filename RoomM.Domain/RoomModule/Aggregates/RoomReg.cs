@@ -1,13 +1,8 @@
-﻿using System;
+﻿using RoomM.Domain.UserModule.Aggregates;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.Serialization;
-
-using RoomM.Domain.UserModule.Aggregates;
 
 namespace RoomM.Domain.RoomModule.Aggregates
 {
@@ -19,9 +14,9 @@ namespace RoomM.Domain.RoomModule.Aggregates
         public static int REG_CANCELED = 3;
 
         public static Dictionary<int, string> GetRegType = new Dictionary<int, string>() {
-	        { REG_WAITING, "Chờ xác nhận" },
+            { REG_WAITING  , "Chờ xác nhận" },
             { REG_COMFIRMED, "Đã đăng ký" },
-            { REG_CANCELED, "Hủy đăng ký" }
+            { REG_CANCELED , "Hủy đăng ký" }
         };
 
         [DataMember]

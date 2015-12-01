@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity.Validation;
-using System.Security.Claims;
-using Microsoft.AspNet.Identity;
-
-using RoomM.WebApp.Models;
-using RoomM.Domain;
-using RoomM.Domain.UserModule.Aggregates;
+﻿using Microsoft.AspNet.Identity;
 using RoomM.Application.UserModule.Services;
+using RoomM.Domain.UserModule.Aggregates;
+using System;
+using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace RoomM.WebApp.AuthStores
 {
-    public class UserStore<TUser> : 
+    public class UserStore<TUser> :
         IUserStore<TUser, Int64>,
         IUserRoleStore<TUser, Int64>,
         IUserPasswordStore<TUser, Int64>,
@@ -68,9 +62,11 @@ namespace RoomM.WebApp.AuthStores
             return Task.FromResult<Object>(null);
         }
 
-        public void Dispose() { }
+        public void Dispose()
+        {
+        }
 
-        #endregion
+        #endregion Implement "IUserStore"
 
         #region Implement "IUserPasswordStore"
 
@@ -92,7 +88,7 @@ namespace RoomM.WebApp.AuthStores
             return Task.FromResult<Object>(null);
         }
 
-        #endregion
+        #endregion Implement "IUserPasswordStore"
 
         #region Implement "IUserLockoutStore"
 
@@ -142,7 +138,7 @@ namespace RoomM.WebApp.AuthStores
             return Task.FromResult(0);
         }
 
-        #endregion
+        #endregion Implement "IUserLockoutStore"
 
         #region Implement "IUserTwoFactorStore"
 
@@ -158,7 +154,9 @@ namespace RoomM.WebApp.AuthStores
             return Task.FromResult(0);
         }
 
-        #endregion 
+        #endregion Implement "IUserTwoFactorStore"
+
+
 
         #region Implement "IUserSecurityStampStore"
 
@@ -174,7 +172,7 @@ namespace RoomM.WebApp.AuthStores
             return Task.FromResult(0);
         }
 
-        #endregion
+        #endregion Implement "IUserSecurityStampStore"
 
         #region Implement "IUserClaimStore"
 
@@ -222,7 +220,7 @@ namespace RoomM.WebApp.AuthStores
             return Task.FromResult<object>(null);
         }
 
-        #endregion
+        #endregion Implement "IUserClaimStore"
 
         #region Implement "IUserLoginStore"
 
@@ -286,7 +284,7 @@ namespace RoomM.WebApp.AuthStores
             return Task.FromResult<Object>(null);
         }
 
-        #endregion
+        #endregion Implement "IUserLoginStore"
 
         #region Implement "IUserRoleStore"
 
@@ -327,6 +325,6 @@ namespace RoomM.WebApp.AuthStores
             throw new NotImplementedException();
         }
 
-        #endregion
+        #endregion Implement "IUserRoleStore"
     }
 }

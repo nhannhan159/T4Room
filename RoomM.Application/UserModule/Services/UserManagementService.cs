@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity.Validation;
-
-using RoomM.Domain;
-using RoomM.Domain.RoomModule.Aggregates;
+﻿using RoomM.Domain;
 using RoomM.Domain.UserModule.Aggregates;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity.Validation;
+using System.Linq;
 
 namespace RoomM.Application.UserModule.Services
 {
@@ -53,7 +49,7 @@ namespace RoomM.Application.UserModule.Services
             {
                 var error = ex.EntityValidationErrors.First().ValidationErrors.First();
                 throw new ApplicationException(error.ErrorMessage);
-            } 
+            }
         }
 
         public void EditUser(User user)
@@ -67,7 +63,7 @@ namespace RoomM.Application.UserModule.Services
             {
                 var error = ex.EntityValidationErrors.First().ValidationErrors.First();
                 throw new ApplicationException(error.ErrorMessage);
-            } 
+            }
         }
 
         public void DeleteUser(User user)
@@ -85,7 +81,7 @@ namespace RoomM.Application.UserModule.Services
             }
         }
 
-        #endregion
+        #endregion Basic CRUD
 
         #region Addition Lists
 
@@ -99,7 +95,7 @@ namespace RoomM.Application.UserModule.Services
             return this.context.UserRep.GetUserLimitByRegister(limit, from, to);
         }
 
-        #endregion
+        #endregion Addition Lists
 
         #region Addition Services
 
@@ -124,7 +120,7 @@ namespace RoomM.Application.UserModule.Services
             {
                 var error = ex.EntityValidationErrors.First().ValidationErrors.First();
                 throw new ApplicationException(error.ErrorMessage);
-            } 
+            }
         }
 
         public void EditRole(Role role)
@@ -138,7 +134,7 @@ namespace RoomM.Application.UserModule.Services
             {
                 var error = ex.EntityValidationErrors.First().ValidationErrors.First();
                 throw new ApplicationException(error.ErrorMessage);
-            } 
+            }
         }
 
         public void DeleteRole(Int64 roleId)
@@ -203,6 +199,6 @@ namespace RoomM.Application.UserModule.Services
             this.context.Commit();
         }
 
-        #endregion
+        #endregion Addition Services
     }
 }

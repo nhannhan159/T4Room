@@ -1,12 +1,8 @@
-﻿using System;
+﻿using RoomM.Domain.RoomModule.Aggregates;
+using RoomM.Infrastructure.Data.UnitOfWork;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Linq.Expressions;
-
-using RoomM.Domain.RoomModule.Aggregates;
-using RoomM.Infrastructure.Data.UnitOfWork;
 
 namespace RoomM.Infrastructure.Data.RoomModule.Repositories
 {
@@ -33,9 +29,9 @@ namespace RoomM.Infrastructure.Data.RoomModule.Repositories
 
         public IList<RoomReg> GetByDate(DateTime date)
         {
-            return this.Get(filter: p => 
-                p.Date.Day == date.Day 
-                && p.Date.Month == date.Month 
+            return this.Get(filter: p =>
+                p.Date.Day == date.Day
+                && p.Date.Month == date.Month
                 && p.Date.Year == date.Year).ToList();
         }
 
@@ -51,9 +47,9 @@ namespace RoomM.Infrastructure.Data.RoomModule.Repositories
         public IList<RoomReg> GetByWeekAndRoomId(DateTime date, Int64 roomId)
         {
             List<DateTime> dateLst = new List<DateTime>();
-            
+
             DateTime startDate = date;
-            while (startDate.DayOfWeek != DayOfWeek.Monday) 
+            while (startDate.DayOfWeek != DayOfWeek.Monday)
                 startDate = new DateTime(startDate.Year, startDate.Month, startDate.Day - 1);
 
             for (int i = 0; i < 7; ++i)
@@ -65,10 +61,10 @@ namespace RoomM.Infrastructure.Data.RoomModule.Repositories
             IList<RoomReg> calLst = new List<RoomReg>();
             foreach (DateTime dt in dateLst)
             {
-                foreach (RoomReg rc in GetByDateAndRoomId(dt, roomId)) 
-                 {
+                foreach (RoomReg rc in GetByDateAndRoomId(dt, roomId))
+                {
                     calLst.Add(rc);
-                 }
+                }
             }
 
             return calLst;

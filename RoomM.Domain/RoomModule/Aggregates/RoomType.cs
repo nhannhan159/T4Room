@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity.Infrastructure.Annotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
 namespace RoomM.Domain.RoomModule.Aggregates
@@ -34,7 +29,9 @@ namespace RoomM.Domain.RoomModule.Aggregates
 
         private IList<Room> rooms;
 
-        public RoomType() { }
+        public RoomType()
+        {
+        }
 
         public RoomType(string name)
         {

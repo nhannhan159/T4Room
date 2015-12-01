@@ -6,37 +6,37 @@
         Title="Thêm tài sản mới" Height="170" Width="400"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-                      
+
         ShowTitleBar="True"
         ShowIconOnTitleBar="True"
         ShowMaxRestoreButton="False"
-                      
-        BorderThickness="0" 
+
+        BorderThickness="0"
         GlowBrush="Black"
         WindowTransitionsEnabled="False">
     <Grid Margin="5,10,5,5" RenderTransformOrigin="0.725,0.434">
         <Grid.RowDefinitions>
-            <RowDefinition Height="35"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="35"/>
+            <RowDefinition Height="35" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="35" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="250"/>
-            <ColumnDefinition Width="90*"/>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="90*" />
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Content="Tên tài sản:" 
-               VerticalAlignment="Center"/>
-        <Label Grid.Row="1" Grid.Column="0" Content="Mô tả:" HorizontalAlignment="Left"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding NewEntity.Name}" 
-                 Margin="3"/>
+        <Label Grid.Row="0" Grid.Column="0" Content="Tên tài sản:"
+               VerticalAlignment="Center" />
+        <Label Grid.Row="1" Grid.Column="0" Content="Mô tả:" HorizontalAlignment="Left" />
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding NewEntity.Name}"
+                 Margin="3" />
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NewEntity.Description}"
-                 Margin="3"/>
-        <Button Grid.Row="2" Grid.ColumnSpan="3" Content="Thêm" Command="{Binding NewCommand}"  
+                 Margin="3" />
+        <Button Grid.Row="2" Grid.ColumnSpan="3" Content="Thêm" Command="{Binding NewCommand}"
                 Margin="3" Width="130"
-                Style="{StaticResource AccentedSquareButtonStyle}"/>
+                Style="{StaticResource AccentedSquareButtonStyle}" />
         <!--
-        <Button Grid.Row="2" Grid.ColumnSpan="3" Content="Thêm" Height="27" Width="130" Command="{Binding NewCommand}"/>
+        <Button Grid.Row="2" Grid.ColumnSpan="3" Content="Thêm" Height="27" Width="130" Command="{Binding NewCommand}" />
         -->
     </Grid>
 </Controls:MetroWindow>

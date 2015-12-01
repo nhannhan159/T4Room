@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity.Validation;
-
-using RoomM.Domain;
-using RoomM.Domain.AssetModule.Aggregates;
+﻿using RoomM.Domain;
 using RoomM.Domain.RoomModule.Aggregates;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity.Validation;
+using System.Linq;
 
 namespace RoomM.Application.RoomModule.Services
 {
@@ -53,7 +49,7 @@ namespace RoomM.Application.RoomModule.Services
             {
                 var error = ex.EntityValidationErrors.First().ValidationErrors.First();
                 throw new ApplicationException(error.ErrorMessage);
-            } 
+            }
         }
 
         public void EditRoom(Room room)
@@ -67,7 +63,7 @@ namespace RoomM.Application.RoomModule.Services
             {
                 var error = ex.EntityValidationErrors.First().ValidationErrors.First();
                 throw new ApplicationException(error.ErrorMessage);
-            } 
+            }
         }
 
         public void DeleteRoom(Room room)
@@ -85,7 +81,7 @@ namespace RoomM.Application.RoomModule.Services
             }
         }
 
-        #endregion
+        #endregion Basic CRUD
 
         #region Addition Lists
 
@@ -129,7 +125,7 @@ namespace RoomM.Application.RoomModule.Services
             return this.context.RoomRep.GetRoomLimitByRegister(limit, from, to);
         }
 
-        #endregion
+        #endregion Addition Lists
 
         #region Addition Services
 
@@ -161,6 +157,6 @@ namespace RoomM.Application.RoomModule.Services
             }
         }
 
-        #endregion
+        #endregion Addition Services
     }
 }

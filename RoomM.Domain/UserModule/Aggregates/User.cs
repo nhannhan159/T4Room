@@ -1,15 +1,10 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using RoomM.Domain.RoomModule.Aggregates;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity.Infrastructure.Annotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using Microsoft.AspNet.Identity;
-
-using RoomM.Domain.RoomModule.Aggregates;
 
 namespace RoomM.Domain.UserModule.Aggregates
 {
@@ -42,6 +37,7 @@ namespace RoomM.Domain.UserModule.Aggregates
 
         [DataMember]
         public bool Sex { get; set; }
+
         public string SexName { get { return this.Sex ? "Nữ" : "Nam"; } }
 
         [DataMember]

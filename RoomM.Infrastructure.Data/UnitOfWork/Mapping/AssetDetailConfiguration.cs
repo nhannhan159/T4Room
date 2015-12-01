@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RoomM.Domain.AssetModule.Aggregates;
 using System.ComponentModel.DataAnnotations.Schema;
-
-using RoomM.Domain.AssetModule.Aggregates;
+using System.Data.Entity.ModelConfiguration;
 
 namespace RoomM.Infrastructure.Data.UnitOfWork.Mapping
 {
     public class AssetDetailConfiguration : EntityTypeConfiguration<AssetDetail>
     {
-        public AssetDetailConfiguration() 
+        public AssetDetailConfiguration()
         {
             // key
             this.HasKey(t => t.Id);

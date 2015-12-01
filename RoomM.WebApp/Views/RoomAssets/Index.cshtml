@@ -28,7 +28,6 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Amount)
                 </th>
-
             </tr>
 
             @foreach (var item in Model)
@@ -48,11 +47,9 @@
                     </td>
                 </tr>
         }
-
         </table>
         <div class=" alert alert-warning" id="notify" style="text-align:center">@ViewBag.Message</div>
     </div>
-
 
     <div class="col-md-7">
         <br />
@@ -80,7 +77,6 @@
         </div>
         <div class="both"></div>
     </div>
-
 </div>
 
 @section Scripts {
@@ -117,8 +113,6 @@
                 } else {
                     $('#notify').hide();
                 }
-
-
 
             }
 
@@ -176,12 +170,10 @@
                 updateRoomOptionsChange(roomId, assetsTypeId);
             });
 
-
             // init
             var roomIdG = $('#RoomList').val();
             var assetsTypeIdG = $('#AssetsTypeList').val() == "" ? -1 : $('#AssetsTypeList').val();
             updateRoomOptionsChange(roomIdG, assetsTypeIdG);
-
 
             // init
             if ($('.notify').html() == "")
@@ -190,7 +182,6 @@
                 $('.notify').show(0.8);
 
         });
-
     </script>
 
 }

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections;
-using System.Linq.Expressions;
-using System.Data.Entity;
-
-using RoomM.Domain.UserModule.Aggregates;
+﻿using RoomM.Domain.UserModule.Aggregates;
 using RoomM.Infrastructure.Data.UnitOfWork;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 
 namespace RoomM.Infrastructure.Data.UserModule.Repositories
 {
@@ -38,13 +33,13 @@ namespace RoomM.Infrastructure.Data.UserModule.Repositories
             IList<User> userList = GetAll();
             IList<KeyValuePair<User, int>> list = new List<KeyValuePair<User, int>>();
 
-            foreach (User user in userList) 
+            foreach (User user in userList)
             {
                 int count = user.RoomRegs.Count(p => p.Date >= from && p.Date <= to);
                 list.Add(new KeyValuePair<User, int>(user, count));
             }
 
             return list.OrderByDescending(p => p.Value).Take(limit).ToList();
-        } 
+        }
     }
 }

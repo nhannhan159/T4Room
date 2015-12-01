@@ -1,14 +1,8 @@
-﻿using System;
+﻿using RoomM.Domain.UserModule.Aggregates;
+using RoomM.Infrastructure.Data.UnitOfWork;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections;
-using System.Linq.Expressions;
-using System.Data.Entity;
-
-using RoomM.Domain.UserModule.Aggregates;
-using RoomM.Infrastructure.Data.UnitOfWork;
 
 namespace RoomM.Infrastructure.Data.UserModule.Repositories
 {
@@ -31,7 +25,7 @@ namespace RoomM.Infrastructure.Data.UserModule.Repositories
         public Int64 GetUserId(string loginProvider, string providerKey)
         {
             var userLogin = this.Get(filter: p =>
-                p.LoginProvider.Equals(loginProvider) && 
+                p.LoginProvider.Equals(loginProvider) &&
                 p.ProviderKey.Equals(providerKey)).FirstOrDefault();
             if (userLogin != null)
                 return userLogin.UserId;

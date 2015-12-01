@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
 namespace RoomM.WebApp.Models.RoomM
 {
@@ -9,12 +6,10 @@ namespace RoomM.WebApp.Models.RoomM
     {
         public List<ItemList> StartList { get; set; }
         public List<ItemList> LengthList { get; set; }
-
     }
 
-
-
-    public class ItemList {
+    public class ItemList
+    {
         public string ID { get; set; }
         public string Value { get; set; }
         /*public int MaxFree { get; set; }
@@ -31,7 +26,8 @@ namespace RoomM.WebApp.Models.RoomM
         }*/
     }
 
-    public class ChildItem {
+    public class ChildItem
+    {
         public int ID { get; set; }
         public string Value { get; set; }
     }

@@ -3,16 +3,16 @@
 @{
     ViewBag.Title = "Create";
 
-    ViewBag.TimeLine = new String[] 
-        { "", "Tiết 1: 7h - 7h50", "Tiết 2: 7h50 - 8h40", "Tiết 3: 9h - 9h50", 
-            "Tiết 4: 9h50 - 10h40", "Tiết 5: 10h40 - 11h30", "Tiết 6: 12h - 12h50", 
-            "Tiết 7: 12h50 - 1h40", "Tiết 8: 2h - 2h50", "Tiết 9: 2h50 - 3h40", 
-            "Tiết 10: 3h40 - 4h30", "Tiết 11: 5h - 5h50", "Tiết 12: 5h50 - 6h40", 
+    ViewBag.TimeLine = new String[]
+        { "", "Tiết 1: 7h - 7h50", "Tiết 2: 7h50 - 8h40", "Tiết 3: 9h - 9h50",
+            "Tiết 4: 9h50 - 10h40", "Tiết 5: 10h40 - 11h30", "Tiết 6: 12h - 12h50",
+            "Tiết 7: 12h50 - 1h40", "Tiết 8: 2h - 2h50", "Tiết 9: 2h50 - 3h40",
+            "Tiết 10: 3h40 - 4h30", "Tiết 11: 5h - 5h50", "Tiết 12: 5h50 - 6h40",
             "Tiết 13: 6h40 - 7h30" };
 }
 
 @section styles {
-    <link href="@Url.Content("~/Content/css/timetable.css")" rel="stylesheet"/>
+    <link href="@Url.Content("~/Content/css/timetable.css")" rel="stylesheet" />
 }
 <h1 class="id-feature" name="LP"></h1>
 <h2 id="title"></h2>
@@ -29,7 +29,6 @@
     </div>
     <div class="both"></div>
 </fieldset>
-
 
 <div class="float-right">
     <p class="float-left timeline">Từ ngày <b id="startDay">@ViewBag.StartDay</b> đến ngày <b id="endDay">@ViewBag.EndDay</b></p>
@@ -63,7 +62,7 @@
                     <td class="free" title="Có thể đăng kí"></td>
                 }
                 else if (ViewBag.TimeTbl[i][j] == 1)
-                { 
+                {
                      <td class="wait" title="Đợi xác nhận"></td>
                 }
                 else
@@ -73,10 +72,7 @@
             }
         </tr>
     }
-
 </table>
-
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -91,7 +87,6 @@
                     "Tiết 7: 12h50 - 1h40", "Tiết 8: 2h - 2h50", "Tiết 9: 2h50 - 3h40",
                     "Tiết 10: 3h40 - 4h30", "Tiết 11: 5h - 5h50", "Tiết 12: 5h50 - 6h40",
                     "Tiết 13: 6h40 - 7h30"];
-
 
             function buildLenghSelector(maxFree) {
                 var opsForLength = "";
@@ -131,11 +126,8 @@
                     contentTbl += row;
                 }
 
-
-
                 $('#timetable').html(contentTbl);
             }
-
 
             // get day from dd/mm/yyyy format
             function getDateFormat(day) {
@@ -168,7 +160,6 @@
                             opsForLength += '<option value="' + val.ID + '">' + val.Value + '</option>';
                         });
 
-                    
                         // build time table
                         buildTimeTable(data.TimeTableList);
 
@@ -220,6 +211,3 @@
         });
     </script>
 }
-
-
-

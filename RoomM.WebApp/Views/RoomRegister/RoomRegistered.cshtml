@@ -10,8 +10,7 @@
 
 <div class="notify">@ViewBag.MessageConfirm</div>
 
-
-<br/>
+<br />
 <table width="90%" align="center">
     <tr>
         <th>STT</th>
@@ -57,13 +56,12 @@
                 || item.RoomRegTypeId == RoomM.Domain.RoomModule.Aggregates.RoomReg.REG_COMFIRMED)
             {
                 @Html.ActionLink("Đồng ý", "RoomRegisteredAccept", new { id = item.Id });
-            } else {                                                               
+            } else {
                 @Html.ActionLink("Hủy", "RoomRegisteredReject", new { id = item.Id });
             }
         </td>
     </tr>
 }
-
 </table>
 
 @section Scripts {
@@ -80,5 +78,3 @@
         });
     </script>
 }
-        
-

@@ -1,21 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using RoomM.DeskApp.Views;
+using System;
+using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
-using System.Windows.Data;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Diagnostics;
-using System.IO;
-using System.Windows;
-
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-
-using RoomM.DeskApp.UIHelper;
-using RoomM.DeskApp.Views;
 
 namespace RoomM.DeskApp.ViewModels
 {
@@ -30,12 +21,10 @@ namespace RoomM.DeskApp.ViewModels
         public const int BLUE = 1;
         public const int ORAGNE = 2;
 
-
         public string statusState;
         public string statusExpend;
 
         public SolidColorBrush statusColor;
-
 
         public MainWindowViewModel() : base()
         {
@@ -46,37 +35,40 @@ namespace RoomM.DeskApp.ViewModels
 
             Console.WriteLine(Brushes.DarkSlateGray.ToString());
 
-
             // setup bkg color
-            switch (Properties.Settings.Default.BkgColor) 
+            switch (Properties.Settings.Default.BkgColor)
             {
                 case DARKSLATEGRAY:
                     this.StatusColor = Brushes.DarkSlateGray;
                     break;
+
                 case BLUE:
                     this.StatusColor = Brushes.DarkBlue;
                     break;
+
                 case ORAGNE:
                     this.StatusColor = Brushes.DarkOrange;
                     break;
-                default :
+
+                default:
                     this.StatusColor = Brushes.DarkSlateGray;
                     break;
             }
 
-
             // Properties.Settings.Default.BkgColor = Brushes.DarkSlateGray;
             // Properties.Settings.Default.Save();
             // Console.WriteLine("###" + Properties.Settings.Default.BkgColor);
-
         }
 
-        protected bool CanExecute() { return true; }
+        protected bool CanExecute()
+        {
+            return true;
+        }
 
-        public string StatusState 
+        public string StatusState
         {
             get { return this.statusState; }
-            set 
+            set
             {
                 if (this.statusState != value)
                 {
@@ -111,7 +103,6 @@ namespace RoomM.DeskApp.ViewModels
                     this.statusColor = value;
                     this.RaisePropertyChanged(() => this.StatusColor);
                 }
-            
             }
         }
 
@@ -192,6 +183,5 @@ namespace RoomM.DeskApp.ViewModels
             Window window = System.Windows.Application.Current.Windows.OfType<Window>().Where(w => w.Name == "MainWindowForApp").FirstOrDefault();
             if (window != null) window.Close();
         }
-
     }
 }

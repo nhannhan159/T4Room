@@ -1,13 +1,7 @@
-﻿using System;
+﻿using RoomM.Domain.RoomModule.Aggregates;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.Serialization;
-
-using RoomM.Domain.RoomModule.Aggregates;
 
 namespace RoomM.Domain.AssetModule.Aggregates
 {
@@ -20,14 +14,15 @@ namespace RoomM.Domain.AssetModule.Aggregates
         public static int ASSETS_RECEVIE = 4;
 
         public static Dictionary<int, string> GetHistoryType = new Dictionary<int, string>() {
-	        { ASSETS_TRANSFER, "Chuyển thiết bị" },
-            { ASSETS_REMOVE, "Thanh lí thiết bị" },
-            { ASSETS_IMPORT, "Nhập thiết bị" },
-            { ASSETS_RECEVIE, "Nhận thiết bị" }
+            { ASSETS_TRANSFER       , "Chuyển thiết bị"   },
+            { ASSETS_REMOVE         , "Thanh lí thiết bị" },
+            { ASSETS_IMPORT         , "Nhập thiết bị"     },
+            { ASSETS_RECEVIE        , "Nhận thiết bị"     }
         };
 
         [DataMember]
         public int AssetHistoryTypeId { get; set; }
+
         public string AssetHistoryType { get { return AssetHistory.GetHistoryType[this.AssetHistoryTypeId]; } }
 
         [DataMember]
@@ -56,7 +51,9 @@ namespace RoomM.Domain.AssetModule.Aggregates
             return this.Id + " # " + " #type:" + this.AssetHistoryTypeId + " #roomID: " + this.RoomId;
         }
 
-        public AssetHistory() { }
+        public AssetHistory()
+        {
+        }
 
         public AssetHistory(DateTime Date, int AssetHistoryTypeId, Int64 AssetId, Int64 RoomId, string Room2, int Amount)
         {

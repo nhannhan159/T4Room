@@ -1,27 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration;
-using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
-using RoomM.Domain;
+﻿using RoomM.Domain;
 using RoomM.Domain.AssetModule.Aggregates;
 using RoomM.Domain.RoomModule.Aggregates;
 using RoomM.Domain.UserModule.Aggregates;
-using RoomM.Infrastructure.Data.UnitOfWork.Mapping;
 using RoomM.Infrastructure.Data.AssetModule.Repositories;
 using RoomM.Infrastructure.Data.RoomModule.Repositories;
+using RoomM.Infrastructure.Data.UnitOfWork.Mapping;
 using RoomM.Infrastructure.Data.UserModule.Repositories;
+using System.Data.Entity;
 
 namespace RoomM.Infrastructure.Data.UnitOfWork
 {
     public class EFContext : DbContext, IUnitOfWork
     {
-        public EFContext() : base("name=RoomDB") { } 
+        public EFContext() : base("name=RoomDB")
+        {
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -37,7 +30,7 @@ namespace RoomM.Infrastructure.Data.UnitOfWork
             modelBuilder.Configurations.Add(new RoleConfiguration());
         }
 
-        #region IUnitOfWork implement 
+        #region IUnitOfWork implement
 
         private IRoomRepository roomRep;
         private IRepository<RoomType> roomTypeRep;
@@ -52,7 +45,7 @@ namespace RoomM.Infrastructure.Data.UnitOfWork
         private IUserLoginRepository userLoginRep;
         private IRoleRepository roleRep;
 
-        public void Commit() 
+        public void Commit()
         {
             this.SaveChanges();
         }
@@ -163,6 +156,6 @@ namespace RoomM.Infrastructure.Data.UnitOfWork
             }
         }
 
-        #endregion
+        #endregion IUnitOfWork implement
     }
 }

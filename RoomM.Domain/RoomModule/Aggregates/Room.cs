@@ -1,14 +1,10 @@
-﻿using System;
+﻿using RoomM.Domain.AssetModule.Aggregates;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity.Infrastructure.Annotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.Serialization;
-
-using RoomM.Domain.AssetModule.Aggregates;
 
 namespace RoomM.Domain.RoomModule.Aggregates
 {
@@ -86,7 +82,7 @@ namespace RoomM.Domain.RoomModule.Aggregates
         private IList<RoomReg> roomRegs;
         private IList<AssetDetail> assetDetails;
         private IList<AssetHistory> assetHistories;
-        
+
         public Boolean IsHaveRegistered
         {
             get { return this.RoomRegs.Count(p => p.RoomRegTypeId == 1) > 0; }
