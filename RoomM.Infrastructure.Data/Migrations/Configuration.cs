@@ -353,26 +353,16 @@
 
             #region staff
 
-            User admin = new User
-            {
-                FullName = "Admin",
-                Sex = true,
-                Phone = "0123456789",
-                Role = usertype0,
-                UserName = "admin@gmail.com",
-                LastLogin = new DateTime(2011, 1, 5),
-                Password = "Nhannhan159~"
-            };
-
             User user0 = new User
             {
                 FullName = "Triệu Linh Nhi",
                 Sex = true,
                 Phone = "0123456789",
-                Role = usertype1,
+                Role = usertype0,
                 UserName = "admin",
                 LastLogin = new DateTime(2011, 1, 5),
-                Password = "admin123"
+                SecurityStamp = Guid.NewGuid().ToString(),
+                Password = "Nhannhan159~"
             };
 
             User user1 = new User
@@ -381,9 +371,10 @@
                 Sex = false,
                 Phone = "0123456790",
                 Role = usertype1,
-                UserName = "user1",
+                UserName = "teacher",
                 LastLogin = new DateTime(2011, 1, 5),
-                Password = "user123"
+                SecurityStamp = Guid.NewGuid().ToString(),
+                Password = "Nhannhan159~"
             };
 
             User user2 = new User
@@ -391,10 +382,11 @@
                 FullName = "Điền Bá Quang",
                 Sex = false,
                 Phone = "0123456790",
-                Role = usertype1,
-                UserName = "user2",
+                Role = usertype2,
+                UserName = "manager",
                 LastLogin = new DateTime(2011, 1, 5),
-                Password = "user123"
+                SecurityStamp = Guid.NewGuid().ToString(),
+                Password = "Nhannhan159~"
             };
 
             User user3 = new User
@@ -405,6 +397,7 @@
                 Role = usertype1,
                 UserName = "user3",
                 LastLogin = new DateTime(2011, 1, 5),
+                SecurityStamp = Guid.NewGuid().ToString(),
                 Password = "user123"
             };
 
@@ -416,6 +409,7 @@
                 Role = usertype1,
                 UserName = "user4",
                 LastLogin = new DateTime(2011, 1, 5),
+                SecurityStamp = Guid.NewGuid().ToString(),
                 Password = "user123"
             };
 
@@ -427,6 +421,7 @@
                 Role = usertype1,
                 UserName = "user5",
                 LastLogin = new DateTime(2011, 1, 5),
+                SecurityStamp = Guid.NewGuid().ToString(),
                 Password = "user123"
             };
 
@@ -438,6 +433,7 @@
                 Role = usertype1,
                 UserName = "user6",
                 LastLogin = new DateTime(2011, 1, 5),
+                SecurityStamp = Guid.NewGuid().ToString(),
                 Password = "user123"
             };
 
@@ -449,6 +445,7 @@
                 Role = usertype2,
                 UserName = "user7",
                 LastLogin = new DateTime(2011, 1, 5),
+                SecurityStamp = Guid.NewGuid().ToString(),
                 Password = "user123"
             };
 
@@ -460,6 +457,7 @@
                 Role = usertype2,
                 UserName = "user8",
                 LastLogin = new DateTime(2011, 1, 5),
+                SecurityStamp = Guid.NewGuid().ToString(),
                 Password = "user123"
             };
 
@@ -471,6 +469,7 @@
                 Role = usertype2,
                 UserName = "user9",
                 LastLogin = new DateTime(2011, 1, 5),
+                SecurityStamp = Guid.NewGuid().ToString(),
                 Password = "user123"
             };
 
@@ -598,7 +597,6 @@
 
             #region add staff
 
-            context.Entry(admin).State = EntityState.Added;
             context.Entry(user0).State = EntityState.Added;
             context.Entry(user1).State = EntityState.Added;
             context.Entry(user2).State = EntityState.Added;

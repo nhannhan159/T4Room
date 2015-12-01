@@ -20,10 +20,16 @@
             @if (Request.IsAuthenticated)
             {
                 <li name="LP">@Html.ActionLink("Lịch phòng", "Index", "RoomRegister")</li>
-                <li name="TBP">@Html.ActionLink("Thiết bị phòng", "Index", "RoomAssets")</li>
-                <li name="DKP">@Html.ActionLink("Đăng kí phòng", "Create", "RoomRegister")</li>
-                <li name="PDDK">@Html.ActionLink("Phòng đã đăng kí", "RoomRegistered", "RoomRegister")</li>
-                <li name="LSDK">@Html.ActionLink("Lịch sử đăng kí", "HistoryRegistered", "RoomRegister")</li>
+                if (User.IsInRole("Manager"))
+                {
+                    <li name="TBP">@Html.ActionLink("Thiết bị phòng", "Index", "RoomAssets")</li>
+                }
+                if (User.IsInRole("Teacher"))
+                {
+                    <li name="DKP">@Html.ActionLink("Đăng kí phòng", "Create", "RoomRegister")</li>
+                    <li name="PDDK">@Html.ActionLink("Phòng đã đăng kí", "RoomRegistered", "RoomRegister")</li>
+                    <li name="LSDK">@Html.ActionLink("Lịch sử đăng kí", "HistoryRegistered", "RoomRegister")</li>
+                }
             }
         </ul>
         @Html.Partial("_LoginPartial")

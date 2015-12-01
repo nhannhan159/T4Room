@@ -18,7 +18,6 @@ namespace RoomM.WebApp.AuthStores
         IUserStore<TUser, Int64>,
         IUserRoleStore<TUser, Int64>,
         IUserPasswordStore<TUser, Int64>,
-        IUserEmailStore<TUser, Int64>,
         IUserLockoutStore<TUser, Int64>,
         IUserTwoFactorStore<TUser, Int64>,
         IUserClaimStore<TUser, Int64>,
@@ -91,44 +90,6 @@ namespace RoomM.WebApp.AuthStores
         {
             user.PasswordHash = passwordHash;
             return Task.FromResult<Object>(null);
-        }
-
-        #endregion
-
-        #region Implement "IUserEmailStore"
-
-        public Task<TUser> FindByEmailAsync(string email)
-        {
-            if (String.IsNullOrEmpty(email))
-            {
-                throw new ArgumentNullException("email");
-            }
-
-            var user = this.service.GetSingleByUsername(email);
-            return Task.FromResult<TUser>(user as TUser);
-        }
-
-        public Task<string> GetEmailAsync(TUser user)
-        {
-            return Task.FromResult(user.UserName);
-        }
-
-        public Task<bool> GetEmailConfirmedAsync(TUser user)
-        {
-            return Task.FromResult(true);
-        }
-
-        public Task SetEmailAsync(TUser user, string email)
-        {
-            user.UserName = email;
-            user.FullName = email;
-            //this.service.EditUser(user);
-            return Task.FromResult(0);
-        }
-
-        public Task SetEmailConfirmedAsync(TUser user, bool confirmed)
-        {
-            return Task.FromResult(0);
         }
 
         #endregion
@@ -235,14 +196,14 @@ namespace RoomM.WebApp.AuthStores
 
         public Task<IList<Claim>> GetClaimsAsync(TUser user)
         {
-            ClaimsIdentity identity = new ClaimsIdentity();
+            IList<Claim> claims = new List<Claim>();
             IList<UserClaim> userClaims = this.service.GetUserClaimList(user.Id);
             foreach (UserClaim userClaim in userClaims)
             {
                 Claim claim = new Claim(userClaim.ClaimType, userClaim.ClaimValue);
-                identity.AddClaim(claim);
+                claims.Add(claim);
             }
-            return Task.FromResult<IList<Claim>>(identity.Claims.ToList());
+            return Task.FromResult<IList<Claim>>(claims);
         }
 
         public Task RemoveClaimAsync(TUser user, Claim claim)
