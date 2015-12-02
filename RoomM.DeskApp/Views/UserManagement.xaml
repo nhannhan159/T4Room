@@ -33,7 +33,7 @@
                 <RowDefinition Height="70" />
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="DANH SÁCH NHÂN VIÊN" Padding="5" VerticalAlignment="Center" FontSize="15" Background="#FF5BB0DF" Foreground="White" />
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="1" Margin="0px 5px 0px 0px">
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
@@ -46,14 +46,14 @@
                     <ColumnDefinition Width="0.25*" />
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="0" Grid.Column="0" Content="Lọc nội dung:"
-                       VerticalAlignment="Center" />
+                       HorizontalAlignment="Right" Width="92" Margin="0px 4px" />
                 <Button Grid.Row="0" Grid.Column="3" Content="Lọc" Command="{Binding FilterCommand}"
                         Margin="10px 4px" Style="{StaticResource AccentedSquareButtonStyle}" />
                 <Button Grid.Row="1" Grid.Column="3" Content="Hiện tất cả" ToolTip="Không lọc" Command="{Binding FilterAllCommand}"
                         Margin="10px 4px" Style="{DynamicResource SquareButtonStyle}" />
-                <Label Grid.Row="0" Grid.Column="1" Content="theo tên:"
+                <Label Grid.Row="0" Grid.Column="1" Content="Theo tên:"
                         VerticalAlignment="Center" />
-                <Label Grid.Row="1" Grid.Column="1" Content="theo giới tính:"
+                <Label Grid.Row="1" Grid.Column="1" Content="Theo giới tính:"
                         VerticalAlignment="Center" />
                 <TextBox Grid.Row="0" Grid.Column="2" Text="{Binding NameFilter}" Margin="4"
                          Controls:TextBoxHelper.ClearTextButton="True"
