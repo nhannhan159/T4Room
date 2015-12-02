@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>T4Room by nhannhan159</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/nhannhan159/T4Room">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/nhannhan159/T4Room/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/nhannhan159/T4Room/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>T4Room</h1>
+          <p></p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/nhannhan159">nhannhan159</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>
+<a id="room-management" class="anchor" href="#room-management" aria-hidden="true"><span class="octicon octicon-link"></span></a>Room Management</h1>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<ul>
+<li>Visual Studio 12 or greater</li>
+<li>SQL Server 2008 or greater</li>
+</ul>
+
+<h2>
+<a id="development" class="anchor" href="#development" aria-hidden="true"><span class="octicon octicon-link"></span></a>Development</h2>
+
+<ul>
+<li>Step 1: open RoomM.sln in folder RoomM by Visual Studio 2012 (minimum version).</li>
+<li>Step 2: build whole solution to restore nuget packages. (click F6).</li>
+<li>Step 4: create db <code>room_mgr</code> in your sql server.</li>
+<li>Step 5: change your db source in connection string <code>Data Source=TIENTQ</code> -&gt; <code>Data Source=[your source]</code> in:
+
+<ul>
+<li>
+<code>RoomM.WebApp / Web.config</code>: 2 places.</li>
+<li>
+<code>RoomM.DeskApp / App.config</code>: 1 place.</li>
+<li>
+<code>RoomM.Repositories / App.config</code>: 1 place.</li>
+</ul>
+</li>
+<li>Step 6: Set <code>RoomM.Repositories</code> to <code>startup project</code> by right click to this and select <code>Set as StartUp Project</code> then run project (clicking Start). It will generate all table in <code>room_mgr</code> add seed data.</li>
+<li>Step 7: Finally, you can run <code>RoomM.WebApp</code> or <code>RoomM.DeskApp</code> by <code>Set as StartUp Project</code> and <code>Start</code>.</li>
+</ul>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
