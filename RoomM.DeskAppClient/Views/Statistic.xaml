@@ -1,0 +1,85 @@
+﻿<Page x:Class="RoomM.DeskApp.Views.Statictis"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:RoomM.DeskApp.ViewModels"
+      mc:Ignorable="d"
+      d:DesignHeight="639" d:DesignWidth="1100"
+      xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+	  Title="Statictis"
+      DataContext="{Binding StatisticViewModel, Source={StaticResource ViewModelLocator}}">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid>
+        <TabControl>
+            <TabItem Header="Tần xuất đăng kí phòng">
+                <Grid Margin="40,40,40,40">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,10">
+                        <Label Content="Từ ngày:"
+                               VerticalAlignment="Center" />
+                        <DatePicker SelectedDate="{Binding FromTimeRegister, StringFormat='dd/MM/yyy'}"
+                               Margin="3" />
+                        <Label Content="Đến ngày:"
+                               Margin="100,0,0,0"
+                               VerticalAlignment="Center" />
+                        <DatePicker   SelectedDate="{Binding ToTimeRegister, StringFormat='dd/MM/yyy'}"
+                               Margin="3" />
+                    </StackPanel>
+                    <chartingToolkit:Chart Grid.Row="1" Height="450"
+                                           Margin="5,10,5,10" Name="fusingBChart" Title="Tần xuất đăng ký phòng"
+                                           VerticalAlignment="Bottom" FontSize="12pt">
+                        <chartingToolkit:ColumnSeries DependentValuePath="Value" IndependentValuePath="Name"
+                                                      ItemsSource="{Binding GetRegisterStatistic}" Title="Số lần đăng kí" />
+                    </chartingToolkit:Chart>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Tần xuất sử dụng phòng">
+                <Grid Margin="40,40,40,40">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <!--
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,10">
+                        <Label Content="Từ ngày:" />
+                        <DatePicker SelectedDate="{Binding FromTimeStaff, StringFormat='dd/MM/yyy'}" />
+                        <Label Content="Đến ngày:" Margin="100,0,0,0" />
+                        <DatePicker SelectedDate="{Binding ToTimeStaff, StringFormat='dd/MM/yyy'}" />
+                    </StackPanel>
+                    -->
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10,10">
+                        <Label Content="Từ ngày:"
+                               VerticalAlignment="Center" />
+                        <DatePicker SelectedDate="{Binding FromTimeStaff, StringFormat='dd/MM/yyy'}"
+                               Margin="3" />
+                        <Label Content="Đến ngày:"
+                               Margin="100,0,0,0"
+                               VerticalAlignment="Center" />
+                        <DatePicker   SelectedDate="{Binding ToTimeStaff, StringFormat='dd/MM/yyy'}"
+                               Margin="3" />
+                    </StackPanel>
+                    <chartingToolkit:Chart Grid.Row="1" Height="450"
+                                           Margin="5,10,5,10" Name="fusingChart" Title="Tần xuất sử dụng phòng"
+                                           VerticalAlignment="Bottom" FontSize="12pt">
+                        <chartingToolkit:ColumnSeries DependentValuePath="Value"
+                                                      IndependentValuePath="Name" ItemsSource="{Binding GetStaffStatistic}" Title="Số lần sử dụng" />
+                    </chartingToolkit:Chart>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>

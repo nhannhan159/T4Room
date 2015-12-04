@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.Text;
-
+﻿using RoomM.Application.AssetModule.Services;
 using RoomM.Domain;
-using RoomM.Application.AssetModule.Services;
 
 namespace RoomM.WebService
 {

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RoomM.Domain.RoomModule.Aggregates" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RoomM.Domain.RoomModule.Aggregates" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/RoomM.Domain" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/RoomM.Domain.UserModule.Aggregates" />
+  <xs:complexType name="Room">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/RoomM.Domain" base="q1:EntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DateCreate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IsUsing" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RoomType" nillable="true" type="tns:RoomType" />
+          <xs:element minOccurs="0" name="RoomTypeId" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Room" nillable="true" type="tns:Room" />
+  <xs:complexType name="RoomType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/RoomM.Domain" base="q2:EntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RoomType" nillable="true" type="tns:RoomType" />
+  <xs:complexType name="ArrayOfRoom">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Room" nillable="true" type="tns:Room" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRoom" nillable="true" type="tns:ArrayOfRoom" />
+  <xs:complexType name="ArrayOfRoomType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RoomType" nillable="true" type="tns:RoomType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRoomType" nillable="true" type="tns:ArrayOfRoomType" />
+  <xs:complexType name="RoomReg">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/RoomM.Domain" base="q3:EntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="IsWatched" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Length" type="xs:int" />
+          <xs:element minOccurs="0" name="Room" nillable="true" type="tns:Room" />
+          <xs:element minOccurs="0" name="RoomId" type="xs:long" />
+          <xs:element minOccurs="0" name="RoomRegTypeId" type="xs:int" />
+          <xs:element minOccurs="0" name="Start" type="xs:int" />
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/RoomM.Domain.UserModule.Aggregates" minOccurs="0" name="User" nillable="true" type="q4:User" />
+          <xs:element minOccurs="0" name="UserId" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RoomReg" nillable="true" type="tns:RoomReg" />
+  <xs:complexType name="ArrayOfRoomReg">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RoomReg" nillable="true" type="tns:RoomReg" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRoomReg" nillable="true" type="tns:ArrayOfRoomReg" />
+</xs:schema>

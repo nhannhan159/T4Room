@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="RoomManagementWS" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:56445/RoomModule/Implement/RoomManagementWS.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:56445/RoomModule/Implement/RoomManagementWS.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:56445/RoomModule/Implement/RoomManagementWS.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/RoomM.Domain.RoomModule.Aggregates" />
+      <xsd:import schemaLocation="http://localhost:56445/RoomModule/Implement/RoomManagementWS.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/RoomM.Domain" />
+      <xsd:import schemaLocation="http://localhost:56445/RoomModule/Implement/RoomManagementWS.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/RoomM.Domain.UserModule.Aggregates" />
+      <xsd:import schemaLocation="http://localhost:56445/RoomModule/Implement/RoomManagementWS.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/System.Collections.Generic" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IRoomManagementWS_GetRoom_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoom" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_GetRoom_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_GetRoomList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomList" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_GetRoomList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_GetRoomListByRoomId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomListByRoomId" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_GetRoomListByRoomId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomListByRoomIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_GetRoomTypeList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomTypeList" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_GetRoomTypeList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomTypeListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_GetRoomReg_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomReg" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_GetRoomReg_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomRegResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_GetRoomRegListByRoomId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomRegListByRoomId" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_GetRoomRegListByRoomId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomRegListByRoomIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_GetRoomRegListByUserId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomRegListByUserId" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_GetRoomRegListByUserId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomRegListByUserIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_GetRoomRegListByDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomRegListByDate" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_GetRoomRegListByDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomRegListByDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_GetRoomRegListByWeek_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomRegListByWeek" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_GetRoomRegListByWeek_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomRegListByWeekResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_GetRoomRegListByWatchedState_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomRegListByWatchedState" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_GetRoomRegListByWatchedState_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomRegListByWatchedStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_GetRoomLimitByRegister_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomLimitByRegister" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_GetRoomLimitByRegister_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomLimitByRegisterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_AddRoom_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddRoom" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_AddRoom_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_EditRoom_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditRoom" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_EditRoom_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_DeleteRoom_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRoom" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_DeleteRoom_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_EditRoomReg_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditRoomReg" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_EditRoomReg_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditRoomRegResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_DeleteRoomReg_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRoomReg" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_DeleteRoomReg_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRoomRegResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IRoomManagementWS">
+    <wsdl:operation name="GetRoom">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRoomManagementWS/GetRoom" message="tns:IRoomManagementWS_GetRoom_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRoomManagementWS/GetRoomResponse" message="tns:IRoomManagementWS_GetRoom_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRoomManagementWS/GetRoomList" message="tns:IRoomManagementWS_GetRoomList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRoomManagementWS/GetRoomListResponse" message="tns:IRoomManagementWS_GetRoomList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomListByRoomId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRoomManagementWS/GetRoomListByRoomId" message="tns:IRoomManagementWS_GetRoomListByRoomId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRoomManagementWS/GetRoomListByRoomIdResponse" message="tns:IRoomManagementWS_GetRoomListByRoomId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomTypeList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRoomManagementWS/GetRoomTypeList" message="tns:IRoomManagementWS_GetRoomTypeList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRoomManagementWS/GetRoomTypeListResponse" message="tns:IRoomManagementWS_GetRoomTypeList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomReg">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRoomManagementWS/GetRoomReg" message="tns:IRoomManagementWS_GetRoomReg_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRoomManagementWS/GetRoomRegResponse" message="tns:IRoomManagementWS_GetRoomReg_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomRegListByRoomId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRoomManagementWS/GetRoomRegListByRoomId" message="tns:IRoomManagementWS_GetRoomRegListByRoomId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRoomManagementWS/GetRoomRegListByRoomIdResponse" message="tns:IRoomManagementWS_GetRoomRegListByRoomId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomRegListByUserId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRoomManagementWS/GetRoomRegListByUserId" message="tns:IRoomManagementWS_GetRoomRegListByUserId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRoomManagementWS/GetRoomRegListByUserIdResponse" message="tns:IRoomManagementWS_GetRoomRegListByUserId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomRegListByDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRoomManagementWS/GetRoomRegListByDate" message="tns:IRoomManagementWS_GetRoomRegListByDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRoomManagementWS/GetRoomRegListByDateResponse" message="tns:IRoomManagementWS_GetRoomRegListByDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomRegListByWeek">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRoomManagementWS/GetRoomRegListByWeek" message="tns:IRoomManagementWS_GetRoomRegListByWeek_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRoomManagementWS/GetRoomRegListByWeekResponse" message="tns:IRoomManagementWS_GetRoomRegListByWeek_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomRegListByWatchedState">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRoomManagementWS/GetRoomRegListByWatchedState" message="tns:IRoomManagementWS_GetRoomRegListByWatchedState_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRoomManagementWS/GetRoomRegListByWatchedStateResponse" message="tns:IRoomManagementWS_GetRoomRegListByWatchedState_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomLimitByRegister">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRoomManagementWS/GetRoomLimitByRegister" message="tns:IRoomManagementWS_GetRoomLimitByRegister_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRoomManagementWS/GetRoomLimitByRegisterResponse" message="tns:IRoomManagementWS_GetRoomLimitByRegister_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRoom">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRoomManagementWS/AddRoom" message="tns:IRoomManagementWS_AddRoom_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRoomManagementWS/AddRoomResponse" message="tns:IRoomManagementWS_AddRoom_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditRoom">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRoomManagementWS/EditRoom" message="tns:IRoomManagementWS_EditRoom_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRoomManagementWS/EditRoomResponse" message="tns:IRoomManagementWS_EditRoom_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRoom">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRoomManagementWS/DeleteRoom" message="tns:IRoomManagementWS_DeleteRoom_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRoomManagementWS/DeleteRoomResponse" message="tns:IRoomManagementWS_DeleteRoom_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditRoomReg">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRoomManagementWS/EditRoomReg" message="tns:IRoomManagementWS_EditRoomReg_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRoomManagementWS/EditRoomRegResponse" message="tns:IRoomManagementWS_EditRoomReg_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRoomReg">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRoomManagementWS/DeleteRoomReg" message="tns:IRoomManagementWS_DeleteRoomReg_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRoomManagementWS/DeleteRoomRegResponse" message="tns:IRoomManagementWS_DeleteRoomReg_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IRoomManagementWS" type="tns:IRoomManagementWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetRoom">
+      <soap:operation soapAction="http://tempuri.org/IRoomManagementWS/GetRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomList">
+      <soap:operation soapAction="http://tempuri.org/IRoomManagementWS/GetRoomList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomListByRoomId">
+      <soap:operation soapAction="http://tempuri.org/IRoomManagementWS/GetRoomListByRoomId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomTypeList">
+      <soap:operation soapAction="http://tempuri.org/IRoomManagementWS/GetRoomTypeList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomReg">
+      <soap:operation soapAction="http://tempuri.org/IRoomManagementWS/GetRoomReg" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomRegListByRoomId">
+      <soap:operation soapAction="http://tempuri.org/IRoomManagementWS/GetRoomRegListByRoomId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomRegListByUserId">
+      <soap:operation soapAction="http://tempuri.org/IRoomManagementWS/GetRoomRegListByUserId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomRegListByDate">
+      <soap:operation soapAction="http://tempuri.org/IRoomManagementWS/GetRoomRegListByDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomRegListByWeek">
+      <soap:operation soapAction="http://tempuri.org/IRoomManagementWS/GetRoomRegListByWeek" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomRegListByWatchedState">
+      <soap:operation soapAction="http://tempuri.org/IRoomManagementWS/GetRoomRegListByWatchedState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomLimitByRegister">
+      <soap:operation soapAction="http://tempuri.org/IRoomManagementWS/GetRoomLimitByRegister" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRoom">
+      <soap:operation soapAction="http://tempuri.org/IRoomManagementWS/AddRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditRoom">
+      <soap:operation soapAction="http://tempuri.org/IRoomManagementWS/EditRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRoom">
+      <soap:operation soapAction="http://tempuri.org/IRoomManagementWS/DeleteRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditRoomReg">
+      <soap:operation soapAction="http://tempuri.org/IRoomManagementWS/EditRoomReg" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRoomReg">
+      <soap:operation soapAction="http://tempuri.org/IRoomManagementWS/DeleteRoomReg" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RoomManagementWS">
+    <wsdl:port name="BasicHttpBinding_IRoomManagementWS" binding="tns:BasicHttpBinding_IRoomManagementWS">
+      <soap:address location="http://localhost:56445/RoomModule/Implement/RoomManagementWS.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,1256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AssetManagementWS" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="BasicHttpBinding_IAssetManagementWS_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="true">
+                </sp:HttpsToken>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256>
+                </sp:Basic256>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict>
+                </sp:Strict>
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SymmetricBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:ProtectionToken>
+              <wsp:Policy>
+                <sp:SecureConversationToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+                  <wsp:Policy>
+                    <sp:RequireDerivedKeys>
+                    </sp:RequireDerivedKeys>
+                    <sp:BootstrapPolicy>
+                      <wsp:Policy>
+                        <sp:SignedParts>
+                          <sp:Body>
+                          </sp:Body>
+                          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+                          </sp:Header>
+                          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+                          </sp:Header>
+                          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+                          </sp:Header>
+                          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+                          </sp:Header>
+                          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+                          </sp:Header>
+                          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+                          </sp:Header>
+                          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+                          </sp:Header>
+                        </sp:SignedParts>
+                        <sp:EncryptedParts>
+                          <sp:Body>
+                          </sp:Body>
+                        </sp:EncryptedParts>
+                        <sp:SymmetricBinding>
+                          <wsp:Policy>
+                            <sp:ProtectionToken>
+                              <wsp:Policy>
+                                <mssp:SslContextToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient" xmlns:mssp="http://schemas.microsoft.com/ws/2005/07/securitypolicy">
+                                  <wsp:Policy>
+                                    <sp:RequireDerivedKeys>
+                                    </sp:RequireDerivedKeys>
+                                    <mssp:RequireClientCertificate>
+                                    </mssp:RequireClientCertificate>
+                                  </wsp:Policy>
+                                </mssp:SslContextToken>
+                              </wsp:Policy>
+                            </sp:ProtectionToken>
+                            <sp:AlgorithmSuite>
+                              <wsp:Policy>
+                                <sp:Basic256>
+                                </sp:Basic256>
+                              </wsp:Policy>
+                            </sp:AlgorithmSuite>
+                            <sp:Layout>
+                              <wsp:Policy>
+                                <sp:Strict>
+                                </sp:Strict>
+                              </wsp:Policy>
+                            </sp:Layout>
+                            <sp:IncludeTimestamp>
+                            </sp:IncludeTimestamp>
+                            <sp:EncryptSignature>
+                            </sp:EncryptSignature>
+                            <sp:OnlySignEntireHeadersAndBody>
+                            </sp:OnlySignEntireHeadersAndBody>
+                          </wsp:Policy>
+                        </sp:SymmetricBinding>
+                        <sp:Wss11>
+                          <wsp:Policy>
+                          </wsp:Policy>
+                        </sp:Wss11>
+                        <sp:Trust10>
+                          <wsp:Policy>
+                            <sp:MustSupportIssuedTokens>
+                            </sp:MustSupportIssuedTokens>
+                            <sp:RequireClientEntropy>
+                            </sp:RequireClientEntropy>
+                            <sp:RequireServerEntropy>
+                            </sp:RequireServerEntropy>
+                          </wsp:Policy>
+                        </sp:Trust10>
+                      </wsp:Policy>
+                    </sp:BootstrapPolicy>
+                  </wsp:Policy>
+                </sp:SecureConversationToken>
+              </wsp:Policy>
+            </sp:ProtectionToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256>
+                </sp:Basic256>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict>
+                </sp:Strict>
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp>
+            </sp:IncludeTimestamp>
+            <sp:EncryptSignature>
+            </sp:EncryptSignature>
+            <sp:OnlySignEntireHeadersAndBody>
+            </sp:OnlySignEntireHeadersAndBody>
+          </wsp:Policy>
+        </sp:SymmetricBinding>
+        <sp:Wss11 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+          </wsp:Policy>
+        </sp:Wss11>
+        <sp:Trust10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:MustSupportIssuedTokens>
+            </sp:MustSupportIssuedTokens>
+            <sp:RequireClientEntropy>
+            </sp:RequireClientEntropy>
+            <sp:RequireServerEntropy>
+            </sp:RequireServerEntropy>
+          </wsp:Policy>
+        </sp:Trust10>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1">
+        </msb:BinaryEncoding>
+        <wsaw:UsingAddressing>
+        </wsaw:UsingAddressing>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_GetAssetList_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_GetAssetList_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_GetAssetDetailList_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_GetAssetDetailList_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_GetAssetDetailListByAssetId_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_GetAssetDetailListByAssetId_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_GetAssetDetailListByRoomId_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_GetAssetDetailListByRoomId_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_GetAssetHisListByRoomId_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_GetAssetHisListByRoomId_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_GetAssetHisListByBacktrace_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_GetAssetHisListByBacktrace_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_AddAsset_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_AddAsset_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_EditAsset_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_EditAsset_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_DeleteAsset_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_DeleteAsset_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_ImportAsset_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_ImportAsset_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_DropAsset_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_DropAsset_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_TransferAsset_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_TransferAsset_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/RoomM.Domain.AssetModule.Aggregates" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/RoomM.Domain" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/RoomM.Domain.RoomModule.Aggregates" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IAssetManagementWS_GetAssetList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetList" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_GetAssetList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_GetAssetDetailList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetDetailList" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_GetAssetDetailList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetDetailListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_GetAssetDetailListByAssetId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetDetailListByAssetId" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_GetAssetDetailListByAssetId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetDetailListByAssetIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_GetAssetDetailListByRoomId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetDetailListByRoomId" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_GetAssetDetailListByRoomId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetDetailListByRoomIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_GetAssetHisListByRoomId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetHisListByRoomId" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_GetAssetHisListByRoomId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetHisListByRoomIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_GetAssetHisListByBacktrace_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetHisListByBacktrace" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_GetAssetHisListByBacktrace_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetHisListByBacktraceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_AddAsset_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddAsset" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_AddAsset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddAssetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_EditAsset_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditAsset" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_EditAsset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditAssetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_DeleteAsset_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAsset" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_DeleteAsset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAssetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_ImportAsset_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportAsset" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_ImportAsset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportAssetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_DropAsset_InputMessage">
+    <wsdl:part name="parameters" element="tns:DropAsset" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_DropAsset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DropAssetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_TransferAsset_InputMessage">
+    <wsdl:part name="parameters" element="tns:TransferAsset" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_TransferAsset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TransferAssetResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IAssetManagementWS">
+    <wsdl:operation name="GetAssetList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetList" message="tns:IAssetManagementWS_GetAssetList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetListResponse" message="tns:IAssetManagementWS_GetAssetList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetDetailList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetDetailList" message="tns:IAssetManagementWS_GetAssetDetailList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetDetailListResponse" message="tns:IAssetManagementWS_GetAssetDetailList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetDetailListByAssetId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetDetailListByAssetId" message="tns:IAssetManagementWS_GetAssetDetailListByAssetId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetDetailListByAssetIdResponse" message="tns:IAssetManagementWS_GetAssetDetailListByAssetId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetDetailListByRoomId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetDetailListByRoomId" message="tns:IAssetManagementWS_GetAssetDetailListByRoomId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetDetailListByRoomIdResponse" message="tns:IAssetManagementWS_GetAssetDetailListByRoomId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetHisListByRoomId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetHisListByRoomId" message="tns:IAssetManagementWS_GetAssetHisListByRoomId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetHisListByRoomIdResponse" message="tns:IAssetManagementWS_GetAssetHisListByRoomId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetHisListByBacktrace">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetHisListByBacktrace" message="tns:IAssetManagementWS_GetAssetHisListByBacktrace_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetHisListByBacktraceResponse" message="tns:IAssetManagementWS_GetAssetHisListByBacktrace_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAsset">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/AddAsset" message="tns:IAssetManagementWS_AddAsset_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/AddAssetResponse" message="tns:IAssetManagementWS_AddAsset_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditAsset">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/EditAsset" message="tns:IAssetManagementWS_EditAsset_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/EditAssetResponse" message="tns:IAssetManagementWS_EditAsset_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAsset">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/DeleteAsset" message="tns:IAssetManagementWS_DeleteAsset_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/DeleteAssetResponse" message="tns:IAssetManagementWS_DeleteAsset_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportAsset">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/ImportAsset" message="tns:IAssetManagementWS_ImportAsset_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/ImportAssetResponse" message="tns:IAssetManagementWS_ImportAsset_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DropAsset">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/DropAsset" message="tns:IAssetManagementWS_DropAsset_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/DropAssetResponse" message="tns:IAssetManagementWS_DropAsset_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TransferAsset">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/TransferAsset" message="tns:IAssetManagementWS_TransferAsset_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/TransferAssetResponse" message="tns:IAssetManagementWS_TransferAsset_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IAssetManagementWS" type="tns:IAssetManagementWS">
+    <wsp:PolicyReference URI="#BasicHttpBinding_IAssetManagementWS_policy">
+    </wsp:PolicyReference>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAssetList">
+      <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/GetAssetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetDetailList">
+      <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/GetAssetDetailList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetDetailListByAssetId">
+      <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/GetAssetDetailListByAssetId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetDetailListByRoomId">
+      <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/GetAssetDetailListByRoomId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetHisListByRoomId">
+      <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/GetAssetHisListByRoomId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetHisListByBacktrace">
+      <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/GetAssetHisListByBacktrace" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAsset">
+      <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/AddAsset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditAsset">
+      <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/EditAsset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAsset">
+      <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/DeleteAsset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportAsset">
+      <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/ImportAsset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DropAsset">
+      <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/DropAsset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransferAsset">
+      <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/TransferAsset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IAssetManagementWS" type="tns:IAssetManagementWS">
+    <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_policy">
+    </wsp:PolicyReference>
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="GetAssetList">
+      <soap12:operation soapAction="http://tempuri.org/IAssetManagementWS/GetAssetList" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_GetAssetList_Input_policy">
+        </wsp:PolicyReference>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_GetAssetList_output_policy">
+        </wsp:PolicyReference>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetDetailList">
+      <soap12:operation soapAction="http://tempuri.org/IAssetManagementWS/GetAssetDetailList" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_GetAssetDetailList_Input_policy">
+        </wsp:PolicyReference>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_GetAssetDetailList_output_policy">
+        </wsp:PolicyReference>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetDetailListByAssetId">
+      <soap12:operation soapAction="http://tempuri.org/IAssetManagementWS/GetAssetDetailListByAssetId" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_GetAssetDetailListByAssetId_Input_policy">
+        </wsp:PolicyReference>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_GetAssetDetailListByAssetId_output_policy">
+        </wsp:PolicyReference>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetDetailListByRoomId">
+      <soap12:operation soapAction="http://tempuri.org/IAssetManagementWS/GetAssetDetailListByRoomId" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_GetAssetDetailListByRoomId_Input_policy">
+        </wsp:PolicyReference>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_GetAssetDetailListByRoomId_output_policy">
+        </wsp:PolicyReference>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetHisListByRoomId">
+      <soap12:operation soapAction="http://tempuri.org/IAssetManagementWS/GetAssetHisListByRoomId" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_GetAssetHisListByRoomId_Input_policy">
+        </wsp:PolicyReference>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_GetAssetHisListByRoomId_output_policy">
+        </wsp:PolicyReference>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetHisListByBacktrace">
+      <soap12:operation soapAction="http://tempuri.org/IAssetManagementWS/GetAssetHisListByBacktrace" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_GetAssetHisListByBacktrace_Input_policy">
+        </wsp:PolicyReference>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_GetAssetHisListByBacktrace_output_policy">
+        </wsp:PolicyReference>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAsset">
+      <soap12:operation soapAction="http://tempuri.org/IAssetManagementWS/AddAsset" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_AddAsset_Input_policy">
+        </wsp:PolicyReference>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_AddAsset_output_policy">
+        </wsp:PolicyReference>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditAsset">
+      <soap12:operation soapAction="http://tempuri.org/IAssetManagementWS/EditAsset" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_EditAsset_Input_policy">
+        </wsp:PolicyReference>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_EditAsset_output_policy">
+        </wsp:PolicyReference>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAsset">
+      <soap12:operation soapAction="http://tempuri.org/IAssetManagementWS/DeleteAsset" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_DeleteAsset_Input_policy">
+        </wsp:PolicyReference>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_DeleteAsset_output_policy">
+        </wsp:PolicyReference>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportAsset">
+      <soap12:operation soapAction="http://tempuri.org/IAssetManagementWS/ImportAsset" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_ImportAsset_Input_policy">
+        </wsp:PolicyReference>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_ImportAsset_output_policy">
+        </wsp:PolicyReference>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DropAsset">
+      <soap12:operation soapAction="http://tempuri.org/IAssetManagementWS/DropAsset" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_DropAsset_Input_policy">
+        </wsp:PolicyReference>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_DropAsset_output_policy">
+        </wsp:PolicyReference>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransferAsset">
+      <soap12:operation soapAction="http://tempuri.org/IAssetManagementWS/TransferAsset" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_TransferAsset_Input_policy">
+        </wsp:PolicyReference>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_TransferAsset_output_policy">
+        </wsp:PolicyReference>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AssetManagementWS">
+    <wsdl:port name="BasicHttpBinding_IAssetManagementWS" binding="tns:BasicHttpBinding_IAssetManagementWS">
+      <soap:address location="https://localhost:65432/AssetManagementWS" />
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IAssetManagementWS" binding="tns:NetTcpBinding_IAssetManagementWS">
+      <soap12:address location="net.tcp://localhost:8765/AssetManagementWS" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8765/AssetManagementWS</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+            <X509Data>
+              <X509Certificate>MIIC7DCCAdigAwIBAgIQBCVKy1aKo5pHNy9cCIrl8TAJBgUrDgMCHQUAMBExDzANBgNVBAMTBlRpZW5DQTAeFw0xNTExMDkxMjQ1MzhaFw0zOTEyMzEyMzU5NTlaMBMxETAPBgNVBAMTCE5ldFRjcENBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2GLQmFmqLY/BuZgQkJK71W9kDaMGFpefT6QmMmBY2rz7CuwwVBb5EzsKkmue7AgegZqlyWfNbPRjT3igKX5/a8exBrhGiZeFbb07XHuD/IoDHRzCp7T6Z0+UZqa76Ujo9wFP2PMsBMMgdfYllVAmmVf5Imt5sUXQTtlJ4UwnHK/jv/iFHIT3I2NTuDMyUKz2C3NomDzpfy9QIPF8YvZCqc+NyRDPZN9BNOXt2NOkhujaiJd9DbUxdJR+07A/zxmscnpbYLaWlileftMMoqNPmfHk2e7Q303DAbJZqjnMv7g8QQX6W+kCE0vBXEIVHWky6BjNhBcOVLuLKul+f8lIowIDAQABo0YwRDBCBgNVHQEEOzA5gBDDHxjfxpa/zQG9W0CleK29oRMwETEPMA0GA1UEAxMGVGllbkNBghBy0DmkSrG7j0T8dirPXU3AMAkGBSsOAwIdBQADggEBAIYMnBuplaIQE8zWJGUtclpT0KJZGIIm/pf6N2swIvP3fVcevdAKveNmCw1OVZRLEuIM2ffyLPyzoZk/BR/5mx6Lrr+4aXqWsnP3pICRjbzGPiRf/yWnVJP9/7SSRHYOz8QW9e8mD2t0CD87xHWL1ZI71E57F77RoA1Xou65pxvPaR+FofQoNvo4dom9BQY5ruK13g4nZHLgoMjyJ5x23TEO19Ncg2YD50yFMqhK9zLHnZGhPOlMtK6B3NZGSxYTOclfOUNhFESfMUG3madA6E3WRGHKUWGNUjmcaBMpwpTQRD5CtzaKzwuPh8ZFMa2OeLKTisw/eWqs1wk8SAssCCI=</X509Certificate>
+            </X509Data>
+          </KeyInfo>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

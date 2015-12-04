@@ -6,13 +6,15 @@ using RoomM.Infrastructure.Data.AssetModule.Repositories;
 using RoomM.Infrastructure.Data.RoomModule.Repositories;
 using RoomM.Infrastructure.Data.UnitOfWork.Mapping;
 using RoomM.Infrastructure.Data.UserModule.Repositories;
+using System.Data.Common;
 using System.Data.Entity;
+using System.Data.Entity.Migrations.History;
 
 namespace RoomM.Infrastructure.Data.UnitOfWork
 {
     public class EFContext : DbContext, IUnitOfWork
     {
-        public EFContext() : base("name=RoomDB")
+        public EFContext() : base("name=RoomDB_MySql")
         {
         }
 
@@ -157,5 +159,21 @@ namespace RoomM.Infrastructure.Data.UnitOfWork
         }
 
         #endregion IUnitOfWork implement
+    }
+
+    public class MySqlHistoryContext : HistoryContext
+    {
+
+        public MySqlHistoryContext(DbConnection connection, string defaultSchema) : base(connection, defaultSchema)
+        {
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<HistoryRow>().Property(h => h.MigrationId).HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<HistoryRow>().Property(h => h.ContextKey).HasMaxLength(200).IsRequired();
+        }
     }
 }

@@ -1,8 +1,0 @@
-C:\Users\nhannhan159\Desktop\me\T4Room\RoomM.ServiceTest\bin\Debug\RoomM.ServiceTest.exe.config
-C:\Users\nhannhan159\Desktop\me\T4Room\RoomM.ServiceTest\bin\Debug\RoomM.ServiceTest.exe
-C:\Users\nhannhan159\Desktop\me\T4Room\RoomM.ServiceTest\bin\Debug\RoomM.ServiceTest.pdb
-C:\Users\nhannhan159\Desktop\me\T4Room\RoomM.ServiceTest\bin\Debug\RoomM.Models.dll
-C:\Users\nhannhan159\Desktop\me\T4Room\RoomM.ServiceTest\bin\Debug\RoomM.Models.pdb
-C:\Users\nhannhan159\Desktop\me\T4Room\RoomM.ServiceTest\obj\Debug\RoomM.ServiceTest.csprojResolveAssemblyReference.cache
-C:\Users\nhannhan159\Desktop\me\T4Room\RoomM.ServiceTest\obj\Debug\RoomM.ServiceTest.exe
-C:\Users\nhannhan159\Desktop\me\T4Room\RoomM.ServiceTest\obj\Debug\RoomM.ServiceTest.pdb

@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-using Ninject.Modules;
-
-using RoomM.Domain;
-using RoomM.Infrastructure.Data.UnitOfWork;
+﻿using Ninject.Modules;
 using RoomM.Application.AssetModule.Services;
 using RoomM.Application.RoomModule.Services;
 using RoomM.Application.UserModule.Services;
+using RoomM.Domain;
+using RoomM.Infrastructure.Data.UnitOfWork;
 
 namespace RoomM.WebService
 {

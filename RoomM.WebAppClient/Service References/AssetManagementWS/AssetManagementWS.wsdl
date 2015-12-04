@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AssetManagementWS" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:56445/AssetModule/Implement/AssetManagementWS.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:56445/AssetModule/Implement/AssetManagementWS.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:56445/AssetModule/Implement/AssetManagementWS.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/RoomM.Domain.AssetModule.Aggregates" />
+      <xsd:import schemaLocation="http://localhost:56445/AssetModule/Implement/AssetManagementWS.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/RoomM.Domain" />
+      <xsd:import schemaLocation="http://localhost:56445/AssetModule/Implement/AssetManagementWS.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/RoomM.Domain.RoomModule.Aggregates" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IAssetManagementWS_GetAssetList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetList" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_GetAssetList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_GetAssetDetailList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetDetailList" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_GetAssetDetailList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetDetailListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_GetAssetDetailListByAssetId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetDetailListByAssetId" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_GetAssetDetailListByAssetId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetDetailListByAssetIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_GetAssetDetailListByRoomId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetDetailListByRoomId" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_GetAssetDetailListByRoomId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetDetailListByRoomIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_GetAssetHisListByRoomId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetHisListByRoomId" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_GetAssetHisListByRoomId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetHisListByRoomIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_GetAssetHisListByBacktrace_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetHisListByBacktrace" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_GetAssetHisListByBacktrace_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetHisListByBacktraceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_AddAsset_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddAsset" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_AddAsset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddAssetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_EditAsset_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditAsset" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_EditAsset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditAssetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_DeleteAsset_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAsset" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_DeleteAsset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAssetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_ImportAsset_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportAsset" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_ImportAsset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportAssetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_DropAsset_InputMessage">
+    <wsdl:part name="parameters" element="tns:DropAsset" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_DropAsset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DropAssetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_TransferAsset_InputMessage">
+    <wsdl:part name="parameters" element="tns:TransferAsset" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_TransferAsset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TransferAssetResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IAssetManagementWS">
+    <wsdl:operation name="GetAssetList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetList" message="tns:IAssetManagementWS_GetAssetList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetListResponse" message="tns:IAssetManagementWS_GetAssetList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetDetailList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetDetailList" message="tns:IAssetManagementWS_GetAssetDetailList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetDetailListResponse" message="tns:IAssetManagementWS_GetAssetDetailList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetDetailListByAssetId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetDetailListByAssetId" message="tns:IAssetManagementWS_GetAssetDetailListByAssetId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetDetailListByAssetIdResponse" message="tns:IAssetManagementWS_GetAssetDetailListByAssetId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetDetailListByRoomId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetDetailListByRoomId" message="tns:IAssetManagementWS_GetAssetDetailListByRoomId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetDetailListByRoomIdResponse" message="tns:IAssetManagementWS_GetAssetDetailListByRoomId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetHisListByRoomId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetHisListByRoomId" message="tns:IAssetManagementWS_GetAssetHisListByRoomId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetHisListByRoomIdResponse" message="tns:IAssetManagementWS_GetAssetHisListByRoomId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetHisListByBacktrace">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetHisListByBacktrace" message="tns:IAssetManagementWS_GetAssetHisListByBacktrace_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetHisListByBacktraceResponse" message="tns:IAssetManagementWS_GetAssetHisListByBacktrace_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAsset">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/AddAsset" message="tns:IAssetManagementWS_AddAsset_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/AddAssetResponse" message="tns:IAssetManagementWS_AddAsset_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditAsset">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/EditAsset" message="tns:IAssetManagementWS_EditAsset_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/EditAssetResponse" message="tns:IAssetManagementWS_EditAsset_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAsset">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/DeleteAsset" message="tns:IAssetManagementWS_DeleteAsset_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/DeleteAssetResponse" message="tns:IAssetManagementWS_DeleteAsset_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportAsset">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/ImportAsset" message="tns:IAssetManagementWS_ImportAsset_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/ImportAssetResponse" message="tns:IAssetManagementWS_ImportAsset_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DropAsset">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/DropAsset" message="tns:IAssetManagementWS_DropAsset_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/DropAssetResponse" message="tns:IAssetManagementWS_DropAsset_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TransferAsset">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/TransferAsset" message="tns:IAssetManagementWS_TransferAsset_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/TransferAssetResponse" message="tns:IAssetManagementWS_TransferAsset_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IAssetManagementWS" type="tns:IAssetManagementWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAssetList">
+      <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/GetAssetList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetDetailList">
+      <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/GetAssetDetailList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetDetailListByAssetId">
+      <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/GetAssetDetailListByAssetId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetDetailListByRoomId">
+      <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/GetAssetDetailListByRoomId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetHisListByRoomId">
+      <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/GetAssetHisListByRoomId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetHisListByBacktrace">
+      <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/GetAssetHisListByBacktrace" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAsset">
+      <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/AddAsset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditAsset">
+      <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/EditAsset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAsset">
+      <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/DeleteAsset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ImportAsset">
+      <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/ImportAsset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DropAsset">
+      <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/DropAsset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransferAsset">
+      <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/TransferAsset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AssetManagementWS">
+    <wsdl:port name="BasicHttpBinding_IAssetManagementWS" binding="tns:BasicHttpBinding_IAssetManagementWS">
+      <soap:address location="http://localhost:56445/AssetModule/Implement/AssetManagementWS.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

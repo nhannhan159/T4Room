@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using RoomM.Domain.UserModule.Aggregates;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.Text;
-
-using RoomM.Domain.RoomModule.Aggregates;
-using RoomM.Domain.UserModule.Aggregates;
 
 namespace RoomM.WebService
 {
@@ -53,15 +47,6 @@ namespace RoomM.WebService
 
         [OperationContract]
         void DeleteRole(Int64 roleId);
-
-        [OperationContract]
-        IList<string> GetUserRoles(Int64 userId);
-
-        [OperationContract]
-        bool IsUserInRole(Int64 userId, string roleName);
-
-        [OperationContract]
-        void AddUserToRole(Int64 userId, string roleName);
 
         [OperationContract]
         IList<UserClaim> GetUserClaimList(Int64 userId);

@@ -45,3 +45,5 @@
 /RoomM.WebAppOld/bin
 /RoomM.WebAppOld/obj
 /.vs
+/RoomM.WSSelfHosting/bin
+/RoomM.WSSelfHosting/obj

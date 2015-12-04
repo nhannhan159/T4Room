@@ -3,16 +3,23 @@
     using RoomM.Domain.AssetModule.Aggregates;
     using RoomM.Domain.RoomModule.Aggregates;
     using RoomM.Domain.UserModule.Aggregates;
+    using RoomM.Infrastructure.Data.UnitOfWork;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<RoomM.Infrastructure.Data.UnitOfWork.EFContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
             MigrationsDirectory = @"Migrations";
+
+            // register mysql code generator
+            SetSqlGenerator("MySql.Data.MySqlClient", new MySql.Data.Entity.MySqlMigrationSqlGenerator());
+            SetHistoryContextFactory("MySql.Data.MySqlClient", (conn, schema) => new MySqlHistoryContext(conn, schema));
         }
 
         protected override void Seed(RoomM.Infrastructure.Data.UnitOfWork.EFContext context)

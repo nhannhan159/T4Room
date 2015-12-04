@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="32df7192-3442-4211-828a-0f89f4d49277" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="net.tcp://localhost:8765/RoomManagementWS/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="7f55ed11-afcf-4119-a17d-8fea1408578f" SourceId="1" SourceUrl="net.tcp://localhost:8765/RoomManagementWS/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="0c2141e6-997c-40fb-8a6b-ca5f84f7eae4" SourceId="1" SourceUrl="net.tcp://localhost:8765/RoomManagementWS/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="d4f63355-83b7-4788-add2-aec32775e933" SourceId="1" SourceUrl="net.tcp://localhost:8765/RoomManagementWS/mex" />
+    <MetadataFile FileName="RoomM.Domain.RoomModule.Aggregates.xsd" MetadataType="Schema" ID="7687578f-b49a-4872-baac-7044321e7b95" SourceId="1" SourceUrl="net.tcp://localhost:8765/RoomManagementWS/mex" />
+    <MetadataFile FileName="RoomM.Domain.xsd" MetadataType="Schema" ID="658c2abe-45bd-4d93-aca1-8ac939442d83" SourceId="1" SourceUrl="net.tcp://localhost:8765/RoomManagementWS/mex" />
+    <MetadataFile FileName="RoomM.Domain.UserModule.Aggregates.xsd" MetadataType="Schema" ID="2a84e51f-ab5a-4bcc-a059-9b33370bc4b8" SourceId="1" SourceUrl="net.tcp://localhost:8765/RoomManagementWS/mex" />
+    <MetadataFile FileName="System.Collections.Generic.xsd" MetadataType="Schema" ID="dc25b7a6-62a2-4263-9b71-120e3eb7ef15" SourceId="1" SourceUrl="net.tcp://localhost:8765/RoomManagementWS/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

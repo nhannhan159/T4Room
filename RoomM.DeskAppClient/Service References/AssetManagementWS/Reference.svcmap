@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="af6b7730-3d93-41d2-b05b-3b2cac951312" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="net.tcp://localhost:8765/AssetManagementWS/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="ac82aa10-311a-42ac-8476-8ed777904489" SourceId="1" SourceUrl="net.tcp://localhost:8765/AssetManagementWS/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="cab6cf43-251c-4e86-a8d4-46ac8bf4dff4" SourceId="1" SourceUrl="net.tcp://localhost:8765/AssetManagementWS/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="83bfb69e-2ff0-4ce1-9abb-24dcd08e25bf" SourceId="1" SourceUrl="net.tcp://localhost:8765/AssetManagementWS/mex" />
+    <MetadataFile FileName="RoomM.Domain.AssetModule.Aggregates.xsd" MetadataType="Schema" ID="c9c89d44-a834-4a99-9b55-faa31e5b8a5b" SourceId="1" SourceUrl="net.tcp://localhost:8765/AssetManagementWS/mex" />
+    <MetadataFile FileName="RoomM.Domain.xsd" MetadataType="Schema" ID="9431b8a1-6c4c-4438-b862-b0318c25a8e2" SourceId="1" SourceUrl="net.tcp://localhost:8765/AssetManagementWS/mex" />
+    <MetadataFile FileName="RoomM.Domain.RoomModule.Aggregates.xsd" MetadataType="Schema" ID="402541e8-c9ec-48c1-bf73-1c7567024b74" SourceId="1" SourceUrl="net.tcp://localhost:8765/AssetManagementWS/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

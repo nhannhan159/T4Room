@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/RoomM.Domain.AssetModule.Aggregates" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/RoomM.Domain.AssetModule.Aggregates" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:56445/AssetModule/Implement/AssetManagementWS.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/RoomM.Domain" />
+  <xs:import schemaLocation="http://localhost:56445/AssetModule/Implement/AssetManagementWS.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/RoomM.Domain.RoomModule.Aggregates" />
+  <xs:complexType name="ArrayOfAsset">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Asset" nillable="true" type="tns:Asset" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAsset" nillable="true" type="tns:ArrayOfAsset" />
+  <xs:complexType name="Asset">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/RoomM.Domain" base="q1:EntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IsUsing" type="xs:boolean" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Asset" nillable="true" type="tns:Asset" />
+  <xs:complexType name="ArrayOfAssetDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AssetDetail" nillable="true" type="tns:AssetDetail" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAssetDetail" nillable="true" type="tns:ArrayOfAssetDetail" />
+  <xs:complexType name="AssetDetail">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/RoomM.Domain" base="q2:EntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Amount" type="xs:int" />
+          <xs:element minOccurs="0" name="Asset" nillable="true" type="tns:Asset" />
+          <xs:element minOccurs="0" name="AssetId" type="xs:long" />
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/RoomM.Domain.RoomModule.Aggregates" minOccurs="0" name="Room" nillable="true" type="q3:Room" />
+          <xs:element minOccurs="0" name="RoomId" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AssetDetail" nillable="true" type="tns:AssetDetail" />
+  <xs:complexType name="ArrayOfAssetHistory">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AssetHistory" nillable="true" type="tns:AssetHistory" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAssetHistory" nillable="true" type="tns:ArrayOfAssetHistory" />
+  <xs:complexType name="AssetHistory">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/RoomM.Domain" base="q4:EntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Amount" type="xs:int" />
+          <xs:element minOccurs="0" name="Asset" nillable="true" type="tns:Asset" />
+          <xs:element minOccurs="0" name="AssetHistoryTypeId" type="xs:int" />
+          <xs:element minOccurs="0" name="AssetId" type="xs:long" />
+          <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+          <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/RoomM.Domain.RoomModule.Aggregates" minOccurs="0" name="Room" nillable="true" type="q5:Room" />
+          <xs:element minOccurs="0" name="Room2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RoomId" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AssetHistory" nillable="true" type="tns:AssetHistory" />
+</xs:schema>
