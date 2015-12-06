@@ -1,10 +1,12 @@
-﻿using RoomM.Domain;
-using RoomM.Domain.AssetModule.Aggregates;
+﻿using RoomM.Domain.AssetModule.Aggregates;
 using RoomM.Domain.RoomModule.Aggregates;
+using RoomM.Infrastructure.Data.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.ServiceModel;
+using System.Data.SqlClient;
 
 namespace RoomM.Application.AssetModule.Services
 {
@@ -22,11 +24,29 @@ namespace RoomM.Application.AssetModule.Services
             this.context.EnableWSMode();
         }
 
+        /*
+        public T ExceptionHandler<T>(Func<T> callback)
+        {
+            try
+            {
+                return callback();
+            }
+            catch (SqlException ex)
+            {
+                throw new FaultException("db error");
+            }
+        }
+        */
+
         #region Basic CRUD
 
         public IList<Asset> GetAssetList()
         {
-            return this.context.AssetRep.GetAll();
+            //return this.ExceptionHandler<IList<Asset>>(() =>
+            //{
+                return this.context.AssetRep.GetAll();
+            //});
+
         }
 
         public void AddAsset(Asset asset)

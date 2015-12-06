@@ -1,5 +1,5 @@
-﻿using RoomM.Domain;
-using RoomM.Domain.RoomModule.Aggregates;
+﻿using RoomM.Domain.RoomModule.Aggregates;
+using RoomM.Infrastructure.Data.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;

@@ -78,6 +78,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UnitOfWork\EFContext.cs" />
     <Compile Include="AssetModule\Repositories\AssetHistoryRepository.cs" />
+    <Compile Include="UnitOfWork\IUnitOfWork.cs" />
     <Compile Include="UnitOfWork\Mapping\RoomRegConfiguration.cs" />
     <Compile Include="UnitOfWork\Mapping\AssetDetailConfiguration.cs" />
     <Compile Include="UnitOfWork\Mapping\RoleConfiguration.cs" />

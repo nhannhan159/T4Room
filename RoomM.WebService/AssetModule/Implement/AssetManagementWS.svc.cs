@@ -1,5 +1,5 @@
 ﻿using RoomM.Application.AssetModule.Services;
-using RoomM.Domain;
+using RoomM.Infrastructure.Data.UnitOfWork;
 
 namespace RoomM.WebService
 {

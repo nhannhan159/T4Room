@@ -1,9 +1,10 @@
-﻿using RoomM.Domain.AssetModule.Aggregates;
+﻿using RoomM.Domain;
+using RoomM.Domain.AssetModule.Aggregates;
 using RoomM.Domain.RoomModule.Aggregates;
 using RoomM.Domain.UserModule.Aggregates;
 using System;
 
-namespace RoomM.Domain
+namespace RoomM.Infrastructure.Data.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {

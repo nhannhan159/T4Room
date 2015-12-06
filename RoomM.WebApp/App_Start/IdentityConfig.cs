@@ -12,7 +12,7 @@ using Microsoft.Owin.Security;
 
 using RoomM.WebApp.Models;
 using RoomM.WebApp.AuthStores;
-using RoomM.Domain;
+using RoomM.Infrastructure.Data.UnitOfWork;
 using RoomM.Domain.UserModule.Aggregates;
 using RoomM.Application.UserModule.Services;
 

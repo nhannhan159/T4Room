@@ -6,7 +6,6 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using RoomM.WebApp.Models;
-using RoomM.Domain;
 using RoomM.Domain.UserModule.Aggregates;
 using RoomM.Infrastructure.Data.UnitOfWork;
 

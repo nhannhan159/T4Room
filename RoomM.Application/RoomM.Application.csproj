@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,6 +65,10 @@
     <ProjectReference Include="..\RoomM.Domain\RoomM.Domain.csproj">
       <Project>{a2cd9ea0-9e0c-4b0a-87f5-9baddc4f9422}</Project>
       <Name>RoomM.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RoomM.Infrastructure.Data\RoomM.Infrastructure.Data.csproj">
+      <Project>{61faa63a-110f-42fb-a273-6362f5730e68}</Project>
+      <Name>RoomM.Infrastructure.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

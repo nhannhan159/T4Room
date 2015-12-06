@@ -163,7 +163,6 @@ namespace RoomM.Infrastructure.Data.UnitOfWork
 
     public class MySqlHistoryContext : HistoryContext
     {
-
         public MySqlHistoryContext(DbConnection connection, string defaultSchema) : base(connection, defaultSchema)
         {
         }
