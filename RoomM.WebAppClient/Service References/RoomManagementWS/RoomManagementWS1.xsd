@@ -193,10 +193,22 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="EditRoomReg">
+  <xs:element name="AddRoomReg">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/RoomM.Domain.RoomModule.Aggregates" minOccurs="0" name="roomReg" nillable="true" type="q15:RoomReg" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddRoomRegResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditRoomReg">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/RoomM.Domain.RoomModule.Aggregates" minOccurs="0" name="roomReg" nillable="true" type="q16:RoomReg" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

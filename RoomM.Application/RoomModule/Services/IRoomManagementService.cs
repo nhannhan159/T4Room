@@ -34,6 +34,8 @@ namespace RoomM.Application.RoomModule.Services
 
         void DeleteRoom(Room room);
 
+        void AddRoomReg(RoomReg roomReg);
+
         void EditRoomReg(RoomReg roomReg);
 
         void DeleteRoomReg(Int64 roomRegId);

@@ -24,29 +24,11 @@ namespace RoomM.Application.AssetModule.Services
             this.context.EnableWSMode();
         }
 
-        /*
-        public T ExceptionHandler<T>(Func<T> callback)
-        {
-            try
-            {
-                return callback();
-            }
-            catch (SqlException ex)
-            {
-                throw new FaultException("db error");
-            }
-        }
-        */
-
         #region Basic CRUD
 
         public IList<Asset> GetAssetList()
         {
-            //return this.ExceptionHandler<IList<Asset>>(() =>
-            //{
-                return this.context.AssetRep.GetAll();
-            //});
-
+            return this.context.AssetRep.GetAll();
         }
 
         public void AddAsset(Asset asset)

@@ -165,11 +165,10 @@ namespace RoomM.WebApp.Controllers
                     roomCal.UserId = User.Identity.GetUserId<Int64>();
 
                     // save
-                    //this.uow.RoomCalendarRepository.Add(roomCal);
-                    //this.uow.Commit();
+                    this.roomManagementService.AddRoomReg(roomCal);
 
-                    //string message = "Phòng " + this.uow.RoomRepository.GetSingle(roomCal.RoomId).Name + " đã được đăng kí từ tiết " + roomCal.Start + " đến tiết " + (roomCal.Start + roomCal.Length - 1);
-                    //return RedirectToAction("Create", new { messageConfirm = message, isErrorMessage = false, roomIdBefore = roomCal.RoomId });
+                    string message = "Phòng " + this.roomManagementService.GetRoom(roomCal.RoomId).Name + " đã được đăng kí từ tiết " + roomCal.Start + " đến tiết " + (roomCal.Start + roomCal.Length - 1);
+                    return RedirectToAction("Create", new { messageConfirm = message, isErrorMessage = false, roomIdBefore = roomCal.RoomId });
                 }
             }
 
@@ -271,18 +270,13 @@ namespace RoomM.WebApp.Controllers
 
         private DateTime getStartDayOfWeek(DateTime currentDate)
         {
-            while (currentDate.DayOfWeek != DayOfWeek.Monday)
-                currentDate = currentDate.AddDays(-1);
-
-            return currentDate;
+            DateTime startDate = currentDate.AddDays(DayOfWeek.Monday - currentDate.DayOfWeek);
+            return startDate;
         }
 
         public DateTime getEndDayOfWeek(DateTime currentDate)
         {
-            while (currentDate.DayOfWeek != DayOfWeek.Sunday)
-                currentDate = currentDate.AddDays(1);
-
-            return currentDate;
+            return this.getStartDayOfWeek(currentDate).AddDays(6);
         }
     }
 }

@@ -73,6 +73,7 @@ namespace RoomM.DeskApp.ViewModels
         {
             try
             {
+                this.CurrentEntity.SecurityStamp = Guid.NewGuid().ToString();
                 this.userManagementService.AddUser(this.CurrentEntity);
             }
             catch (Exception ex)

@@ -159,6 +159,12 @@ namespace RoomM.WebApp.RoomManagementWS {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomManagementWS/DeleteRoom", ReplyAction="http://tempuri.org/IRoomManagementWS/DeleteRoomResponse")]
         System.Threading.Tasks.Task DeleteRoomAsync(RoomM.Domain.RoomModule.Aggregates.Room room);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomManagementWS/AddRoomReg", ReplyAction="http://tempuri.org/IRoomManagementWS/AddRoomRegResponse")]
+        void AddRoomReg(RoomM.Domain.RoomModule.Aggregates.RoomReg roomReg);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomManagementWS/AddRoomReg", ReplyAction="http://tempuri.org/IRoomManagementWS/AddRoomRegResponse")]
+        System.Threading.Tasks.Task AddRoomRegAsync(RoomM.Domain.RoomModule.Aggregates.RoomReg roomReg);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoomManagementWS/EditRoomReg", ReplyAction="http://tempuri.org/IRoomManagementWS/EditRoomRegResponse")]
         void EditRoomReg(RoomM.Domain.RoomModule.Aggregates.RoomReg roomReg);
         
@@ -309,6 +315,14 @@ namespace RoomM.WebApp.RoomManagementWS {
         
         public System.Threading.Tasks.Task DeleteRoomAsync(RoomM.Domain.RoomModule.Aggregates.Room room) {
             return base.Channel.DeleteRoomAsync(room);
+        }
+        
+        public void AddRoomReg(RoomM.Domain.RoomModule.Aggregates.RoomReg roomReg) {
+            base.Channel.AddRoomReg(roomReg);
+        }
+        
+        public System.Threading.Tasks.Task AddRoomRegAsync(RoomM.Domain.RoomModule.Aggregates.RoomReg roomReg) {
+            return base.Channel.AddRoomRegAsync(roomReg);
         }
         
         public void EditRoomReg(RoomM.Domain.RoomModule.Aggregates.RoomReg roomReg) {

@@ -52,6 +52,9 @@ namespace RoomM.WebService
         void DeleteRoom(Room room);
 
         [OperationContract]
+        void AddRoomReg(RoomReg roomReg);
+
+        [OperationContract]
         void EditRoomReg(RoomReg roomReg);
 
         [OperationContract]

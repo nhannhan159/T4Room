@@ -94,6 +94,12 @@
   <wsdl:message name="IRoomManagementWS_DeleteRoom_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteRoomResponse" />
   </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_AddRoomReg_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddRoomReg" />
+  </wsdl:message>
+  <wsdl:message name="IRoomManagementWS_AddRoomReg_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddRoomRegResponse" />
+  </wsdl:message>
   <wsdl:message name="IRoomManagementWS_EditRoomReg_InputMessage">
     <wsdl:part name="parameters" element="tns:EditRoomReg" />
   </wsdl:message>
@@ -162,6 +168,10 @@
     <wsdl:operation name="DeleteRoom">
       <wsdl:input wsaw:Action="http://tempuri.org/IRoomManagementWS/DeleteRoom" message="tns:IRoomManagementWS_DeleteRoom_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRoomManagementWS/DeleteRoomResponse" message="tns:IRoomManagementWS_DeleteRoom_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRoomReg">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRoomManagementWS/AddRoomReg" message="tns:IRoomManagementWS_AddRoomReg_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRoomManagementWS/AddRoomRegResponse" message="tns:IRoomManagementWS_AddRoomReg_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="EditRoomReg">
       <wsdl:input wsaw:Action="http://tempuri.org/IRoomManagementWS/EditRoomReg" message="tns:IRoomManagementWS_EditRoomReg_InputMessage" />
@@ -293,6 +303,15 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteRoom">
       <soap:operation soapAction="http://tempuri.org/IRoomManagementWS/DeleteRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRoomReg">
+      <soap:operation soapAction="http://tempuri.org/IRoomManagementWS/AddRoomReg" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

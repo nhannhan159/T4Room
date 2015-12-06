@@ -129,6 +129,20 @@ namespace RoomM.Application.RoomModule.Services
 
         #region Addition Services
 
+        public void AddRoomReg(RoomReg roomReg)
+        {
+            try
+            {
+                this.context.RoomRegRep.Add(roomReg);
+                this.context.Commit();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                var error = ex.EntityValidationErrors.First().ValidationErrors.First();
+                throw new ApplicationException(error.ErrorMessage);
+            }
+        }
+
         public void EditRoomReg(RoomReg roomReg)
         {
             try

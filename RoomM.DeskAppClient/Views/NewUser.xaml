@@ -57,7 +57,7 @@
                    VerticalAlignment="Center" />
             <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NewEntity.UserName}"
                      Margin="3" />
-            <PasswordBox Grid.Row="2" Grid.Column="1"
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding NewEntity.Password}"
                      Margin="3" />
             <TextBox Grid.Row="3" Grid.Column="1"
                      Margin="3" />
@@ -105,7 +105,7 @@
             <Label Grid.Row="4" Grid.Column="0" Content="Số điện thoại:"
                    VerticalAlignment="Center" />
             <Label Grid.Row="5" Grid.Column="0" Content="Mô tả:" />
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NewEntity.Name}"
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NewEntity.FullName}"
                      Margin="3" />
             <!--
             <WrapPanel Grid.Row="2" Grid.Column="1" Margin="0,0,0,5" HorizontalAlignment="Stretch">
