@@ -113,6 +113,11 @@ namespace RoomM.Application.AssetModule.Services
             return this.context.AssetHistoryRep.GetByRoom2RoomId(room, timeForBacktrace);
         }
 
+        public string GetAssetAllRoomName(Int64 assetId)
+        {
+            return this.context.AssetDetailRep.GetAllRoomName(assetId);
+        }
+
         #endregion Addition Lists
 
         #region Addition Services
@@ -122,6 +127,10 @@ namespace RoomM.Application.AssetModule.Services
             try
             {
                 this.context.AssetDetailRep.AddOrUpdate(assetId, roomId, amount);
+
+                Asset asset = this.context.AssetRep.GetSingle(assetId);
+                asset.Amount += amount;
+                this.context.AssetRep.Edit(asset);
 
                 AssetHistory assetHistory = new AssetHistory(DateTime.Now, AssetHistory.ASSETS_IMPORT, assetId, roomId, "", amount);
                 this.context.AssetHistoryRep.Add(assetHistory);
@@ -147,9 +156,13 @@ namespace RoomM.Application.AssetModule.Services
                 }
                 else
                 {
-                    assetDetail.Amount -= amount;
+                    assetDetail.Amount -= changedAmount;
                     this.context.AssetDetailRep.Edit(assetDetail);
                 }
+
+                Asset asset = this.context.AssetRep.GetSingle(assetDetail.AssetId);
+                asset.Amount -= changedAmount;
+                this.context.AssetRep.Edit(asset);
 
                 AssetHistory assetHistory = new AssetHistory(DateTime.Now, AssetHistory.ASSETS_TRANSFER, assetDetail.AssetId, assetDetail.RoomId, "", changedAmount);
                 this.context.AssetHistoryRep.Add(assetHistory);

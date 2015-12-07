@@ -494,6 +494,62 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_GetAssetAllRoomName_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_GetAssetAllRoomName_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing">
+          </sp:Header>
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body>
+          </sp:Body>
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsp:Policy wsu:Id="NetTcpBinding_IAssetManagementWS_AddAsset_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -875,6 +931,12 @@
   <wsdl:message name="IAssetManagementWS_GetAssetHisListByBacktrace_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAssetHisListByBacktraceResponse" />
   </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_GetAssetAllRoomName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetAllRoomName" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_GetAssetAllRoomName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetAllRoomNameResponse" />
+  </wsdl:message>
   <wsdl:message name="IAssetManagementWS_AddAsset_InputMessage">
     <wsdl:part name="parameters" element="tns:AddAsset" />
   </wsdl:message>
@@ -935,6 +997,10 @@
     <wsdl:operation name="GetAssetHisListByBacktrace">
       <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetHisListByBacktrace" message="tns:IAssetManagementWS_GetAssetHisListByBacktrace_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetHisListByBacktraceResponse" message="tns:IAssetManagementWS_GetAssetHisListByBacktrace_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetAllRoomName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetAllRoomName" message="tns:IAssetManagementWS_GetAssetAllRoomName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetAllRoomNameResponse" message="tns:IAssetManagementWS_GetAssetAllRoomName_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddAsset">
       <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/AddAsset" message="tns:IAssetManagementWS_AddAsset_InputMessage" />
@@ -1012,6 +1078,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAssetHisListByBacktrace">
       <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/GetAssetHisListByBacktrace" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetAllRoomName">
+      <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/GetAssetAllRoomName" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -1152,6 +1227,19 @@
       </wsdl:input>
       <wsdl:output>
         <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_GetAssetHisListByBacktrace_output_policy">
+        </wsp:PolicyReference>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetAllRoomName">
+      <soap12:operation soapAction="http://tempuri.org/IAssetManagementWS/GetAssetAllRoomName" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_GetAssetAllRoomName_Input_policy">
+        </wsp:PolicyReference>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#NetTcpBinding_IAssetManagementWS_GetAssetAllRoomName_output_policy">
         </wsp:PolicyReference>
         <soap12:body use="literal" />
       </wsdl:output>

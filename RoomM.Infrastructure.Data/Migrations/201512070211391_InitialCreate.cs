@@ -14,6 +14,7 @@ namespace RoomM.Infrastructure.Data.Migrations
                         Id = c.Long(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 50, storeType: "nvarchar"),
                         IsUsing = c.Boolean(nullable: false),
+                        Amount = c.Int(nullable: false),
                         Description = c.String(unicode: false),
                     })
                 .PrimaryKey(t => t.Id)

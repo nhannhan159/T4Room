@@ -12,6 +12,7 @@
     <xs:complexContent mixed="false">
       <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/RoomM.Domain" base="q1:EntityBase">
         <xs:sequence>
+          <xs:element minOccurs="0" name="Amount" type="xs:int" />
           <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="IsUsing" type="xs:boolean" />
           <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />

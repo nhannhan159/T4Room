@@ -29,6 +29,9 @@ namespace RoomM.WebService
         IList<AssetHistory> GetAssetHisListByBacktrace(Room room, DateTime timeForBacktrace);
 
         [OperationContract]
+        string GetAssetAllRoomName(Int64 assetId);
+
+        [OperationContract]
         void AddAsset(Asset asset);
 
         [OperationContract]

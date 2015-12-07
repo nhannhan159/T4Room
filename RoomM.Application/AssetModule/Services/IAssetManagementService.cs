@@ -19,6 +19,8 @@ namespace RoomM.Application.AssetModule.Services
 
         IList<AssetHistory> GetAssetHisListByBacktrace(Room room, DateTime timeForBacktrace);
 
+        string GetAssetAllRoomName(Int64 assetId);
+
         void AddAsset(Asset asset);
 
         void EditAsset(Asset asset);

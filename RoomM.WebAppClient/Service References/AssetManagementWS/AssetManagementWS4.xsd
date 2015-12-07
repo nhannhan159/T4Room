@@ -83,6 +83,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetAssetAllRoomName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="assetId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAssetAllRoomNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetAssetAllRoomNameResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="AddAsset">
     <xs:complexType>
       <xs:sequence>

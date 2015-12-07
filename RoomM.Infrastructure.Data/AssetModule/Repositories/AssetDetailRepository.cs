@@ -43,5 +43,11 @@ namespace RoomM.Infrastructure.Data.AssetModule.Repositories
         {
             return this.Get(filter: p => p.AssetId == id).ToList();
         }
+
+        public string GetAllRoomName(Int64 assetId)
+        {
+            IList<AssetDetail> assetDetails = this.GetByAssetId(assetId);
+            return string.Join(",", assetDetails.Select(p => p.Room.Name));
+        }
     }
 }

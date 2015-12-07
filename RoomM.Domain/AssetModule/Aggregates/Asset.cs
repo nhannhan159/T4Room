@@ -19,6 +19,9 @@ namespace RoomM.Domain.AssetModule.Aggregates
         public Boolean IsUsing { get; set; }
 
         [DataMember]
+        public int Amount { get; set; }
+
+        [DataMember]
         public string Description { get; set; }
 
         public virtual ICollection<AssetDetail> AssetDetails
@@ -52,18 +55,9 @@ namespace RoomM.Domain.AssetModule.Aggregates
         private IList<AssetDetail> assetDetails;
         private IList<AssetHistory> assetHistories;
 
-        public string AllRoomName
-        {
-            get { return string.Join(",", this.AssetDetails.Select(p => p.Room.Name)); }
-        }
-
-        public int Amount
-        {
-            get { return this.AssetDetails.Sum(x => x.Amount); }
-        }
-
         public Asset()
         {
+            this.Amount = 0;
             this.IsUsing = true;
         }
 

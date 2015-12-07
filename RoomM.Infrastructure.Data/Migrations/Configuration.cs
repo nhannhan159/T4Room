@@ -291,6 +291,7 @@
                 Amount = 1,
                 Room = room1
             };
+            device17.Amount += 1;
 
             AssetDetail roomD2 = new AssetDetail
             {
@@ -298,6 +299,7 @@
                 Amount = 30,
                 Room = room1
             };
+            device16.Amount += 30;
 
             AssetDetail roomD3 = new AssetDetail
             {
@@ -305,6 +307,7 @@
                 Amount = 10,
                 Room = room1
             };
+            device1.Amount += 10;
 
             AssetDetail roomD4 = new AssetDetail
             {
@@ -312,6 +315,7 @@
                 Amount = 1,
                 Room = room1
             };
+            device11.Amount += 1;
 
             AssetDetail roomD5 = new AssetDetail
             {
@@ -319,6 +323,7 @@
                 Amount = 1,
                 Room = room1
             };
+            device10.Amount += 1;
 
             #endregion room A100
 
@@ -330,6 +335,7 @@
                 Amount = 5,
                 Room = room1
             };
+            device3.Amount += 5;
 
             AssetDetail roomD7 = new AssetDetail
             {
@@ -337,6 +343,7 @@
                 Amount = 100,
                 Room = room2
             };
+            device4.Amount += 100;
 
             #endregion mix
 

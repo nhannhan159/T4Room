@@ -45,6 +45,12 @@
   <wsdl:message name="IAssetManagementWS_GetAssetHisListByBacktrace_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAssetHisListByBacktraceResponse" />
   </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_GetAssetAllRoomName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetAllRoomName" />
+  </wsdl:message>
+  <wsdl:message name="IAssetManagementWS_GetAssetAllRoomName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAssetAllRoomNameResponse" />
+  </wsdl:message>
   <wsdl:message name="IAssetManagementWS_AddAsset_InputMessage">
     <wsdl:part name="parameters" element="tns:AddAsset" />
   </wsdl:message>
@@ -105,6 +111,10 @@
     <wsdl:operation name="GetAssetHisListByBacktrace">
       <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetHisListByBacktrace" message="tns:IAssetManagementWS_GetAssetHisListByBacktrace_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetHisListByBacktraceResponse" message="tns:IAssetManagementWS_GetAssetHisListByBacktrace_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetAllRoomName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetAllRoomName" message="tns:IAssetManagementWS_GetAssetAllRoomName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAssetManagementWS/GetAssetAllRoomNameResponse" message="tns:IAssetManagementWS_GetAssetAllRoomName_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddAsset">
       <wsdl:input wsaw:Action="http://tempuri.org/IAssetManagementWS/AddAsset" message="tns:IAssetManagementWS_AddAsset_InputMessage" />
@@ -180,6 +190,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAssetHisListByBacktrace">
       <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/GetAssetHisListByBacktrace" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAssetAllRoomName">
+      <soap:operation soapAction="http://tempuri.org/IAssetManagementWS/GetAssetAllRoomName" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

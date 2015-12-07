@@ -126,7 +126,7 @@ namespace RoomM.DeskApp.ViewModels
         {
             bool filter = true;
             filter = filter && (entity.Name.Contains(this.NameFilter));
-            filter = filter && (entity.AllRoomName.Contains(this.RoomFilter));
+            filter = filter && (this.assetManagementService.GetAssetAllRoomName(entity.Id).Contains(this.RoomFilter));
             return filter;
         }
 

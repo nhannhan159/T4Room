@@ -15,6 +15,7 @@ namespace RoomM.Infrastructure.Data.UnitOfWork.Mapping
             this.Property(t => t.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             this.Property(t => t.Name).IsRequired();
             this.Property(t => t.IsUsing).IsRequired();
+            this.Property(t => t.Amount).IsRequired();
             this.Property(t => t.Description).IsOptional();
 
             // table

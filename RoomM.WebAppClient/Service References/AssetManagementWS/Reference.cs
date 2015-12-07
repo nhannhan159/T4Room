@@ -51,6 +51,12 @@ namespace RoomM.WebApp.AssetManagementWS {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssetManagementWS/GetAssetHisListByBacktrace", ReplyAction="http://tempuri.org/IAssetManagementWS/GetAssetHisListByBacktraceResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<RoomM.Domain.AssetModule.Aggregates.AssetHistory>> GetAssetHisListByBacktraceAsync(RoomM.Domain.RoomModule.Aggregates.Room room, System.DateTime timeForBacktrace);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssetManagementWS/GetAssetAllRoomName", ReplyAction="http://tempuri.org/IAssetManagementWS/GetAssetAllRoomNameResponse")]
+        string GetAssetAllRoomName(long assetId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssetManagementWS/GetAssetAllRoomName", ReplyAction="http://tempuri.org/IAssetManagementWS/GetAssetAllRoomNameResponse")]
+        System.Threading.Tasks.Task<string> GetAssetAllRoomNameAsync(long assetId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAssetManagementWS/AddAsset", ReplyAction="http://tempuri.org/IAssetManagementWS/AddAssetResponse")]
         void AddAsset(RoomM.Domain.AssetModule.Aggregates.Asset asset);
         
@@ -161,6 +167,14 @@ namespace RoomM.WebApp.AssetManagementWS {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<RoomM.Domain.AssetModule.Aggregates.AssetHistory>> GetAssetHisListByBacktraceAsync(RoomM.Domain.RoomModule.Aggregates.Room room, System.DateTime timeForBacktrace) {
             return base.Channel.GetAssetHisListByBacktraceAsync(room, timeForBacktrace);
+        }
+        
+        public string GetAssetAllRoomName(long assetId) {
+            return base.Channel.GetAssetAllRoomName(assetId);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetAssetAllRoomNameAsync(long assetId) {
+            return base.Channel.GetAssetAllRoomNameAsync(assetId);
         }
         
         public void AddAsset(RoomM.Domain.AssetModule.Aggregates.Asset asset) {
