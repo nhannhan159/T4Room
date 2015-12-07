@@ -42,7 +42,7 @@ namespace RoomM.Infrastructure.Data
 
         protected IQueryable<T> GetWithRawSql(string query, params object[] parameters)
         {
-            this.RefreshContext();
+            // this.RefreshContext();
             return this.dbSet.SqlQuery(query, parameters).AsQueryable();
         }
 
@@ -51,7 +51,7 @@ namespace RoomM.Infrastructure.Data
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             int limit = 0)
         {
-            this.RefreshContext();
+            // this.RefreshContext();
 
             IQueryable<T> query = this.dbSet;
 
