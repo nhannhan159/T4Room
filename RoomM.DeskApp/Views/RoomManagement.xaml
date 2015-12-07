@@ -178,11 +178,11 @@
                         <Label Grid.Row="1" Grid.Column="0" Content="Ngày tạo:" VerticalAlignment="Center" />
                         <Label Grid.Row="2" Grid.Column="0" Content="Loại phòng:" VerticalAlignment="Center" />
                         <Label Grid.Row="3" Grid.Column="0" Content="Mô tả:" />
-                        <TextBox Grid.Row="0" Grid.Column="1" Margin="3" HorizontalAlignment="Stretch"
+                        <TextBox Grid.Row="0" Grid.Column="1" Margin="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch"
                                  Text="{Binding CurrentEntity.Name}" IsEnabled="{Binding CanModify}"
                                      Controls:TextBoxHelper.ClearTextButton="True" />
-                        <DatePicker Grid.Row="1" Grid.Column="1" Margin="3" HorizontalAlignment="Stretch" SelectedDate="{Binding CurrentEntity.DateCreate,StringFormat='dd/MM/yyy'}" IsEnabled="{Binding CanModify}" />
-                        <ComboBox Grid.Row="2" Grid.Column="1" Margin="3" HorizontalAlignment="Stretch" ItemsSource="{Binding Path=RoomTypesView}" SelectedValue="{Binding Path=CurrentEntity.RoomTypeId}" DisplayMemberPath="Name" SelectedValuePath="Id" IsEnabled="{Binding CanModify}" />
+                        <DatePicker Grid.Row="1" Grid.Column="1" Margin="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" SelectedDate="{Binding CurrentEntity.DateCreate,StringFormat='dd/MM/yyy'}" IsEnabled="{Binding CanModify}" />
+                        <ComboBox Grid.Row="2" Grid.Column="1" Margin="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" ItemsSource="{Binding Path=RoomTypesView}" SelectedValue="{Binding Path=CurrentEntity.RoomTypeId}" DisplayMemberPath="Name" SelectedValuePath="Id" IsEnabled="{Binding CanModify}" />
                         <TextBox Grid.Row="3" Grid.Column="1" Margin="3" TextWrapping="Wrap" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" IsEnabled="{Binding CanModify}" Text="{Binding CurrentEntity.Description}" AcceptsReturn="True" AcceptsTab="True" />
                         <!--
                         <Button Grid.Row="4" Content="Lưu thay đổi" Height="25" Width="120" Margin="111,8,67,2" Command="{Binding SaveCommand}" IsEnabled="{Binding CurrentEntity.IsUsing}" Grid.Column="1" />

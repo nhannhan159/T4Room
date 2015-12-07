@@ -10,11 +10,11 @@
 
         ShowTitleBar="True"
         ShowIconOnTitleBar="True"
-        ShowMaxRestoreButton="False"
+        ShowMaxRestoreButton="True"
 
         BorderThickness="0"
         GlowBrush="Black"
-        ResizeMode="CanMinimize"
+        ResizeMode="CanResize"
         WindowTransitionsEnabled="False"
 
         WindowStartupLocation="CenterScreen">
