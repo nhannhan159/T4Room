@@ -1,5 +1,4 @@
 ﻿using RoomM.Domain.AssetModule.Aggregates;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 
 namespace RoomM.Infrastructure.Data.UnitOfWork.Mapping
@@ -12,9 +11,8 @@ namespace RoomM.Infrastructure.Data.UnitOfWork.Mapping
             this.HasKey(t => t.Id);
 
             // properties
-            this.Property(t => t.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             this.Property(t => t.Date);
-            this.Property(t => t.AssetHistoryTypeId).IsRequired();
+            this.Property(t => t.AssetHistoryType).IsRequired();
             this.Property(t => t.AssetId).IsOptional();
             this.Property(t => t.RoomId).IsOptional();
             this.Property(t => t.Room2).IsOptional();

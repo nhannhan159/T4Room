@@ -71,14 +71,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201512070211391_InitialCreate.cs" />
-    <Compile Include="Migrations\201512070211391_InitialCreate.Designer.cs">
-      <DependentUpon>201512070211391_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201512131332395_InitialCreate.cs" />
+    <Compile Include="Migrations\201512131332395_InitialCreate.Designer.cs">
+      <DependentUpon>201512131332395_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UnitOfWork\EFContext.cs" />
-    <Compile Include="AssetModule\Repositories\AssetHistoryRepository.cs" />
-    <Compile Include="UnitOfWork\IUnitOfWork.cs" />
     <Compile Include="UnitOfWork\Mapping\RoomRegConfiguration.cs" />
     <Compile Include="UnitOfWork\Mapping\AssetDetailConfiguration.cs" />
     <Compile Include="UnitOfWork\Mapping\RoleConfiguration.cs" />
@@ -90,15 +88,6 @@
     <Compile Include="UnitOfWork\Mapping\RoomConfiguration.cs" />
     <Compile Include="UnitOfWork\Mapping\RoomTypeConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository.cs" />
-    <Compile Include="AssetModule\Repositories\AssetRepository.cs" />
-    <Compile Include="RoomModule\Repositories\RoomRegRepository.cs" />
-    <Compile Include="AssetModule\Repositories\AssetDetailRepository.cs" />
-    <Compile Include="RoomModule\Repositories\RoomRepository.cs" />
-    <Compile Include="UserModule\Repositories\RoleRepository.cs" />
-    <Compile Include="UserModule\Repositories\UserLoginRepository.cs" />
-    <Compile Include="UserModule\Repositories\UserClaimRepository.cs" />
-    <Compile Include="UserModule\Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -113,8 +102,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201512070211391_InitialCreate.resx">
-      <DependentUpon>201512070211391_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201512131332395_InitialCreate.resx">
+      <DependentUpon>201512131332395_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,5 +1,5 @@
-﻿using RoomM.Domain.RoomModule.Aggregates;
-using RoomM.Infrastructure.Data.UnitOfWork;
+﻿using RoomM.Application.RoomM.Domain.RoomModule.Aggregates;
+using RoomM.Application.Default;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
@@ -9,120 +9,100 @@ namespace RoomM.Application.RoomModule.Services
 {
     public class RoomManagementService : IRoomManagementService
     {
-        private IUnitOfWork context;
+        private Container container;
 
-        public RoomManagementService(IUnitOfWork context)
+        public RoomManagementService(Container container)
         {
-            this.context = context;
-        }
-
-        public void EnableWSMode()
-        {
-            this.context.EnableWSMode();
+            this.container = container;
         }
 
         #region Basic CRUD
 
-        public Room GetRoom(Int64 roomId)
+        public Room GetRoom(string roomId)
         {
-            return this.context.RoomRep.GetSingle(roomId);
+            return this.container.Rooms.SingleOrDefault(p => roomId.Equals(p.Id));
         }
 
         public IList<Room> GetRoomList()
         {
-            return this.context.RoomRep.GetAll();
+            return this.container.Rooms.ToList();
         }
 
-        public IList<Room> GetRoomListByRoomId(Int64 roomTypeId)
+        public IList<Room> GetRoomListByRoomTypeId(string roomTypeId)
         {
-            return this.context.RoomRep.GetByRoomTypeId(roomTypeId);
+            return this.container.Rooms.Where(p => roomTypeId.Equals(p.RoomTypeId)).ToList();
         }
 
         public void AddRoom(Room room)
         {
-            try
-            {
-                this.context.RoomRep.Add(room);
-                this.context.Commit();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                var error = ex.EntityValidationErrors.First().ValidationErrors.First();
-                throw new ApplicationException(error.ErrorMessage);
-            }
+            this.container.AddToRooms(room);
+            this.container.SaveChanges();
         }
 
         public void EditRoom(Room room)
         {
-            try
-            {
-                this.context.RoomRep.Edit(room);
-                this.context.Commit();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                var error = ex.EntityValidationErrors.First().ValidationErrors.First();
-                throw new ApplicationException(error.ErrorMessage);
-            }
+            this.container.UpdateObject(room);
+            this.container.SaveChanges();
         }
 
         public void DeleteRoom(Room room)
         {
-            try
-            {
-                room.IsUsing = false;
-                this.context.RoomRep.Edit(room);
-                this.context.Commit();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                var error = ex.EntityValidationErrors.First().ValidationErrors.First();
-                throw new ApplicationException(error.ErrorMessage);
-            }
+            room.IsUsing = false;
+            this.container.UpdateObject(room);
+            this.container.SaveChanges();
         }
 
         #endregion Basic CRUD
 
         #region Addition Lists
 
+        public static int REG_WAITING   = 1;
+        public static int REG_COMFIRMED = 2;
+        public static int REG_CANCELED  = 3;
+        public static Dictionary<int, string> GetRoomRegType = new Dictionary<int, string>() {
+            { REG_WAITING  , "Chờ xác nhận" },
+            { REG_COMFIRMED, "Đã đăng ký" },
+            { REG_CANCELED , "Hủy đăng ký" }
+        };
+
         public IList<RoomType> GetRoomTypeList()
         {
-            return this.context.RoomTypeRep.GetAll();
+            return this.container.RoomTypes.ToList();
         }
 
-        public RoomReg GetRoomReg(Int64 roomRegId)
+        public RoomReg GetRoomReg(string roomRegId)
         {
-            return this.context.RoomRegRep.GetSingle(roomRegId);
+            return this.container.RoomRegs.SingleOrDefault(p => roomRegId.Equals(p.Id));
         }
 
-        public IList<RoomReg> GetRoomRegListByRoomId(Int64 roomId)
+        public IList<RoomReg> GetRoomRegListByRoomId(string roomId)
         {
-            return this.context.RoomRegRep.GetByRoomId(roomId);
+            return this.container.RoomRegs.Where(p => roomId.Equals(p.RoomId)).ToList();
         }
 
-        public IList<RoomReg> GetRoomRegListByUserId(Int64 userId)
+        public IList<RoomReg> GetRoomRegListByUserId(string userId)
         {
-            return this.context.RoomRegRep.GetByUserId(userId);
+            return this.container.RoomRegs.Where(p => userId.Equals(p.UserId)).ToList();
         }
 
-        public IList<RoomReg> GetRoomRegListByDate(DateTime date, Int64 roomId)
+        public IList<RoomReg> GetRoomRegListByDate(DateTime date, string roomId)
         {
-            return this.context.RoomRegRep.GetByDateAndRoomId(date, roomId);
+            return new List<RoomReg>();
         }
 
-        public IList<RoomReg> GetRoomRegListByWeek(DateTime date, Int64 roomId)
+        public IList<RoomReg> GetRoomRegListByWeek(DateTime date, string roomId)
         {
-            return this.context.RoomRegRep.GetByWeekAndRoomId(date, roomId);
+            return new List<RoomReg>();
         }
 
-        public IList<RoomReg> GetRoomRegListByWatchedState(bool isWatched, Int64 userId)
+        public IList<RoomReg> GetRoomRegListByWatchedState(bool isWatched, string userId)
         {
-            return this.context.RoomRegRep.GetByWatchedState(isWatched, userId);
+            return new List<RoomReg>();
         }
 
         public IList<KeyValuePair<Room, int>> GetRoomLimitByRegister(int limit, DateTime from, DateTime to)
         {
-            return this.context.RoomRep.GetRoomLimitByRegister(limit, from, to);
+            return new List<KeyValuePair<Room, int>>();
         }
 
         #endregion Addition Lists
@@ -131,44 +111,17 @@ namespace RoomM.Application.RoomModule.Services
 
         public void AddRoomReg(RoomReg roomReg)
         {
-            try
-            {
-                this.context.RoomRegRep.Add(roomReg);
-                this.context.Commit();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                var error = ex.EntityValidationErrors.First().ValidationErrors.First();
-                throw new ApplicationException(error.ErrorMessage);
-            }
+            throw new NotImplementedException();
         }
 
         public void EditRoomReg(RoomReg roomReg)
         {
-            try
-            {
-                this.context.RoomRegRep.Edit(roomReg);
-                this.context.Commit();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                var error = ex.EntityValidationErrors.First().ValidationErrors.First();
-                throw new ApplicationException(error.ErrorMessage);
-            }
+            throw new NotImplementedException();
         }
 
-        public void DeleteRoomReg(Int64 roomRegId)
+        public void DeleteRoomReg(string roomRegId)
         {
-            try
-            {
-                this.context.RoomRegRep.Delete(roomRegId);
-                this.context.Commit();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                var error = ex.EntityValidationErrors.First().ValidationErrors.First();
-                throw new ApplicationException(error.ErrorMessage);
-            }
+            throw new NotImplementedException();
         }
 
         #endregion Addition Services

@@ -1,4 +1,4 @@
-using System;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
 namespace RoomM.Domain
@@ -7,6 +7,7 @@ namespace RoomM.Domain
     public abstract class EntityBase
     {
         [DataMember]
-        public Int64 Id { get; set; }
+        [StringLength(100)]
+        public string Id { get; set; }
     }
 }

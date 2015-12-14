@@ -1,6 +1,6 @@
 ﻿using MahApps.Metro.Controls;
 using RoomM.DeskApp.UIHelper;
-using RoomM.Domain.UserModule.Aggregates;
+using RoomM.Application.RoomM.Domain.UserModule.Aggregates;
 
 namespace RoomM.DeskApp.Views
 {

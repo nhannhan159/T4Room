@@ -1,8 +1,8 @@
 ﻿using GalaSoft.MvvmLight;
 using RoomM.Application.RoomModule.Services;
 using RoomM.Application.UserModule.Services;
-using RoomM.Domain.RoomModule.Aggregates;
-using RoomM.Domain.UserModule.Aggregates;
+using RoomM.Application.RoomM.Domain.RoomModule.Aggregates;
+using RoomM.Application.RoomM.Domain.UserModule.Aggregates;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

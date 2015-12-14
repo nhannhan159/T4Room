@@ -3,8 +3,8 @@ using RoomM.Application.RoomModule.Services;
 using RoomM.Application.UserModule.Services;
 using RoomM.DeskApp.UIHelper;
 using RoomM.DeskApp.Views;
-using RoomM.Domain.RoomModule.Aggregates;
-using RoomM.Domain.UserModule.Aggregates;
+using RoomM.Application.RoomM.Domain.RoomModule.Aggregates;
+using RoomM.Application.RoomM.Domain.UserModule.Aggregates;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,7 +32,7 @@ namespace RoomM.DeskApp.ViewModels
             this.rcvPeriodsFilter = 0;
             this.rcvBeginTimeFilter = 0;
 
-            this.RcvStatusFilters = new Dictionary<int, string>(RoomReg.GetRegType);
+            this.RcvStatusFilters = new Dictionary<int, string>(RoomManagementService.GetRoomRegType);
             this.RcvStatusFilters.Add(0, "Tất cả");
             this.rcvStatusFilter = 0;
         }
@@ -108,7 +108,7 @@ namespace RoomM.DeskApp.ViewModels
 
         protected override bool IsUsing(User entity)
         {
-            return entity.IsWorking;
+            return entity.IsWorking.Value;
         }
 
         protected override bool GeneralFilter(User entity)
@@ -179,7 +179,7 @@ namespace RoomM.DeskApp.ViewModels
                 if (this.RcvBeginTimeFilter > 0)
                     filter = filter && (entity.Start == this.RcvBeginTimeFilter);
                 if (this.RcvStatusFilter != 0)
-                    filter = filter && (entity.RoomRegTypeId == this.RcvStatusFilter);
+                    filter = filter && (entity.RoomRegType == this.RcvStatusFilter);
             }
             return filter;
         }

@@ -60,24 +60,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssetModule\Aggregates\IAssetRepository.cs" />
-    <Compile Include="AssetModule\Aggregates\IAssetHistoryRepository.cs" />
     <Compile Include="AssetModule\Aggregates\AssetHistory.cs" />
     <Compile Include="AssetModule\Aggregates\Asset.cs" />
     <Compile Include="EntityBase.cs" />
-    <Compile Include="IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AssetModule\Aggregates\IAssetDetailRepository.cs" />
-    <Compile Include="RoomModule\Aggregates\IRoomRegRepository.cs" />
-    <Compile Include="RoomModule\Aggregates\IRoomRepository.cs" />
     <Compile Include="RoomModule\Aggregates\RoomReg.cs" />
     <Compile Include="RoomModule\Aggregates\Room.cs" />
     <Compile Include="AssetModule\Aggregates\AssetDetail.cs" />
     <Compile Include="RoomModule\Aggregates\RoomType.cs" />
-    <Compile Include="UserModule\Aggregates\IRoleRepository.cs" />
-    <Compile Include="UserModule\Aggregates\IUserLoginRepository.cs" />
-    <Compile Include="UserModule\Aggregates\IUserClaimRepository.cs" />
-    <Compile Include="UserModule\Aggregates\IUserRepository.cs" />
     <Compile Include="UserModule\Aggregates\Role.cs" />
     <Compile Include="UserModule\Aggregates\UserLogin.cs" />
     <Compile Include="UserModule\Aggregates\UserClaim.cs" />

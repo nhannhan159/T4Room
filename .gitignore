@@ -47,3 +47,5 @@
 /.vs
 /RoomM.WSSelfHosting/bin
 /RoomM.WSSelfHosting/obj
+/RoomM.ODataService/bin
+/RoomM.ODataService/obj

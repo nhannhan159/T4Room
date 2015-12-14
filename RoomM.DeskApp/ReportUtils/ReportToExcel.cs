@@ -2,7 +2,7 @@
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using RoomM.DeskApp.ViewModels;
-using RoomM.Domain.RoomModule.Aggregates;
+using RoomM.Application.RoomM.Domain.RoomModule.Aggregates;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

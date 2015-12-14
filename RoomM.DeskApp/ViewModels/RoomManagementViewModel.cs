@@ -3,8 +3,8 @@ using RoomM.Application.AssetModule.Services;
 using RoomM.Application.RoomModule.Services;
 using RoomM.DeskApp.UIHelper;
 using RoomM.DeskApp.Views;
-using RoomM.Domain.AssetModule.Aggregates;
-using RoomM.Domain.RoomModule.Aggregates;
+using RoomM.Application.RoomM.Domain.AssetModule.Aggregates;
+using RoomM.Application.RoomM.Domain.RoomModule.Aggregates;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,7 +28,7 @@ namespace RoomM.DeskApp.ViewModels
             this.BaseInit();
 
             List<RoomType> roomTypeList = new List<RoomType>(this.roomManagementService.GetRoomTypeList());
-            roomTypeList.Add(new RoomType("Tất cả"));
+            roomTypeList.Add(new RoomType { Name = "Tất cả" });
             this.roomTypeFilters = new CollectionView(roomTypeList);
             this.roomTypeFilter = roomTypeList[roomTypeList.Count - 1];
             this.roomCalendarViewFilterIsCheck = false;
@@ -40,9 +40,9 @@ namespace RoomM.DeskApp.ViewModels
             this.rcvBeginTimeFilter = 0;
             this.rcvRegistrantFilter = "";
 
-            this.RoomRegTypeView = new Dictionary<int, string>(RoomReg.GetRegType);
+            this.RoomRegTypeView = new Dictionary<int, string>(RoomManagementService.GetRoomRegType);
             this.RoomRegTypeView.Add(0, "Tất cả");
-            this.RcvStatusFilters = new Dictionary<int, string>(RoomReg.GetRegType);
+            this.RcvStatusFilters = new Dictionary<int, string>(RoomManagementService.GetRoomRegType);
             this.RcvStatusFilters.Add(0, "Tất cả");
             this.rcvStatusFilter = 0;
             this.ravAssetNameFilter = "";
@@ -50,7 +50,7 @@ namespace RoomM.DeskApp.ViewModels
             this.rhvDateToFilter = DateTime.Now;
             this.rhvAssetNameFilter = "";
 
-            this.RhvTypeFilters = new Dictionary<int, string>(AssetHistory.GetHistoryType);
+            this.RhvTypeFilters = new Dictionary<int, string>(AssetManagementService.GetAssetHistoryType);
             this.RhvTypeFilters.Add(0, "Tất cả");
             this.rhvTypeFilter = 0;
             this.currentRoomReg = default(RoomReg);
@@ -159,7 +159,7 @@ namespace RoomM.DeskApp.ViewModels
 
         protected override bool IsUsing(Room entity)
         {
-            return entity.IsUsing;
+            return entity.IsUsing.Value;
         }
 
         protected override bool GeneralFilter(Room entity)
@@ -267,7 +267,7 @@ namespace RoomM.DeskApp.ViewModels
                 if (this.RcvBeginTimeFilter > 0)
                     filter = filter && (entity.Start == this.RcvBeginTimeFilter);
                 if (this.RcvStatusFilter != 0)
-                    filter = filter && (entity.RoomRegTypeId == this.RcvStatusFilter);
+                    filter = filter && (entity.RoomRegType == this.RcvStatusFilter);
             }
             return filter;
         }
@@ -293,7 +293,7 @@ namespace RoomM.DeskApp.ViewModels
                 filter = filter && (entity.Date <= this.RhvDateToFilter);
                 filter = filter && entity.Asset.Name.Contains(this.RhvAssetNameFilter);
                 if (this.RhvTypeFilter != 0)
-                    filter = filter && (entity.AssetHistoryTypeId == this.RhvTypeFilter);
+                    filter = filter && (entity.AssetHistoryType == this.RhvTypeFilter);
             }
             return filter;
         }
@@ -448,7 +448,7 @@ namespace RoomM.DeskApp.ViewModels
             else
             {
                 foreach (Room r in EntitiesList)
-                    if (r.IsUsing)
+                    if (r.IsUsing.Value)
                         dataList.Add(r);
             }
 
@@ -458,6 +458,7 @@ namespace RoomM.DeskApp.ViewModels
 
         private void ExportCalRegisterToExcelCommandHandler()
         {
+            /*
             List<RoomReg> dataList = new List<RoomReg>();
             dataList = CurrentEntity.RoomRegs.ToList();
 
@@ -465,10 +466,12 @@ namespace RoomM.DeskApp.ViewModels
 
             report.setupExport(dataList, CurrentEntity);
             report.save();
+            */
         }
 
         private void ExportAssetsToExcelCommandHandler()
         {
+            /*
             List<AssetDetail> dataList = new List<AssetDetail>();
             dataList = CurrentEntity.AssetDetails.ToList();
 
@@ -476,10 +479,12 @@ namespace RoomM.DeskApp.ViewModels
 
             report.setupExport(dataList, CurrentEntity);
             report.save();
+            */
         }
 
         private void ExportHistoriesToExcelCommandHandler()
         {
+            /*
             List<AssetHistory> dataList = new List<AssetHistory>();
             dataList = CurrentEntity.AssetHistories.ToList();
 
@@ -487,6 +492,7 @@ namespace RoomM.DeskApp.ViewModels
 
             report.setupExport(dataList, CurrentEntity);
             report.save();
+            */
         }
 
         // backtrace button
@@ -496,6 +502,7 @@ namespace RoomM.DeskApp.ViewModels
         {
             // proc amount
             // Dictionary<String, int> dic = new Dictionary<string,int>();
+            /*
             Hashtable hm = new Hashtable();
 
             IList<AssetHistory> hisList = this.assetManagementService.GetAssetHisListByBacktrace(CurrentEntity, timeForBacktrace);
@@ -537,7 +544,7 @@ namespace RoomM.DeskApp.ViewModels
                     }
                 }
             }
-
+            
             // refresh
             historiesList.Clear();
 
@@ -549,6 +556,7 @@ namespace RoomM.DeskApp.ViewModels
             }
 
             this.historiesView.Refresh();
+            */
         }
 
         // refresh

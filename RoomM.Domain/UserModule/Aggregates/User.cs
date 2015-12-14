@@ -9,7 +9,7 @@ using System.Runtime.Serialization;
 namespace RoomM.Domain.UserModule.Aggregates
 {
     [DataContract(IsReference = true)]
-    public class User : EntityBase, IUser<Int64>
+    public class User : EntityBase, IUser<string>
     {
         [DataMember]
         [StringLength(50)]
@@ -22,15 +22,7 @@ namespace RoomM.Domain.UserModule.Aggregates
         public string UserName { get; set; }
 
         [DataMember]
-        [DataType(DataType.Password)]
         public string PasswordHash { get; set; }
-
-        [StringLength(100, MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        public string Password
-        {
-            set { this.PasswordHash = (new PasswordHasher()).HashPassword(value); }
-        }
 
         [DataMember]
         public Boolean IsWorking { get; set; }
@@ -38,14 +30,12 @@ namespace RoomM.Domain.UserModule.Aggregates
         [DataMember]
         public bool Sex { get; set; }
 
-        public string SexName { get { return this.Sex ? "Nữ" : "Nam"; } }
-
         [DataMember]
         [StringLength(15)]
         public string Phone { get; set; }
 
         [DataMember]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public DateTime LastLogin { get; set; }
 
         [DataMember]
@@ -67,7 +57,7 @@ namespace RoomM.Domain.UserModule.Aggregates
         public string SecurityStamp { get; set; }
 
         [DataMember]
-        public Int64 RoleId { get; set; }
+        public string RoleId { get; set; }
 
         [DataMember]
         public virtual Role Role { get; set; }
@@ -120,12 +110,8 @@ namespace RoomM.Domain.UserModule.Aggregates
 
         public User()
         {
+            this.Id = Guid.NewGuid().ToString();
             this.IsWorking = true;
-        }
-
-        public override string ToString()
-        {
-            return this.Id + " #name " + this.FullName + " #username " + this.UserName + " #pass " + this.PasswordHash;
         }
     }
 }

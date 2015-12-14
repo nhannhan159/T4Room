@@ -1,6 +1,6 @@
 ﻿using NPOI.SS.UserModel;
-using RoomM.Domain.AssetModule.Aggregates;
-using RoomM.Domain.RoomModule.Aggregates;
+using RoomM.Application.RoomM.Domain.AssetModule.Aggregates;
+using RoomM.Application.RoomM.Domain.RoomModule.Aggregates;
 using System;
 using System.Collections.Generic;
 
@@ -41,7 +41,7 @@ namespace RoomM.DeskApp
                 row.CreateCell(1).SetCellValue(index);
                 row.CreateCell(2).SetCellValue(rAsset.Id);
                 row.CreateCell(3).SetCellValue(rAsset.Asset.Name);
-                row.CreateCell(4).SetCellValue(rAsset.Amount);
+                row.CreateCell(4).SetCellValue(rAsset.Amount.Value);
 
                 startRow++;
                 index++;

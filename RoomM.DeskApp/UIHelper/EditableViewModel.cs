@@ -1,7 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using RoomM.DeskApp.ViewModels;
-using RoomM.Domain;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
@@ -10,7 +9,7 @@ using System.Windows.Input;
 
 namespace RoomM.DeskApp.UIHelper
 {
-    public abstract class EditableViewModel<T> : ViewModelBase where T : EntityBase, new()
+    public abstract class EditableViewModel<T> : ViewModelBase where T : class, new()
     {
         private bool isIncludeAll;
         private bool filterIsCheck;
@@ -92,7 +91,7 @@ namespace RoomM.DeskApp.UIHelper
 
         private bool EntityFilter(object obj)
         {
-            T entity = obj as T;
+            T entity = (T)obj;
             bool filter = true;
             if (!this.isIncludeAll)
                 filter = filter && this.IsUsing(entity);

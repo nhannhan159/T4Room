@@ -3,8 +3,8 @@ using RoomM.Application.AssetModule.Services;
 using RoomM.Application.RoomModule.Services;
 using RoomM.DeskApp.UIHelper;
 using RoomM.DeskApp.Views;
-using RoomM.Domain.AssetModule.Aggregates;
-using RoomM.Domain.RoomModule.Aggregates;
+using RoomM.Application.RoomM.Domain.AssetModule.Aggregates;
+using RoomM.Application.RoomM.Domain.RoomModule.Aggregates;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,7 +31,7 @@ namespace RoomM.DeskApp.ViewModels
             this.ravRoomNameFilter = "";
             this.currentAssetDetail = default(AssetDetail);
             List<RoomType> roomTypeList = new List<RoomType>(this.roomManagementService.GetRoomTypeList());
-            roomTypeList.Add(new RoomType("Tất cả"));
+            roomTypeList.Add(new RoomType { Name = "Tất cả" });
             this.roomTypeFilters1 = new CollectionView(roomTypeList);
             this.roomTypeFilters2 = new CollectionView(roomTypeList);
             this.roomTypeFilter1 = roomTypeList[roomTypeList.Count - 1];
@@ -119,7 +119,7 @@ namespace RoomM.DeskApp.ViewModels
 
         protected override bool IsUsing(Asset entity)
         {
-            return entity.IsUsing;
+            return entity.IsUsing.Value;
         }
 
         protected override bool GeneralFilter(Asset entity)
@@ -419,7 +419,7 @@ namespace RoomM.DeskApp.ViewModels
             else
             {
                 foreach (Asset r in EntitiesList)
-                    if (r.IsUsing)
+                    if (r.IsUsing.Value)
                         dataList.Add(r);
             }
 

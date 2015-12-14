@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
@@ -31,11 +32,7 @@ namespace RoomM.Domain.RoomModule.Aggregates
 
         public RoomType()
         {
-        }
-
-        public RoomType(string name)
-        {
-            this.Name = name;
+            this.Id = Guid.NewGuid().ToString();
         }
     }
 }

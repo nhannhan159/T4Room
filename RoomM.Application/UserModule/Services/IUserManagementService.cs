@@ -1,4 +1,4 @@
-﻿using RoomM.Domain.UserModule.Aggregates;
+﻿using RoomM.Application.RoomM.Domain.UserModule.Aggregates;
 using System;
 using System.Collections.Generic;
 
@@ -6,9 +6,9 @@ namespace RoomM.Application.UserModule.Services
 {
     public interface IUserManagementService
     {
-        User GetSingle(Int64 userId);
+        User GetUser(string userId);
 
-        User GetSingleByUsername(string username);
+        User GetUserByUsername(string username);
 
         IList<User> GetUserList();
 
@@ -22,7 +22,8 @@ namespace RoomM.Application.UserModule.Services
 
         void DeleteUser(User user);
 
-        Role GetRoleById(Int64 roleId);
+        /*
+        Role GetRoleById(string roleId);
 
         Role GetRoleByName(string roleName);
 
@@ -30,20 +31,21 @@ namespace RoomM.Application.UserModule.Services
 
         void EditRole(Role role);
 
-        void DeleteRole(Int64 roleId);
+        void DeleteRole(string roleId);
 
-        IList<UserClaim> GetUserClaimList(Int64 userId);
+        IList<UserClaim> GetUserClaimList(string userId);
 
-        void AddUserClaim(Int64 userId, string claimType, string claimValue);
+        void AddUserClaim(string userId, string claimType, string claimValue);
 
-        void DeleteUserClaim(Int64 userId, string claimType, string claimValue);
+        void DeleteUserClaim(string userId, string claimType, string claimValue);
 
-        IList<UserLogin> GetUserLoginList(Int64 userId);
+        IList<UserLogin> GetUserLoginList(string userId);
 
         User FindUserByLogin(string loginProvider, string providerKey);
 
-        void AddUserLogin(Int64 userId, string loginProvider, string providerKey);
+        void AddUserLogin(string userId, string loginProvider, string providerKey);
 
-        void DeleteUserLogin(Int64 userId, string loginProvider, string providerKey);
+        void DeleteUserLogin(string userId, string loginProvider, string providerKey);
+        */
     }
 }

@@ -7,7 +7,7 @@ namespace RoomM.Domain.UserModule.Aggregates
     public class UserClaim : EntityBase
     {
         [DataMember]
-        public Int64 UserId { get; set; }
+        public string UserId { get; set; }
 
         [DataMember]
         public virtual User User { get; set; }
@@ -17,5 +17,10 @@ namespace RoomM.Domain.UserModule.Aggregates
 
         [DataMember]
         public string ClaimValue { get; set; }
+
+        public UserClaim()
+        {
+            this.Id = Guid.NewGuid().ToString();
+        }
     }
 }

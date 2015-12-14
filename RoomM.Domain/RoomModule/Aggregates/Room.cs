@@ -12,21 +12,16 @@ namespace RoomM.Domain.RoomModule.Aggregates
     public class Room : EntityBase
     {
         [DataMember]
-        [Required]
-        [Display(Name = "Tên phòng")]
         [StringLength(120)]
         [Index(IsUnique = true)]
         public string Name { get; set; }
 
         [DataMember]
-        [Display(Name = "Ngày tạo")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public DateTime DateCreate { get; set; }
 
         [DataMember]
-        [Display(Name = "Loại phòng")]
-        public Int64 RoomTypeId { get; set; }
+        public string RoomTypeId { get; set; }
 
         [DataMember]
         public virtual RoomType RoomType { get; set; }
@@ -83,30 +78,11 @@ namespace RoomM.Domain.RoomModule.Aggregates
         private IList<AssetDetail> assetDetails;
         private IList<AssetHistory> assetHistories;
 
-        public Boolean IsHaveRegistered
-        {
-            get { return this.RoomRegs.Count(p => p.RoomRegTypeId == 1) > 0; }
-        }
-
-        public string NotifyText
-        {
-            get { return this.IsHaveRegistered ? "!!!" : ""; }
-        }
-
-        public string NotifyToolTip
-        {
-            get { return this.IsHaveRegistered ? "Đang có người đăng ký cần xác nhận" : ""; }
-        }
-
         public Room()
         {
+            this.Id = Guid.NewGuid().ToString();
             this.IsUsing = true;
-            this.DateCreate = DateTime.Now.Date;
-        }
-
-        public override string ToString()
-        {
-            return this.Id + "#" + this.Name + "#RoomType:" + this.RoomTypeId + "#Status: " + this.IsUsing;
+            this.DateCreate = DateTime.Now;
         }
     }
 }

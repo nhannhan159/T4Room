@@ -1,5 +1,4 @@
 ﻿using RoomM.Domain.UserModule.Aggregates;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 
 namespace RoomM.Infrastructure.Data.UnitOfWork.Mapping
@@ -12,7 +11,6 @@ namespace RoomM.Infrastructure.Data.UnitOfWork.Mapping
             this.HasKey(t => t.Id);
 
             // properties
-            this.Property(t => t.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             this.Property(t => t.FullName).IsRequired();
             this.Property(t => t.UserName).IsRequired();
             this.Property(t => t.PasswordHash).IsRequired();

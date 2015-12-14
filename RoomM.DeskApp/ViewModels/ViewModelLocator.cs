@@ -3,8 +3,7 @@ using Microsoft.Practices.ServiceLocation;
 using RoomM.Application.AssetModule.Services;
 using RoomM.Application.RoomModule.Services;
 using RoomM.Application.UserModule.Services;
-using RoomM.Domain;
-using RoomM.Infrastructure.Data.UnitOfWork;
+using RoomM.Application.Default;
 
 namespace RoomM.DeskApp.ViewModels
 {
@@ -14,7 +13,8 @@ namespace RoomM.DeskApp.ViewModels
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            SimpleIoc.Default.Register<IUnitOfWork, EFContext>();
+            string serviceUri = "http://localhost:63672/";
+            SimpleIoc.Default.Register<Container>(() => new Container(new System.Uri(serviceUri)));
 
             SimpleIoc.Default.Register<IAssetManagementService, AssetManagementService>();
             SimpleIoc.Default.Register<IRoomManagementService, RoomManagementService>();

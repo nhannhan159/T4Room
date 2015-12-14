@@ -1,6 +1,6 @@
 ﻿using NPOI.SS.UserModel;
-using RoomM.Domain.AssetModule.Aggregates;
-using RoomM.Domain.RoomModule.Aggregates;
+using RoomM.Application.RoomM.Domain.AssetModule.Aggregates;
+using RoomM.Application.RoomM.Domain.RoomModule.Aggregates;
 using System;
 using System.Collections.Generic;
 
@@ -39,10 +39,10 @@ namespace RoomM.DeskApp
             {
                 IRow row = activeSheet.CreateRow(startRow);
                 row.CreateCell(1).SetCellValue(index);
-                row.CreateCell(2).SetCellValue(r.Date.ToShortDateString());
-                row.CreateCell(3).SetCellValue(r.AssetHistoryType);
+                row.CreateCell(2).SetCellValue(r.Date.Value.DateTime.ToShortDateString());
+                row.CreateCell(3).SetCellValue(r.AssetHistoryType.Value);
                 row.CreateCell(4).SetCellValue(r.Asset.Name);
-                row.CreateCell(5).SetCellValue(r.Amount);
+                row.CreateCell(5).SetCellValue(r.Amount.Value);
                 row.CreateCell(6).SetCellValue(r.Room.Name);
                 startRow++;
                 index++;

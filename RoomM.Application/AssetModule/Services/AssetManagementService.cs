@@ -1,6 +1,6 @@
-﻿using RoomM.Domain.AssetModule.Aggregates;
-using RoomM.Domain.RoomModule.Aggregates;
-using RoomM.Infrastructure.Data.UnitOfWork;
+﻿using RoomM.Application.RoomM.Domain.AssetModule.Aggregates;
+using RoomM.Application.RoomM.Domain.RoomModule.Aggregates;
+using RoomM.Application.Default;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
@@ -12,204 +12,101 @@ namespace RoomM.Application.AssetModule.Services
 {
     public class AssetManagementService : IAssetManagementService
     {
-        private IUnitOfWork context;
+        private Container container;
 
-        public AssetManagementService(IUnitOfWork context)
+        public AssetManagementService(Container container)
         {
-            this.context = context;
-        }
-
-        public void EnableWSMode()
-        {
-            this.context.EnableWSMode();
+            this.container = container;
         }
 
         #region Basic CRUD
 
         public IList<Asset> GetAssetList()
         {
-            return this.context.AssetRep.GetAll();
+            return this.container.Assets.ToList();
         }
 
         public void AddAsset(Asset asset)
         {
-            try
-            {
-                this.context.AssetRep.Add(asset);
-                this.context.Commit();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                var error = ex.EntityValidationErrors.First().ValidationErrors.First();
-                throw new ApplicationException(error.ErrorMessage);
-            }
+            this.container.AddToAssets(asset);
+            this.container.SaveChanges();
         }
 
         public void EditAsset(Asset asset)
         {
-            try
-            {
-                this.context.AssetRep.Edit(asset);
-                this.context.Commit();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                var error = ex.EntityValidationErrors.First().ValidationErrors.First();
-                throw new ApplicationException(error.ErrorMessage);
-            }
+            this.container.UpdateObject(asset);
+            this.container.SaveChanges();
         }
 
         public void DeleteAsset(Asset asset)
         {
-            try
-            {
-                asset.IsUsing = false;
-                this.context.AssetRep.Edit(asset);
-                this.context.Commit();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                var error = ex.EntityValidationErrors.First().ValidationErrors.First();
-                throw new ApplicationException(error.ErrorMessage);
-            }
+            asset.IsUsing = false;
+            this.container.UpdateObject(asset);
+            this.container.SaveChanges();
         }
 
         #endregion Basic CRUD
 
         #region Addition Lists
 
-        public IList<Room> GetRoomList()
-        {
-            return this.context.RoomRep.GetAll();
-        }
-
-        public IList<RoomType> GetRoomTypeList()
-        {
-            return this.context.RoomTypeRep.GetAll();
-        }
+        public static int ASSETS_TRANSFER = 1;
+        public static int ASSETS_REMOVE   = 2;
+        public static int ASSETS_IMPORT   = 3;
+        public static int ASSETS_RECEVIE  = 4;
+        public static Dictionary<int, string> GetAssetHistoryType = new Dictionary<int, string>() {
+            { ASSETS_TRANSFER       , "Chuyển thiết bị"   },
+            { ASSETS_REMOVE         , "Thanh lí thiết bị" },
+            { ASSETS_IMPORT         , "Nhập thiết bị"     },
+            { ASSETS_RECEVIE        , "Nhận thiết bị"     }
+        };
 
         public IList<AssetDetail> GetAssetDetailList()
         {
-            return this.context.AssetDetailRep.GetAll();
+            return this.container.AssetDetails.ToList();
         }
 
-        public IList<AssetDetail> GetAssetDetailListByAssetId(Int64 assetId)
+        public IList<AssetDetail> GetAssetDetailListByAssetId(string assetId)
         {
-            return this.context.AssetDetailRep.GetByAssetId(assetId);
+            return this.container.AssetDetails.Where(p => assetId.Equals(p.AssetId)).ToList();
         }
 
-        public IList<AssetDetail> GetAssetDetailListByRoomId(Int64 roomId)
+        public IList<AssetDetail> GetAssetDetailListByRoomId(string roomId)
         {
-            return this.context.AssetDetailRep.GetByRoomId(roomId);
+            return this.container.AssetDetails.Where(p => roomId.Equals(p.RoomId)).ToList();
         }
 
-        public IList<AssetHistory> GetAssetHisListByRoomId(Int64 roomId)
+        public IList<AssetHistory> GetAssetHisListByRoomId(string roomId)
         {
-            return this.context.AssetHistoryRep.GetByRoomId(roomId);
+            return this.container.AssetHistories.Where(p => roomId.Equals(p.RoomId)).ToList();
         }
 
         public IList<AssetHistory> GetAssetHisListByBacktrace(Room room, DateTime timeForBacktrace)
         {
-            return this.context.AssetHistoryRep.GetByRoom2RoomId(room, timeForBacktrace);
+            return new List<AssetHistory>();
         }
 
-        public string GetAssetAllRoomName(Int64 assetId)
+        public string GetAssetAllRoomName(string assetId)
         {
-            return this.context.AssetDetailRep.GetAllRoomName(assetId);
+            return "";
         }
 
         #endregion Addition Lists
 
         #region Addition Services
 
-        public void ImportAsset(Int64 assetId, Int64 roomId, int amount)
+        public void ImportAsset(string assetId, string roomId, int amount)
         {
-            try
-            {
-                this.context.AssetDetailRep.AddOrUpdate(assetId, roomId, amount);
-
-                Asset asset = this.context.AssetRep.GetSingle(assetId);
-                asset.Amount += amount;
-                this.context.AssetRep.Edit(asset);
-
-                AssetHistory assetHistory = new AssetHistory(DateTime.Now, AssetHistory.ASSETS_IMPORT, assetId, roomId, "", amount);
-                this.context.AssetHistoryRep.Add(assetHistory);
-
-                this.context.Commit();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                var error = ex.EntityValidationErrors.First().ValidationErrors.First();
-                throw new ApplicationException(error.ErrorMessage);
-            }
+            throw new NotImplementedException();
         }
 
         public void DropAsset(AssetDetail assetDetail, int amount)
         {
-            try
-            {
-                int changedAmount = amount;
-                if (assetDetail.Amount <= amount)
-                {
-                    changedAmount = assetDetail.Amount;
-                    this.context.AssetDetailRep.Delete(assetDetail);
-                }
-                else
-                {
-                    assetDetail.Amount -= changedAmount;
-                    this.context.AssetDetailRep.Edit(assetDetail);
-                }
-
-                Asset asset = this.context.AssetRep.GetSingle(assetDetail.AssetId);
-                asset.Amount -= changedAmount;
-                this.context.AssetRep.Edit(asset);
-
-                AssetHistory assetHistory = new AssetHistory(DateTime.Now, AssetHistory.ASSETS_TRANSFER, assetDetail.AssetId, assetDetail.RoomId, "", changedAmount);
-                this.context.AssetHistoryRep.Add(assetHistory);
-
-                this.context.Commit();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                var error = ex.EntityValidationErrors.First().ValidationErrors.First();
-                throw new ApplicationException(error.ErrorMessage);
-            }
+            throw new NotImplementedException();
         }
 
         public void TransferAsset(AssetDetail assetDetail, Room target, int amount)
         {
-            try
-            {
-                Int64 assetDetail_AssetId = assetDetail.AssetId;
-                Int64 assetDetail_RoomId = assetDetail.RoomId;
-                string assetDetail_Roomname = assetDetail.Room.Name;
-
-                int changedAmount = amount;
-                if (assetDetail.Amount <= amount)
-                {
-                    changedAmount = assetDetail.Amount;
-                    this.context.AssetDetailRep.AddOrUpdate(assetDetail.AssetId, target.Id, changedAmount);
-                    this.context.AssetDetailRep.Delete(assetDetail);
-                }
-                else
-                {
-                    assetDetail.Amount -= changedAmount;
-                    this.context.AssetDetailRep.Edit(assetDetail);
-                    this.context.AssetDetailRep.AddOrUpdate(assetDetail.AssetId, target.Id, changedAmount);
-                }
-
-                AssetHistory assetHistory1 = new AssetHistory(DateTime.Now, AssetHistory.ASSETS_TRANSFER, assetDetail_AssetId, assetDetail_RoomId, target.Name, changedAmount);
-                AssetHistory assetHistory2 = new AssetHistory(DateTime.Now, AssetHistory.ASSETS_RECEVIE, assetDetail_AssetId, target.Id, assetDetail_Roomname, changedAmount);
-                this.context.AssetHistoryRep.Add(assetHistory1);
-                this.context.AssetHistoryRep.Add(assetHistory2);
-
-                this.context.Commit();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                var error = ex.EntityValidationErrors.First().ValidationErrors.First();
-                throw new ApplicationException(error.ErrorMessage);
-            }
+            throw new NotImplementedException();
         }
 
         #endregion Addition Services

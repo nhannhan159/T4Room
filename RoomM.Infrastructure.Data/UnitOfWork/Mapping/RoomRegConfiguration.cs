@@ -1,5 +1,4 @@
 ﻿using RoomM.Domain.RoomModule.Aggregates;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 
 namespace RoomM.Infrastructure.Data.UnitOfWork.Mapping
@@ -12,13 +11,12 @@ namespace RoomM.Infrastructure.Data.UnitOfWork.Mapping
             this.HasKey(t => t.Id);
 
             // properties
-            this.Property(t => t.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             this.Property(t => t.Date);
             this.Property(t => t.Start).IsRequired();
             this.Property(t => t.Length).IsRequired();
             this.Property(t => t.RoomId).IsOptional();
             this.Property(t => t.UserId).IsOptional();
-            this.Property(t => t.RoomRegTypeId).IsRequired();
+            this.Property(t => t.RoomRegType).IsRequired();
             this.Property(t => t.IsWatched).IsOptional();
 
             // table

@@ -1,5 +1,5 @@
 ﻿using NPOI.SS.UserModel;
-using RoomM.Domain.RoomModule.Aggregates;
+using RoomM.Application.RoomM.Domain.RoomModule.Aggregates;
 using System;
 using System.Collections.Generic;
 
@@ -38,11 +38,11 @@ namespace RoomM.DeskApp
             {
                 IRow row = activeSheet.CreateRow(startRow);
                 row.CreateCell(1).SetCellValue(index);
-                row.CreateCell(2).SetCellValue(r.Date.ToShortDateString());
-                row.CreateCell(3).SetCellValue(r.Start);
-                row.CreateCell(4).SetCellValue(r.Length);
+                row.CreateCell(2).SetCellValue(r.Date.Value.DateTime.ToShortDateString());
+                row.CreateCell(3).SetCellValue(r.Start.Value);
+                row.CreateCell(4).SetCellValue(r.Length.Value);
                 row.CreateCell(5).SetCellValue(r.User.FullName);
-                row.CreateCell(6).SetCellValue(r.RoomRegType);
+                row.CreateCell(6).SetCellValue(r.RoomRegType.Value);
                 startRow++;
                 index++;
             }

@@ -1,9 +1,8 @@
-﻿using RoomM.Domain;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace RoomM.DeskApp.UIHelper
 {
-    public class NewEntityViewModel<T> where T : EntityBase, new()
+    public class NewEntityViewModel<T> where T : class, new()
     {
         private T newEntity;
 

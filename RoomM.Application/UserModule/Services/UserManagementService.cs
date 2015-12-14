@@ -1,5 +1,5 @@
-﻿using RoomM.Domain.UserModule.Aggregates;
-using RoomM.Infrastructure.Data.UnitOfWork;
+﻿using RoomM.Application.RoomM.Domain.UserModule.Aggregates;
+using RoomM.Application.Default;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
@@ -9,76 +9,47 @@ namespace RoomM.Application.UserModule.Services
 {
     public class UserManagementService : IUserManagementService
     {
-        private IUnitOfWork context;
+        private Container container;
 
-        public UserManagementService(IUnitOfWork context)
+        public UserManagementService(Container container)
         {
-            this.context = context;
-        }
-
-        public void EnableWSMode()
-        {
-            this.context.EnableWSMode();
+            this.container = container;
         }
 
         #region Basic CRUD
 
-        public User GetSingle(Int64 userId)
+        public User GetUser(string userId)
         {
-            return this.context.UserRep.GetSingle(userId);
+            return this.container.Users.SingleOrDefault(p => userId.Equals(p.Id));
         }
 
-        public User GetSingleByUsername(string username)
+        public User GetUserByUsername(string username)
         {
-            return this.context.UserRep.GetSingleByUsername(username);
+            return this.container.Users.SingleOrDefault(p => username.Equals(p.UserName));
         }
 
         public IList<User> GetUserList()
         {
-            return this.context.UserRep.GetAll();
+            return this.container.Users.ToList();
         }
 
         public void AddUser(User user)
         {
-            try
-            {
-                this.context.UserRep.Add(user);
-                this.context.Commit();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                var error = ex.EntityValidationErrors.First().ValidationErrors.First();
-                throw new ApplicationException(error.ErrorMessage);
-            }
+            this.container.AddToUsers(user);
+            this.container.SaveChanges();
         }
 
         public void EditUser(User user)
         {
-            try
-            {
-                this.context.UserRep.Edit(user);
-                this.context.Commit();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                var error = ex.EntityValidationErrors.First().ValidationErrors.First();
-                throw new ApplicationException(error.ErrorMessage);
-            }
+            this.container.UpdateObject(user);
+            this.container.SaveChanges();
         }
 
         public void DeleteUser(User user)
         {
-            try
-            {
-                user.IsWorking = false;
-                this.context.UserRep.Edit(user);
-                this.context.Commit();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                var error = ex.EntityValidationErrors.First().ValidationErrors.First();
-                throw new ApplicationException(error.ErrorMessage);
-            }
+            user.IsWorking = false;
+            this.container.UpdateObject(user);
+            this.container.SaveChanges();
         }
 
         #endregion Basic CRUD
@@ -87,19 +58,19 @@ namespace RoomM.Application.UserModule.Services
 
         public IList<Role> GetRoleList()
         {
-            return this.context.RoleRep.GetAll();
+            return this.container.Roles.ToList();
         }
 
         public IList<KeyValuePair<User, int>> GetUserLimitByRegister(int limit, DateTime from, DateTime to)
         {
-            return this.context.UserRep.GetUserLimitByRegister(limit, from, to);
+            return new List<KeyValuePair<User, int>>();
         }
 
         #endregion Addition Lists
 
         #region Addition Services
-
-        public Role GetRoleById(Int64 roleId)
+        /*
+        public Role GetRoleById(string roleId)
         {
             return this.context.RoleRep.GetSingle(roleId);
         }
@@ -137,18 +108,18 @@ namespace RoomM.Application.UserModule.Services
             }
         }
 
-        public void DeleteRole(Int64 roleId)
+        public void DeleteRole(string roleId)
         {
             this.context.RoleRep.Delete(roleId);
             this.context.Commit();
         }
 
-        public IList<UserClaim> GetUserClaimList(Int64 userId)
+        public IList<UserClaim> GetUserClaimList(string userId)
         {
             return this.context.UserClaimRep.GetByUserId(userId);
         }
 
-        public void AddUserClaim(Int64 userId, string claimType, string claimValue)
+        public void AddUserClaim(string userId, string claimType, string claimValue)
         {
             UserClaim userClaim = new UserClaim()
             {
@@ -160,13 +131,13 @@ namespace RoomM.Application.UserModule.Services
             this.context.Commit();
         }
 
-        public void DeleteUserClaim(Int64 userId, string claimType, string claimValue)
+        public void DeleteUserClaim(string userId, string claimType, string claimValue)
         {
             this.context.UserClaimRep.Delete(userId, claimType, claimValue);
             this.context.Commit();
         }
 
-        public IList<UserLogin> GetUserLoginList(Int64 userId)
+        public IList<UserLogin> GetUserLoginList(string userId)
         {
             return this.context.UserLoginRep.GetByUserId(userId);
         }
@@ -181,7 +152,7 @@ namespace RoomM.Application.UserModule.Services
             return null;
         }
 
-        public void AddUserLogin(Int64 userId, string loginProvider, string providerKey)
+        public void AddUserLogin(string userId, string loginProvider, string providerKey)
         {
             UserLogin userLogin = new UserLogin()
             {
@@ -193,12 +164,12 @@ namespace RoomM.Application.UserModule.Services
             this.context.Commit();
         }
 
-        public void DeleteUserLogin(Int64 userId, string loginProvider, string providerKey)
+        public void DeleteUserLogin(string userId, string loginProvider, string providerKey)
         {
             this.context.UserLoginRep.Delete(userId, loginProvider, providerKey);
             this.context.Commit();
         }
-
+        */
         #endregion Addition Services
     }
 }

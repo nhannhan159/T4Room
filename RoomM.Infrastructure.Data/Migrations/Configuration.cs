@@ -7,9 +7,9 @@
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
+    using Microsoft.AspNet.Identity;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<RoomM.Infrastructure.Data.UnitOfWork.EFContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<EFContext>
     {
         public Configuration()
         {
@@ -22,13 +22,9 @@
             SetHistoryContextFactory("MySql.Data.MySqlClient", (conn, schema) => new MySqlHistoryContext(conn, schema));
         }
 
-        protected override void Seed(RoomM.Infrastructure.Data.UnitOfWork.EFContext context)
+        protected override void Seed(EFContext context)
         {
-            /*
-            1	Chuyển thiết bị
-            2	Thanh lí thiết bị
-            3	Nhập thiết bị
-            */
+            #region RoomType
 
             RoomType roomTH = new RoomType { Name = "Thực hành tin học" };
             RoomType roomHO = new RoomType { Name = "Thực hành hóa" };
@@ -39,11 +35,17 @@
             RoomType roomCK = new RoomType { Name = "Thực hành cơ khí" };
             RoomType roomCD = new RoomType { Name = "Thực hành cơ điện" };
 
+            #endregion RoomType
+
+            #region Role
+
             Role usertype0 = new Role { Name = "Admin", FullName = "Quản trị viên" };
             Role usertype1 = new Role { Name = "Teacher", FullName = "Giảng viên" };
             Role usertype2 = new Role { Name = "Manager", FullName = "Nhân viên quản lý" };
 
-            #region room tin hoc
+            #endregion Role
+
+            #region Room
 
             Room room0 = new Room
             {
@@ -115,10 +117,6 @@
                 RoomType = roomTH
             };
 
-            #endregion room tin hoc
-
-            #region vat li
-
             Room room10 = new Room
             {
                 Name = "B000",
@@ -161,10 +159,6 @@
                 RoomType = roomLI,
             };
 
-            #endregion vat li
-
-            #region mix room
-
             Room room16 = new Room
             {
                 Name = "A112",
@@ -190,9 +184,9 @@
                 RoomType = roomCK,
             };
 
-            #endregion mix room
+            #endregion Room
 
-            #region init asset
+            #region Asset
 
             Asset device1 = new Asset
             {
@@ -281,9 +275,9 @@
                 Name = "Cáp nối mạng 4M",
             };
 
-            #endregion init asset
+            #endregion Asset
 
-            #region room A100
+            #region AssetDetail
 
             AssetDetail roomD1 = new AssetDetail
             {
@@ -291,7 +285,6 @@
                 Amount = 1,
                 Room = room1
             };
-            device17.Amount += 1;
 
             AssetDetail roomD2 = new AssetDetail
             {
@@ -299,7 +292,6 @@
                 Amount = 30,
                 Room = room1
             };
-            device16.Amount += 30;
 
             AssetDetail roomD3 = new AssetDetail
             {
@@ -307,7 +299,6 @@
                 Amount = 10,
                 Room = room1
             };
-            device1.Amount += 10;
 
             AssetDetail roomD4 = new AssetDetail
             {
@@ -315,7 +306,6 @@
                 Amount = 1,
                 Room = room1
             };
-            device11.Amount += 1;
 
             AssetDetail roomD5 = new AssetDetail
             {
@@ -323,11 +313,6 @@
                 Amount = 1,
                 Room = room1
             };
-            device10.Amount += 1;
-
-            #endregion room A100
-
-            #region mix
 
             AssetDetail roomD6 = new AssetDetail
             {
@@ -335,7 +320,6 @@
                 Amount = 5,
                 Room = room1
             };
-            device3.Amount += 5;
 
             AssetDetail roomD7 = new AssetDetail
             {
@@ -343,33 +327,36 @@
                 Amount = 100,
                 Room = room2
             };
-            device4.Amount += 100;
 
-            #endregion mix
+            #endregion AssetDetail
+
+            #region AssetHistory
 
             AssetHistory devicehistory1 = new AssetHistory
             {
                 Date = new DateTime(2011, 1, 1),
-                AssetHistoryTypeId = AssetHistory.ASSETS_TRANSFER,
+                AssetHistoryType = 1,
                 Asset = device3,
                 Room = room6,
             };
             AssetHistory devicehistory2 = new AssetHistory
             {
                 Date = new DateTime(2011, 1, 3),
-                AssetHistoryTypeId = AssetHistory.ASSETS_TRANSFER,
+                AssetHistoryType = 1,
                 Asset = device1,
                 Room = room1,
             };
             AssetHistory devicehistory3 = new AssetHistory
             {
                 Date = new DateTime(2011, 1, 5),
-                AssetHistoryTypeId = AssetHistory.ASSETS_REMOVE,
+                AssetHistoryType = 2,
                 Asset = device2,
                 Room = room2,
             };
 
-            #region staff
+            #endregion AssetHistory
+
+            #region User
 
             User user0 = new User
             {
@@ -380,7 +367,7 @@
                 UserName = "admin",
                 LastLogin = new DateTime(2011, 1, 5),
                 SecurityStamp = Guid.NewGuid().ToString(),
-                Password = "Nhannhan159~"
+                PasswordHash = (new PasswordHasher()).HashPassword("Nhannhan159~")
             };
 
             User user1 = new User
@@ -392,7 +379,7 @@
                 UserName = "teacher",
                 LastLogin = new DateTime(2011, 1, 5),
                 SecurityStamp = Guid.NewGuid().ToString(),
-                Password = "Nhannhan159~"
+                PasswordHash = (new PasswordHasher()).HashPassword("Nhannhan159~")
             };
 
             User user2 = new User
@@ -404,7 +391,7 @@
                 UserName = "manager",
                 LastLogin = new DateTime(2011, 1, 5),
                 SecurityStamp = Guid.NewGuid().ToString(),
-                Password = "Nhannhan159~"
+                PasswordHash = (new PasswordHasher()).HashPassword("Nhannhan159~")
             };
 
             User user3 = new User
@@ -416,7 +403,7 @@
                 UserName = "user3",
                 LastLogin = new DateTime(2011, 1, 5),
                 SecurityStamp = Guid.NewGuid().ToString(),
-                Password = "user123"
+                PasswordHash = (new PasswordHasher()).HashPassword("Nhannhan159~")
             };
 
             User user4 = new User
@@ -428,7 +415,7 @@
                 UserName = "user4",
                 LastLogin = new DateTime(2011, 1, 5),
                 SecurityStamp = Guid.NewGuid().ToString(),
-                Password = "user123"
+                PasswordHash = (new PasswordHasher()).HashPassword("Nhannhan159~")
             };
 
             User user5 = new User
@@ -440,7 +427,7 @@
                 UserName = "user5",
                 LastLogin = new DateTime(2011, 1, 5),
                 SecurityStamp = Guid.NewGuid().ToString(),
-                Password = "user123"
+                PasswordHash = (new PasswordHasher()).HashPassword("Nhannhan159~")
             };
 
             User user6 = new User
@@ -452,7 +439,7 @@
                 UserName = "user6",
                 LastLogin = new DateTime(2011, 1, 5),
                 SecurityStamp = Guid.NewGuid().ToString(),
-                Password = "user123"
+                PasswordHash = (new PasswordHasher()).HashPassword("Nhannhan159~")
             };
 
             User user7 = new User
@@ -464,7 +451,7 @@
                 UserName = "user7",
                 LastLogin = new DateTime(2011, 1, 5),
                 SecurityStamp = Guid.NewGuid().ToString(),
-                Password = "user123"
+                PasswordHash = (new PasswordHasher()).HashPassword("Nhannhan159~")
             };
 
             User user8 = new User
@@ -476,7 +463,7 @@
                 UserName = "user8",
                 LastLogin = new DateTime(2011, 1, 5),
                 SecurityStamp = Guid.NewGuid().ToString(),
-                Password = "user123"
+                PasswordHash = (new PasswordHasher()).HashPassword("Nhannhan159~")
             };
 
             User user9 = new User
@@ -488,17 +475,19 @@
                 UserName = "user9",
                 LastLogin = new DateTime(2011, 1, 5),
                 SecurityStamp = Guid.NewGuid().ToString(),
-                Password = "user123"
+                PasswordHash = (new PasswordHasher()).HashPassword("Nhannhan159~")
             };
 
-            #endregion staff
+            #endregion User
+
+            #region RoomReg
 
             RoomReg roomcalendar1 = new RoomReg
             {
                 Date = new DateTime(2011, 1, 5),
                 Start = 4,
                 Length = 2,
-                RoomRegTypeId = RoomReg.REG_WAITING,
+                RoomRegType = 1,
                 Room = room2,
                 User = user2
             };
@@ -508,7 +497,7 @@
                 Date = new DateTime(2011, 1, 5),
                 Start = 10,
                 Length = 2,
-                RoomRegTypeId = RoomReg.REG_WAITING,
+                RoomRegType = 1,
                 Room = room2,
                 User = user2
             };
@@ -518,7 +507,7 @@
                 Date = new DateTime(2011, 1, 7),
                 Start = 1,
                 Length = 3,
-                RoomRegTypeId = RoomReg.REG_COMFIRMED,
+                RoomRegType = 2,
                 Room = room1,
                 User = user1
             };
@@ -528,7 +517,7 @@
                 Date = new DateTime(2011, 1, 8),
                 Start = 8,
                 Length = 4,
-                RoomRegTypeId = RoomReg.REG_WAITING,
+                RoomRegType = 1,
                 Room = room6,
                 User = user2
             };
@@ -538,17 +527,19 @@
                 Date = new DateTime(2011, 1, 8),
                 Start = 4,
                 Length = 2,
-                RoomRegTypeId = RoomReg.REG_CANCELED,
+                RoomRegType = 3,
                 Room = room4,
                 User = user1
             };
+
+            #endregion RoomReg
+
+            #region AddAll
 
             context.Entry(roomTH).State = EntityState.Added;
             context.Entry(roomHO).State = EntityState.Added;
             context.Entry(roomLI).State = EntityState.Added;
             context.Entry(roomSI).State = EntityState.Added;
-
-            #region add device
 
             context.Entry(device1).State = EntityState.Added;
             context.Entry(device2).State = EntityState.Added;
@@ -571,10 +562,6 @@
             context.Entry(device19).State = EntityState.Added;
             context.Entry(device20).State = EntityState.Added;
 
-            #endregion add device
-
-            #region addroom
-
             context.Entry(room0).State = EntityState.Added;
             context.Entry(room1).State = EntityState.Added;
             context.Entry(room2).State = EntityState.Added;
@@ -596,10 +583,6 @@
             context.Entry(room18).State = EntityState.Added;
             context.Entry(room19).State = EntityState.Added;
 
-            #endregion addroom
-
-            #region add room assets
-
             context.Entry(roomD1).State = EntityState.Added;
             context.Entry(roomD2).State = EntityState.Added;
             context.Entry(roomD3).State = EntityState.Added;
@@ -608,8 +591,6 @@
             context.Entry(roomD6).State = EntityState.Added;
             context.Entry(roomD7).State = EntityState.Added;
 
-            #endregion add room assets
-
             context.Entry(devicehistory1).State = EntityState.Added;
             context.Entry(devicehistory2).State = EntityState.Added;
             context.Entry(devicehistory3).State = EntityState.Added;
@@ -617,8 +598,6 @@
             context.Entry(usertype0).State = EntityState.Added;
             context.Entry(usertype1).State = EntityState.Added;
             context.Entry(usertype2).State = EntityState.Added;
-
-            #region add staff
 
             context.Entry(user0).State = EntityState.Added;
             context.Entry(user1).State = EntityState.Added;
@@ -631,13 +610,13 @@
             context.Entry(user8).State = EntityState.Added;
             context.Entry(user9).State = EntityState.Added;
 
-            #endregion add staff
-
             context.Entry(roomcalendar1).State = EntityState.Added;
             context.Entry(roomcalendar2).State = EntityState.Added;
             context.Entry(roomcalendar3).State = EntityState.Added;
             context.Entry(roomcalendar4).State = EntityState.Added;
             context.Entry(roomcalendar5).State = EntityState.Added;
+
+            #endregion AddAll
 
             context.SaveChanges();
         }

@@ -1,5 +1,5 @@
 ﻿using NPOI.SS.UserModel;
-using RoomM.Domain.RoomModule.Aggregates;
+using RoomM.Application.RoomM.Domain.RoomModule.Aggregates;
 using System;
 using System.Collections.Generic;
 
@@ -36,8 +36,8 @@ namespace RoomM.DeskApp
                 row.CreateCell(1).SetCellValue(index);
                 row.CreateCell(2).SetCellValue(r.Name);
                 row.CreateCell(3).SetCellValue(r.RoomType.Name);
-                row.CreateCell(4).SetCellValue(r.DateCreate.ToShortDateString());
-                row.CreateCell(5).SetCellValue(r.IsUsing ? "Đang dùng" : "Ngưng dùng");
+                row.CreateCell(4).SetCellValue(r.DateCreate.Value.DateTime.ToShortDateString());
+                //row.CreateCell(5).SetCellValue(r.IsUsing ? "Đang dùng" : "Ngưng dùng");
                 startRow++;
                 index++;
             }

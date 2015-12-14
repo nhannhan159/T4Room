@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using System.Runtime.Serialization;
 
 namespace RoomM.Domain.AssetModule.Aggregates
@@ -17,9 +16,6 @@ namespace RoomM.Domain.AssetModule.Aggregates
 
         [DataMember]
         public Boolean IsUsing { get; set; }
-
-        [DataMember]
-        public int Amount { get; set; }
 
         [DataMember]
         public string Description { get; set; }
@@ -57,13 +53,8 @@ namespace RoomM.Domain.AssetModule.Aggregates
 
         public Asset()
         {
-            this.Amount = 0;
+            this.Id = Guid.NewGuid().ToString();
             this.IsUsing = true;
-        }
-
-        public override string ToString()
-        {
-            return this.Id + " # " + this.Name;
         }
     }
 }

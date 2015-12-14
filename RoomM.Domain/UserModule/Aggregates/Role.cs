@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.Serialization;
@@ -36,12 +37,7 @@ namespace RoomM.Domain.UserModule.Aggregates
 
         public Role()
         {
-        }
-
-        public Role(string name, string fullName)
-        {
-            this.Name = name;
-            this.FullName = fullName;
+            this.Id = Guid.NewGuid().ToString();
         }
     }
 }
